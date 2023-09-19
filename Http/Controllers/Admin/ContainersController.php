@@ -66,7 +66,7 @@ class ContainersController extends BaseController
     {
         // dddx([$method, $args]);
         $route_current = Route::current();
-        if (null !== $route_current) {
+        if ($route_current instanceof \Illuminate\Routing\Route) {
             $action = $route_current->getAction();
             $action['controller'] = self::class.'@'.$method;
             $action = $route_current->setAction($action);
@@ -125,7 +125,7 @@ class ContainersController extends BaseController
         if (! Auth::check()) {
             $referer = \Request::path();
 
-            return redirect()->route('login', ['lang' => $lang, 'referer' => $referer])
+            return to_route('login', ['lang' => $lang, 'referer' => $referer])
                 ->withErrors(['active' => 'login before']);
         }
         $class = PolicyService::get($panelContract)->createIfNotExists()->getClass();

@@ -1525,7 +1525,7 @@ abstract class XotBasePanel implements PanelContract
         if (! Auth::check()) {
             $referer = \Request::path();
 
-            return redirect()->route('login', ['lang' => $lang, 'referer' => $referer])
+            return to_route('login', ['lang' => $lang, 'referer' => $referer])
                 ->withErrors(['active' => 'login before']);
         }
 
@@ -1845,7 +1845,7 @@ abstract class XotBasePanel implements PanelContract
 
         if (inAdmin()) {
             $mod = $params['module'] ?? RouteService::getModuleName();
-            $view1 = strtolower($mod.'::'.$view1);
+            $view1 = strtolower((string) ($mod.'::'.$view1));
         } else {
             $view1 = 'pub_theme::'.$view1;
         }

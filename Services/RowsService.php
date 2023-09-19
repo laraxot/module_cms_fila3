@@ -68,7 +68,7 @@ class RowsService
                         function ($subquery) use ($search_fields, $q): void {
                             foreach ($search_fields as $search_field) {
                                 if (Str::contains($search_field, '.')) {
-                                    [$rel, $rel_field] = explode('.', $search_field);
+                                    [$rel, $rel_field] = explode('.', (string) $search_field);
 
                                     // dddx([$rel, $rel_field]);
 

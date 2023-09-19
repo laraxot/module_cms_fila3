@@ -49,7 +49,7 @@ class Detach extends Component
 
     public function shouldRender(): bool
     {
-        if (! isset($this->panelContract->getRow()->pivot)) {
+        if (property_exists($this->panelContract->getRow(), 'pivot') && $this->panelContract->getRow()->pivot !== null) {
             return false;
         }
 

@@ -77,9 +77,6 @@ class GeoJsonPanelPresenter implements PanelPresenterContract
         return new $transformer($model);
     }
 
-    /**
-     * @return GeoJsonCollection|GeoJsonResource
-     */
     public function out(array $params = null): GeoJsonCollection|GeoJsonResource
     {
         if (isContainer()) {

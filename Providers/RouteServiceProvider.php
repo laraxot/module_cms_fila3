@@ -93,8 +93,8 @@ class RouteServiceProvider extends XotBaseRouteServiceProvider
             $models = [];
         }
         $models_collect = collect(array_keys($models));
-        $pattern = $models_collect->implode('|');
-        $pattern_plural = $models_collect->map(
+        $models_collect->implode('|');
+        $models_collect->map(
             fn($item) => Str::plural((string) $item)
         )->implode('|');
         /*--pattern vuoto

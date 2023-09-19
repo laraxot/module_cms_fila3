@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Modules\Cms\Models;
 
+use Eloquent;
 use Illuminate\Database\Eloquent\Collection;
 use Modules\Cms\Database\Factories\PageFactory;
 use Illuminate\Database\Eloquent\Builder;
@@ -35,7 +36,7 @@ use Sushi\Sushi;
  * @method static Builder|Page whereTitle($value)
  *
  * @mixin IdeHelperPage
- * @mixin \Eloquent
+ * @mixin Eloquent
  */
 class Page extends BaseModel
 {
@@ -76,7 +77,7 @@ class Page extends BaseModel
         $main_module = config('xra.main_module');
         if ('' !== $main_module && null !== $main_module) {
             // push main module (ex: blog) in nss
-            $nss[] = strtolower($main_module);
+            $nss[] = strtolower((string) $main_module);
         }
 
         // creates $pages collection

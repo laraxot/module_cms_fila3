@@ -4,6 +4,8 @@ declare(strict_types=1);
 
 namespace Modules\Cms\Models\Panels\Actions;
 
+use Exception;
+use ReflectionClass;
 use Illuminate\Contracts\Support\Renderable;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\QueryException;
@@ -61,12 +63,11 @@ class DbAction extends XotBasePanelAction
         $search = request('search');
         $data = $this->getAllTablesAndFields();
         $data = $data->map(
-            function ($item) {
+            fn($item) =>
                 // $item['sql']=$this->makeSql($item,$search);
-                return $item;
-            });
+                $item);
         $model = $this->getModel();
-        $model_service = ModelService::make()->setModel($model);
+        ModelService::make()->setModel($model);
 
         foreach ($data as $v) {
             try {
@@ -83,12 +84,9 @@ class DbAction extends XotBasePanelAction
                     $rows = $res->limit(10);
                     $res = $rows->get();
                 }
-            } catch (QueryException $e) {
+            } catch (QueryException|Exception $e) {
                 $msg = '<pre>'.$v['sql'].'</pre><pre>'.$e->getMessage().'</pre>';
-                throw new \Exception($msg.'['.__LINE__.']['.__FILE__.']');
-            } catch (\Exception $e) {
-                $msg = '<pre>'.$v['sql'].'</pre><pre>'.$e->getMessage().'</pre>';
-                throw new \Exception($msg.'['.__LINE__.']['.__FILE__.']');
+                throw new Exception($msg.'['.__LINE__.']['.__FILE__.']', $e->getCode(), $e);
             }
             if ($res->count() > 0 && $valid && isset($rows)) {
                 echo '<hr>';
@@ -125,16 +123,10 @@ class DbAction extends XotBasePanelAction
         $where = [];
         foreach ($item['fields'] as $field) {
             $name = $field['name'];
-            $name = '`'.addslashes($name).'`'; // test
-
-            switch ($field['type']) {
-                // case 'string':
-                //    $where[]=$name.' like "%'.$search.'%"';
-                // break;
-                default:
-                    $where[] = $name.' = "'.$search.'"';
-                    break;
-            }
+            $name = '`'.addslashes((string) $name).'`';
+            // test
+            $where[] = $name.' = "'.$search.'"';
+            break;
         }
 
         return $sql.'('.implode(\chr(13).\chr(10).' OR ', $where).') limit 10';
@@ -144,9 +136,6 @@ class DbAction extends XotBasePanelAction
     {
         $module_name = $this->panel->getModuleName();
         $cache_key = Str::slug($module_name.'_model');
-        /**
-         * @var string
-         */
         $first_model_class = Cache::rememberForever($cache_key, function () use ($module_name) {
             $module_path = Module::getModulePath($module_name);
             $module_models_path = $module_path.'/Models';
@@ -155,33 +144,22 @@ class DbAction extends XotBasePanelAction
             $is_abstract = true;
             while ($is_abstract) {
                 $first_model_file = $models[$i++];
-                /**
-                 * @var class-string
-                 */
                 $first_model_class = 'Modules\\'.$module_name.'\Models\\'.Str::before($first_model_file->getBasename(), '.php');
-                $reflect = new \ReflectionClass($first_model_class);
+                $reflect = new ReflectionClass($first_model_class);
                 $is_abstract = $reflect->isAbstract();
             }
 
             return $first_model_class;
         });
-        $first_model = app($first_model_class);
 
-        return $first_model;
+        return app($first_model_class);
     }
 
     public function getAllTablesAndFields(): Collection
     {
         $first_model = $this->getModel();
-        $cache_key = Str::slug(\get_class($first_model).'_'.__FUNCTION__);
+        $cache_key = Str::slug($first_model::class.'_'.__FUNCTION__);
 
-        /**
-         * @var Collection
-         */
-        $data = Cache::rememberForever($cache_key, function () use ($first_model) {
-            return ModelService::make()->setModel($first_model)->getAllTablesAndFields();
-        });
-
-        return $data;
+        return Cache::rememberForever($cache_key, fn() => ModelService::make()->setModel($first_model)->getAllTablesAndFields());
     }
 }

@@ -42,16 +42,6 @@ abstract class BaseMorphPivot extends MorphPivot
      * @var bool
      */
     public $timestamps = true;
-    // protected $attributes = ['related_type' => 'cuisine_cat'];
-    /**
-     * @var string[]
-     */
-    protected $dates = [
-        'created_at',
-        'updated_at',
-        'deleted_at',
-        // 'published_at',
-    ];
     /**
      * @var string[]
      */
@@ -62,4 +52,5 @@ abstract class BaseMorphPivot extends MorphPivot
         'user_id',
         'note',
     ];
+    protected $casts = ['created_at' => 'datetime', 'updated_at' => 'datetime', 'deleted_at' => 'datetime'];
 }

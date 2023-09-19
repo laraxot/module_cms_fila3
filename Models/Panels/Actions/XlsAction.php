@@ -23,8 +23,6 @@ class XlsAction extends XotBasePanelAction
 
     /**
      * return array|\Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View|string|\Symfony\Component\HttpFoundation\BinaryFileResponse.
-     *
-     * @return Renderable|BinaryFileResponse
      */
     public function handle(): BinaryFileResponse|Renderable
     {

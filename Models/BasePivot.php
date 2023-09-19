@@ -38,11 +38,7 @@ abstract class BasePivot extends Pivot
     /**
      * @var array<string, string>
      */
-    protected $casts = [];
-    /**
-     * @var string[]
-     */
-    protected $dates = ['created_at', 'updated_at'];
+    protected $casts = ['created_at' => 'datetime', 'updated_at' => 'datetime'];
     /**
      * Undocumented variable.
      *

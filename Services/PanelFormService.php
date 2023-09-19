@@ -322,7 +322,7 @@ class PanelFormService
         $panel = $this->panelContract;
         // extract($params);
         $excepts = collect([]);
-        if (isset($panel->rows) && \is_object($panel->getRows())) {
+        if (property_exists($panel, 'rows') && $panel->rows !== null && \is_object($panel->getRows())) {
             $methods = [
                 'getForeignKeyName', // relation  BelongsTo,HasManyThrought,HasOneOrMany
                 'getMorphType',     // relation   MorphOneOrMany,MorphPivot,MorphTo,MorphToMany

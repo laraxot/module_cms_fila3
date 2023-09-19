@@ -1466,7 +1466,7 @@ abstract class CmsBasePanel implements PanelContract
         if (! Auth::check()) {
             $referer = \Request::path();
 
-            return redirect()->route('login', ['lang' => $lang, 'referer' => $referer])
+            return to_route('login', ['lang' => $lang, 'referer' => $referer])
                 ->withErrors(['active' => 'login before']);
         }
 

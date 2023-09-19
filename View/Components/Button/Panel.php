@@ -72,7 +72,7 @@ class Panel extends XotBaseComponent
 
     public function shouldRender(): bool
     {
-        if ('detach' == $this->type && ! isset($this->panelContract->getRow()->pivot)) {
+        if ('detach' == $this->type && (property_exists($this->panelContract->getRow(), 'pivot') && $this->panelContract->getRow()->pivot !== null)) {
             return false;
         }
 
