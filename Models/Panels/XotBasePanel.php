@@ -73,7 +73,7 @@ abstract class XotBasePanel implements PanelContract
      */
     public $rows;
 
-    public ?Builder $builder = null;
+    public ?Builder $query = null;
 
     public ?string $name = null;
 
@@ -123,9 +123,9 @@ abstract class XotBasePanel implements PanelContract
         return [];
     }
 
-    public function setBuilder(Builder $builder): self
+    public function setBuilder(Builder $query): self
     {
-        $this->builder = $builder;
+        $this->builder = $query;
 
         return $this;
     }
@@ -469,30 +469,30 @@ abstract class XotBasePanel implements PanelContract
             /**
              * @var Builder
              */
-            $builder = $rows;
+            $query = $rows;
             // if ($rows instanceof Relation) {
-            //    $builder = $rows->getQuery();
+            //    $query = $rows->getQuery();
             // }
 
-            // if (! method_exists($builder, 'whereHas')) {
+            // if (! method_exists($query, 'whereHas')) {
             // throw new \Exception('['.__LINE__.']['.class_basename(__CLASS__).']');
             // }
             // Call to an undefined method Illuminate\Database\Eloquent\Builder|Illuminate\Database\Query\Builder::whereHas().
-            $rows = $builder->whereHas(
+            $rows = $query->whereHas(
                 'posts',
-                function (Builder $builder) use ($value): void {
-                    $builder->where('guid', $value);
+                function (Builder $query) use ($value): void {
+                    $query->where('guid', $value);
                 }
             );
         } else {
-            $builder = $rows;
+            $query = $rows;
 
             // ritorna il builder quindi è ri-possibile fare where
-            if ($builder instanceof Relation) {
-                $builder = $rows->getQuery();
+            if ($query instanceof Relation) {
+                $query = $rows->getQuery();
             }
 
-            $rows = $builder->where([$pk_full => $value]);
+            $rows = $query->where([$pk_full => $value]);
         }
         $row = $rows->first();
         if ($row instanceof Model) {
@@ -513,8 +513,8 @@ abstract class XotBasePanel implements PanelContract
         $model = $this->row;
         $res = $model::whereHas(
             'post',
-            function (Builder $builder) use ($label): void {
-                $builder->where('title', 'like', $label);
+            function (Builder $query) use ($label): void {
+                $query->where('title', 'like', $label);
             }
         )->first();
         if (\is_object($res)) {

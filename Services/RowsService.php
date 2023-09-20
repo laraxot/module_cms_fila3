@@ -77,10 +77,10 @@ class RowsService
                                         // ->setConnection('liveuser_general')
                                         ->orWhereHas(
                                             $rel,
-                                            function (Builder $builder) use ($rel_field, $q): void {
+                                            function (Builder $query) use ($rel_field, $q): void {
                                                 // dddx($subquery1->getConnection()->getDatabaseName());
 
-                                                $builder->where($rel_field, 'like', '%'.$q.'%');
+                                                $query->where($rel_field, 'like', '%'.$q.'%');
                                                 // dddx($subquery1);
                                             }
                                         );
