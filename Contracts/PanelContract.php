@@ -13,7 +13,7 @@ use Illuminate\Http\File;
 use Illuminate\Http\UploadedFile;
 use Illuminate\Support\Collection;
 use Illuminate\View\View;
-use Modules\Cms\Models\Panels\Actions\XotBasePanelAction;
+use Modules\Cms\\Actions\XotBasePanelAction;
 use Modules\UI\Datas\FieldData;
 use Modules\Xot\Contracts\UserContract;
 use Psr\Http\Message\StreamInterface;

@@ -7,7 +7,7 @@ namespace Modules\Cms\Services;
 use Illuminate\Support\Collection;
 use Illuminate\Support\Str;
 use Modules\Cms\Contracts\PanelContract;
-use Modules\Cms\Models\Panels\Actions\XotBasePanelAction;
+use Modules\Cms\\Actions\XotBasePanelAction;
 
 /**
  * Class PanelActionService.
