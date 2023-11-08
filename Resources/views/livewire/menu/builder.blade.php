@@ -19,7 +19,7 @@
 
                                 <div class="manage-menus">
                                     <form method="get" action="">
-                                        <label for="menu" class="selected-menu">Select the menu you want to
+                                        <x-filament-forms::field-wrapper.label for="menu" class="selected-menu">Select the menu you want to
                                             edit:</label>
                                         <select wire:model="selectedMenu" wire:change="chooseMenu">
                                             @foreach ($menulist as $itemKey => $itemVal)
@@ -51,7 +51,7 @@
                                                                 <div class="inside">
                                                                     <div class="customlinkdiv" id="customlinkdiv">
                                                                         <p id="menu-item-url-wrap">
-                                                                            <label class="howto"
+                                                                            <x-filament-forms::field-wrapper.label class="howto"
                                                                                 for="custom-menu-item-url">
                                                                                 <span>URL</span>&nbsp;&nbsp;&nbsp;
                                                                                 <input id="custom-menu-item-url"
@@ -62,7 +62,7 @@
                                                                         </p>
 
                                                                         <p id="menu-item-name-wrap">
-                                                                            <label class="howto"
+                                                                            <x-filament-forms::field-wrapper.label class="howto"
                                                                                 for="custom-menu-item-name">
                                                                                 <span>Label</span>&nbsp;
                                                                                 <input id="custom-menu-item-name"
@@ -74,7 +74,7 @@
 
                                                                         @if (!empty($roles))
                                                                             <p id="menu-item-role_id-wrap">
-                                                                                <label class="howto"
+                                                                                <x-filament-forms::field-wrapper.label class="howto"
                                                                                     for="custom-menu-item-name">
                                                                                     <span>Role</span>&nbsp;
                                                                                     <select id="custom-menu-item-role"
@@ -122,7 +122,7 @@
                                                 <div class="menu-edit ">
                                                     <div id="nav-menu-header">
                                                         <div class="major-publishing-actions">
-                                                            <label class="menu-name-label howto open-label"
+                                                            <x-filament-forms::field-wrapper.label class="menu-name-label howto open-label"
                                                                 for="menu-name"> <span>Name</span>
                                                                 <input name="menu-name" wire:model="menuName"
                                                                     id="menu-name" type="text"
@@ -215,7 +215,7 @@
                                                                                         value="{{ $m['id'] }}" />
                                                                                     <p
                                                                                         class="description description-thin">
-                                                                                        <label> Label
+                                                                                        <x-filament-forms::field-wrapper.label> Label
                                                                                             <br>
                                                                                             <input type="text"
                                                                                                 class="widefat edit-menu-item-title"
@@ -224,7 +224,7 @@
                                                                                     </p>
                                                                                     <p
                                                                                         class="field-css-classes description description-thin">
-                                                                                        <label> Class CSS (optional)
+                                                                                        <x-filament-forms::field-wrapper.label> Class CSS (optional)
                                                                                             <br>
                                                                                             <input type="text"
                                                                                                 class="widefat code edit-menu-item-classes"
@@ -233,7 +233,7 @@
                                                                                     </p>
                                                                                     <p
                                                                                         class="field-css-url description description-wide">
-                                                                                        <label> Url
+                                                                                        <x-filament-forms::field-wrapper.label> Url
                                                                                             <br>
                                                                                             <input type="text"
                                                                                                 class="widefat code edit-menu-item-url"
@@ -244,7 +244,7 @@
                                                                                     @if (!empty($roles))
                                                                                         <p
                                                                                             class="field-css-role description description-wide">
-                                                                                            <label
+                                                                                            <x-filament-forms::field-wrapper.label
                                                                                                 for="edit-menu-item-role-{{ $m['id'] }}">
                                                                                                 Role
                                                                                                 <br>
@@ -268,7 +268,7 @@
                                                                                     @if (count($menuItems) > 1)
                                                                                         <p
                                                                                             class="field-move hide-if-no-js description description-wide">
-                                                                                            <label> <span>Move</span>
+                                                                                            <x-filament-forms::field-wrapper.label> <span>Move</span>
                                                                                                 @if ($mk != 0)
                                                                                                     <a href="javascript:void(0)"
                                                                                                         class="menus-move-up"

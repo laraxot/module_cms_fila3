@@ -13,14 +13,14 @@
                     <div class="inside">
                         <div class="customlinkdiv" id="customlinkdiv">
                             <p id="menu-item-url-wrap">
-                                <label class="howto" for="custom-menu-item-url"> <span>URL</span>&nbsp;&nbsp;&nbsp;
+                                <x-filament-forms::field-wrapper.label class="howto" for="custom-menu-item-url"> <span>URL</span>&nbsp;&nbsp;&nbsp;
                                     <input id="custom-menu-item-url" name="url" type="text"
                                         class="menu-item-textbox " placeholder="url" wire:model="item.link">
                                 </label>
                             </p>
 
                             <p id="menu-item-name-wrap">
-                                <label class="howto" for="custom-menu-item-name"> <span>Label</span>&nbsp;
+                                <x-filament-forms::field-wrapper.label class="howto" for="custom-menu-item-name"> <span>Label</span>&nbsp;
                                     <input id="custom-menu-item-name" name="label" type="text"
                                         class="regular-text menu-item-textbox input-with-default-title"
                                         title="Label menu" wire:model="item.label">
@@ -29,7 +29,7 @@
 
                             @if (!empty($roles))
                                 <p id="menu-item-role_id-wrap">
-                                    <label class="howto" for="custom-menu-item-name"> <span>Role</span>&nbsp;
+                                    <x-filament-forms::field-wrapper.label class="howto" for="custom-menu-item-name"> <span>Role</span>&nbsp;
                                         <select id="custom-menu-item-role" name="role">
                                             <option value="0">Select Role</option>
                                             @foreach ($roles as $role)
