@@ -4,11 +4,10 @@ declare(strict_types=1);
 
 namespace Modules\Cms\Actions\Module;
 
-use Nwidart\Modules\Laravel\Module;
-use Exception;
 use Illuminate\Filesystem\Filesystem;
 use Illuminate\Support\Facades\File;
 use Modules\Xot\Services\FileService;
+use Nwidart\Modules\Laravel\Module;
 
 use function Safe\realpath;
 
@@ -24,9 +23,9 @@ final class FixJigSawByModuleAction
         $res = [];
         $stubs_dir = realpath(__DIR__.'/../../Console/Commands/stubs/docs');
         if (false == $stubs_dir) {
-            throw new Exception('['.__LINE__.']['.__FILE__.']');
+            throw new \Exception('['.__LINE__.']['.__FILE__.']');
         }
-        
+
         $stubs = File::allFiles($stubs_dir);
         foreach ($stubs as $stub) {
             /*
@@ -48,7 +47,7 @@ final class FixJigSawByModuleAction
                 //'methods' => get_class_methods($stub),
             ]);
             */
-            if (!$stub->isFile()) {
+            if (! $stub->isFile()) {
                 continue;
             }
             if ('stub' != $stub->getExtension()) {

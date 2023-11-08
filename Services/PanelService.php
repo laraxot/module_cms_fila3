@@ -4,14 +4,10 @@ declare(strict_types=1);
 
 namespace Modules\Cms\Services;
 
-use Illuminate\Contracts\Filesystem\FileNotFoundException;
-use ReflectionException;
-use Illuminate\Http\RedirectResponse;
-use Session;
-use ReflectionClass;
-use stdClass;
 use Exception;
+use Illuminate\Contracts\Filesystem\FileNotFoundException;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Http\RedirectResponse;
 use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\File;
 use Illuminate\Support\Str;
@@ -44,7 +40,7 @@ class PanelService
 
     public static function getInstance(): self
     {
-        if (!self::$instance instanceof \Modules\Cms\Services\PanelService) {
+        if (! self::$instance instanceof \Modules\Cms\Services\PanelService) {
             self::$instance = new self();
         }
 
@@ -102,7 +98,7 @@ class PanelService
      * @param Model|ModelContract|ModelProfileContract $model
      *
      * @throws FileNotFoundException
-     * @throws ReflectionException
+     * @throws \ReflectionException
      */
     public function get($model): PanelContract
     {
@@ -136,12 +132,12 @@ class PanelService
     // ret \Illuminate\Contracts\Foundation\Application|mixed|null
     /**
      * @throws FileNotFoundException
-     * @throws ReflectionException
+     * @throws \ReflectionException
      */
     public function panel(): PanelContract
     {
         if (! \is_object($this->model)) {
-            throw new Exception('model is not an object url:'.url()->current());
+            throw new \Exception('model is not an object url:'.url()->current());
         }
         /*
         $class_full = get_class($this->model);
@@ -169,7 +165,7 @@ class PanelService
     {
         $res = $this->model->getAttributeValue('image_src');
         if (! \is_string($res)) {
-            throw new Exception('['.__LINE__.']['.class_basename(self::class).']');
+            throw new \Exception('['.__LINE__.']['.class_basename(self::class).']');
         }
 
         return $res;
@@ -226,13 +222,13 @@ class PanelService
 
         try {
             $home = $home->firstOrCreate(['id' => 1]);
-        } catch (Exception $e) {
+        } catch (\Exception $e) {
             echo '<h3>'.$e->getMessage().'</h3>';
         }
         if (inAdmin() && isset($params['module'])) {
             $module = Module::find($params['module']);
             if (null === $module) {
-                throw new Exception('module ['.$params['module'].'] not found');
+                throw new \Exception('module ['.$params['module'].'] not found');
             }
             $panel = '\Modules\\'.$module->getName().'\Models\Panels\_ModulePanel';
             $panel = app($panel);
@@ -340,7 +336,7 @@ class PanelService
             // dddx(['row_prev' => $row_prev, 'panel_parent' => $panel_parent, 'types' => $types, 'rows' => $rows]);
             try {
                 $row = $rows->getRelated(); // se relazione
-            } catch (Exception) {  // se builder
+            } catch (\Exception) {  // se builder
                 /*
                 dddx(
                     [
@@ -372,7 +368,7 @@ class PanelService
 
     /**
      * @throws FileNotFoundException
-     * @throws ReflectionException
+     * @throws \ReflectionException
      *
      * @return RedirectResponse|mixed
      */
@@ -390,14 +386,14 @@ class PanelService
             return new $panel();
         }
         $this->createPanel($model);
-        Session::flash('status', 'panel created');
+        \Session::flash('status', 'panel created');
 
         return redirect()->back();
     }
 
     /**
      * @throws FileNotFoundException
-     * @throws ReflectionException
+     * @throws \ReflectionException
      */
     public function createPanel(Model $model): void
     {
@@ -406,10 +402,10 @@ class PanelService
         $class = Str::before($class_full, $class_name);
         $panel_namespace = $class.'Panels';
         // ---- creazione panel
-        $reflectionClass = new ReflectionClass($model);
+        $reflectionClass = new \ReflectionClass($model);
         $class_filename = $reflectionClass->getFileName();
         if (false === $class_filename) {
-            throw new Exception('autoloader_reflector err');
+            throw new \Exception('autoloader_reflector err');
         }
         $model_dir = \dirname($class_filename); // /home/vagrant/code/htdocs/lara/multi/laravel/Modules/LU/Models
         $stub_file = __DIR__.'/../Console/stubs/panel.stub';
@@ -420,10 +416,10 @@ class PanelService
         foreach ($fillables as $fillable) {
             try {
                 $input_type = $model->getConnection()->getDoctrineColumn($model->getTable(), $fillable)->getType()->getName();
-            } catch (Exception) {
+            } catch (\Exception) {
                 $input_type = 'Text';
             }
-            $tmp = new stdClass();
+            $tmp = new \stdClass();
             // $tmp->type = (string) $input_type;// 311    Cannot cast 'Text'|Doctrine\DBAL\Types\Type to string.
             $tmp->type = $input_type;
 
@@ -456,7 +452,7 @@ class PanelService
 
     /**
      * @throws FileNotFoundException
-     * @throws ReflectionException
+     * @throws \ReflectionException
      */
     public function updatePanel(array $params = []): void
     {
@@ -473,10 +469,10 @@ class PanelService
         }
         $func_file = __DIR__.'/../Console/stubs/panels/'.$func.'.stub';
         $func_stub = File::get($func_file);
-        $autoloader_reflector = new ReflectionClass($panel);
+        $autoloader_reflector = new \ReflectionClass($panel);
         $panel_file = $autoloader_reflector->getFileName();
         if (false === $panel_file) {
-            throw new Exception('autoloader_reflector err');
+            throw new \Exception('autoloader_reflector err');
         }
 
         $panel_stub = File::get($panel_file);

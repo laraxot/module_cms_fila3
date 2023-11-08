@@ -4,12 +4,10 @@ declare(strict_types=1);
 
 namespace Modules\Cms\Http\Controllers;
 
-use Exception;
+use Illuminate\Contracts\Support\Renderable;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Response;
-use Auth;
-use Illuminate\Contracts\Support\Renderable;
 use Illuminate\Support\Facades\Gate;
 use Illuminate\Support\Facades\Request;
 use Illuminate\Support\Facades\Route;
@@ -73,8 +71,8 @@ class ContainersController extends BaseController
         }
         $panel = PanelService::make()->getRequestPanel();
 
-        if (!$panel instanceof PanelContract) {
-            throw new Exception('['.__LINE__.']['.__FILE__.']');
+        if (! $panel instanceof PanelContract) {
+            throw new \Exception('['.__LINE__.']['.__FILE__.']');
         }
         $this->panel = $panel;
 
@@ -92,14 +90,14 @@ class ContainersController extends BaseController
         $mod_name = $this->panel->getModuleName();
 
         $tmp = collect($containers)->map(
-            fn($item) => Str::studly($item)
+            fn ($item) => Str::studly($item)
         )->implode('\\');
         $controller = '\Modules\\'.$mod_name.'\Http\Controllers\\'.$tmp.'Controller';
         if (class_exists($controller) && '' !== $tmp) {
             return $controller;
         }
 
-        return '\\' . XotPanelController::class;
+        return '\\'.XotPanelController::class;
     }
 
     /**
@@ -156,9 +154,9 @@ class ContainersController extends BaseController
     {
         app()->getLocale();
         $class = PolicyService::get($panelContract)->createIfNotExists()->getClass();
-        $msg = 'Auth Id ['.Auth::id().'] not can ['.$method.'] on ['.$class.']';
+        $msg = 'Auth Id ['.\Auth::id().'] not can ['.$method.'] on ['.$class.']';
         FileService::viewCopy('ui::errors.403', 'pub_theme::errors.403');
-        $exception = new Exception($msg);
+        $exception = new \Exception($msg);
 
         return response()->view('pub_theme::errors.403', ['msg' => $msg, 'exception' => $exception], 403);
     }

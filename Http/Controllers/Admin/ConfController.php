@@ -4,10 +4,9 @@ declare(strict_types=1);
 
 namespace Modules\Cms\Http\Controllers\Admin;
 
-use Exception;
-use Illuminate\Http\RedirectResponse;
 use Illuminate\Contracts\Support\Renderable;
 use Illuminate\Contracts\View\View;
+use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Config;
 use Modules\Cms\Actions\GetViewAction;
@@ -59,7 +58,7 @@ class ConfController extends BaseController
         extract($route_params);
         if (! isset($item0)) {
             dddx(['err' => 'item0 is missing']);
-            throw new Exception('item0 is missing');
+            throw new \Exception('item0 is missing');
             // return;
         }
         $row = config($item0);
@@ -88,7 +87,7 @@ class ConfController extends BaseController
 
             return;
         }
-        throw new Exception('['.__LINE__.']['.class_basename(self::class).']');
+        throw new \Exception('['.__LINE__.']['.class_basename(self::class).']');
         // TenantService::saveConfig($item0, $data);
         /*
         $data['_token'] = '';

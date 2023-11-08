@@ -17,7 +17,7 @@ final class DetachAction
         $rules = [];
         $act = str_replace('\Panel\\', '\Model\\', self::class);
         $act = str_replace('\Cms\\', '\Xot\\', $act);
-        
+
         app('\\'.$act)->execute($model, $data, $rules);
         /*
         if (method_exists($panel, 'detachCallback')) {

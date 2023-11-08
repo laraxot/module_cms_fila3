@@ -5,25 +5,23 @@ declare(strict_types=1);
 namespace Modules\Cms\Models\Panels;
 
 use App;
-use stdClass;
-use Illuminate\Http\RedirectResponse;
-use Illuminate\Http\Response;
-use Auth;
-use Modules\Cms\Actions\Panel\UpdateAction;
 use Exception;
 use Illuminate\Contracts\Pagination\LengthAwarePaginator;
 use Illuminate\Contracts\Support\Renderable;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
-// ----------  SERVICES --------------------------
 use Illuminate\Database\Eloquent\Relations\Relation;
+use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
+use Illuminate\Http\Response;
+// ----------  SERVICES --------------------------
 use Illuminate\Pipeline\Pipeline;
 use Illuminate\Support\Arr;
 use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\Gate;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Str;
+use Modules\Cms\Actions\Panel\UpdateAction;
 use Modules\Cms\Contracts\PanelContract;
 use Modules\Cms\Contracts\PanelPresenterContract;
 use Modules\Cms\Contracts\RowsContract;
@@ -40,7 +38,6 @@ use Modules\Cms\Services\RouteService;
 use Modules\Cms\Services\RowsService;
 use Modules\UI\Datas\FieldData;
 use Modules\UI\Services\FieldService;
-use Modules\Xot\Contracts\ModelWithAuthorContract;
 use Modules\Xot\Contracts\UserContract;
 use Modules\Xot\Jobs\PanelCrud\StoreJob;
 use Modules\Xot\Services\ChainService;
@@ -50,6 +47,7 @@ use Modules\Xot\Services\PolicyService;
 use Modules\Xot\Services\StubService;
 use Spatie\LaravelData\DataCollection;
 use Spatie\QueryBuilder\QueryBuilder;
+use stdClass;
 
 /**
  * Class XotBasePanel.
@@ -149,7 +147,7 @@ abstract class XotBasePanel implements PanelContract
 
         $query = $this->getRows()->getQuery();
         if (! $query instanceof Builder) {
-            throw new Exception('['.__LINE__.']['.class_basename(self::class).']');
+            throw new \Exception('['.__LINE__.']['.class_basename(self::class).']');
         }
 
         return $query;
@@ -209,8 +207,8 @@ abstract class XotBasePanel implements PanelContract
      */
     public function getRow(): Model
     {
-        if (!$this->row instanceof Model) {
-            throw new Exception('Row is null (route for container->item might be null)');
+        if (! $this->row instanceof Model) {
+            throw new \Exception('Row is null (route for container->item might be null)');
         }
 
         return $this->row;
@@ -337,7 +335,7 @@ abstract class XotBasePanel implements PanelContract
         if (\in_array($class, $check, true)) {
             return collect($empty);
         }
-        if ($this->getParents()->count() > 0 && $class === 'HomePanel') {
+        if ($this->getParents()->count() > 0 && 'HomePanel' === $class) {
             return collect($empty);
         }
         $breads = $this->getParents();
@@ -522,13 +520,13 @@ abstract class XotBasePanel implements PanelContract
         }
         $me = $model->create();
         if (! method_exists($model, 'post')) {
-            throw new Exception('in ['.$model::class.'] method [post] is missing');
+            throw new \Exception('in ['.$model::class.'] method [post] is missing');
         }
         $post = $model->post()->create(
             [
                 // 'post_id' => $me->getKey(),
                 'title' => $label,
-                'lang' => App::getLocale(),
+                'lang' => \App::getLocale(),
             ]
         );
         if (null === $post->post_id) {
@@ -806,11 +804,11 @@ abstract class XotBasePanel implements PanelContract
 
         $fields = collect($this->fields())
             ->map(
-                fn($item) => (new FieldService())->setVars(get_object_vars($item))
+                fn ($item) => (new FieldService())->setVars(get_object_vars($item))
             );
 
         $rules_msg_fields = $fields->filter(
-            fn($value, $key): bool => isset($value->rules_messages) && isset($value->rules_messages[$lang])
+            fn ($value, $key): bool => isset($value->rules_messages) && isset($value->rules_messages[$lang])
         )
             ->map(
                 function ($item) use ($lang): array {
@@ -1135,7 +1133,7 @@ abstract class XotBasePanel implements PanelContract
         $img = ImageService::make()->setVars($params);
         $src = $img->fit()->save()->src();
         if (! \is_string($src)) {
-            throw new Exception('src is not a string');
+            throw new \Exception('src is not a string');
         }
 
         return '<img src="'.asset($src).'" >';
@@ -1190,7 +1188,7 @@ abstract class XotBasePanel implements PanelContract
             $url_components = parse_url((string) $url);
 
             if (! isset($url_components['path'])) {
-                throw new Exception('['.__LINE__.']['.__FILE__.']');
+                throw new \Exception('['.__LINE__.']['.__FILE__.']');
             }
             $url = $url_components['path'];
 
@@ -1269,7 +1267,7 @@ abstract class XotBasePanel implements PanelContract
         if (isset($is_admin) && $is_admin) {
             $id = $this->row->getKey();
             if (! \is_int($id) && ! \is_string($id)) {
-                throw new Exception('['.__LINE__.']['.__FILE__.']');
+                throw new \Exception('['.__LINE__.']['.__FILE__.']');
             }
 
             return (string) $id;
@@ -1281,7 +1279,7 @@ abstract class XotBasePanel implements PanelContract
         if (inAdmin()) {
             $id = $this->row->getKey();
             if (! \is_int($id) && ! \is_string($id) && null !== $id) {
-                throw new Exception('['.__LINE__.']['.__FILE__.'] - '.$id);
+                throw new \Exception('['.__LINE__.']['.__FILE__.'] - '.$id);
             }
 
             return (string) $id;
@@ -1376,7 +1374,7 @@ abstract class XotBasePanel implements PanelContract
             $req_path = '/'.request()->path();
             $active = $url1 === $req_path;
 
-            $tmp = new stdClass();
+            $tmp = new \stdClass();
             $tmp->title = trans($trad_mod.'.tab.'.$act);
             $tmp->url = $url;
             $tmp->act = $act;
@@ -1448,7 +1446,7 @@ abstract class XotBasePanel implements PanelContract
         $query = $this->getRows();
         // $query = $this->getBuilder();
         if (null == $query) {
-            throw new Exception('['.__LINE__.']['.__FILE__.']');
+            throw new \Exception('['.__LINE__.']['.__FILE__.']');
             // 1404   Method Modules\Cms\Models\Panels\XotBasePanel::rows() should return Modules\Cms\Contracts\RowsContract but returns null.
             // return null; // ????
         }
@@ -1522,18 +1520,18 @@ abstract class XotBasePanel implements PanelContract
         $class = PolicyService::get($this)->createIfNotExists()->getClass();
 
         $lang = app()->getLocale();
-        if (! Auth::check()) {
+        if (! \Auth::check()) {
             $referer = \Request::path();
 
             return to_route('login', ['lang' => $lang, 'referer' => $referer])
                 ->withErrors(['active' => 'login before']);
         }
 
-        $msg = 'Auth Id ['.Auth::id().'] not can ['.$method.'] on ['.$class.']';
+        $msg = 'Auth Id ['.\Auth::id().'] not can ['.$method.'] on ['.$class.']';
 
         if (! view()->exists('pub_theme::errors.403')) {
             $msg = '<h3> Aggiungere la view : pub_theme::errors.403<br/>pub_theme: '.config('xra.pub_theme').'</h3>';
-            throw new Exception($msg);
+            throw new \Exception($msg);
         }
 
         return response()->view('pub_theme::errors.403', ['message' => $msg], 403);
@@ -1620,7 +1618,7 @@ abstract class XotBasePanel implements PanelContract
     {
         try {
             return $this->presenter->out();
-        } catch (Exception $e) {
+        } catch (\Exception $e) {
             /**
              * @phpstan-var view-string
              */
@@ -1770,7 +1768,7 @@ abstract class XotBasePanel implements PanelContract
         }
 
         if (! \is_string($content)) {
-            throw new Exception('['.__LINE__.']['.__FILE__.']');
+            throw new \Exception('['.__LINE__.']['.__FILE__.']');
         }
 
         // 1737   Parameter #1 $str of function strip_tags expects string, array|string|null given.
@@ -1872,7 +1870,7 @@ abstract class XotBasePanel implements PanelContract
         $views = $this->getViews();
 
         $view_work = collect($views)->first(
-            fn($view_check) => view()->exists($view_check)
+            fn ($view_check) => view()->exists($view_check)
         );
         if (false === $view_work || null === $view_work) {
             $ddd_msg =
@@ -1951,6 +1949,7 @@ abstract class XotBasePanel implements PanelContract
     public function isRevisionBy(UserContract $userContract): bool
     {
         $model = $this->getRow();
+
         return $model->getAttributeValue('created_by') === $userContract->handle
         || $model->getAttributeValue('updated_by') === $userContract->handle
         || $model->getAttributeValue('user_id') === $userContract->id;
@@ -1962,6 +1961,7 @@ abstract class XotBasePanel implements PanelContract
         if (null === $model->author) {
             return false;
         }
+
         // return $row->author->is($user);
         return $model->author_id === $userContract->id;
     }

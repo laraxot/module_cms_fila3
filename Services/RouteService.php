@@ -4,7 +4,6 @@ declare(strict_types=1);
 
 namespace Modules\Cms\Services;
 
-use Exception;
 use Illuminate\Support\Facades\Request;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Str;
@@ -35,6 +34,7 @@ class RouteService
             return true;
         }
         $segments = \Request::segments();
+
         return (is_countable($segments) ? \count($segments) : 0) > 0 && 'livewire' === $segments[0] && true === session('in_admin');
     }
 
@@ -60,7 +60,7 @@ class RouteService
         $routename = ''; // Request::route()->getName();
         $old_act_route = last(explode('.', $routename));
         if (! \is_string($old_act_route)) {
-            throw new Exception('['.__LINE__.']['.class_basename(self::class).']');
+            throw new \Exception('['.__LINE__.']['.class_basename(self::class).']');
         }
 
         $routename_act = Str::before($routename, $old_act_route).''.$act;
@@ -92,20 +92,20 @@ class RouteService
     /* // move to RoutePanelService
         public static function urlPanel(array $params){
             extract($params);
-    
+
             if (! isset($panel)) {
                 dddx(['err' => 'panel is missing']);
-    
+
                 return;
             }
             if (! isset($act)) {
                 dddx(['err' => 'act is missing']);
-    
+
                 return;
             }
-    
+
             $parents = $panel->getParents();
-    
+
             $container_root = $panel->getRow();
             if ($parents->count() > 0) {
                 $container_root = $parents->first()->row;
@@ -116,17 +116,17 @@ class RouteService
                 $parz['in_admin'] = $in_admin;
             }
             $route_name = self::getRoutenameN($parz);
-    
+
             $route_current = Route::current();
             $route_params = is_object($route_current) ? $route_current->parameters() : [];
-    
+
             $i = 0;
             foreach ($parents as $parent) {
                 $route_params['container'.($n + $i)] = $parent->postType();
                 $route_params['item'.($n + $i)] = $parent->guid();
                 ++$i;
             }
-    
+
             $post_type = $panel->postType();
             //
             //if( $post_type==null) {
@@ -139,19 +139,19 @@ class RouteService
             //        }
             //    }
             //}
-    
-    
+
+
             $route_params['container'.($n + $i)] = $panel->postType();
-    
+
             $route_params['item'.($n + $i)] = $panel->guid();
-    
+
             if (inAdmin($params) && ! isset($route_params['module'])) {
                 $container0 = $route_params['container0'];
                 $model = xotModel($container0);
                 $module_name = getModuleNameFromModel($model);
                 $route_params['module'] = strtolower($module_name);
             }
-    
+
             try {
                 $route = route($route_name, $route_params, false);
             } catch (\Exception $e) {
@@ -172,19 +172,19 @@ class RouteService
                     ]
                 );
                 }
-    
+
                 return '#['.__LINE__.']['.__FILE__.']';
             }
-    
+
             //--- aggiungo le query string all'url corrente
             $queries = collect(request()->query())->except(['_act', 'item0', 'item1'])->all();
-    
+
             $url = url_queries($queries, $route);
-    
+
             if (Str::endsWith($url, '?')) {
                 $url = Str::before($url, '?');
             }
-    
+
             return $url;
         }
         */
@@ -215,45 +215,45 @@ class RouteService
         extract($params);
         if (! isset($panel)) {
             dddx(['err' => 'panel is missing']);
-    
+
             return;
         }
         if (! isset($related_name)) {
             dddx(['err' => 'related_name is missing']);
-    
+
             return;
         }
         $parents = collect([]);
         $panel_curr = $panel;
-    
+
         while (null != $panel_curr->getParent()) {
             $parents->prepend($panel_curr->getParent());
             $panel_curr = $panel_curr->getParent();
         }
         $container_root = $panel->getRow();
         if ($parents->count() > 0) {
-    
+
             //$tmp='['.$parents->count().']';
             //foreach($parents as $parent){
             //    $tmp.=$parent->getRow()->post_type.'-';
             //}
             //return $tmp;
-    
+
             $container_root = $parents->first()->row;
         }
-    
+
         //$containers_class = self::getContainersClass();
         //$n = collect($containers_class)->search(get_class($container_root));
         //if (null === $n) {
         //    $n = 0;
         //}
-    
+
         $n = 0;
-    
+
         $route_name = self::getRoutenameN(['n' => $n + 1 + $parents->count(), 'act' => $act]);
         $route_current = \Route::current();
         $route_params = is_object($route_current) ? $route_current->parameters() : [];
-    
+
         $i = 0;
         foreach ($parents as $parent) {
             $route_params['container'.($n + $i)] = $parent->postType();
@@ -264,7 +264,7 @@ class RouteService
         $route_params['item'.($n + $i)] = $panel->guid();
         ++$i;
         $route_params['container'.($n + $i)] = $related_name;
-    
+
         $route_params['page'] = 1;
         $route_params['_act'] = '';
         unset($route_params['_act']);
@@ -280,10 +280,10 @@ class RouteService
                     'e' => $e->getMessage(),
                 ]);
             }
-    
+
             return '#['.__LINE__.']['.__FILE__.']';
         }
-    
+
         return $url;
     }
     */
@@ -356,13 +356,13 @@ class RouteService
     /**
      * Function getAct.
      *
-     * @throws Exception
+     * @throws \Exception
      */
     public static function getAct(): string
     {
         $route_action = \Route::currentRouteAction();
         if (null === $route_action) {
-            throw new Exception('$route_action is null');
+            throw new \Exception('$route_action is null');
         }
         $act = Str::after($route_action, '@');
 
@@ -380,13 +380,13 @@ class RouteService
     /**
      * Function.
      *
-     * @throws Exception
+     * @throws \Exception
      */
     public static function getModuleName(): string
     {
         $route_action = \Route::currentRouteAction();
         if (null === $route_action) {
-            throw new Exception('$route_action is null');
+            throw new \Exception('$route_action is null');
         }
 
         return Str::between($route_action, 'Modules\\', '\Http');
@@ -395,13 +395,13 @@ class RouteService
     /**
      * Function.
      *
-     * @throws Exception
+     * @throws \Exception
      */
     public static function getControllerName(): string
     {
         $route_action = \Route::currentRouteAction();
         if (null === $route_action) {
-            throw new Exception('$route_action is null');
+            throw new \Exception('$route_action is null');
         }
 
         return Str::between($route_action, 'Http\Controllers\\', 'Controller');
@@ -419,7 +419,7 @@ class RouteService
 
         return collect($tmp_arr)
             ->filter(
-                fn($item): bool => ! \in_array($item, ['Module', 'Item'], true)
+                fn ($item): bool => ! \in_array($item, ['Module', 'Item'], true)
             )
             ->map(
                 function ($item) use ($params) {

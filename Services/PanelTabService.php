@@ -4,14 +4,12 @@ declare(strict_types=1);
 
 namespace Modules\Cms\Services;
 
-use Request;
-use Route;
-use stdClass;
 use Illuminate\Support\Facades\Gate;
 use Illuminate\Support\Str;
 use Modules\Cms\Contracts\PanelContract;
 use Modules\Cms\Datas\LinkData;
 use Modules\Cms\Models\Panels\XotBasePanel;
+use Request;
 use Spatie\LaravelData\DataCollection;
 
 /**
@@ -85,11 +83,11 @@ class PanelTabService
 
     public function getTabsOld(): array
     {
-        Request::capture();
-        $routename = (string) Route::currentRouteName();
+        \Request::capture();
+        $routename = (string) \Route::currentRouteName();
         $act = last(explode('.', $routename));
         // $routename = \Route::current()->getName();
-        $route_current = Route::current();
+        $route_current = \Route::current();
         $route_params = [];
         if (null !== $route_current) {
             $route_params = $route_current->parameters();
@@ -118,7 +116,7 @@ class PanelTabService
             // *
             if (0 === $k) {
                 if (Gate::allows('index', $panel)) {
-                    $tmp = new stdClass();
+                    $tmp = new \stdClass();
                     // $tmp->title = '<< Back '; //.'['.get_class($item).']';
                     $tmp->title = 'Back'; // .'['.get_class($item).']';
                     $tmp->url = $panel->url('index');
@@ -126,7 +124,7 @@ class PanelTabService
                     $row[] = $tmp;
                 }
                 // -----------------------
-                $tmp = new stdClass();
+                $tmp = new \stdClass();
                 $url = \in_array($act, ['index_edit', 'edit', 'update'], true) ? $panel->url('edit') : $panel->url('show');
                 $tmp->url = $url;
                 $tmp->title = 'Content'; // .'['.request()->url().']['.$url.']';
@@ -147,7 +145,7 @@ class PanelTabService
 
             foreach ($tabs as $tab) {
                 // dddx($tabs);
-                $tmp = new stdClass();
+                $tmp = new \stdClass();
 
                 if (! \is_array($tab)) {
                     // $tmp = new \stdClass();

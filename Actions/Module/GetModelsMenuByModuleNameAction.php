@@ -22,7 +22,7 @@ final class GetModelsMenuByModuleNameAction
     {
         $models = app(GetModelsByModuleNameAction::class)->execute($module_name);
         $menu = collect($models)->map(
-            static function ($item, $key) : array {
+            static function ($item, $key): array {
                 // $obj = new $item();
                 $obj = app($item);
                 $panelContract = PanelService::make()->get($obj);
@@ -30,6 +30,7 @@ final class GetModelsMenuByModuleNameAction
                     $panelContract->setName('medias');
                 }
                 $url = $panelContract->url('index');
+
                 return [
                     'title' => $key,
                     'url' => $url,

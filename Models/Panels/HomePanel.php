@@ -4,10 +4,10 @@ declare(strict_types=1);
 
 namespace Modules\Cms\Models\Panels;
 
-use Modules\Cms\Models\Home;
 use Illuminate\Contracts\Support\Renderable;
 use Illuminate\Http\Request;
 use Modules\Cms\Contracts\RowsContract;
+use Modules\Cms\Models\Home;
 
 class HomePanel extends XotBasePanel
 {

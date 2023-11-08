@@ -5,13 +5,12 @@ declare(strict_types=1);
 namespace Modules\Cms\Presenters;
 
 use Illuminate\Contracts\Filesystem\FileNotFoundException;
-use ReflectionException;
-use Modules\Xot\Transformers\GeoJsonCollection;
-use Modules\Xot\Transformers\GeoJsonResource;
 use Illuminate\Support\Collection;
 use Modules\Cms\Contracts\PanelContract;
 use Modules\Cms\Contracts\PanelPresenterContract;
 use Modules\Cms\Services\PanelService;
+use Modules\Xot\Transformers\GeoJsonCollection;
+use Modules\Xot\Transformers\GeoJsonResource;
 
 /**
  * Class GeoJsonPanelPresenter.
@@ -36,7 +35,7 @@ class GeoJsonPanelPresenter implements PanelPresenterContract
 
     /**
      * @throws FileNotFoundException
-     * @throws ReflectionException
+     * @throws \ReflectionException
      */
     public function outContainer(array $params = null): GeoJsonCollection
     {

@@ -5,27 +5,27 @@ declare(strict_types=1);
 namespace Modules\Cms\Models;
 
 use Eloquent;
-use Illuminate\Database\Eloquent\Collection;
-use Modules\Cms\Database\Factories\PageFactory;
 use Illuminate\Database\Eloquent\Builder;
+use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Support\Facades\File;
 use Illuminate\Support\Str;
+use Modules\Cms\Database\Factories\PageFactory;
 use Modules\Xot\Services\FileService;
 use Sushi\Sushi;
 
 /**
  * Modules\Cms\Models\Page.
  *
- * @property int|null                                            $id
- * @property int|null                                            $parent_id
- * @property string|null                                         $guid
- * @property string|null                                         $title
- * @property string|null                                         $ns
+ * @property int|null              $id
+ * @property int|null              $parent_id
+ * @property string|null           $guid
+ * @property string|null           $title
+ * @property string|null           $ns
  * @property Collection<int, Page> $sons
- * @property int|null                                            $sons_count
+ * @property int|null              $sons_count
  *
- * @method static PageFactory factory($count = null, $state = [])
+ * @method static PageFactory  factory($count = null, $state = [])
  * @method static Builder|Page newModelQuery()
  * @method static Builder|Page newQuery()
  * @method static Builder|Page query()

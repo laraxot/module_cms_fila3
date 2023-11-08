@@ -4,7 +4,6 @@ declare(strict_types=1);
 
 namespace Modules\Cms\Models\Panels\Policies;
 
-use Auth;
 use Illuminate\Auth\Access\HandlesAuthorization;
 // use Illuminate\Contracts\Auth\UserProvider as User;
 use Modules\Cms\Contracts\PanelContract;  // da usare Facades per separazione dei moduli
@@ -84,7 +83,7 @@ abstract class XotBasePanelPolicy
 
     public function home(?UserContract $userContract, PanelContract $panelContract): bool
     {
-        if (inAdmin() && !$userContract instanceof UserContract) {
+        if (inAdmin() && ! $userContract instanceof UserContract) {
             return false;
         }
 
@@ -100,12 +99,12 @@ abstract class XotBasePanelPolicy
             // $profile = ProfileService::make()->get($user);
 
             // return $profile->hasArea($module_name);
-            $areas = Auth::user()->areas
+            $areas = \Auth::user()->areas
                 ->sortBy('order_column');
 
             $modules = Module::getByStatus(1);
             $areas = $areas->filter(
-                fn($item): bool => \in_array($item->area_define_name, array_keys($modules), true)
+                fn ($item): bool => \in_array($item->area_define_name, array_keys($modules), true)
             );
 
             return \is_object($areas->firstWhere('area_define_name', $module_name));

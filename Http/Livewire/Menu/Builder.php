@@ -5,7 +5,6 @@ declare(strict_types=1);
 namespace Modules\Cms\Http\Livewire\Menu;
 
 // use Illuminate\Database\Eloquent\Collection as EloquentCollection;
-use Exception;
 use Illuminate\Contracts\Support\Renderable;
 use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\DB;
@@ -99,12 +98,12 @@ class Builder extends Component
     public function updateMenuItem(): void
     {
         // $menuitem = MenuItem::findOrFail($this->menuItemSelected['id']);
-        if (!$this->menuItemSelected instanceof MenuItem) {
+        if (! $this->menuItemSelected instanceof MenuItem) {
             return;
         }
         $menuitem = MenuItem::where('id', $this->menuItemSelected['id'])->first();
         if (null === $menuitem) {
-            throw new Exception('['.__LINE__.']['.__FILE__.']');
+            throw new \Exception('['.__LINE__.']['.__FILE__.']');
         }
         $up = [
             'label' => $this->menuItemLabel,
@@ -131,7 +130,7 @@ class Builder extends Component
     {
         $item = MenuItem::find($id);
         if (null !== $item) {
-            if (!$this->menuItemSelected instanceof MenuItem || $this->menuItemSelected['id'] !== $item['id']) {
+            if (! $this->menuItemSelected instanceof MenuItem || $this->menuItemSelected['id'] !== $item['id']) {
                 $this->menuItemSelected = $item;
                 $this->menuItemLabel = $item->label ?? '';
                 $this->menuItemClass = $item->class ?? '';
@@ -155,7 +154,7 @@ class Builder extends Component
                 // $menuitem = MenuItem::find($value['id']);
                 $menuitem = MenuItem::where('id', $value['id'])->first();
                 if (null === $menuitem) {
-                    throw new Exception('['.__LINE__.']['.__FILE__.']');
+                    throw new \Exception('['.__LINE__.']['.__FILE__.']');
                 }
                 $menuitem->parent = $value['parent'];
                 $menuitem->sort = $value['sort'];
@@ -239,11 +238,11 @@ class Builder extends Component
                     ->orderBy('sort', 'desc')
                     ->first();
                 if (null !== $prevElem) {
-                    $prevElem->sort += 1;
+                    ++$prevElem->sort;
                     $prevElem->save();
                 }
 
-                $item->sort -= 1;
+                --$item->sort;
                 $item->save();
                 break;
             case 'down':
@@ -252,11 +251,11 @@ class Builder extends Component
                     ->orderBy('sort')
                     ->first();
                 if (null !== $nextElem) {
-                    $nextElem->sort -= 1;
+                    --$nextElem->sort;
                     $nextElem->save();
                 }
 
-                $item->sort += 1;
+                ++$item->sort;
                 $item->save();
                 break;
             case 'top':
@@ -306,7 +305,7 @@ class Builder extends Component
             // Cannot access property $id on mixed.
             $find = $all_items->where('parent', $item->id);
             $data_arr[$i]['child'] = [];
-            if ($find->count() !== 0) {
+            if (0 !== $find->count()) {
                 $data_arr[$i]['child'] = self::tree($find, $all_items);
             }
             ++$i;

@@ -4,8 +4,6 @@ declare(strict_types=1);
 
 namespace Modules\Cms\Models\Panels\Actions;
 
-use Exception;
-use ReflectionClass;
 use Illuminate\Contracts\Support\Renderable;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\QueryException;
@@ -63,7 +61,7 @@ class DbAction extends XotBasePanelAction
         $search = request('search');
         $data = $this->getAllTablesAndFields();
         $data = $data->map(
-            fn($item) =>
+            fn ($item) =>
                 // $item['sql']=$this->makeSql($item,$search);
                 $item);
         $model = $this->getModel();
@@ -84,9 +82,9 @@ class DbAction extends XotBasePanelAction
                     $rows = $res->limit(10);
                     $res = $rows->get();
                 }
-            } catch (QueryException|Exception $e) {
+            } catch (QueryException|\Exception $e) {
                 $msg = '<pre>'.$v['sql'].'</pre><pre>'.$e->getMessage().'</pre>';
-                throw new Exception($msg.'['.__LINE__.']['.__FILE__.']', $e->getCode(), $e);
+                throw new \Exception($msg.'['.__LINE__.']['.__FILE__.']', $e->getCode(), $e);
             }
             if ($res->count() > 0 && $valid && isset($rows)) {
                 echo '<hr>';
@@ -145,7 +143,7 @@ class DbAction extends XotBasePanelAction
             while ($is_abstract) {
                 $first_model_file = $models[$i++];
                 $first_model_class = 'Modules\\'.$module_name.'\Models\\'.Str::before($first_model_file->getBasename(), '.php');
-                $reflect = new ReflectionClass($first_model_class);
+                $reflect = new \ReflectionClass($first_model_class);
                 $is_abstract = $reflect->isAbstract();
             }
 
@@ -160,6 +158,6 @@ class DbAction extends XotBasePanelAction
         $first_model = $this->getModel();
         $cache_key = Str::slug($first_model::class.'_'.__FUNCTION__);
 
-        return Cache::rememberForever($cache_key, fn() => ModelService::make()->setModel($first_model)->getAllTablesAndFields());
+        return Cache::rememberForever($cache_key, fn () => ModelService::make()->setModel($first_model)->getAllTablesAndFields());
     }
 }

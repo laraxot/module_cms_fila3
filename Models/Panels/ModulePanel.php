@@ -4,13 +4,13 @@ declare(strict_types=1);
 
 namespace Modules\Cms\Models\Panels;
 
-use Modules\Cms\Models\Panels\Actions\DbAction;
-use Modules\Cms\Models\Panels\Actions\DownloadDbModuleAction;
-use Modules\Cms\Models\Panels\Actions\FixJigSawAction;
 use Illuminate\Contracts\Support\Renderable;
 use Illuminate\Http\Request;
 use Modules\Cms\Contracts\RowsContract;
 use Modules\Cms\Models\Module;
+use Modules\Cms\Models\Panels\Actions\DbAction;
+use Modules\Cms\Models\Panels\Actions\DownloadDbModuleAction;
+use Modules\Cms\Models\Panels\Actions\FixJigSawAction;
 
 class ModulePanel extends XotBasePanel
 {

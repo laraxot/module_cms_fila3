@@ -1,9 +1,8 @@
 <?php
 
 declare(strict_types=1);
-use Modules\Cms\Http\Middleware\PanelMiddleware;
-
 use Illuminate\Support\Facades\Route;
+use Modules\Cms\Http\Middleware\PanelMiddleware;
 use Modules\Cms\Services\RouteService;
 use Modules\Xot\Datas\XotData;
 
@@ -77,7 +76,7 @@ $name = '/{container0?}/{item0?}/{container1?}/{item1?}/{container2?}/{item2?}/{
 $controller = 'ContainersController';
 
 $front_acts = collect($acts)->filter(
-    fn($item): bool => in_array($item->name, ['index', 'show'], true)
+    fn ($item): bool => in_array($item->name, ['index', 'show'], true)
 )->all();
 
 $middleware = [

@@ -4,9 +4,9 @@ declare(strict_types=1);
 
 namespace Modules\Cms\Http\Livewire\Modal\Panel;
 
+use Illuminate\Contracts\Support\Renderable;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Routing\Redirector;
-use Illuminate\Contracts\Support\Renderable;
 use Illuminate\Support\Facades\Auth;
 use Modules\Cms\Actions\GetViewAction;
 use Modules\Tenant\Services\TenantService;

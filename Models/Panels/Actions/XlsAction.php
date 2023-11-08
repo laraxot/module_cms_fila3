@@ -7,8 +7,8 @@ namespace Modules\Cms\Models\Panels\Actions;
 // -------- models -----------
 // -------- services --------
 use Illuminate\Contracts\Support\Renderable;
-use Symfony\Component\HttpFoundation\BinaryFileResponse;
 use Modules\Xot\Services\ArrayService;
+use Symfony\Component\HttpFoundation\BinaryFileResponse;
 
 // -------- bases -----------
 

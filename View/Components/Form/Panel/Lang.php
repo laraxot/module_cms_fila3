@@ -4,7 +4,6 @@ declare(strict_types=1);
 
 namespace Modules\Cms\View\Components\Form\Panel;
 
-use Exception;
 use Illuminate\Contracts\Support\Renderable;
 use Illuminate\View\Component;
 use Mcamara\LaravelLocalization\Facades\LaravelLocalization;
@@ -29,7 +28,7 @@ class Lang extends Component
             if (! is_null($panel)) {
                 $this->show = $panel->hasLang();
             } else {
-                throw new Exception('['.__LINE__.']['.__FILE__.'], panel is null');
+                throw new \Exception('['.__LINE__.']['.__FILE__.'], panel is null');
             }
         }
     }

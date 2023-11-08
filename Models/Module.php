@@ -4,8 +4,8 @@ declare(strict_types=1);
 
 namespace Modules\Cms\Models;
 
-use Modules\Cms\Database\Factories\ModuleFactory;
 use Illuminate\Database\Eloquent\Builder;
+use Modules\Cms\Database\Factories\ModuleFactory;
 use Nwidart\Modules\Facades\Module as NwModule;
 use Sushi\Sushi;
 
@@ -15,7 +15,7 @@ use Sushi\Sushi;
  * @property int         $id
  * @property string|null $name
  *
- * @method static ModuleFactory factory($count = null, $state = [])
+ * @method static ModuleFactory  factory($count = null, $state = [])
  * @method static Builder|Module newModelQuery()
  * @method static Builder|Module newQuery()
  * @method static Builder|Module query()

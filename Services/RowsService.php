@@ -85,7 +85,7 @@ class RowsService
                                             }
                                         );
 
-                                    // dddx($subquery);
+                                // dddx($subquery);
                                 } else {
                                     $subquery = $subquery->orWhere($search_field, 'like', '%'.$q.'%');
                                 }
@@ -136,7 +136,7 @@ class RowsService
 
         $filters_fields = $filters_fields
             ->filter(
-                fn($item): bool => \in_array($item->param_name, array_keys($filters), true)
+                fn ($item): bool => \in_array($item->param_name, array_keys($filters), true)
             )
             ->all();
 

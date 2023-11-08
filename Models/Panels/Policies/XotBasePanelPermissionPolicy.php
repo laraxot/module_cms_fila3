@@ -48,7 +48,7 @@ abstract class XotBasePanelPermissionPolicy
 
                 $modules = Module::getByStatus(1);
                 $areas = $areas->filter(
-                    fn($item): bool => \in_array($item->area_define_name, array_keys($modules), true)
+                    fn ($item): bool => \in_array($item->area_define_name, array_keys($modules), true)
                 );
                 $has_area = \is_object($areas->firstWhere('area_define_name', $route_params['module']));
 
@@ -93,7 +93,7 @@ abstract class XotBasePanelPermissionPolicy
 
     public function home(?UserContract $userContract, PanelContract $panelContract): bool
     {
-        if (inAdmin() && !$userContract instanceof UserContract) {
+        if (inAdmin() && ! $userContract instanceof UserContract) {
             return false;
         }
 
@@ -169,6 +169,7 @@ abstract class XotBasePanelPermissionPolicy
         // return true;
         $profile = ProfileService::make()->get($userContract);
         $permission = $panelContract->getPath().'-'.__FUNCTION__;
+
         // $profile->givePermissionTo($permission);
         return $profile->hasPermissionTo($permission);
     }

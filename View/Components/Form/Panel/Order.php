@@ -4,7 +4,6 @@ declare(strict_types=1);
 
 namespace Modules\Cms\View\Components\Form\Panel;
 
-use Exception;
 use Illuminate\Contracts\Support\Renderable;
 use Illuminate\Support\Facades\Request;
 use Illuminate\View\Component;
@@ -34,10 +33,10 @@ class Order extends Component
         if (! is_null($panelContract)) {
             $this->options = array_combine($panelContract->orderBy(), $panelContract->orderBy());
         } else {
-            throw new Exception('['.__LINE__.']['.__FILE__.'], panel is null');
+            throw new \Exception('['.__LINE__.']['.__FILE__.'], panel is null');
         }
         $this->input_attrs = ['placeholder' => 'Ordinamento', 'label' => ' '];
-        if ($tpl === 'inline') {
+        if ('inline' === $tpl) {
             $this->form_attrs['class'] = 'd-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search float-right';
         }
 

@@ -22,7 +22,7 @@ class XotComposer
     public function compose(View $view): void
     {
         $user = Auth::user();
-        if (!$user instanceof Authenticatable) {
+        if (! $user instanceof Authenticatable) {
             return;
         }
         // $profile = ProfileService::make()->get($user);

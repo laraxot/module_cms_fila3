@@ -4,7 +4,6 @@ declare(strict_types=1);
 
 namespace Modules\Cms\Presenters;
 
-use Exception;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Collection;
 use Modules\Cms\Contracts\PanelContract;
@@ -55,7 +54,7 @@ class PdfPanelPresenter implements PanelPresenterContract
         $row = $this->panel->getRow();
         try {
             $rows = $this->panel->rows();
-        } catch (Exception) {
+        } catch (\Exception) {
             $rows = collect([]);
         }
         if (null === $row->getKey()) { // utile per le cose a containers

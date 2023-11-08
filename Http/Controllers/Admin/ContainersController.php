@@ -4,12 +4,10 @@ declare(strict_types=1);
 
 namespace Modules\Cms\Http\Controllers\Admin;
 
-use Route;
-use Exception;
+use Illuminate\Contracts\Support\Renderable;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Response;
-use Illuminate\Contracts\Support\Renderable;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Gate;
 use Illuminate\Support\Facades\Request;
@@ -65,7 +63,7 @@ class ContainersController extends BaseController
     public function __call($method, $args)
     {
         // dddx([$method, $args]);
-        $route_current = Route::current();
+        $route_current = \Route::current();
         if ($route_current instanceof \Illuminate\Routing\Route) {
             $action = $route_current->getAction();
             $action['controller'] = self::class.'@'.$method;
@@ -73,8 +71,8 @@ class ContainersController extends BaseController
         }
         $panel = PanelService::make()->getRequestPanel();
 
-        if (!$panel instanceof PanelContract) {
-            throw new Exception('['.__LINE__.']['.__FILE__.']');
+        if (! $panel instanceof PanelContract) {
+            throw new \Exception('['.__LINE__.']['.__FILE__.']');
         }
         $this->panel = $panel;
         if ('' !== request()->input('_act', '')) {
@@ -144,7 +142,7 @@ class ContainersController extends BaseController
         $mod_name = $this->panel->getModuleName(); // forse da mettere container0
 
         $tmp = collect($containers)->map(
-            fn($item) => Str::studly($item)
+            fn ($item) => Str::studly($item)
         )->implode('\\');
         if ('' === $tmp) {
             $tmp = 'Module';
@@ -156,10 +154,10 @@ class ContainersController extends BaseController
         }
         if ('Module' === $tmp) {
             // return '\Modules\Cms\Http\Controllers\Admin\ModuleController';
-            return '\\' . ModuleController::class;
+            return '\\'.ModuleController::class;
         }
 
         // return '\Modules\Cms\Http\Controllers\Admin\XotPanelController';
-        return '\\' . XotPanelController::class;
+        return '\\'.XotPanelController::class;
     }
 }

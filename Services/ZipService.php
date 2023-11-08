@@ -5,14 +5,12 @@ declare(strict_types=1);
 namespace Modules\Cms\Services;
 
 use Illuminate\Contracts\Filesystem\FileNotFoundException;
-use ReflectionException;
-use Symfony\Component\HttpFoundation\BinaryFileResponse;
-use ZipArchive;
-use Exception;
 use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Storage;
 
 use function Safe\ini_set;
+
+use Symfony\Component\HttpFoundation\BinaryFileResponse;
 
 /**
  * Class ZipService.
@@ -25,7 +23,7 @@ class ZipService
 
     public static function getInstance(): self
     {
-        if (!self::$instance instanceof \Modules\Cms\Services\ZipService) {
+        if (! self::$instance instanceof \Modules\Cms\Services\ZipService) {
             self::$instance = new self();
         }
 
@@ -34,7 +32,7 @@ class ZipService
 
     /**
      * @throws FileNotFoundException
-     * @throws ReflectionException
+     * @throws \ReflectionException
      *
      * @return string|BinaryFileResponse|void
      */
@@ -67,12 +65,12 @@ class ZipService
         ];
         // $filename_zip = '_'.$this->year.'.zip';
 
-        $zip = new ZipArchive();
+        $zip = new \ZipArchive();
         $filename_zip = Storage::disk('cache')->path($filename_zip);
         $filename_zip = str_replace(['/', '\\'], [\DIRECTORY_SEPARATOR, \DIRECTORY_SEPARATOR], (string) $filename_zip);
 
-        if (true !== $zip->open($filename_zip, ZipArchive::CREATE)) {
-            throw new Exception('cannot create zip ['.$filename_zip.']');
+        if (true !== $zip->open($filename_zip, \ZipArchive::CREATE)) {
+            throw new \Exception('cannot create zip ['.$filename_zip.']');
         }
 
         // dddx(get_class_methods($zip));
@@ -179,15 +177,15 @@ class ZipService
         return $filename_zip;
     }
 
-    public static function getZipArchive(): ZipArchive
+    public static function getZipArchive(): \ZipArchive
     {
-        $zipArchive = new ZipArchive();
+        $zipArchive = new \ZipArchive();
         $filename_zip = self::getFilenameZipPath();
         if (File::exists($filename_zip)) {
             File::delete($filename_zip);
         }
-        if (true !== $zipArchive->open($filename_zip, ZipArchive::CREATE)) {
-            throw new Exception('cannot create zip ['.$filename_zip.']');
+        if (true !== $zipArchive->open($filename_zip, \ZipArchive::CREATE)) {
+            throw new \Exception('cannot create zip ['.$filename_zip.']');
         }
 
         return $zipArchive;

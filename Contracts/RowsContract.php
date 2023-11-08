@@ -4,13 +4,12 @@ declare(strict_types=1);
 
 namespace Modules\Cms\Contracts;
 
-use InvalidArgumentException;
 use Illuminate\Contracts\Pagination\LengthAwarePaginator;
 use Illuminate\Database\Eloquent\Builder;
-use Closure;
-use Illuminate\Database\Query\Expression;
-use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Collection;
+use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Query\Expression;
+
 /**
  * Modules\Cms\Contracts\RowsContract.
  */
@@ -24,7 +23,7 @@ interface RowsContract
      * @param string   $pageName
      * @param int|null $page
      *
-     * @throws InvalidArgumentException
+     * @throws \InvalidArgumentException
      *
      * @return LengthAwarePaginator
      */
@@ -39,15 +38,15 @@ interface RowsContract
      *
      * @return Builder|static
      */
-    public function whereHas($relation, Closure $callback = null, $operator = '>=', $count = 1);
+    public function whereHas($relation, \Closure $callback = null, $operator = '>=', $count = 1);
 
     /**
      * Add a basic where clause to the query.
      *
-     * @param Closure|string|array|Expression $column
-     * @param array|string                                                $operator
-     * @param array|string|int                                            $value
-     * @param string                                                      $boolean
+     * @param \Closure|string|array|Expression $column
+     * @param array|string                     $operator
+     * @param array|string|int                 $value
+     * @param string                           $boolean
      *
      * @return $this
      */
@@ -74,10 +73,10 @@ interface RowsContract
     /**
      * Add an "order by" clause to the query.
      *
-     * @param Closure|\Illuminate\Database\Query\Builder|Expression|string $column
-     * @param string                                                                                   $direction
+     * @param \Closure|\Illuminate\Database\Query\Builder|Expression|string $column
+     * @param string                                                        $direction
      *
-     * @throws InvalidArgumentException
+     * @throws \InvalidArgumentException
      *
      * @return $this
      */
@@ -87,7 +86,7 @@ interface RowsContract
      * Set the relationships that should be eager loaded.
      *
      * @param string|array         $relations
-     * @param string|Closure|null $callback
+     * @param string|\Closure|null $callback
      *
      * @return $this
      */
@@ -190,8 +189,8 @@ interface RowsContract
      * Add a where between statement to the query.
      *
      * @param string|Expression $column
-     * @param string                                       $boolean
-     * @param bool                                         $not
+     * @param string            $boolean
+     * @param bool              $not
      *
      * @return $this
      */

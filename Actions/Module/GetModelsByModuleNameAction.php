@@ -4,8 +4,6 @@ declare(strict_types=1);
 
 namespace Modules\Cms\Actions\Module;
 
-use stdClass;
-use Exception;
 use Illuminate\Support\Facades\File;
 use Illuminate\Support\Str;
 use Nwidart\Modules\Facades\Module;
@@ -22,10 +20,10 @@ final class GetModelsByModuleNameAction
         if (null === $mod) {
             return [];
         }
-        
+
         $mod_path = $mod->getPath().'/Models';
         $mod_path = str_replace(['\\', '/'], [\DIRECTORY_SEPARATOR, \DIRECTORY_SEPARATOR], $mod_path);
-        
+
         $files = File::files($mod_path);
         $data = [];
         $ns = 'Modules\\'.$mod->getName().'\\Models';  // con la barra davanti non va il search ?
@@ -34,7 +32,7 @@ final class GetModelsByModuleNameAction
             $ext = '.php';
             // dddx(['ext' => $file->getExtension(), get_class_methods($file)]);
             if (Str::endsWith($filename, $ext)) {
-                $tmp = new stdClass();
+                $tmp = new \stdClass();
 
                 $name = substr($filename, 0, -\strlen($ext));
 
@@ -49,11 +47,11 @@ final class GetModelsByModuleNameAction
                 $tmp->name = $name;
                 // 434    Parameter #1 $argument of class ReflectionClass constructor expects class-string<T of object>|T of object, string given.
                 try {
-                    $reflection_class = new ReflectionClass($tmp->class);
+                    $reflection_class = new \ReflectionClass($tmp->class);
                     if (! $reflection_class->isAbstract()) {
                         $data[$tmp->name] = $tmp->class;
                     }
-                } catch (Exception) {
+                } catch (\Exception) {
                 }
             }
         }

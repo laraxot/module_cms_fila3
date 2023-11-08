@@ -5,7 +5,6 @@ declare(strict_types=1);
 namespace Modules\Cms\Presenters;
 
 use Illuminate\Contracts\Filesystem\FileNotFoundException;
-use ReflectionException;
 use Illuminate\Support\Collection;
 use Modules\Cms\Contracts\PanelContract;
 use Modules\Cms\Contracts\PanelPresenterContract;
@@ -34,7 +33,7 @@ class JsonPanelPresenter implements PanelPresenterContract
 
     /**
      * @throws FileNotFoundException
-     * @throws ReflectionException
+     * @throws \ReflectionException
      *
      * @return mixed|void
      */
@@ -49,7 +48,7 @@ class JsonPanelPresenter implements PanelPresenterContract
 
     /**
      * @throws FileNotFoundException
-     * @throws ReflectionException
+     * @throws \ReflectionException
      *
      * @return mixed|void
      */

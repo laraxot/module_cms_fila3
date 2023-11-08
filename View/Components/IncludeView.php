@@ -4,7 +4,6 @@ declare(strict_types=1);
 
 namespace Modules\Cms\View\Components;
 
-use Exception;
 use Illuminate\Contracts\Support\Renderable;
 use Illuminate\Support\Facades\View;
 use Illuminate\View\Component;
@@ -32,14 +31,14 @@ class IncludeView extends Component
         $view_tpl = $this->view;
 
         $views = collect($views)->map(
-            fn($item): string => $item.'.'.$view_tpl
+            fn ($item): string => $item.'.'.$view_tpl
         );
 
         /**
          * @phpstan-var view-string|null
          */
         $view_work = $views->first(
-            fn($view_check) => View::exists($view_check)
+            fn ($view_check) => View::exists($view_check)
         );
 
         if (null === $view_work) {
@@ -57,7 +56,7 @@ class IncludeView extends Component
         }
 
         if (null === $view_work) {
-            throw new Exception('$view_work is null');
+            throw new \Exception('$view_work is null');
         }
 
         return view($view_work, $this->vars);

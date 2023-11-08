@@ -4,13 +4,11 @@ declare(strict_types=1);
 
 namespace Modules\Cms\Services;
 
-use Illuminate\Support\Carbon;
 use Collective\Html\FormFacade as Form;
 use Illuminate\Support\Arr;
-use Illuminate\Support\Collection;
+use Illuminate\Support\Carbon;
 use Illuminate\Support\Str;
 use Modules\Cms\Contracts\PanelContract;
-use Modules\UI\Contracts\FieldContract;
 use Modules\UI\Datas\FieldData;
 use Modules\UI\Services\FieldService;
 use Modules\UI\Services\FormService;
@@ -55,7 +53,7 @@ class PanelFormService
             <input name="submit" type="submit" id="submit" value="Post your answer" class="button small color">
         </p>';
 
-        return $res . Form::close();
+        return $res.Form::close();
     }
 
     public function formEdit(array $params = []): string
@@ -86,7 +84,7 @@ class PanelFormService
         // $res.=Form::bsSubmit('save');
         $res .= $submit_btn;
 
-        return $res . Form::close();
+        return $res.Form::close();
     }
 
     public function formLivewireEdit(array $params = []): string
@@ -104,10 +102,11 @@ class PanelFormService
             // $res .= ThemeService::inputHtml($field,$row);
             $html .= $field->toHtml();
         }
+
         // $res.=Form::bsSubmit('save');
         // $html .= $submit_btn;
         // $html .= Form::close();
-        return $html . '</div>';
+        return $html.'</div>';
     }
 
     public function getFormData(array $params = []): array
@@ -322,7 +321,7 @@ class PanelFormService
         $panel = $this->panelContract;
         // extract($params);
         $excepts = collect([]);
-        if (property_exists($panel, 'rows') && $panel->rows !== null && \is_object($panel->getRows())) {
+        if (property_exists($panel, 'rows') && null !== $panel->rows && \is_object($panel->getRows())) {
             $methods = [
                 'getForeignKeyName', // relation  BelongsTo,HasManyThrought,HasOneOrMany
                 'getMorphType',     // relation   MorphOneOrMany,MorphPivot,MorphTo,MorphToMany

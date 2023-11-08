@@ -9,8 +9,6 @@ declare(strict_types=1);
 
 namespace Modules\Cms\Models\Panels\Actions;
 
-use Symfony\Component\HttpFoundation\BinaryFileResponse;
-use ReflectionClass;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\Cache;
@@ -20,6 +18,7 @@ use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
 use Modules\Xot\Services\FileService;
 use Nwidart\Modules\Facades\Module;
+use Symfony\Component\HttpFoundation\BinaryFileResponse;
 use Symfony\Component\Process\Exception\ProcessFailedException;
 use Symfony\Component\Process\Process;
 
@@ -133,7 +132,7 @@ class DownloadDbModuleAction extends XotBasePanelAction
             while ($is_abstract) {
                 $first_model_file = $models[$i++];
                 $first_model_class = 'Modules\\'.$module_name.'\Models\\'.Str::before($first_model_file->getBasename(), '.php');
-                $reflect = new ReflectionClass($first_model_class);
+                $reflect = new \ReflectionClass($first_model_class);
                 $is_abstract = $reflect->isAbstract();
             }
 

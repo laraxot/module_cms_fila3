@@ -4,13 +4,11 @@ declare(strict_types=1);
 
 namespace Modules\Cms\Services;
 
-use Request;
-use Exception;
-use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Str;
 use Modules\Cms\Contracts\PanelContract;
+use Request;
 
 use function Safe\date;
 
@@ -46,10 +44,11 @@ class PanelRouteService
         if (null !== config('in_admin')) {
             return config('in_admin');
         }
-        if ('admin' === Request::segment(1)) {
+        if ('admin' === \Request::segment(1)) {
             return true;
         }
-        $segments = Request::segments();
+        $segments = \Request::segments();
+
         return (is_countable($segments) ? \count($segments) : 0) > 0 && 'livewire' === $segments[0] && true === session('in_admin');
         // dddx(session('in_admin'));
         /*
@@ -103,7 +102,7 @@ class PanelRouteService
             $filters[$k]->field_value = $field_value;
             $value = match ($where) {
                 'Year' => $field_value->year,
-                'ofYear' => Request::input('year', date('Y')),
+                'ofYear' => \Request::input('year', date('Y')),
                 'Month' => $field_value->month,
                 default => $field_value,
             };
@@ -117,7 +116,7 @@ class PanelRouteService
 
         $request_query = request()->query();
         if (! \is_array($request_query)) {
-            throw new Exception('['.__LINE__.']['.class_basename(self::class).']');
+            throw new \Exception('['.__LINE__.']['.class_basename(self::class).']');
         }
         $queries = array_merge($request_query, $queries);
         $queries = collect($queries)->except(['_act'])->all();
@@ -162,7 +161,7 @@ class PanelRouteService
 
         if ('index_edit' !== $act && (Str::startsWith($act, 'index') || Str::startsWith($act, 'create'))) {
             [$containers,$items] = params2ContainerItem($route_params);
-            if (\count($containers) === \count($items) && $items !== []) {
+            if (\count($containers) === \count($items) && [] !== $items) {
                 $k = 'item'.(\count($items) - 1);
                 unset($route_params[$k]);
             }
@@ -170,7 +169,7 @@ class PanelRouteService
 
         try {
             $route = route($route_name, $route_params, false);
-        } catch (Exception $e) {
+        } catch (\Exception $e) {
             if (request()->input('debug', false)) {
                 dddx(
                     ['e' => $e->getMessage(),
