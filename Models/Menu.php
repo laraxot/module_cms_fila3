@@ -55,7 +55,7 @@ class Menu extends Model
             if (File::exists($menu_path)) {
                 $rows = File::getRequire($menu_path);
 
-                // dddx($this->config_name);
+            // dddx($this->config_name);
             } else {
                 // dddx($menu_path);
             }

@@ -120,7 +120,7 @@ class MenuItem extends Model
                     throw new \Exception('['.__LINE__.']['.__FILE__.']');
                 }
                 $rows = array_values($rows);
-                // dddx($this->config_name);
+            // dddx($this->config_name);
             } else {
                 // dddx($menu_path);
             }
