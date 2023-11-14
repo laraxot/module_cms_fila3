@@ -38,7 +38,8 @@ final class GetViewAction
                 $item = str_replace('.php', '', $item);
 
                 return Str::slug(Str::snake($item));
-            })->implode('.');
+            }
+        )->implode('.');
 
         $view = Str::lower($mod).'::'.$tmp;
         if ('' != $tpl) {

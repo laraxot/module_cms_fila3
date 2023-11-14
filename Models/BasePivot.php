@@ -14,6 +14,7 @@ use Modules\Xot\Traits\Updater;
 abstract class BasePivot extends Pivot
 {
     use Updater;
+
     /**
      * Indicates whether attributes are snake cased on arrays.
      *

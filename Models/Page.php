@@ -41,6 +41,7 @@ use Sushi\Sushi;
 class Page extends BaseModel
 {
     use Sushi;
+
     /**
      * @var string[]
      */
@@ -118,7 +119,8 @@ class Page extends BaseModel
                         'ns' => $ns,
                         //    'ext' => $file->getExtension(),
                     ];
-                });
+                }
+            );
             $pages = $pages->merge($tmp);
         }
 

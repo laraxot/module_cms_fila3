@@ -67,7 +67,8 @@ class ThemeComposer
                 'url' => $item->link,
                 'active' => (bool) $item->active,
                 'icon' => $item->icon,
-            ]);
+            ]
+        );
 
         return NavbarMenuData::collection($items->all());
     }

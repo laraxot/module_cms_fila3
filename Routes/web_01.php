@@ -1,6 +1,7 @@
 <?php
 
 declare(strict_types=1);
+
 use Illuminate\Support\Facades\Route;
 use Modules\Cms\Http\Middleware\PanelMiddleware;
 use Modules\Cms\Services\RouteService;

@@ -22,6 +22,7 @@ abstract class BaseModel extends Model
     // use Searchable;
     // use Cachable;
     use Updater;
+
     /**
      * Indicates whether attributes are snake cased on arrays.
      *

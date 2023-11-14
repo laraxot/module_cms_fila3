@@ -22,6 +22,7 @@ abstract class BaseModelLang extends Model
     // use Searchable;
     use LinkedTrait;
     use Updater;
+
     /**
      * Indicates whether attributes are snake cased on arrays.
      *
