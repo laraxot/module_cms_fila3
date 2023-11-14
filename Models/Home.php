@@ -45,15 +45,13 @@ use Sushi\Sushi;
 class Home extends BaseModel
 {
     use Sushi;
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                          use WidgetTrait;
+    use WidgetTrait;
 
-/**
+    /**
      * @var string[]
      */
-
-
     protected $fillable = ['id', 'name', 'icon_src', 'created_by', 'updated_by'];
-/**
+    /**
      * Undocumented variable.
      *
      * @var array
