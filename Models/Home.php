@@ -42,7 +42,8 @@ use Sushi\Sushi;
  * @mixin IdeHelperHome
  * @mixin \Eloquent
  */
-class Home extends BaseModel {
+class Home extends BaseModel
+{
     use Sushi;
     // use WidgetTrait;
 
