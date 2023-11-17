@@ -7,9 +7,10 @@
     "active": 1,
     "order": 3,
     "providers": [
-        "Modules\\Cms\\Providers\\CmsServiceProvider"
+        "Modules\\Cms\\Providers\\CmsServiceProvider",
+        "Modules\\Cms\\Providers\\Filament\\AdminPanelProvider"
     ],
-    "aliases": {},
+    "aliases": [],
     "files": [],
     "requires": []
 }
