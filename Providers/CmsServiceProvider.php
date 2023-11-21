@@ -43,7 +43,7 @@ class CmsServiceProvider extends XotBaseServiceProvider
             $this->registerThemeConfig('pub_theme');
         }
 
-        $this->registerViewComposers();
+        // $this->registerViewComposers();
 
         $timezone = config('app.timezone') ?? 'Europe/Berlin';
         if (! is_string($timezone)) {
