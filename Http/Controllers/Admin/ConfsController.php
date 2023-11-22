@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Modules\Cms\Http\Controllers\Admin;
 
+use Exception;
 use Illuminate\Contracts\Support\Renderable;
 use Illuminate\Contracts\View\View;
 use Illuminate\Http\Request;
@@ -26,7 +27,7 @@ class ConfsController extends BaseController
         // $rows = TenantService::getConfigNames();
         $panelContract = PanelService::make()->getRequestPanel();
         if (null == $panelContract) {
-            throw new \Exception('['.__LINE__.']['.__FILE__.']');
+            throw new Exception('['.__LINE__.']['.__FILE__.']');
         }
 
         return $panelContract->out();

@@ -4,6 +4,9 @@ declare(strict_types=1);
 
 namespace Modules\Cms\Services;
 
+use ReflectionException;
+use ZipArchive;
+use Exception;
 use Illuminate\Contracts\Filesystem\FileNotFoundException;
 use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Storage;
@@ -32,7 +35,7 @@ class ZipService
 
     /**
      * @throws FileNotFoundException
-     * @throws \ReflectionException
+     * @throws ReflectionException
      *
      * @return string|BinaryFileResponse|void
      */
@@ -48,16 +51,19 @@ class ZipService
 
             return;
         }
+        
         if (! isset($filename_zip)) {
             dddx(['err' => 'filename_zip is missing']);
 
             return;
         }
+        
         if (! isset($rows)) {
             dddx(['err' => 'rows is missing']);
 
             return;
         }
+        
         $pdf_parz = [
             'pdforientation' => $pdforientation,
             'view' => $pdf_view,
@@ -65,12 +71,12 @@ class ZipService
         ];
         // $filename_zip = '_'.$this->year.'.zip';
 
-        $zip = new \ZipArchive();
+        $zip = new ZipArchive();
         $filename_zip = Storage::disk('cache')->path($filename_zip);
         $filename_zip = str_replace(['/', '\\'], [\DIRECTORY_SEPARATOR, \DIRECTORY_SEPARATOR], (string) $filename_zip);
 
-        if (true !== $zip->open($filename_zip, \ZipArchive::CREATE)) {
-            throw new \Exception('cannot create zip ['.$filename_zip.']');
+        if (true !== $zip->open($filename_zip, ZipArchive::CREATE)) {
+            throw new Exception('cannot create zip ['.$filename_zip.']');
         }
 
         // dddx(get_class_methods($zip));
@@ -119,6 +125,7 @@ class ZipService
         if (0 === $rows->count()) {
             return '<h3>Non ci sono file da aggiungere</h3>';
         }
+        
         foreach ($rows as $row) {
             $panel = PanelService::make()->get($row);
             // Strict comparison using === between null and Modules\Xot\Contracts\PanelContract will always evaluate to false.
@@ -141,8 +148,10 @@ class ZipService
                 // mixed   given.
                 $res = Storage::disk('cache')->put($filename, $pdf_content);
             }
+            
             $zip->addFile($path, $filename);
         }
+        
         $zip->close();
 
         if ('download' === $out) {
@@ -177,15 +186,16 @@ class ZipService
         return $filename_zip;
     }
 
-    public static function getZipArchive(): \ZipArchive
+    public static function getZipArchive(): ZipArchive
     {
-        $zipArchive = new \ZipArchive();
+        $zipArchive = new ZipArchive();
         $filename_zip = self::getFilenameZipPath();
         if (File::exists($filename_zip)) {
             File::delete($filename_zip);
         }
-        if (true !== $zipArchive->open($filename_zip, \ZipArchive::CREATE)) {
-            throw new \Exception('cannot create zip ['.$filename_zip.']');
+        
+        if (true !== $zipArchive->open($filename_zip, ZipArchive::CREATE)) {
+            throw new Exception('cannot create zip ['.$filename_zip.']');
         }
 
         return $zipArchive;

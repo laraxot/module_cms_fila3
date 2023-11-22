@@ -20,8 +20,10 @@ class Link extends Component
 {
     // public string $method = 'show';
     public array $attrs = [];
+    
     // public string $policy_name;
     public string $view;
+    
     public ?string $icon = null;
 
     /**
@@ -58,6 +60,7 @@ class Link extends Component
         if (null != $linkData->onclick) {
             $this->attrs['onclick'] = $linkData->onclick;
         }
+        
         // dddx($link);
         // dddx($this->attrs);
     }

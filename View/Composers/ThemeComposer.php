@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Modules\Cms\View\Composers;
 
+use Exception;
 use Modules\Cms\Actions\Module\GetModelsMenuByModuleNameAction;
 use Modules\Cms\Datas\LinkData;
 use Modules\Cms\Datas\NavbarMenuData;
@@ -30,8 +31,9 @@ class ThemeComposer
         if (null == $module_name) {
             $module_name = $this->getArea();
         }
+
         if (null == $module_name) {
-            throw new \Exception('['.__LINE__.']['.__FILE__.']');
+            throw new Exception('['.__LINE__.']['.__FILE__.']');
             // $module_name = '';
         }
 
@@ -56,13 +58,12 @@ class ThemeComposer
 
         // dddx($menu->items);
 
-        $items = $menu->items->filter(function ($item) use ($profile): bool {
+        $items = $menu->items->filter(function ($item) use ($profile) : bool {
             $roles = array_map('trim', explode(',', (string) $item->roles));
             $roles[] = 'superadmin';
-
             return (bool) $profile->hasAnyRole($roles);
         })->map(
-            fn ($item): array => [
+            static fn($item): array => [
                 'title' => $item->label,
                 'url' => $item->link,
                 'active' => (bool) $item->active,

@@ -4,6 +4,8 @@ declare(strict_types=1);
 
 namespace Modules\Cms\Actions\Module;
 
+use stdClass;
+use Exception;
 use Illuminate\Support\Facades\File;
 use Illuminate\Support\Str;
 use Nwidart\Modules\Facades\Module;
@@ -17,7 +19,7 @@ final class GetModelsByModuleNameAction
     public function execute(string $module_name): array
     {
         $mod = Module::find($module_name);
-        if (null === $mod) {
+        if (!$mod instanceof \Nwidart\Modules\Module) {
             return [];
         }
 
@@ -32,7 +34,7 @@ final class GetModelsByModuleNameAction
             $ext = '.php';
             // dddx(['ext' => $file->getExtension(), get_class_methods($file)]);
             if (Str::endsWith($filename, $ext)) {
-                $tmp = new \stdClass();
+                $tmp = new stdClass();
 
                 $name = substr($filename, 0, -\strlen($ext));
 
@@ -47,11 +49,11 @@ final class GetModelsByModuleNameAction
                 $tmp->name = $name;
                 // 434    Parameter #1 $argument of class ReflectionClass constructor expects class-string<T of object>|T of object, string given.
                 try {
-                    $reflection_class = new \ReflectionClass($tmp->class);
+                    $reflection_class = new ReflectionClass($tmp->class);
                     if (! $reflection_class->isAbstract()) {
                         $data[$tmp->name] = $tmp->class;
                     }
-                } catch (\Exception) {
+                } catch (Exception) {
                 }
             }
         }

@@ -18,6 +18,7 @@ class AppLayout extends Component
         if (inAdmin()) {
             $view = 'adm_theme';
         }
+        
         $view .= '::components.app-layout';
         $view_params = [];
 

@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Modules\Cms\Models;
 
+use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\HasMany;
@@ -17,7 +18,7 @@ use Sushi\Sushi;
  *
  * @property int                                                                    $id
  * @property string|null                                                            $name
- * @property \Illuminate\Database\Eloquent\Collection|\Modules\UI\Models\MenuItem[] $items
+ * @property Collection|\Modules\UI\Models\MenuItem[] $items
  * @property int|null                                                               $items_count
  *
  * @method static Builder|Menu newModelQuery()
@@ -38,6 +39,7 @@ class Menu extends Model
     protected $fillable = ['id', 'name'];
 
     protected $table = 'menus';
+
     /*
     public function __construct(array $attributes = [])
     {
@@ -62,6 +64,7 @@ class Menu extends Model
         } else {
             $rows = config($this->config_name);
         }
+
         if (! \is_array($rows)) {
             return
             [
@@ -84,7 +87,7 @@ class Menu extends Model
     {
         return $this->hasMany(MenuItem::class, 'menu')
             ->with('child')
-            ->where(function ($query) {
+            ->where(function ($query) : void {
                 $query->where('parent', 0)->orWhere('parent', null);
             })
             ->orderBy('sort', 'ASC');

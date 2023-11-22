@@ -15,7 +15,9 @@ use Modules\Wire\View\Components\Modal\Modal;
 class Destroy extends Modal
 {
     public string $model_type;
+    
     public string $model_id;
+    
     public string $user_id;
 
     public function mount(string $model_type, string $model_id): void

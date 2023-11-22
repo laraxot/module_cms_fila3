@@ -38,9 +38,10 @@ class XlsPanelPresenter implements PanelPresenterContract
         if (! isset($params['view_params'])) {
             $params['view_params'] = [];
         }
+        
         // $view = ThemeService::g1etView(); // progressioni::admin.schede.show
         $view = $this->panel->getView();
-        $name = last(explode('.', $view));
+        $name = last(explode('.', (string) $view));
         // dddx($name);
         // $view .= '.pdf';
         // $view = str_replace('.store.', '.show.', $view);

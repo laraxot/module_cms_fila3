@@ -9,7 +9,10 @@ use Spatie\LaravelData\Data;
 class NavbarMenuData extends Data
 {
     public string $title;
+    
     public string $url;
+    
     public bool $active;
+    
     public string $icon;
 }

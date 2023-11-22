@@ -36,13 +36,10 @@ class ModuleService
                 // $obj = new $item();
                 $obj = app($item);
                 $panelContract = PanelService::make()->get($obj);
-
                 if ('media' === $key) {// media e' singolare ma anche plurale di medium
                     $panelContract->setName('medias');
                 }
-
                 $url = $panelContract->url('index');
-
                 return (object) [
                     'title' => $key,
                     'url' => $url,

@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace Modules\Cms\Http\Livewire\Menu;
 
 // use Illuminate\Database\Eloquent\Collection as EloquentCollection;
+use Exception;
 use Illuminate\Contracts\Support\Renderable;
 use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\DB;
@@ -16,21 +17,37 @@ use Modules\UI\Models\MenuItem;
 class Builder extends Component
 {
     public array $menulist = [];
+    
     public array $menuItems = [];
+    
     public ?int $selectedMenu = null;
+    
     public string $menuName = '';
+    
     public string $error = '';
+    
     public string $success = '';
+    
     public string $label = '';
+    
     public string $url = '';
+    
     public ?int $role = null;
+    
     public string $role_pk = '';
+    
     public string $role_title_field = '';
+    
     public string $menuItemLabel = '';
+    
     public string $menuItemClass = '';
+    
     public string $menuItemLink = '';
+    
     public string $menuItemRole = '';
+    
     public Collection $roles;
+    
     public ?MenuItem $menuItemSelected = null;
 
     /**
@@ -53,6 +70,7 @@ class Builder extends Component
             $role_title_field = config('menu.roles_title_field');
             $this->role_title_field = $role_title_field;
         }
+        
         /**
          * @phpstan-var view-string
          */
@@ -91,6 +109,7 @@ class Builder extends Component
         if (null !== $menuitem) {
             $menuitem->delete();
         }
+        
         $this->menuItemSelected = null;
         $this->chooseMenu();
     }
@@ -101,10 +120,12 @@ class Builder extends Component
         if (! $this->menuItemSelected instanceof MenuItem) {
             return;
         }
+        
         $menuitem = MenuItem::where('id', $this->menuItemSelected['id'])->first();
         if (null === $menuitem) {
-            throw new \Exception('['.__LINE__.']['.__FILE__.']');
+            throw new Exception('['.__LINE__.']['.__FILE__.']');
         }
+        
         $up = [
             'label' => $this->menuItemLabel,
             'link' => $this->menuItemLink,
@@ -154,14 +175,16 @@ class Builder extends Component
                 // $menuitem = MenuItem::find($value['id']);
                 $menuitem = MenuItem::where('id', $value['id'])->first();
                 if (null === $menuitem) {
-                    throw new \Exception('['.__LINE__.']['.__FILE__.']');
+                    throw new Exception('['.__LINE__.']['.__FILE__.']');
                 }
+                
                 $menuitem->parent = $value['parent'];
                 $menuitem->sort = $value['sort'];
                 $menuitem->depth = $value['depth'];
 
                 $menuitem->save();
             }
+            
             $this->chooseMenu();
         }
     }
@@ -193,6 +216,7 @@ class Builder extends Component
         } else {
             $this->menuItems = [];
         }
+        
         //        dd($this->menuItems);
     }
 
@@ -204,6 +228,7 @@ class Builder extends Component
         if (config('menu.use_roles')) {
             $menuitem->role_id = $this->role ?: 0;
         }
+        
         $menuitem->menu = $this->selectedMenu;
         $menuitem->sort = MenuItem::getNextSortRoot($this->selectedMenu ?? 0);
         $menuitem->save();
@@ -231,6 +256,7 @@ class Builder extends Component
         if (null === $item) {
             return;
         }
+        
         switch ($dir) {
             case 'up':
                 $prevElem = MenuItem::where('sort', '<', $item->sort)
@@ -308,6 +334,7 @@ class Builder extends Component
             if (0 !== $find->count()) {
                 $data_arr[$i]['child'] = self::tree($find, $all_items);
             }
+            
             ++$i;
         }
 

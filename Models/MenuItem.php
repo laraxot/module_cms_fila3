@@ -4,6 +4,8 @@ declare(strict_types=1);
 
 namespace Modules\Cms\Models;
 
+use Illuminate\Database\Eloquent\Builder;
+use Exception;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
@@ -35,18 +37,18 @@ use Sushi\Sushi;
  * @property int|null                     $child_count
  * @property \Modules\UI\Models\Menu|null $parent_menu
  *
- * @method static \Illuminate\Database\Eloquent\Builder|MenuItem newModelQuery()
- * @method static \Illuminate\Database\Eloquent\Builder|MenuItem newQuery()
- * @method static \Illuminate\Database\Eloquent\Builder|MenuItem query()
- * @method static \Illuminate\Database\Eloquent\Builder|MenuItem whereClass($value)
- * @method static \Illuminate\Database\Eloquent\Builder|MenuItem whereDepth($value)
- * @method static \Illuminate\Database\Eloquent\Builder|MenuItem whereId($value)
- * @method static \Illuminate\Database\Eloquent\Builder|MenuItem whereLabel($value)
- * @method static \Illuminate\Database\Eloquent\Builder|MenuItem whereLink($value)
- * @method static \Illuminate\Database\Eloquent\Builder|MenuItem whereMenu($value)
- * @method static \Illuminate\Database\Eloquent\Builder|MenuItem whereParent($value)
- * @method static \Illuminate\Database\Eloquent\Builder|MenuItem whereRoleId($value)
- * @method static \Illuminate\Database\Eloquent\Builder|MenuItem whereSort($value)
+ * @method static Builder|MenuItem newModelQuery()
+ * @method static Builder|MenuItem newQuery()
+ * @method static Builder|MenuItem query()
+ * @method static Builder|MenuItem whereClass($value)
+ * @method static Builder|MenuItem whereDepth($value)
+ * @method static Builder|MenuItem whereId($value)
+ * @method static Builder|MenuItem whereLabel($value)
+ * @method static Builder|MenuItem whereLink($value)
+ * @method static Builder|MenuItem whereMenu($value)
+ * @method static Builder|MenuItem whereParent($value)
+ * @method static Builder|MenuItem whereRoleId($value)
+ * @method static Builder|MenuItem whereSort($value)
  *
  * @mixin \Eloquent
  */
@@ -99,6 +101,7 @@ class MenuItem extends Model
         'active' => 'bool',
         'icon' => 'string',
     ];
+    
     /*
     public function __construct(array $attributes = [])
     {
@@ -117,8 +120,9 @@ class MenuItem extends Model
             if (File::exists($menu_path)) {
                 $rows = File::getRequire($menu_path);
                 if (! is_array($rows)) {
-                    throw new \Exception('['.__LINE__.']['.__FILE__.']');
+                    throw new Exception('['.__LINE__.']['.__FILE__.']');
                 }
+                
                 $rows = array_values($rows);
             // dddx($this->config_name);
             } else {

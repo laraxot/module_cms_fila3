@@ -21,6 +21,7 @@ use Modules\Xot\Contracts\ModelWithPosContract;
 class Sort extends Component
 {
     public array $routeParams = [];
+    
     public array $data = [];
 
     /**
@@ -85,6 +86,7 @@ class Sort extends Component
             ];
             $row->update($up);
         }
+        
         session()->flash('message', 'Sort successfully ');
     }
 }

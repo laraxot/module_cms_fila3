@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Modules\Cms\Presenters;
 
+use Exception;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Collection;
 use Modules\Cms\Contracts\PanelContract;
@@ -46,6 +47,7 @@ class PdfPanelPresenter implements PanelPresenterContract
         if (! isset($params['view_params'])) {
             $params['view_params'] = [];
         }
+        
         // $view = ThemeService::g1etView(); // progressioni::admin.schede.show
         $view = $this->panel->getView();
         $view .= '.pdf';
@@ -54,9 +56,10 @@ class PdfPanelPresenter implements PanelPresenterContract
         $row = $this->panel->getRow();
         try {
             $rows = $this->panel->rows();
-        } catch (\Exception) {
+        } catch (Exception) {
             $rows = collect([]);
         }
+        
         if (null === $row->getKey()) { // utile per le cose a containers
             // if (null == $row) { //utile per le cose a containers
             // $row = tap($this->panel->rows())->first();
@@ -82,6 +85,7 @@ class PdfPanelPresenter implements PanelPresenterContract
         if (request()->input('debug')) {
             return $html;
         }
+        
         $params['html'] = (string) $html;
 
         return HtmlService::toPdf($params);

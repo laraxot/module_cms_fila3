@@ -95,7 +95,7 @@ class Page extends BaseModel
             // creates temporary collection for every page in theme (all blade.php files in pub_theme)
             $tmp = collect(File::files($pages_path));
             $tmp = $tmp->filter(
-                function ($item) {
+                static function ($item) {
                     return Str::endsWith($item->getFilename(), '.blade.php');
                     // return true;
                 }
@@ -104,12 +104,11 @@ class Page extends BaseModel
             // creates the page paths with view format (separated by points)
             // and without blade.php extension
             $tmp = $tmp->map(
-                function ($file) use ($ns): array {
+                static function ($file) use ($ns) : array {
                     // get title from the page name (SEO)
                     // for example if page name is scores.blade.php the title will be "Scores"
                     $title = $file->getFilenameWithoutExtension();
                     $title = Str::before($title, '.blade');
-
                     // returns the page into the model
                     return [
                         'id' => $title,

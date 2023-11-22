@@ -16,6 +16,7 @@ use Modules\Cms\Contracts\PanelContract;
 class Show extends Component
 {
     public string $method = 'show';
+    
     public array $attrs = [];
 
     /**

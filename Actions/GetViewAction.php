@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Modules\Cms\Actions;
 
+use Exception;
 use Illuminate\Support\Str;
 use Modules\Xot\Services\FileService;
 use Spatie\QueueableAction\QueueableAction;
@@ -34,7 +35,7 @@ final class GetViewAction
         $tmp = array_slice($arr, 3);
 
         $tmp = collect($tmp)->map(
-            static function ($item) {
+            function ($item) {
                 $item = str_replace('.php', '', $item);
 
                 return Str::slug(Str::snake($item));
@@ -56,7 +57,7 @@ final class GetViewAction
         // }
 
         if (! view()->exists($view)) {
-            throw new \Exception('View ['.$view.'] not found');
+            throw new Exception('View ['.$view.'] not found');
         }
 
         return $view;

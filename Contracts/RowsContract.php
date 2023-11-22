@@ -4,6 +4,8 @@ declare(strict_types=1);
 
 namespace Modules\Cms\Contracts;
 
+use InvalidArgumentException;
+use Closure;
 use Illuminate\Contracts\Pagination\LengthAwarePaginator;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Collection;
@@ -23,7 +25,7 @@ interface RowsContract
      * @param string   $pageName
      * @param int|null $page
      *
-     * @throws \InvalidArgumentException
+     * @throws InvalidArgumentException
      *
      * @return LengthAwarePaginator
      */
@@ -38,12 +40,12 @@ interface RowsContract
      *
      * @return Builder|static
      */
-    public function whereHas($relation, \Closure $callback = null, $operator = '>=', $count = 1);
+    public function whereHas($relation, Closure $callback = null, $operator = '>=', $count = 1);
 
     /**
      * Add a basic where clause to the query.
      *
-     * @param \Closure|string|array|Expression $column
+     * @param Closure|string|array|Expression $column
      * @param array|string                     $operator
      * @param array|string|int                 $value
      * @param string                           $boolean
@@ -73,10 +75,10 @@ interface RowsContract
     /**
      * Add an "order by" clause to the query.
      *
-     * @param \Closure|\Illuminate\Database\Query\Builder|Expression|string $column
+     * @param Closure|\Illuminate\Database\Query\Builder|Expression|string $column
      * @param string                                                        $direction
      *
-     * @throws \InvalidArgumentException
+     * @throws InvalidArgumentException
      *
      * @return $this
      */
@@ -86,7 +88,7 @@ interface RowsContract
      * Set the relationships that should be eager loaded.
      *
      * @param string|array         $relations
-     * @param string|\Closure|null $callback
+     * @param string|Closure|null $callback
      *
      * @return $this
      */

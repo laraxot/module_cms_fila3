@@ -7,6 +7,10 @@ declare(strict_types=1);
 
 namespace Modules\Cms\Filament\Front\Pages;
 
+use Filament\Tables\Actions\ViewAction;
+use Filament\Tables\Actions\EditAction;
+use Filament\Tables\Actions\BulkActionGroup;
+use Filament\Tables\Actions\DeleteBulkAction;
 use Filament\Infolists\Components\TextEntry;
 use Filament\Infolists\Infolist;
 use Filament\Pages\Page;
@@ -84,12 +88,12 @@ class Welcome extends Page implements HasTable
                     ->url(fn (Course $record): string => LessonResource::getUrl('index', [
                         'tableFilters[course][value]' => $record,
                     ])),*/
-                Tables\Actions\ViewAction::make(),
-                Tables\Actions\EditAction::make(),
+                ViewAction::make(),
+                EditAction::make(),
             ])
             ->bulkActions([
-                Tables\Actions\BulkActionGroup::make([
-                    Tables\Actions\DeleteBulkAction::make(),
+                BulkActionGroup::make([
+                    DeleteBulkAction::make(),
                 ]),
             ]);
     }

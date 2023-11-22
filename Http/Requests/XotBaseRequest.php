@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Modules\Cms\Http\Requests;
 
+use Exception;
 use Carbon\Carbon;
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Support\Str;
@@ -86,11 +87,11 @@ function ($rule) {
         dddx($data);
     }
 
-    public function prepareForValidation(): void
+    protected function prepareForValidation(): void
     {
         $data = $this->request->all();
         $date_fields = collect($this->panel->fields())->filter(
-            fn ($item): bool => Str::startsWith($item->type, 'Date') && isset($data[$item->name])
+            static fn($item): bool => Str::startsWith($item->type, 'Date') && isset($data[$item->name])
         )->all();
         foreach ($date_fields as $date_field) {
             $value = $data[$date_field->name]; // metterlo nel filtro sopra ?
@@ -128,9 +129,10 @@ function ($rule) {
         if (null == $value) {
             return $value;
         }
+        
         $value_new = Carbon::createFromFormat('d/m/Y', $value);
         if (false === $value_new) {
-            throw new \Exception('['.__LINE__.']['.__FILE__.']');
+            throw new Exception('['.__LINE__.']['.__FILE__.']');
         }
 
         return $value_new;
@@ -147,9 +149,10 @@ function ($rule) {
         if (null == $value) {
             return $value;
         }
+        
         $value_new = Carbon::createFromFormat('d/m/Y H:i', $value);
         if (false === $value_new) {
-            throw new \Exception('['.__LINE__.']['.__FILE__.']');
+            throw new Exception('['.__LINE__.']['.__FILE__.']');
         }
 
         return $value_new;
@@ -166,9 +169,10 @@ function ($rule) {
         if (null == $value) {
             return $value;
         }
+        
         $value_new = Carbon::createFromFormat('d/m/Y H:i', $value);
         if (false === $value_new) {
-            throw new \Exception('['.__LINE__.']['.__FILE__.']');
+            throw new Exception('['.__LINE__.']['.__FILE__.']');
         }
 
         return $value_new;

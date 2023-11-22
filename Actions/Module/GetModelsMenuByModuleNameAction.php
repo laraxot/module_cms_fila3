@@ -22,13 +22,14 @@ final class GetModelsMenuByModuleNameAction
     {
         $models = app(GetModelsByModuleNameAction::class)->execute($module_name);
         $menu = collect($models)->map(
-            static function ($item, $key): array {
+            function ($item, $key): array {
                 // $obj = new $item();
                 $obj = app($item);
                 $panelContract = PanelService::make()->get($obj);
                 if ('media' === $key) {// media e' singolare ma anche plurale di medium
                     $panelContract->setName('medias');
                 }
+                
                 $url = $panelContract->url('index');
 
                 return [
