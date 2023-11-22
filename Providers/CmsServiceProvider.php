@@ -38,7 +38,7 @@ class CmsServiceProvider extends XotBaseServiceProvider
             $this->registerNamespaces('adm_theme');
             $this->registerThemeConfig('adm_theme');
         }
-        
+
         if ($this->xot->register_pub_theme) {
             $this->registerNamespaces('pub_theme');
             $this->bootThemeProvider('pub_theme');
@@ -51,7 +51,7 @@ class CmsServiceProvider extends XotBaseServiceProvider
         if (! is_string($timezone)) {
             throw new Exception('['.__LINE__.']['.__FILE__.']');
         }
-        
+
         date_default_timezone_set($timezone);
     }
 
@@ -98,7 +98,8 @@ class CmsServiceProvider extends XotBaseServiceProvider
             // TenantService::saveConfig('xra', $xot->toArray());
             throw new Exception('['.base_path('Themes/'.$theme).' not exists]['.__LINE__.']['.class_basename(self::class).']');
         }
-        
+
+        /*
         $provider = 'Themes\\'.$theme.'\Providers\\'.$theme.'ServiceProvider';
         if (! class_exists($provider)) {
             throw new Exception('class not exists ['.$provider.']['.__LINE__.']['.basename(__FILE__).']');
@@ -109,6 +110,7 @@ class CmsServiceProvider extends XotBaseServiceProvider
         if (method_exists($provider, 'bootCallback')) {
             $provider->bootCallback();
         }
+        */
     }
 
     public function registerThemeConfig(string $theme_type): void
@@ -125,7 +127,7 @@ class CmsServiceProvider extends XotBaseServiceProvider
         if (! File::exists($config_path)) {
             return;
         }
-        
+
         $files = File::files($config_path);
         foreach ($files as $file) {
             $name = $file->getFilenameWithoutExtension();
@@ -133,7 +135,7 @@ class CmsServiceProvider extends XotBaseServiceProvider
             if (false === $real_path) {
                 throw new Exception('['.__LINE__.']['.class_basename(self::class).']');
             }
-            
+
             $data = File::getRequire($real_path);
             Config::set($theme_type.'::'.$name, $data);
         }
@@ -162,7 +164,7 @@ class CmsServiceProvider extends XotBaseServiceProvider
 
             return;
         }
-        
+
         if ($this->app->runningInConsole()) {
             return;
         }
