@@ -73,16 +73,16 @@ class Welcome extends Page implements HasTable
             ])
 
             ->columns([
-                View::make('pub_theme::article'),
-                Split::make([
-                    TextColumn::make('id')
-                        ->label('#'),
-                    TextColumn::make('question'),
-                    /*TextColumn::make('lessons_count')
-                    ->label('Lessons')
-                    ->counts('lessons'),
-                    */
-                ]),
+                View::make('pub_theme::home.article'),
+                // Split::make([
+                //     TextColumn::make('id')
+                //         ->label('#'),
+                //     TextColumn::make('question'),
+                //     /*TextColumn::make('lessons_count')
+                //     ->label('Lessons')
+                //     ->counts('lessons'),
+                //     */
+                // ]),
             ])
             ->actions([
                 /*Action::make('Lessons')
@@ -90,12 +90,12 @@ class Welcome extends Page implements HasTable
                     ->url(fn (Course $record): string => LessonResource::getUrl('index', [
                         'tableFilters[course][value]' => $record,
                     ])),*/
-                ViewAction::make(),
-                EditAction::make(),
+                // ViewAction::make(),
+                // EditAction::make(),
             ])
             ->bulkActions([
                 BulkActionGroup::make([
-                    DeleteBulkAction::make(),
+                    // DeleteBulkAction::make(),
                 ]),
             ]);
     }
