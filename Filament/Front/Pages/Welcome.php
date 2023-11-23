@@ -32,7 +32,8 @@ class Welcome extends Page implements HasTable
 
     protected static ?string $navigationIcon = 'heroicon-o-document-text';
 
-    protected static string $view = 'cms::filament.front.pages.welcome';
+    //protected static string $view = 'cms::filament.front.pages.welcome';
+    protected static string $view = 'pub_theme::home';
 
     protected static string $layout = 'pub_theme::layouts.app';
 
