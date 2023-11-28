@@ -14,12 +14,15 @@ class AppLayout extends Component
      */
     public function render(): View
     {
+        /*
         $view = 'pub_theme';
         if (inAdmin()) {
             $view = 'adm_theme';
         }
-        
+
         $view .= '::components.app-layout';
+        */
+        $view = 'pub_theme::layouts.app';
         $view_params = [];
 
         return view($view, $view_params);
