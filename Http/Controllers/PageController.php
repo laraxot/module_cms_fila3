@@ -13,8 +13,15 @@ class PageController extends BaseController
     /**
      * Display a listing of the resource.
      */
-    public function index($container0, string $item0 = null, string $container1 = null, string $item1 = null, string $container2 = null, string $item2 = null)
+    public function index(
+        $container0,
+        string $item0 = null,
+        string $container1 = null,
+        string $item1 = null,
+        string $container2 = null,
+        string $item2 = null)
     {
+        dddx('a');
         $value = $container0;
 
         if (isset($container1)) {
