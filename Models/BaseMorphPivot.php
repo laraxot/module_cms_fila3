@@ -25,7 +25,7 @@ abstract class BaseMorphPivot extends MorphPivot
 
     protected $perPage = 30;
 
-    protected $connection = 'chart';
+    protected $connection = 'cms';
 
     /**
      * @var array

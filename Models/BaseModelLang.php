@@ -34,7 +34,7 @@ abstract class BaseModelLang extends Model
 
     protected $perPage = 30;
 
-    protected $connection = 'chart';
+    protected $connection = 'cms';
 
     /**
      * @var array<string, string>
