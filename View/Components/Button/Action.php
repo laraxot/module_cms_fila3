@@ -18,11 +18,11 @@ class Action extends Component
 {
     // public string $method = 'show';
     public array $attrs = [];
-    
+
     public string $policy_name;
-    
+
     public string $view;
-    
+
     public string $icon;
 
     /**

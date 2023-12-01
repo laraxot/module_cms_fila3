@@ -4,8 +4,8 @@ declare(strict_types=1);
 
 namespace Modules\Cms\Models;
 
-use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Builder;
+use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Support\Facades\File;
@@ -16,10 +16,10 @@ use Sushi\Sushi;
 /**
  * Modules\UI\Models\Menu.
  *
- * @property int                                                                    $id
- * @property string|null                                                            $name
+ * @property int                                      $id
+ * @property string|null                              $name
  * @property Collection|\Modules\UI\Models\MenuItem[] $items
- * @property int|null                                                               $items_count
+ * @property int|null                                 $items_count
  *
  * @method static Builder|Menu newModelQuery()
  * @method static Builder|Menu newQuery()
@@ -87,7 +87,7 @@ class Menu extends Model
     {
         return $this->hasMany(MenuItem::class, 'menu')
             ->with('child')
-            ->where(function ($query) : void {
+            ->where(function ($query): void {
                 $query->where('parent', 0)->orWhere('parent', null);
             })
             ->orderBy('sort', 'ASC');

@@ -5,16 +5,16 @@ declare(strict_types=1);
 namespace Modules\Cms\Models;
 
 use Illuminate\Database\Eloquent\Builder;
-//use Modules\User\Models\Traits\HasTeams;
-use Modules\Tenant\Services\TenantService;
+// use Modules\User\Models\Traits\HasTeams;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Modules\Tenant\Services\TenantService;
 use Z3d0X\FilamentFabricator\Models\Page as ModelsPage;
 
 class Page extends ModelsPage
 {
     use HasFactory;
 
-    //use HasTeams;
+    // use HasTeams;
     /**
      * @var string[]
      */
@@ -36,7 +36,6 @@ class Page extends ModelsPage
      * @var string
      */
     protected $connection = 'cms';
-
 
     /**
      * The "booting" method of the model.

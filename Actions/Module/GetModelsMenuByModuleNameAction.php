@@ -29,7 +29,7 @@ final class GetModelsMenuByModuleNameAction
                 if ('media' === $key) {// media e' singolare ma anche plurale di medium
                     $panelContract->setName('medias');
                 }
-                
+
                 $url = $panelContract->url('index');
 
                 return [

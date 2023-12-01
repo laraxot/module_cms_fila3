@@ -4,7 +4,6 @@ declare(strict_types=1);
 
 namespace Modules\Cms\Http\Controllers\Admin;
 
-use Exception;
 use Illuminate\Http\Request;
 use Modules\Cms\Contracts\PanelContract;
 use Modules\Cms\Http\Controllers\BaseController;
@@ -21,9 +20,9 @@ class ModuleController extends BaseController
     {
         $panelContract = PanelService::make()->getRequestPanel();
         if (! $panelContract instanceof PanelContract) {
-            throw new Exception('['.__LINE__.']['.__FILE__.']');
+            throw new \Exception('['.__LINE__.']['.__FILE__.']');
         }
-        
+
         $act = $request->_act;
         if ('' !== $act && $panelContract instanceof PanelContract) {
             // return $panel->callItemActionWithGate($request->_act);
@@ -53,13 +52,13 @@ class ModuleController extends BaseController
     {
         $panelContract = PanelService::make()->getRequestPanel();
         if (! $panelContract instanceof PanelContract) {
-            throw new Exception('['.__LINE__.']['.__FILE__.']');
+            throw new \Exception('['.__LINE__.']['.__FILE__.']');
         }
-        
+
         $act = $request->input('_act', '');
         if ('' !== $act) {
             if (! \is_string($act)) {
-                throw new Exception('['.__LINE__.']['.class_basename(self::class).']');
+                throw new \Exception('['.__LINE__.']['.class_basename(self::class).']');
             }
 
             return $panelContract->callItemActionWithGate($act);
@@ -79,13 +78,13 @@ class ModuleController extends BaseController
     {
         $panelContract = PanelService::make()->getRequestPanel();
         if (! $panelContract instanceof PanelContract) {
-            throw new Exception('['.__LINE__.']['.__FILE__.']');
+            throw new \Exception('['.__LINE__.']['.__FILE__.']');
         }
-        
+
         $act = $request->input('_act', '');
         if ('' !== $act) {
             if (! \is_string($act)) {
-                throw new Exception('['.__LINE__.']['.class_basename(self::class).']');
+                throw new \Exception('['.__LINE__.']['.class_basename(self::class).']');
             }
 
             return $panelContract->callItemActionWithGate($act);

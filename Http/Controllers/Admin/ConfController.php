@@ -4,7 +4,6 @@ declare(strict_types=1);
 
 namespace Modules\Cms\Http\Controllers\Admin;
 
-use Exception;
 use Illuminate\Contracts\Support\Renderable;
 use Illuminate\Contracts\View\View;
 use Illuminate\Http\RedirectResponse;
@@ -30,6 +29,7 @@ class ConfController extends BaseController
         $rows = collect($confs)->map(
             function ($item, $key) use ($route_params) {
                 $route_params['item0'] = $key;
+
                 return (object) [
                     'title' => $key,
                     'url' => route('admin.containers.edit', $route_params, false),
@@ -58,10 +58,10 @@ class ConfController extends BaseController
         extract($route_params);
         if (! isset($item0)) {
             dddx(['err' => 'item0 is missing']);
-            throw new Exception('item0 is missing');
+            throw new \Exception('item0 is missing');
             // return;
         }
-        
+
         $row = config($item0);
 
         // return ThemeService::v1iew()->with('row', $row);
@@ -88,8 +88,8 @@ class ConfController extends BaseController
 
             return;
         }
-        
-        throw new Exception('['.__LINE__.']['.class_basename(self::class).']');
+
+        throw new \Exception('['.__LINE__.']['.class_basename(self::class).']');
         // TenantService::saveConfig($item0, $data);
         /*
         $data['_token'] = '';

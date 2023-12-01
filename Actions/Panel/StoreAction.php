@@ -4,8 +4,6 @@ declare(strict_types=1);
 
 namespace Modules\Cms\Actions\Panel;
 
-use Auth;
-use Exception;
 use Illuminate\Database\Eloquent\Relations\HasOneOrMany;
 use Modules\Cms\Contracts\PanelContract;
 use Spatie\QueueableAction\QueueableAction;
@@ -45,7 +43,7 @@ final class StoreAction
             }
 
             if (! isset($pivot_data['user_id'])) {
-                $pivot_data['user_id'] = Auth::id();
+                $pivot_data['user_id'] = \Auth::id();
             }
 
             try {
@@ -71,7 +69,7 @@ final class StoreAction
                 BelongsToMany
                 HasOneOrMany
                 */
-            } catch (Exception $e) {
+            } catch (\Exception $e) {
                 // message: "Call to undefined method Illuminate\Database\Eloquent\Builder::save()"
                 dddx(
                     [

@@ -40,6 +40,7 @@ class ModuleService
                     $panelContract->setName('medias');
                 }
                 $url = $panelContract->url('index');
+
                 return (object) [
                     'title' => $key,
                     'url' => $url,

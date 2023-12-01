@@ -16,7 +16,7 @@ use Modules\Cms\Contracts\PanelContract;
 class Detach extends Component
 {
     public string $method = 'delete';
-    
+
     public array $attrs = [];
 
     /**
@@ -50,12 +50,13 @@ class Detach extends Component
 
     public function shouldRender(): bool
     {
-        if (!property_exists($this->panelContract->getRow(), 'pivot')) {
+        if (! property_exists($this->panelContract->getRow(), 'pivot')) {
             return Gate::allows($this->method, $this->panelContract);
         }
         if (null === $this->panelContract->getRow()->pivot) {
             return Gate::allows($this->method, $this->panelContract);
         }
+
         return false;
     }
 }

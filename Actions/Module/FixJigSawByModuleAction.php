@@ -4,7 +4,6 @@ declare(strict_types=1);
 
 namespace Modules\Cms\Actions\Module;
 
-use Exception;
 use Illuminate\Filesystem\Filesystem;
 use Illuminate\Support\Facades\File;
 use Modules\Xot\Services\FileService;
@@ -24,7 +23,7 @@ final class FixJigSawByModuleAction
         $res = [];
         $stubs_dir = realpath(__DIR__.'/../../Console/Commands/stubs/docs');
         if (false == $stubs_dir) {
-            throw new Exception('['.__LINE__.']['.__FILE__.']');
+            throw new \Exception('['.__LINE__.']['.__FILE__.']');
         }
 
         $stubs = File::allFiles($stubs_dir);
@@ -51,11 +50,11 @@ final class FixJigSawByModuleAction
             if (! $stub->isFile()) {
                 continue;
             }
-            
+
             if ('stub' != $stub->getExtension()) {
                 continue;
             }
-            
+
             $res[] = $this->publish($stub, $module);
         }
 

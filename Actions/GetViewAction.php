@@ -4,7 +4,6 @@ declare(strict_types=1);
 
 namespace Modules\Cms\Actions;
 
-use Exception;
 use Illuminate\Support\Str;
 use Modules\Xot\Services\FileService;
 use Spatie\QueueableAction\QueueableAction;
@@ -57,7 +56,7 @@ final class GetViewAction
         // }
 
         if (! view()->exists($view)) {
-            throw new Exception('View ['.$view.'] not found');
+            throw new \Exception('View ['.$view.'] not found');
         }
 
         return $view;

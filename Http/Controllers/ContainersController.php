@@ -4,8 +4,6 @@ declare(strict_types=1);
 
 namespace Modules\Cms\Http\Controllers;
 
-use Exception;
-use Auth;
 use Illuminate\Contracts\Support\Renderable;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\RedirectResponse;
@@ -42,7 +40,7 @@ class ContainersController extends BaseController
         if ([] === $containers) {
             return $this->home($request);
         }
-        
+
         if (\count($containers) === \count($items)) {
             return $this->show($request);
         }
@@ -72,13 +70,13 @@ class ContainersController extends BaseController
             $action['controller'] = self::class.'@'.$method;
             $action = $route_current->setAction($action);
         }
-        
+
         $panel = PanelService::make()->getRequestPanel();
 
         if (! $panel instanceof PanelContract) {
-            throw new Exception('['.__LINE__.']['.__FILE__.']');
+            throw new \Exception('['.__LINE__.']['.__FILE__.']');
         }
-        
+
         $this->panel = $panel;
 
         if ('' !== request()->input('_act', '')) {
@@ -95,15 +93,16 @@ class ContainersController extends BaseController
         $mod_name = $this->panel->getModuleName();
 
         $tmp = collect($containers)->map(
-            static fn($item) => Str::studly($item)
+            static fn ($item) => Str::studly($item)
         )->implode('\\');
         $controller = '\Modules\\'.$mod_name.'\Http\Controllers\\'.$tmp.'Controller';
-        if (!class_exists($controller)) {
+        if (! class_exists($controller)) {
             return '\\'.XotPanelController::class;
         }
         if ('' === $tmp) {
             return '\\'.XotPanelController::class;
         }
+
         return $controller;
     }
 
@@ -121,7 +120,7 @@ class ContainersController extends BaseController
         if (! $authorized) {
             return $this->notAuthorized($method, $panel);
         }
-        
+
         $request = XotRequest::capture();
 
         $controller = $this->getController();
@@ -162,9 +161,9 @@ class ContainersController extends BaseController
     {
         app()->getLocale();
         $class = PolicyService::get($panelContract)->createIfNotExists()->getClass();
-        $msg = 'Auth Id ['.Auth::id().'] not can ['.$method.'] on ['.$class.']';
+        $msg = 'Auth Id ['.\Auth::id().'] not can ['.$method.'] on ['.$class.']';
         FileService::viewCopy('ui::errors.403', 'pub_theme::errors.403');
-        $exception = new Exception($msg);
+        $exception = new \Exception($msg);
 
         return response()->view('pub_theme::errors.403', ['msg' => $msg, 'exception' => $exception], 403);
     }

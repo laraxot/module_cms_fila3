@@ -25,7 +25,7 @@ class XotComposer
         if (! $user instanceof Authenticatable) {
             return;
         }
-        
+
         // $profile = ProfileService::make()->get($user);
         $profile = $user->profile;
         $lang = app()->getLocale();

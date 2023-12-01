@@ -4,8 +4,6 @@ declare(strict_types=1);
 
 namespace Modules\Cms\Presenters;
 
-use Request;
-use Route;
 use App;
 use Exception;
 use Illuminate\Contracts\Support\Renderable;
@@ -69,7 +67,7 @@ class HtmlPanelPresenter implements PanelPresenterContract
                 View::share('view', $view);
                 $trad = implode('.', \array_slice(explode('.', (string) $view), 0, -1));
                 View::share('trad', $trad);
-                View::share('lang', App::getLocale());
+                View::share('lang', \App::getLocale());
                 View::share('_panel', $this->panel);
                 // \View::share('mod_trad', $mod_trad);
 
@@ -79,9 +77,9 @@ class HtmlPanelPresenter implements PanelPresenterContract
         );
 
         $modal = null;
-        if (Request::ajax()) {
+        if (\Request::ajax()) {
             $modal = 'ajax';
-        } elseif ('iframe' === Request::input('format')) {
+        } elseif ('iframe' === \Request::input('format')) {
             $modal = 'iframe';
         }
 
@@ -94,7 +92,7 @@ class HtmlPanelPresenter implements PanelPresenterContract
 
         $route_params = [];
         $route_name = '';
-        $route_current = Route::current();
+        $route_current = \Route::current();
         if (null !== $route_current) {
             $route_params = $route_current->parameters();
             $route_name = $route_current->getName();

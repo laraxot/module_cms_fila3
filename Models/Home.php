@@ -51,7 +51,7 @@ class Home extends BaseModel
      * @var string[]
      */
     protected $fillable = ['id', 'name', 'icon_src', 'created_by', 'updated_by'];
-    
+
     /**
      * Undocumented variable.
      *

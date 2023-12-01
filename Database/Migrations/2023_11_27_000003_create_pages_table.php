@@ -31,7 +31,7 @@ class CreatePagesTable extends XotBaseMigration
         $this->tableUpdate(
             function (Blueprint $table): void {
                 if (! $this->hasColumn('tenant_name')) {
-                   $table->string('tenant_name')->nullable();
+                    $table->string('tenant_name')->nullable();
                 }
                 // if (! $this->hasColumn('profile_photo_path')) {
                 //    $table->string('profile_photo_path', 2048)->nullable();

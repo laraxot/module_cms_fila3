@@ -62,11 +62,11 @@ class RowsService
                     // 61     Call to an undefined method Illuminate\Database\Eloquent\Model|Modules\Cms\Contracts\RowsContract::getFillable().
                     $search_fields = $model->getFillable();
                 }
-                
+
                 // $table = $model->getTable();
                 if (\strlen($q) > 1) {
                     $query = $query->where(
-                        static function ($subquery) use ($search_fields, $q) : void {
+                        static function ($subquery) use ($search_fields, $q): void {
                             foreach ($search_fields as $search_field) {
                                 if (Str::contains($search_field, '.')) {
                                     [$rel, $rel_field] = explode('.', (string) $search_field);
@@ -78,7 +78,7 @@ class RowsService
                                         // ->setConnection('liveuser_general')
                                         ->orWhereHas(
                                             $rel,
-                                            static function (Builder $query) use ($rel_field, $q) : void {
+                                            static function (Builder $query) use ($rel_field, $q): void {
                                                 // dddx($subquery1->getConnection()->getDatabaseName());
                                                 $query->where($rel_field, 'like', '%'.$q.'%');
                                                 // dddx($subquery1);
@@ -93,7 +93,7 @@ class RowsService
                         }
                     );
                 }
-                
+
                 // dddx(['q' => $q, 'sql' => $query->toSql()]);
 
                 return $query;
@@ -127,7 +127,7 @@ class RowsService
                 $filters_rules[$filter_field->param_name] = $filter_field->rules;
             }
         }
-        
+
         $validator = Validator::make($filters, $filters_rules);
         if ($validator->fails()) {
             Session::flash('error', 'error');
@@ -138,7 +138,7 @@ class RowsService
 
         $filters_fields = $filters_fields
             ->filter(
-                static fn($item): bool => \in_array($item->param_name, array_keys($filters), true)
+                static fn ($item): bool => \in_array($item->param_name, array_keys($filters), true)
             )
             ->all();
 
@@ -148,14 +148,14 @@ class RowsService
                 if (! isset($v->op)) {
                     $v->op = '=';
                 }
-                
+
                 if (isset($v->where_method)) {
                     if (! isset($v->field_name)) {
                         dddx(['err' => 'field_name is missing']);
 
                         return $query;
                     }
-                    
+
                     $query = $query->{$v->where_method}($v->field_name, $filter_val);
                 } else {
                     $query = $query->where($v->field_name, $v->op, $filter_val);

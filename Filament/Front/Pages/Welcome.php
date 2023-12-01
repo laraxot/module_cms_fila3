@@ -7,23 +7,22 @@ declare(strict_types=1);
 
 namespace Modules\Cms\Filament\Front\Pages;
 
-use Filament\Tables;
-use Filament\Pages\Page;
-use Filament\Tables\Table;
-use Modules\Blog\Models\Post;
-use Filament\Infolists\Infolist;
-use Filament\Tables\Actions\Action;
-use Filament\Tables\Actions\EditAction;
-use Filament\Tables\Actions\ViewAction;
-use Filament\Tables\Columns\TextColumn;
-use Filament\Tables\Contracts\HasTable;
-use Filament\Tables\Columns\Layout\View;
-use Filament\Tables\Columns\Layout\Split;
-use Modules\Quaeris\Models\QuestionChart;
 use Filament\Infolists\Components\TextEntry;
+use Filament\Infolists\Infolist;
+use Filament\Pages\Page;
+use Filament\Tables\Actions\Action;
 use Filament\Tables\Actions\BulkActionGroup;
 use Filament\Tables\Actions\DeleteBulkAction;
+use Filament\Tables\Actions\EditAction;
+use Filament\Tables\Actions\ViewAction;
+use Filament\Tables\Columns\Layout\Split;
+use Filament\Tables\Columns\Layout\View;
+use Filament\Tables\Columns\TextColumn;
 use Filament\Tables\Concerns\InteractsWithTable;
+use Filament\Tables\Contracts\HasTable;
+use Filament\Tables\Table;
+use Modules\Blog\Models\Post;
+use Modules\Quaeris\Models\QuestionChart;
 
 class Welcome extends Page implements HasTable
 {
@@ -32,7 +31,7 @@ class Welcome extends Page implements HasTable
 
     protected static ?string $navigationIcon = 'heroicon-o-document-text';
 
-    //protected static string $view = 'cms::filament.front.pages.welcome';
+    // protected static string $view = 'cms::filament.front.pages.welcome';
     protected static string $view = 'pub_theme::home';
 
     protected static string $layout = 'pub_theme::layouts.app';

@@ -4,7 +4,6 @@ declare(strict_types=1);
 
 namespace Modules\Cms\Actions;
 
-use Exception;
 use Illuminate\Support\Str;
 use Spatie\QueueableAction\QueueableAction;
 
@@ -21,7 +20,7 @@ final class GetStyleClassAction
 
         $class = config($config_key);
         if (! is_string($class)) {
-            throw new Exception('['.__LINE__.']['.__FILE__.']');
+            throw new \Exception('['.__LINE__.']['.__FILE__.']');
         }
 
         return $class;

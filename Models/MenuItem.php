@@ -5,7 +5,6 @@ declare(strict_types=1);
 namespace Modules\Cms\Models;
 
 use Illuminate\Database\Eloquent\Builder;
-use Exception;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
@@ -101,7 +100,7 @@ class MenuItem extends Model
         'active' => 'bool',
         'icon' => 'string',
     ];
-    
+
     /*
     public function __construct(array $attributes = [])
     {
@@ -120,9 +119,9 @@ class MenuItem extends Model
             if (File::exists($menu_path)) {
                 $rows = File::getRequire($menu_path);
                 if (! is_array($rows)) {
-                    throw new Exception('['.__LINE__.']['.__FILE__.']');
+                    throw new \Exception('['.__LINE__.']['.__FILE__.']');
                 }
-                
+
                 $rows = array_values($rows);
             // dddx($this->config_name);
             } else {

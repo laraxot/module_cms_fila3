@@ -4,7 +4,6 @@ declare(strict_types=1);
 
 namespace Modules\Cms\View\Components\Button;
 
-use Exception;
 use Illuminate\Contracts\Support\Renderable;
 use Illuminate\Support\Facades\Gate;
 use Illuminate\Support\Str;
@@ -21,9 +20,9 @@ use function Safe\json_encode;
 class Panel extends XotBaseComponent
 {
     public array $attrs = [];
-    
+
     public string $icon;
-    
+
     public string $view;
 
     /**
@@ -49,9 +48,9 @@ class Panel extends XotBaseComponent
             $model_type = Str::snake(class_basename($model));
             $parz = json_encode(['model_id' => $model->getKey(), 'model_type' => $model_type], JSON_HEX_APOS);
             if (false === $parz) {
-                throw new Exception('['.__LINE__.']['.__FILE__.']');
+                throw new \Exception('['.__LINE__.']['.__FILE__.']');
             }
-            
+
             $parz = str_replace('"', "'", $parz);
 
             $onclick = "Livewire.emit('modal.open', 'modal.panel.destroy',".$parz.')';
@@ -78,9 +77,10 @@ class Panel extends XotBaseComponent
         if ('detach' != $this->type) {
             return Gate::allows($this->type, $this->panelContract);
         }
-        if (!(property_exists($this->panelContract->getRow(), 'pivot') && null !== $this->panelContract->getRow()->pivot)) {
+        if (! (property_exists($this->panelContract->getRow(), 'pivot') && null !== $this->panelContract->getRow()->pivot)) {
             return Gate::allows($this->type, $this->panelContract);
         }
+
         return false;
     }
 }

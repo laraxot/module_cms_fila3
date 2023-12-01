@@ -16,7 +16,7 @@ use Modules\Cms\Contracts\PanelContract;
 class Delete extends Component
 {
     public string $method = 'delete';
-    
+
     public array $attrs = [];
 
     /**
