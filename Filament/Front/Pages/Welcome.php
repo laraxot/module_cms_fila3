@@ -100,12 +100,12 @@ class Welcome extends Page implements HasTable
             ]);
     }
 
-    public function url(string $name,array $parameters=[]):string{
+    public function url(string $name, array $parameters = []): string
+    {
+        $parameters['lang'] = app()->getLocale();
+        $parameters['container0'] = 'articles';
+        $parameters['item0'] = 'zibibbo';
 
-        $parameters['lang']=app()->getLocale();
-        $parameters['container0']='articles';
-        $parameters['item0']='zibibbo';
-
-        return route('test',$parameters);
+        return route('test', $parameters);
     }
 }
