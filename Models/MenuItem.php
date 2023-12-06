@@ -35,6 +35,7 @@ use Sushi\Sushi;
  * @property Collection<int, MenuItem>    $child
  * @property int|null                     $child_count
  * @property \Modules\UI\Models\Menu|null $parent_menu
+ *
  * @method static Builder|MenuItem newModelQuery()
  * @method static Builder|MenuItem newQuery()
  * @method static Builder|MenuItem query()
@@ -48,6 +49,7 @@ use Sushi\Sushi;
  * @method static Builder|MenuItem whereRoleId($value)
  * @method static Builder|MenuItem whereSort($value)
  * @method static Builder|MenuItem whereRoles($value)
+ *
  * @mixin \Eloquent
  */
 class MenuItem extends Model
