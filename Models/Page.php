@@ -18,9 +18,11 @@ use Z3d0X\FilamentFabricator\Models\Page as ModelsPage;
  * @property \Illuminate\Database\Eloquent\Collection<int, Page> $children
  * @property int|null                                            $children_count
  * @property Page|null                                           $parent
+ *
  * @method static Builder|Page newModelQuery()
  * @method static Builder|Page newQuery()
  * @method static Builder|Page query()
+ *
  * @mixin \Eloquent
  */
 class Page extends ModelsPage
