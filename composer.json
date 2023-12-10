@@ -26,7 +26,6 @@
         ]
     },
     "require": {
-        "genealabs/laravel-model-caching": "*",
         "illuminate/contracts": "^10.0",
         "laraxot/module_lang": "dev-master",
         "laraxot/module_lu": "dev-master",
