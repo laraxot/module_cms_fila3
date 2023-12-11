@@ -28,11 +28,12 @@
     "require": {
         "illuminate/contracts": "^10.0",
         "laraxot/module_lang_fila3": "dev-master",
-        "laraxot/module_user_fila3": "dev-master",
         "laraxot/module_tenant_fila3": "dev-master",
         "laraxot/module_ui": "dev-master",
+        "laraxot/module_user_fila3": "dev-master",
         "laraxot/module_xot_fila3": "dev-master",
-        "spatie/laravel-package-tools": "^1.11.3"
+        "spatie/laravel-package-tools": "^1.11.3",
+        "thecodingmachine/safe": "*"
     },
     "require-dev": {
         "laravel/pint": "^1.0",
