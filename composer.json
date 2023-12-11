@@ -28,17 +28,16 @@
     "require": {
         "illuminate/contracts": "^10.0",
         "laraxot/module_lang_fila3": "dev-master",
+        "laraxot/module_user_fila3": "dev-master",
         "laraxot/module_tenant_fila3": "dev-master",
         "laraxot/module_ui": "dev-master",
-        "laraxot/module_user_fila3": "dev-master",
         "laraxot/module_xot_fila3": "dev-master",
-        "spatie/laravel-package-tools": "^1.11.3",
-        "thecodingmachine/safe": "*"
+        "spatie/laravel-package-tools": "^1.11.3"
     },
     "require-dev": {
-        "laravel/pint": "^1.0",
-        "nunomaduro/collision": "^7.9",
         "larastan/larastan": "^2.0.1",
+        "laravel/pint": "*",
+        "nunomaduro/collision": "^7.9",
         "orchestra/testbench": "^8.0",
         "pestphp/pest": "^2.0",
         "pestphp/pest-plugin-arch": "^2.0",
