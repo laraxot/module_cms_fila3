@@ -30,13 +30,13 @@
         "laraxot/module_lang_fila3": "dev-master",
         "laraxot/module_user_fila3": "dev-master",
         "laraxot/module_tenant_fila3": "dev-master",
-        "laraxot/module_ui": "dev-master",
+        "laraxot/module_ui_fila3": "dev-master",
         "laraxot/module_xot_fila3": "dev-master",
         "spatie/laravel-package-tools": "^1.11.3"
     },
     "require-dev": {
         "larastan/larastan": "^2.0.1",
-        "laravel/pint": "*",
+        "laravel/pint": "^1.0",
         "nunomaduro/collision": "^7.9",
         "orchestra/testbench": "^8.0",
         "pestphp/pest": "^2.0",
@@ -45,7 +45,8 @@
         "phpstan/extension-installer": "^1.1",
         "phpstan/phpstan-deprecation-rules": "^1.0",
         "phpstan/phpstan-phpunit": "^1.0",
-        "spatie/laravel-ray": "^1.26"
+        "spatie/laravel-ray": "^1.26",
+        "vimeo/psalm": "*"
     },
     "repositories": [
         {
