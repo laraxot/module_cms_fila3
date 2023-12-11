@@ -35,6 +35,7 @@
         "spatie/laravel-package-tools": "^1.11.3"
     },
     "require-dev": {
+        "driftingly/rector-laravel": "*",
         "larastan/larastan": "^2.0.1",
         "laravel/pint": "^1.0",
         "nunomaduro/collision": "^7.9",
@@ -45,7 +46,6 @@
         "phpstan/extension-installer": "^1.1",
         "phpstan/phpstan-deprecation-rules": "^1.0",
         "phpstan/phpstan-phpunit": "^1.0",
-        "psalm/plugin-laravel": "*",
         "spatie/laravel-ray": "^1.26"
     },
     "repositories": [
