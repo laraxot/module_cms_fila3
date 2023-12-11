@@ -1,5 +1,5 @@
 {
-    "name": "laraxot/module_cms",
+    "name": "laraxot/module_cms_fila3",
     "description": "",
     "homepage": "https://laraxot.github.io/module_cms",
     "authors": [{
@@ -28,10 +28,10 @@
     "require": {
         "illuminate/contracts": "^10.0",
         "laraxot/module_lang": "dev-master",
-        "laraxot/module_lu": "dev-master",
-        "laraxot/module_tenant": "dev-master",
+        "laraxot/module_user_fila3": "dev-master",
+        "laraxot/module_tenant_fila3": "dev-master",
         "laraxot/module_ui": "dev-master",
-        "laraxot/module_xot": "dev-master",
+        "laraxot/module_xot_fila3": "dev-master",
         "spatie/laravel-package-tools": "^1.11.3"
     },
     "require-dev": {
@@ -47,6 +47,20 @@
         "phpstan/phpstan-phpunit": "^1.0",
         "spatie/laravel-ray": "^1.26"
     },
+    "repositories": [
+        {
+            "type": "path",
+            "url": "../Xot"
+        },
+        {
+            "type": "path",
+            "url": "../Tenant"
+        },
+        {
+            "type": "path",
+            "url": "../UI"
+        }
+    ],
     "scripts": {
         "post-autoload-dump": [
             "@php vendor/bin/testbench package:discover --ansi"
