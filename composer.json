@@ -27,7 +27,7 @@
     },
     "require": {
         "illuminate/contracts": "^10.0",
-        "laraxot/module_lang": "dev-master",
+        "laraxot/module_lang_fila3": "dev-master",
         "laraxot/module_user_fila3": "dev-master",
         "laraxot/module_tenant_fila3": "dev-master",
         "laraxot/module_ui": "dev-master",
