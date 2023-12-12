@@ -21,6 +21,7 @@ use Filament\Tables\Columns\TextColumn;
 use Filament\Tables\Concerns\InteractsWithTable;
 use Filament\Tables\Contracts\HasTable;
 use Filament\Tables\Table;
+use Illuminate\Support\Str;
 use Modules\Blog\Models\Post;
 use Modules\Quaeris\Models\QuestionChart;
 
@@ -103,6 +104,16 @@ class Welcome extends Page implements HasTable
     public function url(string $name, array $parameters = []): string
     {
         $parameters['lang'] = app()->getLocale();
+        $record = $parameters['record'];
+        if ('show' === $name) {
+            $container0 = class_basename($record);
+            $container0 = Str::plural($container0);
+            $container0 = Str::snake($container0);
+            $parameters['container0'] = $container0;
+            $parameters['item0'] = $record;
+
+            return route('test', $parameters);
+        }
         $parameters['container0'] = 'articles';
         $parameters['item0'] = 'zibibbo';
 
