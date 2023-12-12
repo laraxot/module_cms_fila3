@@ -7,98 +7,104 @@ declare(strict_types=1);
 
 namespace Modules\Cms\Filament\Front\Pages;
 
-use Filament\Infolists\Components\TextEntry;
-use Filament\Infolists\Infolist;
 use Filament\Pages\Page;
-use Filament\Tables\Actions\Action;
-use Filament\Tables\Actions\BulkActionGroup;
-use Filament\Tables\Actions\DeleteBulkAction;
-use Filament\Tables\Actions\EditAction;
-use Filament\Tables\Actions\ViewAction;
-use Filament\Tables\Columns\Layout\Split;
-use Filament\Tables\Columns\Layout\View;
-use Filament\Tables\Columns\TextColumn;
-use Filament\Tables\Concerns\InteractsWithTable;
 use Filament\Tables\Contracts\HasTable;
-use Filament\Tables\Table;
+use Illuminate\Support\Arr;
 use Illuminate\Support\Str;
-use Modules\Blog\Models\Post;
-use Modules\Quaeris\Models\QuestionChart;
 
-class Welcome extends Page implements HasTable
-{
-    use InteractsWithTable;
-    // use InteractsWithForms;
+class Welcome extends Page // implements HasTable
+{// use InteractsWithTable;
+                                                                                    // use InteractsWithForms;
 
-    protected static ?string $navigationIcon = 'heroicon-o-document-text';
+                                                                                    protected static ?string $navigationIcon = 'heroicon-o-document-text';
 
     // protected static string $view = 'cms::filament.front.pages.welcome';
     protected static string $view = 'pub_theme::home';
-
     protected static string $layout = 'pub_theme::layouts.app';
 
-    protected function getTables(): array
+    public string $view_type;
+    public array $containers = [];
+    public array $items = [];
+
+    public function mount()
     {
-        return [
-            // 'articlesTable',
-        ];
+        [$this->containers,$this->items] = params2ContainerItem();
+        $this->initView();
     }
 
-    public function articlesTable(Infolist $infolist): Infolist
+    public function getViewData(): array
     {
-        /*
-        return $table
-            ->columns([
-                TextColumn::make('title'),
+        $data = [];
+        if (\count($this->containers) > 0) {
+            $container_last = last($this->containers);
+            $item_last = last($this->items);
 
-            ]);
-            */
-        return $infolist
-            ->schema([
-                TextEntry::make('title'),
-                TextEntry::make('slug'),
-                // ...
-            ])
-            ->record(Post::first())
-            ->columns(2);
+            $container_last_singular = Str::singular($container_last);
+            $container_last_model = \Illuminate\Database\Eloquent\Relations\Relation::getMorphedModel($container_last_singular);
+            $container_last_key_name = app($container_last_model)->getRouteKeyName();
+
+            $row = $container_last_model::where($container_last_key_name, $item_last)
+                ->first();
+            $data[$container_last_singular] = $row;
+        }
+
+        return $data;
     }
 
-    public static function table(Table $table): Table
+    public function mountOLD(string $lang = null,
+        string $container0 = null, string $item0 = null,
+        string $container1 = null, string $item1 = null,
+        string $container2 = null, string $item2 = null,
+        string $container3 = null, string $item3 = null
+    ) {
+        $containers = [];
+        $items = [];
+        for ($i = 0; $i < 4; ++$i) {
+            if ($container_curr = ${'container'.$i}) {
+                $containers[$i] = $container_curr;
+            }
+            if ($item_curr = ${'item'.$i}) {
+                $items[$i] = $item_curr;
+            }
+        }
+    }
+
+    public function initView(): void
     {
-        return $table
-            ->query(QuestionChart::query())
+        $containers = $this->containers;
+        $items = $this->items;
+        $view = '';
+        if (\count($containers) === \count($items)) {
+            $view = 'show';
+        }
+        if (\count($containers) > \count($items)) {
+            $view = 'index';
+        }
+        if (0 === \count($containers)) {
+            $view = 'home';
+        }
 
-            ->contentGrid([
-                'md' => 2,
-                'xl' => 3,
-            ])
+        $this->view_type = $view;
 
-            ->columns([
-                View::make('pub_theme::home.article'),
-                // Split::make([
-                //     TextColumn::make('id')
-                //         ->label('#'),
-                //     TextColumn::make('question'),
-                //     /*TextColumn::make('lessons_count')
-                //     ->label('Lessons')
-                //     ->counts('lessons'),
-                //     */
-                // ]),
-            ])
-            ->actions([
-                /*Action::make('Lessons')
-                    ->icon('heroicon-m-academic-cap')
-                    ->url(fn (Course $record): string => LessonResource::getUrl('index', [
-                        'tableFilters[course][value]' => $record,
-                    ])),*/
-                // ViewAction::make(),
-                // EditAction::make(),
-            ])
-            ->bulkActions([
-                BulkActionGroup::make([
-                    // DeleteBulkAction::make(),
-                ]),
-            ]);
+        $views = [];
+
+        if (\count($containers) > 0) {
+            $views[] = 'pub_theme::'.implode('.', $containers).'.'.$view;
+
+            $model_root = Str::singular($containers[0]);
+            $res = \Illuminate\Database\Eloquent\Relations\Relation::getMorphedModel($model_root);
+            $module_name = Str::between($res, 'Modules\\', '\Models\\');
+            $module_name_low = Str::lower($module_name);
+            $views[] = $module_name_low.'::'.implode('.', $containers).'.'.$view;
+        } else {
+            $views[] = 'pub_theme::'.$view;
+        }
+
+        $view_work = Arr::first($views, static function (string $view) {
+            return view()->exists($view);
+        });
+
+        self::$view = $view_work;
     }
 
     public function url(string $name, array $parameters = []): string
