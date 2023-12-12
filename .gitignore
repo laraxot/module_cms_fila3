@@ -42,3 +42,4 @@ build/
 /.git-rewrite
 *.phar
 *.lock
+.git-blame-ignore-revs
