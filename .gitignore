@@ -43,3 +43,4 @@ build/
 *.phar
 *.lock
 .git-blame-ignore-revs
+package-lock.json
