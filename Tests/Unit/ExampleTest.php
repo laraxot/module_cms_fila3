@@ -1,23 +1,19 @@
 <?php
 
-use Modules\User\Models\User;
-use Modules\Cms\Models\Module;
-
-uses(Tests\TestCase::class);
+uses(Modules\Cms\Tests\TestHelper::class);
 
 it('user admin can view main dashboard', function () {
-    $super_admin_user = User::role('super-admin')->first();
+    $super_admin_user = $this->getSuperAdminUser();
 
-    $modules_name = collect(app(Module::class)->getRows())->pluck('name')->all();
-    // dddx($modules_name);
+    $modules_name = $this->getModuleNameLists();
+
     $this->actingAs($super_admin_user)->get('/admin')->assertRedirect('admin/main-dashboard');
     $this->actingAs($super_admin_user)->get('/admin/main-dashboard')->assertStatus(200); //->assertSee($modules_name);
 });
 
 it('guest user can view main dashboard', function () {
-    $user = User::all()->first();
+    $user = $this->getNoSuperAdminUser();
 
     $this->actingAs($user)->get('/admin')->assertRedirect('admin/main-dashboard');
     $this->actingAs($user)->get('/admin/main-dashboard')->assertStatus(200);
-
 });
