@@ -12,10 +12,12 @@ abstract class TestHelper extends BaseTestCase
 {
     use CreatesApplication;
 
+    // in User
     public function getSuperAdminUser(){
         return User::role('super-admin')->first();
     }
 
+    // in User
     public function getNoSuperAdminUser(){
         return User::all()
             ->map(function($item){
@@ -25,6 +27,7 @@ abstract class TestHelper extends BaseTestCase
             })->first();
     }
 
+    // in Tenant o Cms
     public function getModuleNameLists(){
         return collect(app(Module::class)
             ->getRows())
@@ -32,18 +35,19 @@ abstract class TestHelper extends BaseTestCase
             ->all();
     }
 
-    public function getMainAdminNavigationItems(){
+    // in Tenant o Cms
+    public function getMainAdminNavigationUrlItems(){
         return $item_navs = collect(app(GetModulesNavigationItems::class)->execute())
                 ->map(function($item){
-                    return $item->getLabel();
+                    return $item->getUrl();
                 });
     }
 
-    public function getUserNavigationItem($user){
+    // in Tenant o Cms
+    public function getUserNavigationItemUrlRoles($user){
         return $role_names = $user->getRoleNames()->map(function($item){
             if($item != 'super-admin'){
-                // dddx(substr(ucfirst($item), 0, -7));
-                return substr(ucfirst($item), 0, -7);
+                return '/'.substr($item, 0, -7).'/admin';
             }
         })->filter(function ($value) { return !is_null($value); });
     }
