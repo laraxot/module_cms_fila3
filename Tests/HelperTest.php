@@ -39,16 +39,12 @@ abstract class TestHelper extends BaseTestCase
                 });
     }
 
-    public function getNavigationItemRoles($user){
-        $role_names = $user->getRoleNames()->filter(function($item){
+    public function getUserNavigationItem($user){
+        return $role_names = $user->getRoleNames()->map(function($item){
             if($item != 'super-admin'){
-                dddx($item);
+                // dddx(substr(ucfirst($item), 0, -7));
                 return substr(ucfirst($item), 0, -7);
             }
-            // dddx($item);
-        });
-            
-        dddx($role_names);
-        
+        })->filter(function ($value) { return !is_null($value); });
     }
 }
