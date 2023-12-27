@@ -15,9 +15,9 @@ use Illuminate\Support\Str;
 
 class Welcome extends Page // implements HasTable
 {// use InteractsWithTable;
-                                        // use InteractsWithForms;
+                                                // use InteractsWithForms;
 
-                                        protected static ?string $navigationIcon = 'heroicon-o-document-text';
+                                                protected static ?string $navigationIcon = 'heroicon-o-document-text';
 
     // protected static string $view = 'cms::filament.front.pages.welcome';
     protected static string $view = 'pub_theme::home';
@@ -45,7 +45,7 @@ class Welcome extends Page // implements HasTable
             $container_last_singular = Str::singular($container_last);
             $container_last_model = \Illuminate\Database\Eloquent\Relations\Relation::getMorphedModel($container_last_singular);
             if (null === $container_last_model) {
-                dddx('insert model inside the morph_map');
+                dddx('insert model ['.$container_last_singular.'] inside the morph_map');
             }
             $container_last_key_name = app($container_last_model)->getRouteKeyName();
 
@@ -109,6 +109,10 @@ class Welcome extends Page // implements HasTable
         $view_work = Arr::first($views, static function (string $view) {
             return view()->exists($view);
         });
+
+        if (null === $view_work) {
+            dddx($views);
+        }
 
         self::$view = $view_work;
     }
