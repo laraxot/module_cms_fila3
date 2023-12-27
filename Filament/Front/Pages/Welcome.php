@@ -9,14 +9,15 @@ namespace Modules\Cms\Filament\Front\Pages;
 
 use Filament\Pages\Page;
 use Filament\Tables\Contracts\HasTable;
+use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Arr;
 use Illuminate\Support\Str;
 
 class Welcome extends Page // implements HasTable
 {// use InteractsWithTable;
-            // use InteractsWithForms;
+                                        // use InteractsWithForms;
 
-            protected static ?string $navigationIcon = 'heroicon-o-document-text';
+                                        protected static ?string $navigationIcon = 'heroicon-o-document-text';
 
     // protected static string $view = 'cms::filament.front.pages.welcome';
     protected static string $view = 'pub_theme::home';
@@ -25,6 +26,8 @@ class Welcome extends Page // implements HasTable
     public string $view_type;
     public array $containers = [];
     public array $items = [];
+
+    public ?Model $model = null;
 
     public function mount()
     {
@@ -41,7 +44,7 @@ class Welcome extends Page // implements HasTable
 
             $container_last_singular = Str::singular($container_last);
             $container_last_model = \Illuminate\Database\Eloquent\Relations\Relation::getMorphedModel($container_last_singular);
-            if (null == $container_last_model) {
+            if (null === $container_last_model) {
                 dddx('insert model inside the morph_map');
             }
             $container_last_key_name = app($container_last_model)->getRouteKeyName();
@@ -110,10 +113,10 @@ class Welcome extends Page // implements HasTable
         self::$view = $view_work;
     }
 
-    public function url(string $name, array $parameters = []): string
+    public function url(string $name = 'show', array $parameters = []): string
     {
         $parameters['lang'] = app()->getLocale();
-        $record = $parameters['record'];
+        $record = $parameters['record'] ?? $this->model;
         if ('show' === $name) {
             $container0 = class_basename($record);
             $container0 = Str::plural($container0);
@@ -135,5 +138,12 @@ class Welcome extends Page // implements HasTable
         $parameters['item0'] = 'zibibbo';
 
         return route('test', $parameters);
+    }
+
+    public function setModel(Model $model): self
+    {
+        $this->model = $model;
+
+        return $this;
     }
 }
