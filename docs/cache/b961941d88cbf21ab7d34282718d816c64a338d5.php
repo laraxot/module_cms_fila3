@@ -70,7 +70,7 @@
 
             <div class="flex flex-1 justify-end items-center text-right md:pl-10">
                 <?php if ($page->docsearchApiKey && $page->docsearchIndexName) { ?>
-                <?php echo $__env->make('_nav.search-input', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?>
+                <?php echo $__env->make('_nav.search-input', Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?>
                 <?php } ?>
             </div>
         </div>
