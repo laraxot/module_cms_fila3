@@ -12,12 +12,23 @@ use Filament\Tables\Contracts\HasTable;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Arr;
 use Illuminate\Support\Str;
+use Modules\Tenant\Services\TenantService;
 
+<<<<<<< HEAD
 class Welcome extends Page // implements HasTable
 {// use InteractsWithTable;
                 // use InteractsWithForms;
 
                 protected static ?string $navigationIcon = 'heroicon-o-document-text';
+=======
+// implements HasTable
+class Welcome extends Page
+{
+    // use InteractsWithTable;
+    // use InteractsWithForms;
+
+    protected static ?string $navigationIcon = 'heroicon-o-document-text';
+>>>>>>> a9f61d8 (up)
 
     // protected static string $view = 'cms::filament.front.pages.welcome';
     protected static string $view = 'pub_theme::home';
@@ -57,24 +68,6 @@ class Welcome extends Page // implements HasTable
         return $data;
     }
 
-    public function mountOLD(string $lang = null,
-        string $container0 = null, string $item0 = null,
-        string $container1 = null, string $item1 = null,
-        string $container2 = null, string $item2 = null,
-        string $container3 = null, string $item3 = null
-    ) {
-        $containers = [];
-        $items = [];
-        for ($i = 0; $i < 4; ++$i) {
-            if ($container_curr = ${'container'.$i}) {
-                $containers[$i] = $container_curr;
-            }
-            if ($item_curr = ${'item'.$i}) {
-                $items[$i] = $item_curr;
-            }
-        }
-    }
-
     public function initView(): void
     {
         $containers = $this->containers;
@@ -97,9 +90,11 @@ class Welcome extends Page // implements HasTable
         if (\count($containers) > 0) {
             $views[] = 'pub_theme::'.implode('.', $containers).'.'.$view;
 
-            $model_root = Str::singular($containers[0]);
-            $res = \Illuminate\Database\Eloquent\Relations\Relation::getMorphedModel($model_root);
-            $module_name = Str::between($res, 'Modules\\', '\Models\\');
+            // $model_root = Str::singular($containers[0]);
+            // $res = \Illuminate\Database\Eloquent\Relations\Relation::getMorphedModel($model_root);
+            $model_class = TenantService::modelClass($containers[0]);
+            // dddx([$res, $model_root, $model_class]);
+            $module_name = Str::between($model_class, 'Modules\\', '\Models\\');
             $module_name_low = Str::lower($module_name);
             $views[] = $module_name_low.'::'.implode('.', $containers).'.'.$view;
         } else {
