@@ -14,13 +14,6 @@ use Illuminate\Support\Arr;
 use Illuminate\Support\Str;
 use Modules\Tenant\Services\TenantService;
 
-<<<<<<< HEAD
-class Welcome extends Page // implements HasTable
-{// use InteractsWithTable;
-                // use InteractsWithForms;
-
-                protected static ?string $navigationIcon = 'heroicon-o-document-text';
-=======
 // implements HasTable
 class Welcome extends Page
 {
@@ -28,7 +21,6 @@ class Welcome extends Page
     // use InteractsWithForms;
 
     protected static ?string $navigationIcon = 'heroicon-o-document-text';
->>>>>>> a9f61d8 (up)
 
     // protected static string $view = 'cms::filament.front.pages.welcome';
     protected static string $view = 'pub_theme::home';
