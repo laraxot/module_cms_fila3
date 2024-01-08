@@ -13,7 +13,8 @@ use Illuminate\Support\Arr;
 use Illuminate\Support\Str;
 
 class Home extends Page // implements HasTable
-{// use InteractsWithTable;
+{
+    // use InteractsWithTable;
     // use InteractsWithForms;
 
     protected static ?string $navigationIcon = 'heroicon-o-document-text';
