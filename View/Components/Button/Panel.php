@@ -40,14 +40,14 @@ class Panel extends XotBaseComponent
         // $this->icon = trans($panel->getTradMod().'.'.$type);
         $this->icon = app(GetConfigKeyByViewAction::class)->execute($this->view, $type.'.icon');
 
-        if ('delete' == $type) {
+        if ($type == 'delete') {
             // tacconamento di emergenza!
             // $this->view = 'ui::components.button.delete.v2';
             $model = $this->panelContract->getRow();
 
             $model_type = Str::snake(class_basename($model));
             $parz = json_encode(['model_id' => $model->getKey(), 'model_type' => $model_type], JSON_HEX_APOS);
-            if (false === $parz) {
+            if ($parz === false) {
                 throw new \Exception('['.__LINE__.']['.__FILE__.']');
             }
 
@@ -74,10 +74,10 @@ class Panel extends XotBaseComponent
 
     public function shouldRender(): bool
     {
-        if ('detach' != $this->type) {
+        if ($this->type != 'detach') {
             return Gate::allows($this->type, $this->panelContract);
         }
-        if (! (property_exists($this->panelContract->getRow(), 'pivot') && null !== $this->panelContract->getRow()->pivot)) {
+        if (! (property_exists($this->panelContract->getRow(), 'pivot') && $this->panelContract->getRow()->pivot !== null)) {
             return Gate::allows($this->type, $this->panelContract);
         }
 

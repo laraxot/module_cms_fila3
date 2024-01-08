@@ -25,9 +25,8 @@ it('the user views navigation modules entries based on their role', function () 
     $item_navs_roles = $this->getUserNavigationItemUrlRoles($this->super_admin_user);
     foreach ($item_navs_roles as $item_nav_role) {
         $this->actingAs($this->super_admin_user)->get('/admin/main-dashboard')
-            ->assertSee($item_nav_role)
-            // ->assertSeeText($item_nav_role)
-        ;
+            ->assertSee($item_nav_role);
+        // ->assertSeeText($item_nav_role)
     }
 });
 
@@ -37,9 +36,8 @@ it('the user no views navigation modules entries based on their no role', functi
     foreach ($diff_navigation_items as $item_nav_role) {
         $this->actingAs($this->super_admin_user)
             ->get('/admin/main-dashboard')
-            ->assertDontSee($item_nav_role)
-            // ->assertDontSeeText($item_nav_role)
-        ;
+            ->assertDontSee($item_nav_role);
+        // ->assertDontSeeText($item_nav_role)
     }
 });
 

@@ -33,7 +33,7 @@ class XlsPanelPresenter implements PanelPresenterContract
     {
     }
 
-    public function out(array $params = null): BinaryFileResponse|Renderable
+    public function out(?array $params = null): BinaryFileResponse|Renderable
     {
         if (! isset($params['view_params'])) {
             $params['view_params'] = [];

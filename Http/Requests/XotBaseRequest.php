@@ -118,19 +118,18 @@ function ($rule) {
     }
 
     /**
-     * @param string $field
-     * @param string $value
-     *
+     * @param  string  $field
+     * @param  string  $value
      * @return Carbon|string
      */
     public function ConvDate($field, $value)
     {
-        if (null == $value) {
+        if ($value == null) {
             return $value;
         }
 
         $value_new = Carbon::createFromFormat('d/m/Y', $value);
-        if (false === $value_new) {
+        if ($value_new === false) {
             throw new \Exception('['.__LINE__.']['.__FILE__.']');
         }
 
@@ -138,19 +137,18 @@ function ($rule) {
     }
 
     /**
-     * @param string $field
-     * @param string $value
-     *
+     * @param  string  $field
+     * @param  string  $value
      * @return Carbon|string
      */
     public function ConvDateTime($field, $value)
     {
-        if (null == $value) {
+        if ($value == null) {
             return $value;
         }
 
         $value_new = Carbon::createFromFormat('d/m/Y H:i', $value);
-        if (false === $value_new) {
+        if ($value_new === false) {
             throw new \Exception('['.__LINE__.']['.__FILE__.']');
         }
 
@@ -158,19 +156,18 @@ function ($rule) {
     }
 
     /**
-     * @param string $field
-     * @param string $value
-     *
+     * @param  string  $field
+     * @param  string  $value
      * @return Carbon|string
      */
     public function ConvDateTime2Fields($field, $value)
     {
-        if (null == $value) {
+        if ($value == null) {
             return $value;
         }
 
         $value_new = Carbon::createFromFormat('d/m/Y H:i', $value);
-        if (false === $value_new) {
+        if ($value_new === false) {
             throw new \Exception('['.__LINE__.']['.__FILE__.']');
         }
 

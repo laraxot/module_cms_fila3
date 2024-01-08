@@ -24,10 +24,13 @@ class Welcome extends Page
 
     // protected static string $view = 'cms::filament.front.pages.welcome';
     protected static string $view = 'pub_theme::home';
+
     protected static string $layout = 'pub_theme::layouts.app';
 
     public string $view_type;
+
     public array $containers = [];
+
     public array $items = [];
 
     public ?Model $model = null;
@@ -47,7 +50,7 @@ class Welcome extends Page
 
             $container_last_singular = Str::singular($container_last);
             $container_last_model = \Illuminate\Database\Eloquent\Relations\Relation::getMorphedModel($container_last_singular);
-            if (null === $container_last_model) {
+            if ($container_last_model === null) {
                 dddx('insert model ['.$container_last_singular.'] inside the morph_map');
             }
             $container_last_key_name = app($container_last_model)->getRouteKeyName();
@@ -71,7 +74,7 @@ class Welcome extends Page
         if (\count($containers) > \count($items)) {
             $view = 'index';
         }
-        if (0 === \count($containers)) {
+        if (\count($containers) === 0) {
             $view = 'home';
         }
 
@@ -97,7 +100,7 @@ class Welcome extends Page
             return view()->exists($view);
         });
 
-        if (null === $view_work) {
+        if ($view_work === null) {
             dddx($views);
         }
 
@@ -108,7 +111,7 @@ class Welcome extends Page
     {
         $parameters['lang'] = app()->getLocale();
         $record = $parameters['record'] ?? $this->model;
-        if ('show' === $name) {
+        if ($name === 'show') {
             $container0 = class_basename($record);
             $container0 = Str::plural($container0);
             $container0 = Str::snake($container0);
@@ -117,7 +120,7 @@ class Welcome extends Page
 
             return route('test', $parameters);
         }
-        if ('index' === $name) {
+        if ($name === 'index') {
             $container0 = class_basename($record);
             $container0 = Str::plural($container0);
             $container0 = Str::snake($container0);

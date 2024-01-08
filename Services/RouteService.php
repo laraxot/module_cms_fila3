@@ -31,13 +31,13 @@ class RouteService
             return config()->get('in_admin');
         }
         */
-        if ('admin' === \Request::segment(1)) {
+        if (\Request::segment(1) === 'admin') {
             return true;
         }
 
         $segments = \Request::segments();
 
-        return (is_countable($segments) ? \count($segments) : 0) > 0 && 'livewire' === $segments[0] && true === session('in_admin');
+        return (is_countable($segments) ? \count($segments) : 0) > 0 && $segments[0] === 'livewire' && session('in_admin') === true;
     }
 
     // --- sarebbe deprecata ma il mal di testa
@@ -69,7 +69,7 @@ class RouteService
         // $routename_act = str($routename)->before($old_act_route)->append($act);
         $route_current = \Route::current();
         $route_params = [];
-        if (null !== $route_current) {
+        if ($route_current !== null) {
             $route_params = $route_current->parameters();
             $routename = $route_current->getName();
         }
@@ -204,7 +204,7 @@ class RouteService
             $tmp[] = 'admin';
         }
 
-        for ($i = 0; $i <= $n; ++$i) {
+        for ($i = 0; $i <= $n; $i++) {
             $tmp[] = 'container'.$i;
         }
 
@@ -365,7 +365,7 @@ class RouteService
     public static function getAct(): string
     {
         $route_action = \Route::currentRouteAction();
-        if (null === $route_action) {
+        if ($route_action === null) {
             throw new \Exception('$route_action is null');
         }
 
@@ -391,7 +391,7 @@ class RouteService
     public static function getModuleName(): string
     {
         $route_action = \Route::currentRouteAction();
-        if (null === $route_action) {
+        if ($route_action === null) {
             throw new \Exception('$route_action is null');
         }
 
@@ -406,7 +406,7 @@ class RouteService
     public static function getControllerName(): string
     {
         $route_action = \Route::currentRouteAction();
-        if (null === $route_action) {
+        if ($route_action === null) {
             throw new \Exception('$route_action is null');
         }
 
@@ -455,9 +455,8 @@ class RouteService
                         // $uri = ($act->uri_full ?? $name).$act->uri;
                         $uri = $act->uri.($act->uri_full ?? $name);
                         Route::match($act->methods, $uri, $controller.'@'.$act->name)
-                        ->name('containers.'.$act->name)
+                            ->name('containers.'.$act->name);
                         // ->where(['container1' => '[0-9]+']) //errato solo per test
-                        ;
                     }
                 }
             );

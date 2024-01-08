@@ -41,7 +41,7 @@ class PdfPanelPresenter implements PanelPresenterContract
     {
     }
 
-    public function out(array $params = null): string
+    public function out(?array $params = null): string
     {
         if (! isset($params['view_params'])) {
             $params['view_params'] = [];
@@ -59,7 +59,7 @@ class PdfPanelPresenter implements PanelPresenterContract
             $rows = collect([]);
         }
 
-        if (null === $row->getKey()) { // utile per le cose a containers
+        if ($row->getKey() === null) { // utile per le cose a containers
             // if (null == $row) { //utile per le cose a containers
             // $row = tap($this->panel->rows())->first();
             // $row = $this->panel->rows()->first();

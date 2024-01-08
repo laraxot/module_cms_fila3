@@ -24,7 +24,7 @@ class ModuleController extends BaseController
         }
 
         $act = $request->_act;
-        if ('' !== $act && $panelContract instanceof PanelContract) {
+        if ($act !== '' && $panelContract instanceof PanelContract) {
             // return $panel->callItemActionWithGate($request->_act);
             // return $panel->callContainerAction($request->_act);
             return $panelContract->callAction($act);
@@ -56,7 +56,7 @@ class ModuleController extends BaseController
         }
 
         $act = $request->input('_act', '');
-        if ('' !== $act) {
+        if ($act !== '') {
             if (! \is_string($act)) {
                 throw new \Exception('['.__LINE__.']['.class_basename(self::class).']');
             }
@@ -82,7 +82,7 @@ class ModuleController extends BaseController
         }
 
         $act = $request->input('_act', '');
-        if ('' !== $act) {
+        if ($act !== '') {
             if (! \is_string($act)) {
                 throw new \Exception('['.__LINE__.']['.class_basename(self::class).']');
             }

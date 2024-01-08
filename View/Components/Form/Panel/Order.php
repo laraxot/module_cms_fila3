@@ -32,8 +32,8 @@ class Order extends Component
 
         $query = request()->query();
         $this->qs = collect($query)
-                    ->except(['sort'])
-                    ->all();
+            ->except(['sort'])
+            ->all();
         if (! is_null($panelContract)) {
             $this->options = array_combine($panelContract->orderBy(), $panelContract->orderBy());
         } else {
@@ -41,7 +41,7 @@ class Order extends Component
         }
 
         $this->input_attrs = ['placeholder' => 'Ordinamento', 'label' => ' '];
-        if ('inline' === $tpl) {
+        if ($tpl === 'inline') {
             $this->form_attrs['class'] = 'd-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search float-right';
         }
 

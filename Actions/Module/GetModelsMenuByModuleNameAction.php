@@ -26,7 +26,7 @@ final class GetModelsMenuByModuleNameAction
                 // $obj = new $item();
                 $obj = app($item);
                 $panelContract = PanelService::make()->get($obj);
-                if ('media' === $key) {// media e' singolare ma anche plurale di medium
+                if ($key === 'media') {// media e' singolare ma anche plurale di medium
                     $panelContract->setName('medias');
                 }
 

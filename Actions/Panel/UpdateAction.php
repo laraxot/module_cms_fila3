@@ -21,7 +21,7 @@ final class UpdateAction
         $act = str_replace('\Cms\\', '\Xot\\', $act);
 
         $parent = $panelContract->getParent();
-        if (null != $parent) {
+        if ($parent != null) {
             $rows = $panelContract->rows;
             if (method_exists($rows, 'getForeignKeyName') && method_exists($rows, 'getParentKey')) {
                 $foreign_key_name = $rows->getForeignKeyName();

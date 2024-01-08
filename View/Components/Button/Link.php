@@ -52,12 +52,12 @@ class Link extends Component
             $this->icon = $linkData->icon;
         }
 
-        if (null == $this->icon) {
+        if ($this->icon == null) {
             $this->icon = '<i class="'.$linkData->icon.'"></i>';
             // $this->icon = $link->icon;
         }
 
-        if (null != $linkData->onclick) {
+        if ($linkData->onclick != null) {
             $this->attrs['onclick'] = $linkData->onclick;
         }
 

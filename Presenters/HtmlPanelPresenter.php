@@ -52,7 +52,7 @@ class HtmlPanelPresenter implements PanelPresenterContract
 
     // eturn \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View|\Illuminate\Http\Response|string
 
-    public function out(array $params = null): Renderable
+    public function out(?array $params = null): Renderable
     {
         [$containers, $items] = params2ContainerItem();
         $view = $this->panel->getView(); // vew che dovrebbe essere
@@ -79,7 +79,7 @@ class HtmlPanelPresenter implements PanelPresenterContract
         $modal = null;
         if (\Request::ajax()) {
             $modal = 'ajax';
-        } elseif ('iframe' === \Request::input('format')) {
+        } elseif (\Request::input('format') === 'iframe') {
             $modal = 'iframe';
         }
 
@@ -93,7 +93,7 @@ class HtmlPanelPresenter implements PanelPresenterContract
         $route_params = [];
         $route_name = '';
         $route_current = \Route::current();
-        if (null !== $route_current) {
+        if ($route_current !== null) {
             $route_params = $route_current->parameters();
             $route_name = $route_current->getName();
         }

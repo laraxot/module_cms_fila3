@@ -15,11 +15,11 @@ class PageController extends BaseController
      */
     public function index(
         $container0,
-        string $item0 = null,
-        string $container1 = null,
-        string $item1 = null,
-        string $container2 = null,
-        string $item2 = null)
+        ?string $item0 = null,
+        ?string $container1 = null,
+        ?string $item1 = null,
+        ?string $container2 = null,
+        ?string $item2 = null)
     {
         dddx('a');
         $value = $container0;

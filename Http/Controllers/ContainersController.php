@@ -37,7 +37,7 @@ class ContainersController extends BaseController
     {
         $route_params = getRouteParameters();
         [$containers,$items] = params2ContainerItem();
-        if ([] === $containers) {
+        if ($containers === []) {
             return $this->home($request);
         }
 
@@ -79,7 +79,7 @@ class ContainersController extends BaseController
 
         $this->panel = $panel;
 
-        if ('' !== request()->input('_act', '')) {
+        if (request()->input('_act', '') !== '') {
             return $this->callPanelAct($method, $args);
         }
 
@@ -99,7 +99,7 @@ class ContainersController extends BaseController
         if (! class_exists($controller)) {
             return '\\'.XotPanelController::class;
         }
-        if ('' === $tmp) {
+        if ($tmp === '') {
             return '\\'.XotPanelController::class;
         }
 

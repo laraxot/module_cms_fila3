@@ -44,16 +44,16 @@ abstract class TestHelper extends BaseTestCase
     public function getMainAdminNavigationUrlItems()
     {
         return $item_navs = collect(app(GetModulesNavigationItems::class)->execute())
-                ->map(function ($item) {
-                    return $item->getUrl();
-                });
+            ->map(function ($item) {
+                return $item->getUrl();
+            });
     }
 
     // in Tenant o Cms
     public function getUserNavigationItemUrlRoles($user)
     {
         return $role_names = $user->getRoleNames()->map(function ($item) {
-            if ('super-admin' != $item) {
+            if ($item != 'super-admin') {
                 return '/'.substr($item, 0, -7).'/admin';
             }
         })->filter(function ($value) {

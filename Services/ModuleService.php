@@ -16,7 +16,7 @@ class ModuleService
     public static function getInstance(): self
     {
         if (! self::$instance instanceof ModuleService) {
-            self::$instance = new self();
+            self::$instance = new self;
         }
 
         return self::$instance;
@@ -36,7 +36,7 @@ class ModuleService
                 // $obj = new $item();
                 $obj = app($item);
                 $panelContract = PanelService::make()->get($obj);
-                if ('media' === $key) {// media e' singolare ma anche plurale di medium
+                if ($key === 'media') {// media e' singolare ma anche plurale di medium
                     $panelContract->setName('medias');
                 }
                 $url = $panelContract->url('index');

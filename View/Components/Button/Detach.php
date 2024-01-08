@@ -53,7 +53,7 @@ class Detach extends Component
         if (! property_exists($this->panelContract->getRow(), 'pivot')) {
             return Gate::allows($this->method, $this->panelContract);
         }
-        if (null === $this->panelContract->getRow()->pivot) {
+        if ($this->panelContract->getRow()->pivot === null) {
             return Gate::allows($this->method, $this->panelContract);
         }
 
