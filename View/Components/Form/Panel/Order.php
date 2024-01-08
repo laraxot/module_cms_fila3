@@ -41,7 +41,7 @@ class Order extends Component
         }
 
         $this->input_attrs = ['placeholder' => 'Ordinamento', 'label' => ' '];
-        if ($tpl === 'inline') {
+        if ('inline' === $tpl) {
             $this->form_attrs['class'] = 'd-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search float-right';
         }
 

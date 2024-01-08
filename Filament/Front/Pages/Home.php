@@ -14,9 +14,9 @@ use Illuminate\Support\Str;
 
 class Home extends Page // implements HasTable
 {// use InteractsWithTable;
-    // use InteractsWithForms;
+        // use InteractsWithForms;
 
-    protected static ?string $navigationIcon = 'heroicon-o-document-text';
+        protected static ?string $navigationIcon = 'heroicon-o-document-text';
 
     // protected static string $view = 'cms::filament.front.pages.welcome';
     protected static string $view = 'pub_theme::home';
@@ -44,7 +44,7 @@ class Home extends Page // implements HasTable
 
             $container_last_singular = Str::singular($container_last);
             $container_last_model = \Illuminate\Database\Eloquent\Relations\Relation::getMorphedModel($container_last_singular);
-            if ($container_last_model === null) {
+            if (null === $container_last_model) {
                 dddx('insert model inside the morph_map');
             }
             $container_last_key_name = app($container_last_model)->getRouteKeyName();
@@ -57,15 +57,15 @@ class Home extends Page // implements HasTable
         return $data;
     }
 
-    public function mountOLD(?string $lang = null,
-        ?string $container0 = null, ?string $item0 = null,
-        ?string $container1 = null, ?string $item1 = null,
-        ?string $container2 = null, ?string $item2 = null,
-        ?string $container3 = null, ?string $item3 = null
+    public function mountOLD(string $lang = null,
+        string $container0 = null, string $item0 = null,
+        string $container1 = null, string $item1 = null,
+        string $container2 = null, string $item2 = null,
+        string $container3 = null, string $item3 = null
     ) {
         $containers = [];
         $items = [];
-        for ($i = 0; $i < 4; $i++) {
+        for ($i = 0; $i < 4; ++$i) {
             if ($container_curr = ${'container'.$i}) {
                 $containers[$i] = $container_curr;
             }
@@ -86,7 +86,7 @@ class Home extends Page // implements HasTable
         if (\count($containers) > \count($items)) {
             $view = 'index';
         }
-        if (\count($containers) === 0) {
+        if (0 === \count($containers)) {
             $view = 'home';
         }
 
@@ -117,7 +117,7 @@ class Home extends Page // implements HasTable
     {
         $parameters['lang'] = app()->getLocale();
         $record = $parameters['record'];
-        if ($name === 'show') {
+        if ('show' === $name) {
             $container0 = class_basename($record);
             $container0 = Str::plural($container0);
             $container0 = Str::snake($container0);
@@ -126,7 +126,7 @@ class Home extends Page // implements HasTable
 
             return route('test', $parameters);
         }
-        if ($name === 'index') {
+        if ('index' === $name) {
             $container0 = class_basename($record);
             $container0 = Str::plural($container0);
             $container0 = Str::snake($container0);

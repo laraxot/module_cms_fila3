@@ -80,7 +80,7 @@ class Builder extends Component
 
     public function getMenus(): array
     {
-        $menu = new Menu;
+        $menu = new Menu();
         $this->menulist = $menu->select(['id', 'name'])->get()->pluck('name', 'id')->prepend('Select menu', 0)->all();
 
         return $this->menulist;
@@ -88,7 +88,7 @@ class Builder extends Component
 
     public function deleteMenu(int $id): void
     {
-        $menuItem = new MenuItem;
+        $menuItem = new MenuItem();
         $getall = $menuItem->getall($id);
         if (0 === (is_countable($getall) ? \count($getall) : 0)) {
             $menudelete = Menu::findOrFail($id);
@@ -105,7 +105,7 @@ class Builder extends Component
     public function deleteMenuItem(int $id): void
     {
         $menuitem = MenuItem::find($id);
-        if ($menuitem !== null) {
+        if (null !== $menuitem) {
             $menuitem->delete();
         }
 
@@ -121,7 +121,7 @@ class Builder extends Component
         }
 
         $menuitem = MenuItem::where('id', $this->menuItemSelected['id'])->first();
-        if ($menuitem === null) {
+        if (null === $menuitem) {
             throw new \Exception('['.__LINE__.']['.__FILE__.']');
         }
 
@@ -149,7 +149,7 @@ class Builder extends Component
     public function selectMenuItem(int $id): void
     {
         $item = MenuItem::find($id);
-        if ($item !== null) {
+        if (null !== $item) {
             if (! $this->menuItemSelected instanceof MenuItem || $this->menuItemSelected['id'] !== $item['id']) {
                 $this->menuItemSelected = $item;
                 $this->menuItemLabel = $item->label ?? '';
@@ -165,7 +165,7 @@ class Builder extends Component
     /**
      * Undocumented function.
      *
-     * @param  array|null  $data
+     * @param array|null $data
      */
     public function changeTree($data): void
     {
@@ -173,7 +173,7 @@ class Builder extends Component
             foreach ($data as $value) {
                 // $menuitem = MenuItem::find($value['id']);
                 $menuitem = MenuItem::where('id', $value['id'])->first();
-                if ($menuitem === null) {
+                if (null === $menuitem) {
                     throw new \Exception('['.__LINE__.']['.__FILE__.']');
                 }
 
@@ -198,7 +198,7 @@ class Builder extends Component
     public function chooseMenu(): void
     {
         if ($this->selectedMenu) {
-            $menuItem = new MenuItem;
+            $menuItem = new MenuItem();
             $menu_list = $menuItem->getall($this->selectedMenu);
             $roots = $menu_list->where('menu', (int) $this->selectedMenu);
             /*
@@ -209,7 +209,7 @@ class Builder extends Component
             */
             $this->menuItems = self::tree($roots, $menu_list);
             $menu = Menu::find($this->selectedMenu);
-            if ($menu !== null) {
+            if (null !== $menu) {
                 $this->menuName = $menu->name ?? '';
             }
         } else {
@@ -221,7 +221,7 @@ class Builder extends Component
 
     public function addMenuItem(): void
     {
-        $menuitem = new MenuItem;
+        $menuitem = new MenuItem();
         $menuitem->label = $this->label;
         $menuitem->link = $this->url;
         if (config('menu.use_roles')) {
@@ -238,7 +238,7 @@ class Builder extends Component
 
     public function updateMenu(): void
     {
-        if ($this->menuName === '') {
+        if ('' === $this->menuName) {
             $this->error = 'Enter menu name!';
         } else {
             $menu = Menu::findOrFail($this->selectedMenu);
@@ -252,7 +252,7 @@ class Builder extends Component
     public function changeOrder(string $id, string $dir): void
     {
         $item = MenuItem::find($id);
-        if ($item === null) {
+        if (null === $item) {
             return;
         }
 
@@ -262,12 +262,12 @@ class Builder extends Component
                     ->where('menu', $item->menu)
                     ->orderBy('sort', 'desc')
                     ->first();
-                if ($prevElem !== null) {
-                    $prevElem->sort++;
+                if (null !== $prevElem) {
+                    ++$prevElem->sort;
                     $prevElem->save();
                 }
 
-                $item->sort--;
+                --$item->sort;
                 $item->save();
                 break;
             case 'down':
@@ -275,12 +275,12 @@ class Builder extends Component
                     ->where('menu', $item->menu)
                     ->orderBy('sort')
                     ->first();
-                if ($nextElem !== null) {
-                    $nextElem->sort--;
+                if (null !== $nextElem) {
+                    --$nextElem->sort;
                     $nextElem->save();
                 }
 
-                $item->sort++;
+                ++$item->sort;
                 $item->save();
                 break;
             case 'top':
@@ -301,10 +301,10 @@ class Builder extends Component
 
     public function createMenu(): void
     {
-        if ($this->menuName === '') {
+        if ('' === $this->menuName) {
             $this->error = 'Enter menu name!';
         } else {
-            $menu = new Menu;
+            $menu = new Menu();
             $menu->name = $this->menuName;
             $menu->save();
             $this->getMenus();
@@ -318,8 +318,8 @@ class Builder extends Component
     /**
      * Undocumented function.
      *
-     * @param  Collection<MenuItem>  $items
-     * @param  Collection<MenuItem>  $all_items
+     * @param Collection<MenuItem> $items
+     * @param Collection<MenuItem> $all_items
      */
     private static function tree(Collection $items, Collection $all_items): array
     {
@@ -330,11 +330,11 @@ class Builder extends Component
             // Cannot access property $id on mixed.
             $find = $all_items->where('parent', $item->id);
             $data_arr[$i]['child'] = [];
-            if ($find->count() !== 0) {
+            if (0 !== $find->count()) {
                 $data_arr[$i]['child'] = self::tree($find, $all_items);
             }
 
-            $i++;
+            ++$i;
         }
 
         return $data_arr;

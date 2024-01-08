@@ -51,7 +51,7 @@ class Dashboard extends Page
     public function mount(): void
     {
         $user = auth()->user();
-        if ($user->roles->count() === 1) {
+        if (1 === $user->roles->count()) {
             redirect('/quaeris/admin/dashboard');
         }
 

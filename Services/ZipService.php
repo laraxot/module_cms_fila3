@@ -7,9 +7,10 @@ namespace Modules\Cms\Services;
 use Illuminate\Contracts\Filesystem\FileNotFoundException;
 use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Storage;
-use Symfony\Component\HttpFoundation\BinaryFileResponse;
 
 use function Safe\ini_set;
+
+use Symfony\Component\HttpFoundation\BinaryFileResponse;
 
 /**
  * Class ZipService.
@@ -23,17 +24,17 @@ class ZipService
     public static function getInstance(): self
     {
         if (! self::$instance instanceof ZipService) {
-            self::$instance = new self;
+            self::$instance = new self();
         }
 
         return self::$instance;
     }
 
     /**
-     * @return string|BinaryFileResponse|void
-     *
      * @throws FileNotFoundException
      * @throws \ReflectionException
+     *
+     * @return string|BinaryFileResponse|void
      */
     public static function fromRowsPdf(array $params)
     {
@@ -67,11 +68,11 @@ class ZipService
         ];
         // $filename_zip = '_'.$this->year.'.zip';
 
-        $zip = new \ZipArchive;
+        $zip = new \ZipArchive();
         $filename_zip = Storage::disk('cache')->path($filename_zip);
         $filename_zip = str_replace(['/', '\\'], [\DIRECTORY_SEPARATOR, \DIRECTORY_SEPARATOR], (string) $filename_zip);
 
-        if ($zip->open($filename_zip, \ZipArchive::CREATE) !== true) {
+        if (true !== $zip->open($filename_zip, \ZipArchive::CREATE)) {
             throw new \Exception('cannot create zip ['.$filename_zip.']');
         }
 
@@ -118,7 +119,7 @@ class ZipService
         38 => "setEncryptionName"
         39 => "setEncryptionIndex"
         */
-        if ($rows->count() === 0) {
+        if (0 === $rows->count()) {
             return '<h3>Non ci sono file da aggiungere</h3>';
         }
 
@@ -150,7 +151,7 @@ class ZipService
 
         $zip->close();
 
-        if ($out === 'download') {
+        if ('download' === $out) {
             return response()->download($filename_zip);
         }
 
@@ -184,13 +185,13 @@ class ZipService
 
     public static function getZipArchive(): \ZipArchive
     {
-        $zipArchive = new \ZipArchive;
+        $zipArchive = new \ZipArchive();
         $filename_zip = self::getFilenameZipPath();
         if (File::exists($filename_zip)) {
             File::delete($filename_zip);
         }
 
-        if ($zipArchive->open($filename_zip, \ZipArchive::CREATE) !== true) {
+        if (true !== $zipArchive->open($filename_zip, \ZipArchive::CREATE)) {
             throw new \Exception('cannot create zip ['.$filename_zip.']');
         }
 

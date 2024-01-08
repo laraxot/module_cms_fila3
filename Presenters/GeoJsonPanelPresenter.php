@@ -37,7 +37,7 @@ class GeoJsonPanelPresenter implements PanelPresenterContract
      * @throws FileNotFoundException
      * @throws \ReflectionException
      */
-    public function outContainer(?array $params = null): GeoJsonCollection
+    public function outContainer(array $params = null): GeoJsonCollection
     {
         $model = $this->panel->getRow();
         $model->getTable();
@@ -68,7 +68,7 @@ class GeoJsonPanelPresenter implements PanelPresenterContract
         return new $transformer($rows);
     }
 
-    public function outItem(?array $params = null): GeoJsonResource
+    public function outItem(array $params = null): GeoJsonResource
     {
         $model = $this->panel->getRow();
         $transformer = GeoJsonResource::class;
@@ -76,7 +76,7 @@ class GeoJsonPanelPresenter implements PanelPresenterContract
         return new $transformer($model);
     }
 
-    public function out(?array $params = null): GeoJsonCollection|GeoJsonResource
+    public function out(array $params = null): GeoJsonCollection|GeoJsonResource
     {
         if (isContainer()) {
             return $this->outContainer($params);

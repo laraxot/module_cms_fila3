@@ -18,33 +18,36 @@ interface RowsContract
     /**
      * Paginate the given query.
      *
-     * @param  int|null  $perPage
-     * @param  array  $columns
-     * @param  string  $pageName
-     * @param  int|null  $page
-     * @return LengthAwarePaginator
+     * @param int|null $perPage
+     * @param array    $columns
+     * @param string   $pageName
+     * @param int|null $page
      *
      * @throws \InvalidArgumentException
+     *
+     * @return LengthAwarePaginator
      */
     public function paginate($perPage = null, $columns = ['*'], $pageName = 'page', $page = null);
 
     /**
      * Add a relationship count / exists condition to the query with where clauses.
      *
-     * @param  string  $relation
-     * @param  string  $operator
-     * @param  int  $count
+     * @param string $relation
+     * @param string $operator
+     * @param int    $count
+     *
      * @return Builder|static
      */
-    public function whereHas($relation, ?\Closure $callback = null, $operator = '>=', $count = 1);
+    public function whereHas($relation, \Closure $callback = null, $operator = '>=', $count = 1);
 
     /**
      * Add a basic where clause to the query.
      *
-     * @param  \Closure|string|array|Expression  $column
-     * @param  array|string  $operator
-     * @param  array|string|int  $value
-     * @param  string  $boolean
+     * @param \Closure|string|array|Expression $column
+     * @param array|string                     $operator
+     * @param array|string|int                 $value
+     * @param string                           $boolean
+     *
      * @return $this
      */
     public function where($column, $operator = null, $value = null, $boolean = 'and');
@@ -59,9 +62,10 @@ interface RowsContract
     /**
      * Add a "where null" clause to the query.
      *
-     * @param  string|array  $columns
-     * @param  string  $boolean
-     * @param  bool  $not
+     * @param string|array $columns
+     * @param string       $boolean
+     * @param bool         $not
+     *
      * @return $this
      */
     public function whereNull($columns, $boolean = 'and', $not = false);
@@ -69,19 +73,21 @@ interface RowsContract
     /**
      * Add an "order by" clause to the query.
      *
-     * @param  \Closure|\Illuminate\Database\Query\Builder|Expression|string  $column
-     * @param  string  $direction
-     * @return $this
+     * @param \Closure|\Illuminate\Database\Query\Builder|Expression|string $column
+     * @param string                                                        $direction
      *
      * @throws \InvalidArgumentException
+     *
+     * @return $this
      */
     public function orderBy($column, $direction = 'asc');
 
     /**
      * Set the relationships that should be eager loaded.
      *
-     * @param  string|array  $relations
-     * @param  string|\Closure|null  $callback
+     * @param string|array         $relations
+     * @param string|\Closure|null $callback
+     *
      * @return $this
      */
     public function with($relations, $callback = null);
@@ -89,8 +95,9 @@ interface RowsContract
     /**
      * Detach models from the relationship.
      *
-     * @param  bool  $touch
-     * @param  array  $ids
+     * @param bool  $touch
+     * @param array $ids
+     *
      * @return int
      */
     public function detach($ids = null, $touch = true);
@@ -98,8 +105,9 @@ interface RowsContract
     /**
      * Attach a model to the parent.
      *
-     * @param  bool  $touch
-     * @param  string|int  $id
+     * @param bool       $touch
+     * @param string|int $id
+     *
      * @return void
      */
     public function attach($id, array $attributes = [], $touch = true);
@@ -144,7 +152,8 @@ interface RowsContract
     /**
      * Set the "offset" value of the query.
      *
-     * @param  int  $value
+     * @param int $value
+     *
      * @return $this
      */
     public function offset($value);
@@ -152,7 +161,8 @@ interface RowsContract
     /**
      * Set the "limit" value of the query.
      *
-     * @param  int  $value
+     * @param int $value
+     *
      * @return $this
      */
     public function limit($value);
@@ -167,9 +177,10 @@ interface RowsContract
     /**
      * Add a "where in" clause to the query.
      *
-     * @param  string  $column
-     * @param  string  $boolean
-     * @param  bool  $not
+     * @param string $column
+     * @param string $boolean
+     * @param bool   $not
+     *
      * @return $this
      */
     public function whereIn($column, $values, $boolean = 'and', $not = false);
@@ -177,9 +188,10 @@ interface RowsContract
     /**
      * Add a where between statement to the query.
      *
-     * @param  string|Expression  $column
-     * @param  string  $boolean
-     * @param  bool  $not
+     * @param string|Expression $column
+     * @param string            $boolean
+     * @param bool              $not
+     *
      * @return $this
      */
     public function whereBetween($column, iterable $values, $boolean = 'and', $not = false);

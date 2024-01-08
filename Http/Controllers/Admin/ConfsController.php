@@ -25,7 +25,7 @@ class ConfsController extends BaseController
     {
         // $rows = TenantService::getConfigNames();
         $panelContract = PanelService::make()->getRequestPanel();
-        if ($panelContract == null) {
+        if (null == $panelContract) {
             throw new \Exception('['.__LINE__.']['.__FILE__.']');
         }
 

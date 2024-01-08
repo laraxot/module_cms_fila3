@@ -25,13 +25,13 @@ class ThemeComposer
         return $params['module'] ?? null;
     }
 
-    public function getModelsMenuByModuleName(?string $module_name = null): DataCollection
+    public function getModelsMenuByModuleName(string $module_name = null): DataCollection
     {
-        if ($module_name == null) {
+        if (null == $module_name) {
             $module_name = $this->getArea();
         }
 
-        if ($module_name == null) {
+        if (null == $module_name) {
             throw new \Exception('['.__LINE__.']['.__FILE__.']');
             // $module_name = '';
         }
@@ -39,14 +39,14 @@ class ThemeComposer
         return app(GetModelsMenuByModuleNameAction::class)->execute($module_name);
     }
 
-    public function getModuleMenuByModuleName(?string $module_name = null): DataCollection
+    public function getModuleMenuByModuleName(string $module_name = null): DataCollection
     {
         $xotData = XotData::make();
         $profile = $xotData->getProfileModel();
         // $profile = ProfileService::make()->getProfile();
         $menu_name = $module_name;
 
-        if ($module_name == null) {
+        if (null == $module_name) {
             $module_name = $this->getArea();
             $menu_name = 'module_'.$module_name;
         }

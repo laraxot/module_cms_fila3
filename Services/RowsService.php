@@ -25,7 +25,8 @@ class RowsService
     /**
      * Undocumented function.
      *
-     * @param  RowsContract  $query
+     * @param RowsContract $query
+     *
      * @return RowsContract
      */
     public static function search($query, ?string $q, array $search_fields = [])
@@ -57,7 +58,7 @@ class RowsService
         switch ($tipo) {
             case 0:
                 // $search_fields = $this->search(); //campi di ricerca
-                if ($search_fields === []) { // se non gli passo nulla, cerco in tutti i fillable
+                if ([] === $search_fields) { // se non gli passo nulla, cerco in tutti i fillable
                     // 61     Call to an undefined method Illuminate\Database\Eloquent\Model|Modules\Cms\Contracts\RowsContract::getFillable().
                     $search_fields = $model->getFillable();
                 }
@@ -112,7 +113,8 @@ class RowsService
      *
      * @see https://github.com/spatie/laravel-query-builder
      *
-     * @param  RowsContract  $query
+     * @param RowsContract $query
+     *
      * @return RowsContract
      */
     public static function filter($query, array $filters, array $filters_fields)
@@ -121,7 +123,7 @@ class RowsService
         $filters_rules = [];
 
         foreach ($filters_fields as $filter_field) {
-            if ($filter_field->rules !== null) {
+            if (null !== $filter_field->rules) {
                 $filters_rules[$filter_field->param_name] = $filter_field->rules;
             }
         }
@@ -142,7 +144,7 @@ class RowsService
 
         foreach ($filters_fields as $v) {
             $filter_val = $filters[$v->param_name];
-            if ($filter_val !== '') {
+            if ('' !== $filter_val) {
                 if (! isset($v->op)) {
                     $v->op = '=';
                 }

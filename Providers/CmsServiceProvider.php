@@ -132,7 +132,7 @@ class CmsServiceProvider extends XotBaseServiceProvider
         foreach ($files as $file) {
             $name = $file->getFilenameWithoutExtension();
             $real_path = $file->getRealPath();
-            if ($real_path === false) {
+            if (false === $real_path) {
                 throw new \Exception('['.__LINE__.']['.class_basename(self::class).']');
             }
 
@@ -154,7 +154,7 @@ class CmsServiceProvider extends XotBaseServiceProvider
         $xot = $this->xot;
 
         $theme = \inAdmin() ? $xot->adm_theme : $xot->pub_theme;
-        if ($theme == null) {
+        if (null == $theme) {
             throw new \Exception('iuston gavemo un problema ['.__LINE__.']['.class_basename(self::class).']');
         }
 

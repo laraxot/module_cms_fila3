@@ -41,7 +41,7 @@ class ContainersController extends BaseController
         $route_params = getRouteParameters(); // "module" => "lu"
         [$containers,$items] = params2ContainerItem();
         // dddx(['contianers' => $containers, 'items' => $items]);
-        if ($containers === []) {
+        if ([] === $containers) {
             $act = isset($route_params['module']) ? 'home' : 'dashboard';
 
             return $this->{$act}($request);
@@ -57,8 +57,8 @@ class ContainersController extends BaseController
     /**
      * Undocumented function.
      *
-     * @param  string  $method
-     * @param  array  $args
+     * @param string $method
+     * @param array  $args
      */
     public function __call($method, $args)
     {
@@ -77,7 +77,7 @@ class ContainersController extends BaseController
         }
 
         $this->panel = $panel;
-        if (request()->input('_act', '') !== '') {
+        if ('' !== request()->input('_act', '')) {
             return $this->__callPanelAct($method, $args);
         }
 
@@ -148,7 +148,7 @@ class ContainersController extends BaseController
         $tmp = collect($containers)->map(
             static fn ($item) => Str::studly($item)
         )->implode('\\');
-        if ($tmp === '') {
+        if ('' === $tmp) {
             $tmp = 'Module';
         }
 
@@ -158,7 +158,7 @@ class ContainersController extends BaseController
             return $controller;
         }
 
-        if ($tmp === 'Module') {
+        if ('Module' === $tmp) {
             // return '\Modules\Cms\Http\Controllers\Admin\ModuleController';
             return '\\'.ModuleController::class;
         }
