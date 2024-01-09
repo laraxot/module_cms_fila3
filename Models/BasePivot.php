@@ -41,9 +41,15 @@ abstract class BasePivot extends Pivot
      * @var array<string, string>
      */
     protected $casts = [
+<<<<<<< HEAD
         'id' => 'string', // must be string else primary key of related model will be typed as int
         'created_at' => 'datetime',
         'updated_at' => 'datetime',
+=======
+        'id'=>'string', //must be string else primary key of related model will be typed as int
+        'created_at' => 'datetime',
+        'updated_at' => 'datetime'
+>>>>>>> 61c773d (first)
     ];
 
     /**

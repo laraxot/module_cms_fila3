@@ -77,4 +77,8 @@ $loop = $__env->getLastLoop(); ?>
 </section>
 <?php $__env->stopSection(); ?>
 
+<<<<<<< HEAD
 <?php echo $__env->make('_layouts.master', Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?><?php /**PATH /var/www/html/localhost/laravel/Modules/Cms/docs/source/index.blade.php ENDPATH**/ ?>
+=======
+<?php echo $__env->make('_layouts.master', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?><?php /**PATH /var/www/html/localhost/laravel/Modules/Cms/docs/source/index.blade.php ENDPATH**/ ?>
+>>>>>>> 61c773d (first)
