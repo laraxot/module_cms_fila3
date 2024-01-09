@@ -32,7 +32,10 @@ abstract class BasePivot extends Pivot
      * @var string
      */
     protected $connection = 'cms'; // this will use the specified database connection
+<<<<<<< HEAD
 
+=======
+>>>>>>> dev
     /**
      * @var array
      */
@@ -41,11 +44,15 @@ abstract class BasePivot extends Pivot
     /**
      * @var array<string, string>
      */
+<<<<<<< HEAD
     protected $casts = [
         'id' => 'string', // must be string else primary key of related model will be typed as int
         'created_at' => 'datetime',
         'updated_at' => 'datetime',
     ];
+=======
+    protected $casts = ['created_at' => 'datetime', 'updated_at' => 'datetime'];
+>>>>>>> dev
 
     /**
      * Undocumented variable.

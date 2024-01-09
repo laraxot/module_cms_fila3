@@ -19,7 +19,10 @@ use Modules\Xot\Traits\Updater;
 abstract class BaseModel extends Model
 {
     use HasFactory;
+<<<<<<< HEAD
 
+=======
+>>>>>>> dev
     // use Searchable;
     // use Cachable;
     use Updater;

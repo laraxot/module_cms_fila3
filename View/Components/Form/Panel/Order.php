@@ -32,8 +32,13 @@ class Order extends Component
 
         $query = request()->query();
         $this->qs = collect($query)
+<<<<<<< HEAD
             ->except(['sort'])
             ->all();
+=======
+                    ->except(['sort'])
+                    ->all();
+>>>>>>> dev
         if (! is_null($panelContract)) {
             $this->options = array_combine($panelContract->orderBy(), $panelContract->orderBy());
         } else {

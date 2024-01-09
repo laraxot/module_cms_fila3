@@ -2,7 +2,10 @@
     "name": "laraxot/module_cms_fila3",
     "description": "",
     "homepage": "https://laraxot.github.io/module_cms",
+<<<<<<< HEAD
     "license": "MIT",
+=======
+>>>>>>> dev
     "authors": [{
         "name": "Marco Sottana",
         "email": "marco.sottana@gmail.com",
