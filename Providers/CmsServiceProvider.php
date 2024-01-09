@@ -99,11 +99,7 @@ class CmsServiceProvider extends XotBaseServiceProvider
             throw new \Exception('['.base_path('Themes/'.$theme).' not exists]['.__LINE__.']['.class_basename(self::class).']');
         }
 
-<<<<<<< HEAD
         /* //in attesa di vedere se serve di nuovo.
-=======
-        /*
->>>>>>> 61c773d (first)
         $provider = 'Themes\\'.$theme.'\Providers\\'.$theme.'ServiceProvider';
         if (! class_exists($provider)) {
             throw new Exception('class not exists ['.$provider.']['.__LINE__.']['.basename(__FILE__).']');

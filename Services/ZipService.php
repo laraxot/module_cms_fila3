@@ -23,11 +23,7 @@ class ZipService
 
     public static function getInstance(): self
     {
-<<<<<<< HEAD
         if (! self::$instance instanceof ZipService) {
-=======
-        if (! self::$instance instanceof \Modules\Cms\Services\ZipService) {
->>>>>>> 61c773d (first)
             self::$instance = new self();
         }
 

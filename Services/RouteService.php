@@ -455,14 +455,8 @@ class RouteService
                         // $uri = ($act->uri_full ?? $name).$act->uri;
                         $uri = $act->uri.($act->uri_full ?? $name);
                         Route::match($act->methods, $uri, $controller.'@'.$act->name)
-<<<<<<< HEAD
                             ->name('containers.'.$act->name);
                         // ->where(['container1' => '[0-9]+']) //errato solo per test
-=======
-                        ->name('containers.'.$act->name)
-                        // ->where(['container1' => '[0-9]+']) //errato solo per test
-                        ;
->>>>>>> 61c773d (first)
                     }
                 }
             );
