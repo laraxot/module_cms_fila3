@@ -15,11 +15,7 @@ class ModuleService
 
     public static function getInstance(): self
     {
-<<<<<<< HEAD
         if (! self::$instance instanceof ModuleService) {
-=======
-        if (! self::$instance instanceof \Modules\Cms\Services\ModuleService) {
->>>>>>> dev
             self::$instance = new self();
         }
 
