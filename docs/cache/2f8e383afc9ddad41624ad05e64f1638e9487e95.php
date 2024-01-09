@@ -17,5 +17,5 @@ $__env->startSection('body'); ?>
 <<<<<<< HEAD
 <?php echo $__env->make('_layouts.master', Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?><?php /**PATH /var/www/html/localhost/laravel/Modules/Cms/docs/source/404.blade.php ENDPATH**/ ?>
 =======
-<?php echo $__env->make('_layouts.master', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?><?php /**PATH /var/www/html/localhost/laravel/Modules/Cms/docs/source/404.blade.php ENDPATH**/ ?>
+<?php echo $__env->make('_layouts.master', Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?><?php /**PATH /var/www/html/localhost/laravel/Modules/Cms/docs/source/404.blade.php ENDPATH**/ ?>
 >>>>>>> 61c773d (first)
