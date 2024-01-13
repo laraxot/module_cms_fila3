@@ -8,12 +8,12 @@ declare(strict_types=1);
 namespace Modules\Cms\Filament\Front\Pages;
 
 use Filament\Pages\Page;
-use Illuminate\Support\Arr;
-use Illuminate\Support\Str;
-use Webmozart\Assert\Assert;
 use Filament\Tables\Contracts\HasTable;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Arr;
+use Illuminate\Support\Str;
 use Modules\Tenant\Services\TenantService;
+use Webmozart\Assert\Assert;
 
 // implements HasTable
 class Welcome extends Page
@@ -111,7 +111,7 @@ class Welcome extends Page
         if (null == $view_work) {
             dddx($views);
         }
-        
+
         self::$view = $view_work;
     }
 
@@ -127,6 +127,7 @@ class Welcome extends Page
             $container0 = Str::snake($container0);
             $parameters['container0'] = $container0;
             $parameters['item0'] = $record->slug;
+
             // dddx($parameters);
             // unset($parameters['record']); // per togliere quel ?record=n dall'url, che non dovrebbe servire?
             return route('test', $parameters);
