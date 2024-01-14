@@ -50,17 +50,22 @@ class Welcome extends Page
             $item_last = last($this->items);
 
             $container_last_singular = Str::singular($container_last);
+            // *
             Assert::notNull(
                 $container_last_model = \Illuminate\Database\Eloquent\Relations\Relation::getMorphedModel($container_last_singular),
                 'insert model ['.$container_last_singular.'] inside the morph_map'
             );
-            if (null == $container_last_model) {
+            if (null === $container_last_model) {
                 dddx('insert model ['.$container_last_singular.'] inside the morph_map');
             }
+            // */
+            // $container_last_model = TenantService::modelClass($container_last);
+            // dddx($container_last_model);
             $container_last_key_name = app($container_last_model)->getRouteKeyName();
 
             $row = $container_last_model::where($container_last_key_name, $item_last)
                 ->first();
+
             $data[$container_last_singular] = $row;
         }
 
@@ -108,7 +113,7 @@ class Welcome extends Page
             return view()->exists($view);
         }));
 
-        if (null == $view_work) {
+        if (null === $view_work) {
             dddx($views);
         }
 
