@@ -14,9 +14,9 @@ use Illuminate\Support\Str;
 
 class Home extends Page // implements HasTable
 {// use InteractsWithTable;
-                                                                        // use InteractsWithForms;
+                                                                            // use InteractsWithForms;
 
-                                                                        protected static ?string $navigationIcon = 'heroicon-o-document-text';
+                                                                            protected static ?string $navigationIcon = 'heroicon-o-document-text';
 
     // protected static string $view = 'cms::filament.front.pages.welcome';
     protected static string $view = 'pub_theme::home';
