@@ -53,7 +53,7 @@ class Welcome extends Page
 
             $container_last_model = TenantService::model($container_last_singular);
 
-            $container_last_key_name = $container_last_model->getRouteKeyName();
+            $container_last_key_name = $container_last_model->getFrontRouteKeyName();
 
             $row = $container_last_model::firstWhere([$container_last_key_name => $item_last]);
 
