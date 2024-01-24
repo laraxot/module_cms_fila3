@@ -138,7 +138,7 @@ class RowsService
 
         $filters_fields = $filters_fields
             ->filter(
-                static fn ($item): bool => \in_array($item->param_name, array_keys($filters), true)
+                static fn ($item): bool => \in_array($item->param_name,  array_keys($filters), false)
             )
             ->all();
 
