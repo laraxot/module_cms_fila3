@@ -97,12 +97,12 @@ class Welcome extends Page
             $views[] = 'pub_theme::'.$view;
         }
 
-        Assert::string($view_work = Arr::first(
+        $view_work = Arr::first(
             $views,
             static function (string $view) {
                 return view()->exists($view);
             }
-        ));
+        );
 
         if (null === $view_work) {
             dddx($views);
