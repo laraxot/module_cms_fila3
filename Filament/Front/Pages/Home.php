@@ -124,7 +124,7 @@ class Home extends Page
             $container0 = Str::plural($container0);
             $container0 = Str::snake($container0);
             $parameters['container0'] = $container0;
-            $parameters['item0'] = $record;
+            $parameters['item0'] = $record->slug;
 
             return route('test', $parameters);
         }
