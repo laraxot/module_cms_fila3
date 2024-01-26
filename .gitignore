@@ -49,3 +49,4 @@ package-lock.json
 .git-rewrite/
 .php-cs-fixer.cache
 /docs/cache
+node_modules
