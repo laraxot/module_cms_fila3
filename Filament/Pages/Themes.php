@@ -19,6 +19,8 @@ class Themes extends Page
 
     protected static ?string $navigationGroup = 'Settings';
 
+    public array $data = [];
+
     /*
     public static function getNavigationGroup(): ?string
     {
@@ -51,8 +53,15 @@ class Themes extends Page
                 ];
             }
         }
+        $this->data = $data;
 
         return compact('data');
+    }
+
+    public function changePubTheme(string $id){
+        $pub_theme = collect($this->data)->where('id', $id)->first()['info']->name;
+        // dddx([$id, $pub_theme]);
+        dddx(config('xra.pub_theme'));
     }
 
     /*
