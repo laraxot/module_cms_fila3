@@ -11,7 +11,7 @@ use Modules\Tenant\Services\TenantService;
 use Z3d0X\FilamentFabricator\Models\Page as ModelsPage;
 
 /**
- * Modules\Cms\Models\Page.
+ * Modules\Blog\Models\Page.
  *
  * @property \Illuminate\Database\Eloquent\Collection<int, Page> $allChildren
  * @property int|null                                            $all_children_count

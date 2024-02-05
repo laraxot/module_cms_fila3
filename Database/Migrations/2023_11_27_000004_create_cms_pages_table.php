@@ -3,7 +3,7 @@
 declare(strict_types=1);
 
 use Illuminate\Database\Schema\Blueprint;
-use Modules\Cms\Models\Page;
+use Modules\Blog\Models\Page;
 use Modules\Xot\Database\Migrations\XotBaseMigration;
 
 /**

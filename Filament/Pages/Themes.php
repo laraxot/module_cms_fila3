@@ -8,8 +8,10 @@ declare(strict_types=1);
 namespace Modules\Cms\Filament\Pages;
 
 use Filament\Pages\Page;
-use Illuminate\Support\Facades\File;
 use Modules\Cms\Datas\ThemeData;
+use Illuminate\Support\Facades\File;
+use Modules\Tenant\Services\TenantService;
+use Filament\Notifications\Notification;
 
 class Themes extends Page
 {
@@ -58,11 +60,15 @@ class Themes extends Page
         return compact('data');
     }
 
-    public function changePubTheme(string $id)
+    public function changePubTheme(string $name)
     {
-        $pub_theme = collect($this->data)->where('id', $id)->first()['info']->name;
-        // dddx([$id, $pub_theme]);
-        dddx(config('xra.pub_theme'));
+       $data['pub_theme'] = $name;
+       TenantService::saveConfig('xra', $data);
+       Notification::make()
+       ->title('Saved successfully')
+       ->success()
+       ->send();
+        //dddx(config('xra.pub_theme'));
     }
 
     /*
