@@ -52,7 +52,7 @@ class HtmlPanelPresenter implements PanelPresenterContract
 
     // eturn \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View|\Illuminate\Http\Response|string
 
-    public function out(array $params = null): Renderable
+    public function out(?array $params = null): Renderable
     {
         [$containers, $items] = params2ContainerItem();
         $view = $this->panel->getView(); // vew che dovrebbe essere

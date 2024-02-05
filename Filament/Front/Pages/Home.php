@@ -59,11 +59,11 @@ class Home extends Page
         return $data;
     }
 
-    public function mountOLD(string $lang = null,
-        string $container0 = null, string $item0 = null,
-        string $container1 = null, string $item1 = null,
-        string $container2 = null, string $item2 = null,
-        string $container3 = null, string $item3 = null
+    public function mountOLD(?string $lang = null,
+        ?string $container0 = null, ?string $item0 = null,
+        ?string $container1 = null, ?string $item1 = null,
+        ?string $container2 = null, ?string $item2 = null,
+        ?string $container3 = null, ?string $item3 = null
     ) {
         $containers = [];
         $items = [];

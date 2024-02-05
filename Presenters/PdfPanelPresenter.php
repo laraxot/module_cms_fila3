@@ -41,7 +41,7 @@ class PdfPanelPresenter implements PanelPresenterContract
     {
     }
 
-    public function out(array $params = null): string
+    public function out(?array $params = null): string
     {
         if (! isset($params['view_params'])) {
             $params['view_params'] = [];

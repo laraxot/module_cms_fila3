@@ -37,7 +37,7 @@ class JsonPanelPresenter implements PanelPresenterContract
      *
      * @return mixed|void
      */
-    public function outContainer(array $params = null)
+    public function outContainer(?array $params = null)
     {
         $model = $this->panel->getRow();
         $transformer = StubService::make()->setModelAndName($model, 'transformer_collection')->get();
@@ -52,7 +52,7 @@ class JsonPanelPresenter implements PanelPresenterContract
      *
      * @return mixed|void
      */
-    public function outItem(array $params = null)
+    public function outItem(?array $params = null)
     {
         $model = $this->panel->getRow();
         $transformer = StubService::make()->setModelAndName($model, 'transformer_resource')->get();
@@ -63,7 +63,7 @@ class JsonPanelPresenter implements PanelPresenterContract
     /**
      * @return mixed|void
      */
-    public function out(array $params = null)
+    public function out(?array $params = null)
     {
         if (isContainer()) {
             return $this->outContainer($params);

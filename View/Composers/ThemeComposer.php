@@ -25,7 +25,7 @@ class ThemeComposer
         return $params['module'] ?? null;
     }
 
-    public function getModelsMenuByModuleName(string $module_name = null): DataCollection
+    public function getModelsMenuByModuleName(?string $module_name = null): DataCollection
     {
         if (null == $module_name) {
             $module_name = $this->getArea();
@@ -39,7 +39,7 @@ class ThemeComposer
         return app(GetModelsMenuByModuleNameAction::class)->execute($module_name);
     }
 
-    public function getModuleMenuByModuleName(string $module_name = null): DataCollection
+    public function getModuleMenuByModuleName(?string $module_name = null): DataCollection
     {
         $xotData = XotData::make();
         $profile = $xotData->getProfileModel();

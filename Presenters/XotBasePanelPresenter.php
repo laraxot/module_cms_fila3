@@ -29,7 +29,7 @@ abstract class XotBasePanelPresenter implements PanelPresenterContract
     /**
      * @return mixed|void
      */
-    public function out(array $params = null): void
+    public function out(?array $params = null): void
     {
     }
 }
