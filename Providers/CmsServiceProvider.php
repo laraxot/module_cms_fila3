@@ -146,11 +146,11 @@ class CmsServiceProvider extends XotBaseServiceProvider
     *  Method Modules\Cms\Providers\CmsServiceProvider::registerViewComposers() is unused.
     private function registerViewComposers(): void
     {
-        
+
         //if ($this->app->runningInConsole()) {
         //    return;
         //}
-        
+
         $xot = $this->xot;
 
         $theme = \inAdmin() ? $xot->adm_theme : $xot->pub_theme;

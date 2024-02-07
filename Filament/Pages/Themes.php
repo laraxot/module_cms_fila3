@@ -62,7 +62,7 @@ class Themes extends Page
         return compact('data');
     }
 
-    public function changePubTheme(string $name):void
+    public function changePubTheme(string $name): void
     {
         $data['pub_theme'] = $name;
         TenantService::saveConfig('xra', $data);
