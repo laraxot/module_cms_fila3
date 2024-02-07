@@ -1,4 +1,7 @@
 <?php
+/**
+ * necessita per funzionare  di wire modal.. 
+ */
 
 declare(strict_types=1);
 
@@ -8,7 +11,7 @@ use Illuminate\Contracts\Support\Renderable;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Routing\Redirector;
 use Illuminate\Support\Facades\Auth;
-use Modules\Cms\Actions\GetViewAction;
+use Modules\Xot\Actions\GetViewAction;
 use Modules\Tenant\Services\TenantService;
 use Modules\Wire\View\Components\Modal\Modal;
 
