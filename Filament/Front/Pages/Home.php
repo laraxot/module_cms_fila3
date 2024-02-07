@@ -8,6 +8,7 @@ declare(strict_types=1);
 namespace Modules\Cms\Filament\Front\Pages;
 
 use Filament\Pages\Page;
+use Filament\Tables\Contracts\HasTable;
 use Illuminate\Support\Arr;
 use Illuminate\Support\Str;
 use Webmozart\Assert\Assert;
