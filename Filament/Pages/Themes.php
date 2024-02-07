@@ -13,6 +13,8 @@ use Illuminate\Support\Facades\File;
 use Modules\Cms\Datas\ThemeData;
 use Modules\Tenant\Services\TenantService;
 
+use function Safe\json_decode;
+
 class Themes extends Page
 {
     protected static ?string $navigationIcon = 'heroicon-o-paint-brush';
@@ -60,7 +62,7 @@ class Themes extends Page
         return compact('data');
     }
 
-    public function changePubTheme(string $name)
+    public function changePubTheme(string $name):void
     {
         $data['pub_theme'] = $name;
         TenantService::saveConfig('xra', $data);

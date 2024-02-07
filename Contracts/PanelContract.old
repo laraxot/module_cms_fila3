@@ -1,4 +1,7 @@
 <?php
+/**
+ * non usiamo i panel
+ */
 
 declare(strict_types=1);
 

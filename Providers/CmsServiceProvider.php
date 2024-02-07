@@ -141,16 +141,16 @@ class CmsServiceProvider extends XotBaseServiceProvider
         }
     }
 
-    /**
+    /*
      * Undocumented function.
-     */
+    *  Method Modules\Cms\Providers\CmsServiceProvider::registerViewComposers() is unused.
     private function registerViewComposers(): void
     {
-        /*
-        if ($this->app->runningInConsole()) {
-            return;
-        }
-        */
+        
+        //if ($this->app->runningInConsole()) {
+        //    return;
+        //}
+        
         $xot = $this->xot;
 
         $theme = \inAdmin() ? $xot->adm_theme : $xot->pub_theme;
@@ -172,4 +172,5 @@ class CmsServiceProvider extends XotBaseServiceProvider
         throw new \Exception('add ['.$custom_composer.']');
         // View::composer('*', ThemeComposer::class);
     }
+    */
 }

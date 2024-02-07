@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace Modules\Cms\Actions;
 
 use Illuminate\Support\Str;
+use Modules\Xot\Actions\GetViewAction;
 use Spatie\QueueableAction\QueueableAction;
 
 final class GetStyleClassAction
