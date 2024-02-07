@@ -8,10 +8,10 @@ declare(strict_types=1);
 namespace Modules\Cms\Filament\Front\Pages;
 
 use Filament\Pages\Page;
+use Filament\Tables\Contracts\HasTable;
 use Illuminate\Support\Arr;
 use Illuminate\Support\Str;
 use Webmozart\Assert\Assert;
-use Filament\Tables\Contracts\HasTable;
 
 // use InteractsWithTable;
 // implements HasTable
@@ -32,7 +32,7 @@ class Home extends Page
 
     public array $items = [];
 
-    public function mount():void
+    public function mount(): void
     {
         [$this->containers,$this->items] = params2ContainerItem();
         $this->initView();
@@ -79,7 +79,7 @@ class Home extends Page
         }
     }
     */
-    
+
     public function initView(): void
     {
         $containers = $this->containers;

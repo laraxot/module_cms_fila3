@@ -52,7 +52,7 @@ class Welcome extends Page
             $container_last_singular = Str::singular($container_last);
 
             $container_last_model = TenantService::model($container_last_singular);
-            if(!method_exists($container_last_model,'getFrontRouteKeyName')){
+            if (! method_exists($container_last_model, 'getFrontRouteKeyName')) {
                 throw new \Exception('[WIP]['.__LINE__.']['.__FILE__.']');
             }
             $container_last_key_name = $container_last_model->getFrontRouteKeyName();
