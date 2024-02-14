@@ -45,10 +45,8 @@ class Home extends Page
             $item_last = last($this->items);
 
             $container_last_singular = Str::singular($container_last);
-            $container_last_model = \Illuminate\Database\Eloquent\Relations\Relation::getMorphedModel($container_last_singular);
-            if (null === $container_last_model) {
-                dddx('insert model inside the morph_map');
-            }
+            Assert::notNull($container_last_model = \Illuminate\Database\Eloquent\Relations\Relation::getMorphedModel($container_last_singular));
+            
             $container_last_key_name = app($container_last_model)->getRouteKeyName();
 
             $row = $container_last_model::where($container_last_key_name, $item_last)
@@ -101,7 +99,8 @@ class Home extends Page
             $views[] = 'pub_theme::'.implode('.', $containers).'.'.$view;
 
             $model_root = Str::singular($containers[0]);
-            $res = \Illuminate\Database\Eloquent\Relations\Relation::getMorphedModel($model_root);
+            Assert::string($res = \Illuminate\Database\Eloquent\Relations\Relation::getMorphedModel($model_root));
+            
             $module_name = Str::between($res, 'Modules\\', '\Models\\');
             $module_name_low = Str::lower($module_name);
             $views[] = $module_name_low.'::'.implode('.', $containers).'.'.$view;
@@ -112,6 +111,7 @@ class Home extends Page
         $view_work = Arr::first($views, static function (string $view) {
             return view()->exists($view);
         });
+        Assert::string( $view_work);
 
         self::$view = $view_work;
     }
