@@ -355,7 +355,7 @@ class PanelFormService
                 }
             )->all();
 
-        return FieldData::collection($fields);
+        return FieldData::collect($fields);
     }
 
     /**

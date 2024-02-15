@@ -70,7 +70,7 @@ class ThemeComposer
             ]
         );
 
-        return NavbarMenuData::collection($items->all());
+        return NavbarMenuData::collect($items->all());
     }
 
     /**
