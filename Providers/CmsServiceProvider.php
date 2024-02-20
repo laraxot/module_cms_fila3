@@ -41,12 +41,25 @@ class CmsServiceProvider extends XotBaseServiceProvider
         }
 
         date_default_timezone_set($timezone);
+
+
+
     }
 
     public function registerCallback(): void
     {
+        $this->xot = XotData::make();
         $configFileName = 'xra';
         $this->mergeConfigFrom(__DIR__.sprintf('/../Config/%s.php', $configFileName), $configFileName);
+        if ($this->xot->register_pub_theme) {
+            $paths=config('view.paths');
+            $theme_path=FileService::fixPath(base_path('Themes/'.$this->xot->pub_theme.'/Resources/views'));
+            $paths=array_merge([$theme_path], $paths);
+            Config::set('view.paths', $paths);
+
+        }
+
+
     }
 
     /**
@@ -103,5 +116,11 @@ class CmsServiceProvider extends XotBaseServiceProvider
             $data = File::getRequire($real_path);
             Config::set($theme_type.'::'.$name, $data);
         }
+
+        //---------------------
+
+
+
+
     }
 }

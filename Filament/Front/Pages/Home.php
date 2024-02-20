@@ -23,7 +23,7 @@ class Home extends Page
     // protected static string $view = 'cms::filament.front.pages.welcome';
     protected static string $view = 'pub_theme::home';
 
-    protected static string $layout = 'pub_theme::layouts.app';
+    protected static string $layout = 'pub_theme::components.layouts.app';
 
     public string $view_type;
 
