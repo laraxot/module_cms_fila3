@@ -47,7 +47,7 @@ class Themes extends Page
                     File::put($filename, $theme_data->toJson());
                 }
                 $info = json_decode(File::get($filename), true);
-                $info = ThemeData::from($info);
+                $info = ThemeData::from($info)->toArray();
                 // $info->image = '#';
 
                 $data[] = [
