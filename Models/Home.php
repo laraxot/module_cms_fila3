@@ -47,9 +47,7 @@ class Home extends BaseModel
     use Sushi;
     // use WidgetTrait;
 
-    /**
-     * @var string[]
-     */
+    /** @var array<int, string> */
     protected $fillable = ['id', 'name', 'icon_src', 'created_by', 'updated_by'];
 
     /**

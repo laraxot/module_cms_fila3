@@ -42,9 +42,7 @@ class Page extends BaseModel
 {
     use Sushi;
 
-    /**
-     * @var string[]
-     */
+    /**  @var array<int, string>  */
     protected $fillable = [
         'id',
         'pos',

@@ -29,10 +29,8 @@ class Module extends BaseModel
 {
     use Sushi;
 
-    /**
-     * @var string[]
-     */
-    public $fillable = [
+    /** @var array<int, string> */
+    protected $fillable = [
         'id', 'name',
     ];
 

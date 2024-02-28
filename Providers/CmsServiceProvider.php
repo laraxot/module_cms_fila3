@@ -10,6 +10,7 @@ use Modules\Xot\Datas\XotData;
 use Modules\Xot\Providers\XotBaseServiceProvider;
 use Modules\Xot\Services\FileService;
 use Modules\Xot\Services\LivewireService;
+use Webmozart\Assert\Assert;
 
 /**
  * Undocumented class.
@@ -49,7 +50,7 @@ class CmsServiceProvider extends XotBaseServiceProvider
         $configFileName = 'xra';
         $this->mergeConfigFrom(__DIR__.sprintf('/../Config/%s.php', $configFileName), $configFileName);
         if ($this->xot->register_pub_theme) {
-            $paths = config('view.paths');
+            Assert::isArray($paths = config('view.paths'));
             $theme_path = FileService::fixPath(base_path('Themes/'.$this->xot->pub_theme.'/Resources/views'));
             $paths = array_merge([$theme_path], $paths);
             Config::set('view.paths', $paths);

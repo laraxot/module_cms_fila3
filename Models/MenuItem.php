@@ -60,11 +60,7 @@ class MenuItem extends Model
     protected string $config_name = 'menu_builder_item';
 
     // protected $table = null;
-    /**
-     * Undocumented variable.
-     *
-     * @var array<string>
-     */
+    /** @var array<int, string> */
     protected $fillable = [
         'id',
         'label',
@@ -119,12 +115,12 @@ class MenuItem extends Model
 
             if (File::exists($menu_path)) {
                 $rows = File::getRequire($menu_path);
-                if (! is_array($rows)) {
+                if (! \is_array($rows)) {
                     throw new \Exception('['.__LINE__.']['.__FILE__.']');
                 }
 
                 $rows = array_values($rows);
-            // dddx($this->config_name);
+                // dddx($this->config_name);
             } else {
                 // dddx($menu_path);
             }

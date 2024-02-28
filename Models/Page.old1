@@ -30,9 +30,7 @@ class Page extends ModelsPage
     use HasFactory;
 
     // use HasTeams;
-    /**
-     * @var string[]
-     */
+    /**  @var array<int, string>  */
     protected $fillable = [
         'title',
         'slug',
@@ -47,9 +45,7 @@ class Page extends ModelsPage
         'parent_id' => 'integer',
     ];
 
-    /**
-     * @var string
-     */
+    /**  @var string */
     protected $connection = 'cms';
 
     /**
