@@ -120,7 +120,7 @@ class MenuItem extends Model
                 }
 
                 $rows = array_values($rows);
-                // dddx($this->config_name);
+            // dddx($this->config_name);
             } else {
                 // dddx($menu_path);
             }
