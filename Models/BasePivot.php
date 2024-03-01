@@ -33,9 +33,7 @@ abstract class BasePivot extends Pivot
 
     /** @var string */
     protected $connection = 'cms'; // this will use the specified database connection
-    /**
-     * @var array<int, string>
-     */
+    /** @var array<int, string> */
     protected $appends = [];
 
     /** @var array<string, string> */
