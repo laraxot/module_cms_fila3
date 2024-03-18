@@ -36,10 +36,7 @@ class CmsServiceProvider extends XotBaseServiceProvider
             $this->registerThemeLivewireComponents();
         }
 
-        $timezone = config('app.timezone') ?? 'Europe/Berlin';
-        if (! \is_string($timezone)) {
-            throw new \Exception('['.__LINE__.']['.__FILE__.']');
-        }
+        Assert::string($timezone = config('app.timezone') ?? 'Europe/Berlin');
 
         date_default_timezone_set($timezone);
     }
@@ -49,6 +46,7 @@ class CmsServiceProvider extends XotBaseServiceProvider
         $this->xot = XotData::make();
         $configFileName = 'xra';
         $this->mergeConfigFrom(__DIR__.sprintf('/../Config/%s.php', $configFileName), $configFileName);
+
         if ($this->xot->register_pub_theme) {
             Assert::isArray($paths = config('view.paths'));
             $theme_path = FileService::fixPath(base_path('Themes/'.$this->xot->pub_theme.'/Resources/views'));
