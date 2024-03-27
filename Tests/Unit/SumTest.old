@@ -1,0 +1,22 @@
+<?php
+
+namespace Modules\Cms\Tests\Unit;
+
+use PHPUnit\Framework\TestCase;
+
+class SumTest extends TestCase
+{
+    /**
+     * A basic test example.
+     *
+     * @test
+     */
+    public function test(): void
+    {
+        // expect(14)->dd(); // 14
+        expect([1, 2])->sequence(
+            fn ($number) => $number->toBe(1),
+            fn ($number) => $number->dd(), // 2
+        );
+    }
+}
