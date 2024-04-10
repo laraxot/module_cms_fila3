@@ -52,7 +52,7 @@ class Dashboard extends Page
     {
         // $user = auth()->user();
         // if (1 === $user->roles->count()) {
-        //    redirect('/quaeris/admin/dashboard');
+        //    redirect('/blog/admin/dashboard');
         // }
 
         // if (! $user->hasRole('super-admin')) {
