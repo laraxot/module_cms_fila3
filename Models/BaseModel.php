@@ -10,6 +10,7 @@ use Illuminate\Database\Eloquent\Factories\Factory;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 // //use Laravel\Scout\Searchable;
 use Illuminate\Database\Eloquent\Model;
+use Modules\Xot\Actions\Factory\GetFactoryAction;
 use Modules\Xot\Services\FactoryService;
 use Modules\Xot\Traits\Updater;
 
@@ -41,7 +42,12 @@ abstract class BaseModel extends Model
     protected $connection = 'cms';
 
     /** @var array<string, string> */
-    protected $casts = ['published_at' => 'datetime', 'created_at' => 'datetime', 'updated_at' => 'datetime'];
+    protected function casts(): array
+    {
+        return [
+                'published_at' => 'datetime', 'created_at' => 'datetime', 'updated_at' => 'datetime'
+        ];
+    }
 
     /** @var string */
     protected $primaryKey = 'id';
@@ -64,6 +70,6 @@ abstract class BaseModel extends Model
      */
     protected static function newFactory()
     {
-        return FactoryService::newFactory(static::class);
+        return app(GetFactoryAction::class)->execute(static::class);
     }
 }

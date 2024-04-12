@@ -40,10 +40,15 @@ class Page extends ModelsPage
         'tenant_name',
     ];
 
-    protected $casts = [
+    protected function casts(): array
+    {
+        return [
+
         'blocks' => 'array',
         'parent_id' => 'integer',
-    ];
+
+        ];
+    }
 
     /**  @var string */
     protected $connection = 'cms';

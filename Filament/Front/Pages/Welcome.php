@@ -39,7 +39,9 @@ class Welcome extends Page
     public function mount(): void
     {
         $lang = request('lang') ?? app()->getLocale();
-        app()->setLocale($lang);
+        if(is_string($lang)){
+            app()->setLocale($lang);
+        }
         [$this->containers,$this->items] = params2ContainerItem();
         $this->initView();
     }

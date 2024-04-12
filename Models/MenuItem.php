@@ -82,7 +82,10 @@ class MenuItem extends Model
      *
      * @var array<string, string>
      */
-    protected $casts = [
+    protected function casts(): array
+    {
+        return [
+
         'id' => 'int',
         'label' => 'string',
         'link' => 'string',
@@ -96,7 +99,9 @@ class MenuItem extends Model
         'roles' => 'string',
         'active' => 'bool',
         'icon' => 'string',
-    ];
+
+        ];
+    }
 
     /*
     public function __construct(array $attributes = [])
