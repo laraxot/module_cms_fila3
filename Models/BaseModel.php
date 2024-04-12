@@ -11,7 +11,6 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 // //use Laravel\Scout\Searchable;
 use Illuminate\Database\Eloquent\Model;
 use Modules\Xot\Actions\Factory\GetFactoryAction;
-use Modules\Xot\Services\FactoryService;
 use Modules\Xot\Traits\Updater;
 
 /**
@@ -45,7 +44,7 @@ abstract class BaseModel extends Model
     protected function casts(): array
     {
         return [
-                'published_at' => 'datetime', 'created_at' => 'datetime', 'updated_at' => 'datetime'
+            'published_at' => 'datetime', 'created_at' => 'datetime', 'updated_at' => 'datetime',
         ];
     }
 

@@ -85,21 +85,19 @@ class MenuItem extends Model
     protected function casts(): array
     {
         return [
-
-        'id' => 'int',
-        'label' => 'string',
-        'link' => 'string',
-        'parent' => 'int',
-        'sort' => 'int',
-        'class' => 'string',
-        'menu' => 'int',
-        'depth' => 'int',
-        'role_id' => 'int',
-        // 'allowed_roles' => 'string',
-        'roles' => 'string',
-        'active' => 'bool',
-        'icon' => 'string',
-
+            'id' => 'int',
+            'label' => 'string',
+            'link' => 'string',
+            'parent' => 'int',
+            'sort' => 'int',
+            'class' => 'string',
+            'menu' => 'int',
+            'depth' => 'int',
+            'role_id' => 'int',
+            // 'allowed_roles' => 'string',
+            'roles' => 'string',
+            'active' => 'bool',
+            'icon' => 'string',
         ];
     }
 
