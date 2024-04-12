@@ -77,11 +77,7 @@ class MenuItem extends Model
         'icon',
     ];
 
-    /**
-     * Undocumented variable.
-     *
-     * @var array<string, string>
-     */
+    /** @return array<string, string> */
     protected function casts(): array
     {
         return [
