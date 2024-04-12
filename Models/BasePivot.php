@@ -36,7 +36,7 @@ abstract class BasePivot extends Pivot
     /** @var array<int, string> */
     protected $appends = [];
 
-    /** @var array<string, string> */
+    /** @return array<string, string> */
     protected function casts(): array
     {
         return [
