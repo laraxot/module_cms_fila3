@@ -6,8 +6,8 @@ use Modules\Cms\Filament\Front\Pages\Home;
 use Modules\Cms\Filament\Front\Pages\Welcome;
 
 // use Modules\Cms\Http\Controllers\PageController;
-
+/*
 Route::get('/{lang?}/{container0?}/{item0?}/{container1?}/{item1?}/{container2?}/{item2?}', '\\'.Welcome::class)->name('test');
 Route::get('/', '\\'.Home::class)->name('home');
-
+*/
 // Route::get('/{container0}/{item0?}/{container1?}/{item1?}/{container2?}/{item2?}', PageController::class);
