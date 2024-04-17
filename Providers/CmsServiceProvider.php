@@ -53,8 +53,8 @@ class CmsServiceProvider extends XotBaseServiceProvider
             $paths = array_merge([$theme_path], $paths);
             Config::set('view.paths', $paths);
 
-            //\Laravel\Folio\Folio::path($theme_path.'/pages');
-            //\Livewire\Volt\Volt::mount($theme_path.'/pages');
+            // \Laravel\Folio\Folio::path($theme_path.'/pages');
+            // \Livewire\Volt\Volt::mount($theme_path.'/pages');
         }
     }
 
