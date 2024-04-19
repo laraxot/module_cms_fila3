@@ -56,6 +56,7 @@ class CmsServiceProvider extends XotBaseServiceProvider
             Config::set('livewire.class_namespace', 'Themes\\'.$this->xot->pub_theme.'\Http\Livewire');
 
             // \Laravel\Folio\Folio::path($theme_path.'/pages');
+            
             // \Livewire\Volt\Volt::mount($theme_path.'/pages');
         }
     }
