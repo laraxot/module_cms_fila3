@@ -45,7 +45,7 @@ class Home extends Page
             $item_last = last($this->items);
 
             $container_last_singular = Str::singular($container_last);
-            Assert::notNull($container_last_model = \Illuminate\Database\Eloquent\Relations\Relation::getMorphedModel($container_last_singular));
+            Assert::notNull($container_last_model = \Illuminate\Database\Eloquent\Relations\Relation::getMorphedModel($container_last_singular),'['.__LINE__.']['.__FILE__.']');
 
             $container_last_key_name = app($container_last_model)->getRouteKeyName();
 
