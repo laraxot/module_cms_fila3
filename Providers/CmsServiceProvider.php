@@ -6,10 +6,12 @@ namespace Modules\Cms\Providers;
 
 use Illuminate\Support\Facades\Config;
 use Illuminate\Support\Facades\File;
+use Laravel\Folio\Folio;
 use Modules\Xot\Datas\XotData;
 use Modules\Xot\Providers\XotBaseServiceProvider;
 use Modules\Xot\Services\FileService;
 use Modules\Xot\Services\LivewireService;
+use Nwidart\Modules\Facades\Module;
 use Webmozart\Assert\Assert;
 
 /**
@@ -58,6 +60,26 @@ class CmsServiceProvider extends XotBaseServiceProvider
             // \Laravel\Folio\Folio::path($theme_path.'/pages');
 
             // \Livewire\Volt\Volt::mount($theme_path.'/pages');
+            $path = XotData::make()->getPubThemeViewPath('pages');
+            Folio::path($path)
+                // ->uri('it')
+                ->middleware([
+                    '*' => [
+                    ],
+                ]);
+
+            foreach (Module::collections() as $module) {
+                $path = $module->getPath().'/Resources/views/pages';
+                if (! File::exists($path)) {
+                    continue;
+                }
+                Folio::path($path)
+                    // ->uri('it')
+                    ->middleware([
+                        '*' => [
+                        ],
+                    ]);
+            }
         }
     }
 
