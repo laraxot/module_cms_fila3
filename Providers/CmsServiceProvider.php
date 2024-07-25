@@ -62,7 +62,6 @@ class CmsServiceProvider extends XotBaseServiceProvider
 
             // \Livewire\Volt\Volt::mount($theme_path.'/pages');
             $path = XotData::make()->getPubThemeViewPath('pages');
-<<<<<<< HEAD
             Folio::path($path)
                 // ->uri('it')
                 ->middleware([
@@ -82,13 +81,6 @@ class CmsServiceProvider extends XotBaseServiceProvider
                         ],
                     ]);
             }
-=======
-            Folio::path($path)->middleware([
-                '*' => [
-                    //
-                ],
-            ]);
->>>>>>> 8084353 (.)
         }
     }
 
