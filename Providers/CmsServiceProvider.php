@@ -50,7 +50,6 @@ class CmsServiceProvider extends XotBaseServiceProvider
         $this->mergeConfigFrom(__DIR__.sprintf('/../Config/%s.php', $configFileName), $configFileName);
 
         if ($this->xot->register_pub_theme) {
-            
             Assert::isArray($paths = config('view.paths'));
             $theme_path = FileService::fixPath(base_path('Themes/'.$this->xot->pub_theme.'/Resources/views'));
             $paths = array_merge([$theme_path], $paths);
