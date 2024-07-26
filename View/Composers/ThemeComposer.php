@@ -5,6 +5,9 @@ declare(strict_types=1);
 namespace Modules\Cms\View\Composers;
 
 use Modules\Cms\Models\Menu;
+use Modules\Cms\Models\Page;
+use Webmozart\Assert\Assert;
+use Illuminate\Database\Eloquent\Collection;
 
 class ThemeComposer
 {
@@ -38,4 +41,50 @@ class ThemeComposer
 
         return '#';
     }
+
+    public function showPageContent(string $slug): \Illuminate\Contracts\Support\Renderable
+    {
+        Assert::isInstanceOf($page = Page::firstOrCreate(['slug' => $slug], ['title' => $slug, 'content_blocks' => []]), Page::class, '['.__LINE__.']['.__FILE__.']');
+        // $page = Page::firstOrCreate(['slug' => $slug], ['content_blocks' => []]);
+        $blocks = $page->content_blocks;
+        if (! is_array($blocks)) {
+            $blocks = [];
+        }
+        $page = new \Modules\UI\View\Components\Render\Blocks(blocks: $blocks, model: $page);
+
+        return $page->render();
+    }
+
+    public function showPageSidebarContent(string $slug): \Illuminate\Contracts\Support\Renderable
+    {
+        Assert::isInstanceOf($page = Page::firstOrCreate(['slug' => $slug], ['sidebar_blocks' => []]), Page::class, '['.__LINE__.']['.__FILE__.']');
+        // $page = Page::firstOrCreate(['slug' => $slug], ['content_blocks' => []]);
+
+        $page = new \Modules\UI\View\Components\Render\Blocks(blocks: $page->sidebar_blocks, model: $page);
+
+        return $page->render();
+    }
+    
+    public function getPages(): Collection
+    {
+        $pages = Page::all();
+
+        return $pages;
+    }
+
+    public function getPageModel(string $slug): ?Page
+    {
+        return Page::where('slug', $slug)->first();
+    }
+
+    public function getUrlPage(string $slug): string
+    {
+        $page = $this->getPageModel($slug);
+        if (null !== $page) {
+            return '/'.app()->getLocale().'/pages/'.$slug;
+        }
+
+        return '#';
+    }
+
 }
