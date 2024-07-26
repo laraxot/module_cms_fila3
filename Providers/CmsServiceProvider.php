@@ -4,15 +4,16 @@ declare(strict_types=1);
 
 namespace Modules\Cms\Providers;
 
-use Illuminate\Support\Facades\Config;
-use Illuminate\Support\Facades\File;
 use Laravel\Folio\Folio;
-use Modules\Xot\Datas\XotData;
-use Modules\Xot\Providers\XotBaseServiceProvider;
-use Modules\Xot\Services\FileService;
-use Modules\Xot\Services\LivewireService;
-use Nwidart\Modules\Facades\Module;
 use Webmozart\Assert\Assert;
+use Modules\Xot\Datas\XotData;
+use Illuminate\Support\Collection;
+use Nwidart\Modules\Facades\Module;
+use Illuminate\Support\Facades\File;
+use Modules\Xot\Services\FileService;
+use Illuminate\Support\Facades\Config;
+use Modules\Xot\Services\LivewireService;
+use Modules\Xot\Providers\XotBaseServiceProvider;
 
 /**
  * Undocumented class.
@@ -68,7 +69,13 @@ class CmsServiceProvider extends XotBaseServiceProvider
                     ],
                 ]);
 
-            foreach (Module::collections() as $module) {
+            /**
+             * @var Collection<Module>
+             */
+            $modules=Module::collections();
+
+            foreach ($modules as $module) {
+                
                 $path = $module->getPath().'/Resources/views/pages';
                 if (! File::exists($path)) {
                     continue;
