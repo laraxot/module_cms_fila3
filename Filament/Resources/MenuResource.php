@@ -5,14 +5,15 @@ declare(strict_types=1);
 namespace Modules\Cms\Filament\Resources;
 
 use Filament\Forms;
-use Filament\Forms\Components\SpatieMediaLibraryFileUpload;
-use Filament\Forms\Form;
-use Filament\Resources\Resource;
 use Filament\Tables;
+use Filament\Forms\Form;
 use Filament\Tables\Table;
-use Modules\Cms\Filament\Resources\MenuResource\Pages;
 use Modules\Cms\Models\Menu;
+use Filament\Resources\Resource;
+use Illuminate\Support\HtmlString;
 use Modules\UI\Filament\Forms\Components\IconPicker;
+use Modules\Cms\Filament\Resources\MenuResource\Pages;
+use Filament\Forms\Components\SpatieMediaLibraryFileUpload;
 
 class MenuResource extends Resource
 {
@@ -41,16 +42,20 @@ class MenuResource extends Resource
                             ->columnSpan(1),
 
                         Forms\Components\TextInput::make('url')
-                            ->helperText('Se di tipo internal inserisci lo slug del titolo, se external inserisci l\'url completo (https://dominio)')
+                            // ->helperText('Se di tipo internal inserisci lo slug del titolo, se external inserisci l\'url completo (https://dominio)')
                             ->required()
                             ->columnSpan(1),
                     ]),
 
                     Forms\Components\Radio::make('type')
                         ->options([
-                            'internal' => 'internal',
+                            'internal' => 'page slug',
                             'external' => 'external',
+                            'route_name' => 'route name',
                         ])
+                        ->helperText(new HtmlString('- "page slug" inserire nel campo Url lo slug del titolo di una pagina creata, 
+                                                    <br> - "external" inserire nel campo Url il l\'intero link di un sito esterno, 
+                                                    <br> - "route name" inserire nel campo Url il nome della route'))
                         ->default('internal')
                         ->required()
                         ->inline(),
