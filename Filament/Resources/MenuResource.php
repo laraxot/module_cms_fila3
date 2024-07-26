@@ -5,15 +5,15 @@ declare(strict_types=1);
 namespace Modules\Cms\Filament\Resources;
 
 use Filament\Forms;
-use Filament\Tables;
-use Filament\Forms\Form;
-use Filament\Tables\Table;
-use Modules\Cms\Models\Menu;
-use Filament\Resources\Resource;
-use Illuminate\Support\HtmlString;
-use Modules\UI\Filament\Forms\Components\IconPicker;
-use Modules\Cms\Filament\Resources\MenuResource\Pages;
 use Filament\Forms\Components\SpatieMediaLibraryFileUpload;
+use Filament\Forms\Form;
+use Filament\Resources\Resource;
+use Filament\Tables;
+use Filament\Tables\Table;
+use Illuminate\Support\HtmlString;
+use Modules\Cms\Filament\Resources\MenuResource\Pages;
+use Modules\Cms\Models\Menu;
+use Modules\UI\Filament\Forms\Components\IconPicker;
 
 class MenuResource extends Resource
 {

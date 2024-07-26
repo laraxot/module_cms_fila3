@@ -22,18 +22,18 @@ class ThemeComposer
 
     public function getMenuUrl(array $menu): string
     {
-        if(empty($menu)){
+        if (empty($menu)) {
             return '#';
         }
         $lang = app()->getLocale();
-        if($menu['type'] == 'internal'){
-            return route('page_slug.show', ['lang'=>$lang,'page_slug' => $menu['url'] ]);
+        if ('internal' == $menu['type']) {
+            return route('page_slug.show', ['lang' => $lang, 'page_slug' => $menu['url']]);
         }
-        if($menu['type'] == 'external'){
+        if ('external' == $menu['type']) {
             return $menu['url'];
         }
-        if($menu['type'] == 'route_name'){
-            return route($menu['url'], ['lang'=>$lang]);
+        if ('route_name' == $menu['type']) {
+            return route($menu['url'], ['lang' => $lang]);
         }
 
         return '#';
