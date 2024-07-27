@@ -4,10 +4,10 @@ declare(strict_types=1);
 
 namespace Modules\Cms\View\Composers;
 
+use Illuminate\Database\Eloquent\Collection;
 use Modules\Cms\Models\Menu;
 use Modules\Cms\Models\Page;
 use Webmozart\Assert\Assert;
-use Illuminate\Database\Eloquent\Collection;
 
 class ThemeComposer
 {
@@ -64,7 +64,7 @@ class ThemeComposer
 
         return $page->render();
     }
-    
+
     public function getPages(): Collection
     {
         $pages = Page::all();
@@ -86,5 +86,4 @@ class ThemeComposer
 
         return '#';
     }
-
 }
