@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Modules\Cns\Database\Factories;
+namespace Modules\Cms\Database\Factories;
 
 use Illuminate\Database\Eloquent\Factories\Factory;
 use Illuminate\Support\Str;
