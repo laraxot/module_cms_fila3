@@ -1,4 +1,7 @@
 <?php
+/**
+ * @see https://github.com/laravel/framework/discussions/49574
+ */
 
 declare(strict_types=1);
 
@@ -8,6 +11,7 @@ use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\Config;
 use Illuminate\Support\Facades\File;
 use Laravel\Folio\Folio;
+use Mcamara\LaravelLocalization\Facades\LaravelLocalization;
 use Modules\Xot\Datas\XotData;
 use Modules\Xot\Providers\XotBaseServiceProvider;
 use Modules\Xot\Services\FileService;
@@ -62,10 +66,19 @@ class CmsServiceProvider extends XotBaseServiceProvider
 
             // \Livewire\Volt\Volt::mount($theme_path.'/pages');
             $path = XotData::make()->getPubThemeViewPath('pages');
+            /*
             Folio::path($path)
                 // ->uri('it')
                 ->middleware([
                     '*' => [
+                    ],
+                ]);
+            */
+            Folio::path($path)
+                ->uri(LaravelLocalization::setLocale() ?? app()->getLocale())
+                ->middleware([
+                    '*' => [
+                        // 'lang:en',
                     ],
                 ]);
 
@@ -80,7 +93,7 @@ class CmsServiceProvider extends XotBaseServiceProvider
                     continue;
                 }
                 Folio::path($path)
-                    // ->uri('it')
+                    ->uri(LaravelLocalization::setLocale() ?? app()->getLocale())
                     ->middleware([
                         '*' => [
                         ],
