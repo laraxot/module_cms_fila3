@@ -14,14 +14,12 @@ use Sushi\Sushi;
  *
  * @property int         $id
  * @property string|null $name
- *
  * @method static ModuleFactory  factory($count = null, $state = [])
  * @method static Builder|Module newModelQuery()
  * @method static Builder|Module newQuery()
  * @method static Builder|Module query()
  * @method static Builder|Module whereId($value)
  * @method static Builder|Module whereName($value)
- *
  * @mixin IdeHelperModule
  * @mixin \Eloquent
  */
