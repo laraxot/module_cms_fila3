@@ -1,12 +1,20 @@
 <?php
+/**
+ * @see https://github.com/laravel/framework/discussions/49574
+ */
 
 declare(strict_types=1);
 
 namespace Modules\Cms\Providers;
 
+use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\Config;
 use Illuminate\Support\Facades\File;
 use Laravel\Folio\Folio;
+<<<<<<< HEAD
+=======
+use Mcamara\LaravelLocalization\Facades\LaravelLocalization;
+>>>>>>> origin/dev
 use Modules\Xot\Datas\XotData;
 use Modules\Xot\Providers\XotBaseServiceProvider;
 use Modules\Xot\Services\FileService;
@@ -61,20 +69,46 @@ class CmsServiceProvider extends XotBaseServiceProvider
 
             // \Livewire\Volt\Volt::mount($theme_path.'/pages');
             $path = XotData::make()->getPubThemeViewPath('pages');
+<<<<<<< HEAD
+=======
+            /*
+>>>>>>> origin/dev
             Folio::path($path)
                 // ->uri('it')
                 ->middleware([
                     '*' => [
                     ],
                 ]);
+<<<<<<< HEAD
 
             foreach (Module::collections() as $module) {
+=======
+            */
+            Folio::path($path)
+                ->uri(LaravelLocalization::setLocale() ?? app()->getLocale())
+                ->middleware([
+                    '*' => [
+                        // 'lang:en',
+                    ],
+                ]);
+
+            /**
+             * @var Collection<Module>
+             */
+            $modules = Module::collections();
+
+            foreach ($modules as $module) {
+>>>>>>> origin/dev
                 $path = $module->getPath().'/Resources/views/pages';
                 if (! File::exists($path)) {
                     continue;
                 }
                 Folio::path($path)
+<<<<<<< HEAD
                     // ->uri('it')
+=======
+                    ->uri(LaravelLocalization::setLocale() ?? app()->getLocale())
+>>>>>>> origin/dev
                     ->middleware([
                         '*' => [
                         ],

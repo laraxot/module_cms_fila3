@@ -4,92 +4,140 @@ declare(strict_types=1);
 
 namespace Modules\Cms\Models;
 
-use Illuminate\Database\Eloquent\Builder;
-use Illuminate\Database\Eloquent\Collection;
-use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\Relations\HasMany;
-use Illuminate\Support\Facades\File;
-use Modules\Xot\Traits\SushiConfigCrud;
-use Nwidart\Modules\Facades\Module;
-use Sushi\Sushi;
+use Modules\Blog\Actions\ParentChilds\GetTreeOptions;
+use Spatie\MediaLibrary\HasMedia;
+use Spatie\MediaLibrary\InteractsWithMedia;
 
 /**
- * Modules\UI\Models\Menu.
+ * Modules\Cms\Models\Menu.
  *
- * @property int                                      $id
- * @property string|null                              $name
- * @property Collection|\Modules\UI\Models\MenuItem[] $items
- * @property int|null                                 $items_count
+ * @property int                             $id
+ * @property string                          $name
+ * @property array|null                      $items
+ * @property \Illuminate\Support\Carbon|null $created_at
+ * @property \Illuminate\Support\Carbon|null $updated_at
+ * @property string|null                     $updated_by
+ * @property string|null                     $created_by
+ * @property \Illuminate\Support\Carbon|null $deleted_at
+ * @property string|null                     $deleted_by
  *
- * @method static Builder|Menu newModelQuery()
- * @method static Builder|Menu newQuery()
- * @method static Builder|Menu query()
- * @method static Builder|Menu whereId($value)
- * @method static Builder|Menu whereName($value)
+ * @method static \Modules\Blog\Database\Factories\MenuFactory factory($count = null, $state = [])
+ * @method static \Illuminate\Database\Eloquent\Builder|Menu   newModelQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|Menu   newQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|Menu   onlyTrashed()
+ * @method static \Illuminate\Database\Eloquent\Builder|Menu   query()
+ * @method static \Illuminate\Database\Eloquent\Builder|Menu   whereCreatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Menu   whereCreatedBy($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Menu   whereDeletedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Menu   whereDeletedBy($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Menu   whereId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Menu   whereItems($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Menu   whereName($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Menu   whereUpdatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Menu   whereUpdatedBy($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Menu   withTrashed()
+ * @method static \Illuminate\Database\Eloquent\Builder|Menu   withoutTrashed()
+ *
+ * @property string                                                                                                     $title
+ * @property int|null                                                                                                   $parent_id
+ * @property \Staudenmeir\LaravelAdjacencyList\Eloquent\Collection|\Modules\Cms\Models\Menu[]                           $children
+ * @property int|null                                                                                                   $children_count
+ * @property \Spatie\MediaLibrary\MediaCollections\Models\Collections\MediaCollection<int, \Modules\Media\Models\Media> $media
+ * @property int|null                                                                                                   $media_count
+ * @property Menu|null                                                                                                  $parent
+ * @property \Staudenmeir\LaravelAdjacencyList\Eloquent\Collection|\Modules\Cms\Models\Menu[]                           $ancestors                  The model's recursive parents.
+ * @property int|null                                                                                                   $ancestors_count
+ * @property \Staudenmeir\LaravelAdjacencyList\Eloquent\Collection|\Modules\Cms\Models\Menu[]                           $ancestorsAndSelf           The model's recursive parents and itself.
+ * @property int|null                                                                                                   $ancestors_and_self_count
+ * @property \Staudenmeir\LaravelAdjacencyList\Eloquent\Collection|\Modules\Cms\Models\Menu[]                           $bloodline                  The model's ancestors, descendants and itself.
+ * @property int|null                                                                                                   $bloodline_count
+ * @property \Staudenmeir\LaravelAdjacencyList\Eloquent\Collection|\Modules\Cms\Models\Menu[]                           $childrenAndSelf            The model's direct children and itself.
+ * @property int|null                                                                                                   $children_and_self_count
+ * @property \Staudenmeir\LaravelAdjacencyList\Eloquent\Collection|\Modules\Cms\Models\Menu[]                           $descendants                The model's recursive children.
+ * @property int|null                                                                                                   $descendants_count
+ * @property \Staudenmeir\LaravelAdjacencyList\Eloquent\Collection|\Modules\Cms\Models\Menu[]                           $descendantsAndSelf         The model's recursive children and itself.
+ * @property int|null                                                                                                   $descendants_and_self_count
+ * @property \Staudenmeir\LaravelAdjacencyList\Eloquent\Collection|\Modules\Cms\Models\Menu[]                           $parentAndSelf              The model's direct parent and itself.
+ * @property int|null                                                                                                   $parent_and_self_count
+ * @property Menu|null                                                                                                  $rootAncestor               The model's topmost parent.
+ * @property \Staudenmeir\LaravelAdjacencyList\Eloquent\Collection|\Modules\Cms\Models\Menu[]                           $siblings                   The parent's other children.
+ * @property int|null                                                                                                   $siblings_count
+ * @property \Staudenmeir\LaravelAdjacencyList\Eloquent\Collection|\Modules\Cms\Models\Menu[]                           $siblingsAndSelf            All the parent's children.
+ * @property int|null                                                                                                   $siblings_and_self_count
+ *
+ * @method static \Staudenmeir\LaravelAdjacencyList\Eloquent\Collection<int, static> all($columns = ['*'])
+ * @method static \Staudenmeir\LaravelAdjacencyList\Eloquent\Builder|Menu            breadthFirst()
+ * @method static \Staudenmeir\LaravelAdjacencyList\Eloquent\Builder|Menu            depthFirst()
+ * @method static \Staudenmeir\LaravelAdjacencyList\Eloquent\Builder|Menu            doesntHaveChildren()
+ * @method static \Staudenmeir\LaravelAdjacencyList\Eloquent\Collection<int, static> get($columns = ['*'])
+ * @method static \Staudenmeir\LaravelAdjacencyList\Eloquent\Builder|Menu            getExpressionGrammar()
+ * @method static \Staudenmeir\LaravelAdjacencyList\Eloquent\Builder|Menu            hasChildren()
+ * @method static \Staudenmeir\LaravelAdjacencyList\Eloquent\Builder|Menu            hasParent()
+ * @method static \Staudenmeir\LaravelAdjacencyList\Eloquent\Builder|Menu            isLeaf()
+ * @method static \Staudenmeir\LaravelAdjacencyList\Eloquent\Builder|Menu            isRoot()
+ * @method static \Staudenmeir\LaravelAdjacencyList\Eloquent\Builder|Menu            tree($maxDepth = null)
+ * @method static \Staudenmeir\LaravelAdjacencyList\Eloquent\Builder|Menu            treeOf(\Illuminate\Database\Eloquent\Model|callable $constraint, $maxDepth = null)
+ * @method static \Staudenmeir\LaravelAdjacencyList\Eloquent\Builder|Menu            whereDepth($operator, $value = null)
+ * @method static \Staudenmeir\LaravelAdjacencyList\Eloquent\Builder|Menu            whereParentId($value)
+ * @method static \Staudenmeir\LaravelAdjacencyList\Eloquent\Builder|Menu            whereTitle($value)
+ * @method static \Staudenmeir\LaravelAdjacencyList\Eloquent\Builder|Menu            withGlobalScopes(array $scopes)
+ * @method static \Staudenmeir\LaravelAdjacencyList\Eloquent\Builder|Menu            withRelationshipExpression($direction, callable $constraint, $initialDepth, $from = null, $maxDepth = null)
+ * @method static \Staudenmeir\LaravelAdjacencyList\Eloquent\Collection<int, static> all($columns = ['*'])
+ * @method static \Staudenmeir\LaravelAdjacencyList\Eloquent\Collection<int, static> get($columns = ['*'])
+ * @method static \Staudenmeir\LaravelAdjacencyList\Eloquent\Collection<int, static> all($columns = ['*'])
+ * @method static \Staudenmeir\LaravelAdjacencyList\Eloquent\Collection<int, static> get($columns = ['*'])
+ * @method static \Staudenmeir\LaravelAdjacencyList\Eloquent\Collection<int, static> all($columns = ['*'])
+ * @method static \Staudenmeir\LaravelAdjacencyList\Eloquent\Collection<int, static> get($columns = ['*'])
+ * @method static \Staudenmeir\LaravelAdjacencyList\Eloquent\Collection<int, static> all($columns = ['*'])
+ * @method static \Staudenmeir\LaravelAdjacencyList\Eloquent\Collection<int, static> get($columns = ['*'])
+ * @method static \Staudenmeir\LaravelAdjacencyList\Eloquent\Collection<int, static> all($columns = ['*'])
+ * @method static \Staudenmeir\LaravelAdjacencyList\Eloquent\Collection<int, static> get($columns = ['*'])
+ * @method static \Staudenmeir\LaravelAdjacencyList\Eloquent\Collection<int, static> all($columns = ['*'])
+ * @method static \Staudenmeir\LaravelAdjacencyList\Eloquent\Collection<int, static> get($columns = ['*'])
  *
  * @mixin \Eloquent
  */
-class Menu extends Model
+class Menu extends BaseModel implements HasMedia
 {
-    use Sushi;
-    use SushiConfigCrud;
+    use InteractsWithMedia;
+    use \Staudenmeir\LaravelAdjacencyList\Eloquent\HasRecursiveRelationships;
 
-    protected string $config_name = 'menu_builder';
+    /** @var array<int, string> */
+    protected $fillable = [
+        'title',
+        'items',
+        'parent_id',
+    ];
 
-    protected $fillable = ['id', 'name'];
-
-    protected $table = 'menus';
-
-    /*
-    public function __construct(array $attributes = [])
+    /** @return array<string, string> */
+    protected function casts(): array
     {
-        //parent::construct( $attributes );
-        $this->table = config('menu.table_prefix') . config('menu.table_name_menus');
-    }
-    */
-
-    public function getRows(): array
-    {
-        $route_params = getRouteParameters();
-        $rows = null;
-        if (inAdmin() && isset($route_params['module'])) {
-            $menu_path = Module::getModulePath($route_params['module']).'Resources/menu/'.$this->getTable().'.php';
-            if (File::exists($menu_path)) {
-                $rows = File::getRequire($menu_path);
-
-            // dddx($this->config_name);
-            } else {
-                // dddx($menu_path);
-            }
-        } else {
-            $rows = config($this->config_name);
-        }
-
-        if (! \is_array($rows)) {
-            return
-            [
-                [
-                    'id' => 1,
-                    'name' => 'test',
-                ],
-            ];
-        }
-
-        return $rows;
+        return [
+            'items' => 'array',
+        ];
     }
 
-    public static function byName(string $name): ?self
+    public static function getTreeMenuOptions(): array
     {
-        return self::where('name', '=', $name)->first();
-    }
+        $instance = new self();
 
-    public function items(): HasMany
-    {
-        return $this->hasMany(MenuItem::class, 'menu')
-            ->with('child')
-            ->where(function ($query): void {
-                $query->where('parent', 0)->orWhere('parent', null);
-            })
-            ->orderBy('sort', 'ASC');
+        return app(GetTreeOptions::class)->execute($instance);
+
+        // $categories = self::tree()->get()->toTree();
+        // $results = [];
+        // foreach ($categories as $cat) {
+        //     $results[$cat->id] = $cat->title;
+        //     foreach ($cat->children as $child) {
+        //         $results[$child->id] = '--------->'.$child->title;
+        //         foreach ($child->children as $cld) {
+        //             $results[$cld->id] = '----------------->'.$cld->title;
+        //             foreach ($cld->children as $c) {
+        //                 $results[$c->id] = '------------------------->'.$c->title;
+        //             }
+        //         }
+        //     }
+        // }
+
+        // return $results;
     }
 }
