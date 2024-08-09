@@ -4,27 +4,54 @@ declare(strict_types=1);
 
 namespace Modules\Cms\Filament\Resources\PageResource\Pages;
 
-use Filament\Actions;
-use Filament\Resources\Pages\ListRecords;
 use Filament\Tables;
+use Filament\Actions;
 use Filament\Tables\Table;
+use Modules\UI\Enums\TableLayoutEnum;
+use Filament\Resources\Pages\ListRecords;
 use Modules\Cms\Filament\Resources\PageResource;
 use Pboivin\FilamentPeek\Pages\Concerns\HasPreviewModal;
 use Pboivin\FilamentPeek\Tables\Actions\ListPreviewAction;
+use Exception;
+use Filament\Actions\CreateAction;
+use Filament\Tables\Actions\Action;
+use Filament\Tables\Actions\ActionGroup;
+use Filament\Tables\Actions\DeleteAction;
+use Filament\Tables\Actions\DeleteBulkAction;
+use Filament\Tables\Actions\ViewAction;
+use Filament\Tables\Actions\EditAction;
+use Filament\Tables\Columns\ImageColumn;
+use Filament\Tables\Columns\Layout\Stack;
+use Filament\Tables\Columns\TextColumn;
+use Filament\Tables\Enums\ActionsPosition;
+use Filament\Tables\Enums\FiltersLayout;
+use Modules\UI\Filament\Actions\Table\TableLayoutToggleTableAction;
+use Modules\Xot\Filament\Traits\TransTrait;
+use Webmozart\Assert\Assert;
 
 class ListPages extends ListRecords
 {
     use ListRecords\Concerns\Translatable;
 
     use HasPreviewModal;
+    use TransTrait;
 
     protected static string $resource = PageResource::class;
 
-    protected function getActions(): array
+    public TableLayoutEnum $layoutView = TableLayoutEnum::LIST;
+
+    protected function getHeaderActions(): array
     {
         return [
             Actions\LocaleSwitcher::make(),
             Actions\CreateAction::make(),
+        ];
+    }
+
+    protected function getTableHeaderActions(): array
+    {
+        return [
+            //TableLayoutToggleTableAction::make(),
         ];
     }
 
@@ -38,6 +65,7 @@ class ListPages extends ListRecords
         return 'page';
     }
 
+    /*
     public function table(Table $table): Table
     {
         return $table
@@ -58,5 +86,72 @@ class ListPages extends ListRecords
             ])
             ->filters([])
             ->bulkActions([]);
+    }
+    */
+    public function getGridTableColumns(): array
+    {
+        return [
+            Stack::make($this->getListTableColumns()),
+
+        ];
+    }
+
+    public function getListTableColumns(): array
+    {
+        return [
+            Tables\Columns\TextColumn::make('title')
+                    ->sortable()
+                    ->searchable(),
+                Tables\Columns\TextColumn::make('slug')
+                    ->sortable()
+                    ->searchable(),
+        ];
+    }
+
+    public function getTableFilters(): array
+    {
+        return [
+        ];
+    }
+
+    public function getTableActions(): array
+    {
+        return [
+
+            ViewAction::make()
+                ->label(''),
+            EditAction::make()
+                ->label(''),
+            DeleteAction::make()
+                ->label('')
+                ->requiresConfirmation(),
+        ];
+    }
+
+    public function getTableBulkActions(): array
+    {
+        return [
+            DeleteBulkAction::make(),
+        ];
+    }
+
+    public function table(Table $table): Table
+    {
+        return $table
+            // ->columns($this->getTableColumns())
+            ->columns($this->layoutView->getTableColumns())
+            ->contentGrid($this->layoutView->getTableContentGrid())
+            ->headerActions($this->getTableHeaderActions())
+
+            ->filters($this->getTableFilters())
+            ->filtersLayout(FiltersLayout::AboveContent)
+            ->persistFiltersInSession()
+            ->actions($this->getTableActions())
+            ->bulkActions($this->getTableBulkActions())
+            ->actionsPosition(ActionsPosition::BeforeColumns)
+            ->defaultSort(
+                column: 'created_at',
+                direction: 'DESC',
+            );
     }
 }
