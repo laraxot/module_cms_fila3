@@ -4,30 +4,25 @@ declare(strict_types=1);
 
 namespace Modules\Cms\Filament\Resources\PageResource\Pages;
 
-use Filament\Tables;
 use Filament\Actions;
-use Filament\Tables\Table;
-use Modules\UI\Enums\TableLayoutEnum;
-use Filament\Resources\Pages\ListRecords;
-use Modules\Cms\Filament\Resources\PageResource;
-use Pboivin\FilamentPeek\Pages\Concerns\HasPreviewModal;
-use Pboivin\FilamentPeek\Tables\Actions\ListPreviewAction;
-use Exception;
 use Filament\Actions\CreateAction;
-use Filament\Tables\Actions\Action;
-use Filament\Tables\Actions\ActionGroup;
+use Filament\Resources\Pages\ListRecords;
+use Filament\Tables;
 use Filament\Tables\Actions\DeleteAction;
 use Filament\Tables\Actions\DeleteBulkAction;
-use Filament\Tables\Actions\ViewAction;
 use Filament\Tables\Actions\EditAction;
-use Filament\Tables\Columns\ImageColumn;
+use Filament\Tables\Actions\ViewAction;
 use Filament\Tables\Columns\Layout\Stack;
 use Filament\Tables\Columns\TextColumn;
 use Filament\Tables\Enums\ActionsPosition;
 use Filament\Tables\Enums\FiltersLayout;
+use Filament\Tables\Table;
+use Modules\Cms\Filament\Resources\PageResource;
+use Modules\UI\Enums\TableLayoutEnum;
 use Modules\UI\Filament\Actions\Table\TableLayoutToggleTableAction;
 use Modules\Xot\Filament\Traits\TransTrait;
-use Webmozart\Assert\Assert;
+use Pboivin\FilamentPeek\Pages\Concerns\HasPreviewModal;
+use Pboivin\FilamentPeek\Tables\Actions\ListPreviewAction;
 
 class ListPages extends ListRecords
 {
@@ -44,14 +39,14 @@ class ListPages extends ListRecords
     {
         return [
             Actions\LocaleSwitcher::make(),
-            Actions\CreateAction::make(),
+            CreateAction::make(),
         ];
     }
 
     protected function getTableHeaderActions(): array
     {
         return [
-            //TableLayoutToggleTableAction::make(),
+            // TableLayoutToggleTableAction::make(),
         ];
     }
 
@@ -92,19 +87,18 @@ class ListPages extends ListRecords
     {
         return [
             Stack::make($this->getListTableColumns()),
-
         ];
     }
 
     public function getListTableColumns(): array
     {
         return [
-            Tables\Columns\TextColumn::make('title')
+            TextColumn::make('title')
                     ->sortable()
                     ->searchable(),
-                Tables\Columns\TextColumn::make('slug')
-                    ->sortable()
-                    ->searchable(),
+            TextColumn::make('slug')
+                ->sortable()
+                ->searchable(),
         ];
     }
 
@@ -117,7 +111,6 @@ class ListPages extends ListRecords
     public function getTableActions(): array
     {
         return [
-
             ViewAction::make()
                 ->label(''),
             EditAction::make()
