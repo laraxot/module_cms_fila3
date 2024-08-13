@@ -4,20 +4,20 @@ declare(strict_types=1);
 
 namespace Modules\Cms\Filament\Clusters\Appearance\Pages;
 
+use Filament\Actions\Action;
 use Filament\Forms;
+use Filament\Forms\Components\ColorPicker;
+use Filament\Forms\Components\FileUpload;
+use Filament\Forms\Components\TextInput;
+use Filament\Forms\Concerns\InteractsWithForms;
+use Filament\Forms\Contracts\HasForms;
 use Filament\Forms\Form;
 use Filament\Pages\Page;
-use Filament\Actions\Action;
-use Illuminate\Support\Facades\File;
 use Filament\Support\Exceptions\Halt;
-use Filament\Forms\Contracts\HasForms;
-use Illuminate\Support\Facades\Config;
 use Illuminate\Database\Eloquent\Model;
-use Filament\Forms\Components\TextInput;
-use Filament\Forms\Components\FileUpload;
-use Filament\Forms\Components\ColorPicker;
+use Illuminate\Support\Facades\Config;
+use Illuminate\Support\Facades\File;
 use Modules\Cms\Filament\Clusters\Appearance;
-use Filament\Forms\Concerns\InteractsWithForms;
 
 /**
  * @property Forms\ComponentContainer $form
@@ -51,7 +51,6 @@ class Headernav extends Page implements HasForms
         //     // config(['appearance.headernav' => []]);
         // }
 
-
         // Creare un file di configurazione in modo programmatico
         // $filePath = config_path('appearance.php');
         // dddx($filePath);
@@ -66,12 +65,10 @@ class Headernav extends Page implements HasForms
         // PHP;
         // file_put_contents($filePath, $configContent);
 
-
         // config(['appearance.headernav' => 'aaa']);
         Config::set('appearance.headernav', 'Europe/Rome');
         dddx(config('appearance'));
-        
-            
+
         // if (File::exists('path/to/file.txt')) {
         //     // Il file esiste
         // } else {
