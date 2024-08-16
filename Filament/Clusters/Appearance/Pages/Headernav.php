@@ -19,6 +19,7 @@ use Filament\Forms\Components\FileUpload;
 use Filament\Forms\Components\ColorPicker;
 use Modules\Cms\Filament\Clusters\Appearance;
 use Filament\Forms\Concerns\InteractsWithForms;
+use function Safe\file_get_contents;
 
 /**
  * @property Forms\ComponentContainer $form
@@ -64,7 +65,7 @@ class Headernav extends Page implements HasForms
     }
 
 
-    public function addConfigValue($filePath, $key, $value)
+    public function addConfigValue(string $filePath, int $key, string $value): void
     {
         // Leggi il contenuto del file
         $config = file_get_contents($filePath);
@@ -84,7 +85,8 @@ class Headernav extends Page implements HasForms
     }
     
 
-    public function checkOrCreateConfigAppearance(){
+    public function checkOrCreateConfigAppearance(): void
+    {
         if(!config('appearance')){
             // Creare un file di configurazione in modo programmatico
             $path = implode('/', array_reverse(explode('.', request()->getHost())));
