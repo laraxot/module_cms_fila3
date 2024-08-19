@@ -79,5 +79,8 @@
         }
     },
     "minimum-stability": "dev",
-    "prefer-stable": true
+    "prefer-stable": true,
+    "require": {
+        "ryangjchandler/orbit": "*"
+    }
 }
