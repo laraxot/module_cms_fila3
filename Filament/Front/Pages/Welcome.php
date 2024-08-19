@@ -65,7 +65,7 @@ class Welcome extends Page
 
             $data[$container_last_singular] = $row;
 
-            if ($row === null) {
+            if (null === $row) {
                 abort(404);
             }
         }
@@ -85,7 +85,7 @@ class Welcome extends Page
         if (\count($containers) > \count($items)) {
             $view = 'index';
         }
-        if (\count($containers) === 0) {
+        if (0 === \count($containers)) {
             $view = 'home';
         }
 
@@ -110,7 +110,7 @@ class Welcome extends Page
             }
         );
 
-        if ($view_work === null) {
+        if (null === $view_work) {
             dddx($views);
         }
         Assert::string($view_work);
@@ -124,7 +124,7 @@ class Welcome extends Page
         $parameters['lang'] = app()->getLocale();
         $record = $parameters['record'] ?? $this->model;
         // dddx($record);
-        if ($name === 'show') {
+        if ('show' === $name) {
             $container0 = class_basename($record);
             $container0 = Str::plural($container0);
             $container0 = Str::snake($container0);
@@ -135,7 +135,7 @@ class Welcome extends Page
             // unset($parameters['record']); // per togliere quel ?record=n dall'url, che non dovrebbe servire?
             return route('test', $parameters);
         }
-        if ($name === 'index') {
+        if ('index' === $name) {
             $container0 = class_basename($record);
             $container0 = Str::plural($container0);
             $container0 = Str::snake($container0);
