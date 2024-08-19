@@ -23,6 +23,10 @@ use Sushi\Sushi;
  * @method static Builder|Module whereName($value)
  *
  * @mixin IdeHelperModule
+ *
+ * @property \Modules\Fixcity\Models\Profile|null $creator
+ * @property \Modules\Fixcity\Models\Profile|null $updater
+ *
  * @mixin \Eloquent
  */
 class Module extends BaseModel

@@ -50,3 +50,5 @@ package-lock.json
 .php-cs-fixer.cache
 /docs/cache
 node_modules
+node_modules
+vendor
