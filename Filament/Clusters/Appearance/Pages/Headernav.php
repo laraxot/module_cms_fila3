@@ -4,21 +4,22 @@ declare(strict_types=1);
 
 namespace Modules\Cms\Filament\Clusters\Appearance\Pages;
 
+use Filament\Actions\Action;
 use Filament\Forms;
+use Filament\Forms\Components\ColorPicker;
+use Filament\Forms\Components\FileUpload;
+use Filament\Forms\Components\TextInput;
+use Filament\Forms\Concerns\InteractsWithForms;
+use Filament\Forms\Contracts\HasForms;
 use Filament\Forms\Form;
 use Filament\Pages\Page;
-use Filament\Actions\Action;
-use Illuminate\Support\Facades\File;
 use Filament\Support\Exceptions\Halt;
-use Filament\Forms\Contracts\HasForms;
-use Illuminate\Support\Facades\Config;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\Artisan;
-use Filament\Forms\Components\TextInput;
-use Filament\Forms\Components\FileUpload;
-use Filament\Forms\Components\ColorPicker;
+use Illuminate\Support\Facades\Config;
+use Illuminate\Support\Facades\File;
 use Modules\Cms\Filament\Clusters\Appearance;
-use Filament\Forms\Concerns\InteractsWithForms;
+
 use function Safe\file_get_contents;
 
 /**
@@ -55,43 +56,40 @@ class Headernav extends Page implements HasForms
                 'subkey2' => 'subvalue2',
             ],
         ];
-        
+
         // $this->addConfigValue(base_path('config/'.$path.'/appearance.php'), $key, $value);
 
         // dddx(config('appearance'));
-        
-            
+
         $this->fillForms();
     }
-
 
     public function addConfigValue(string $filePath, int $key, string $value): void
     {
         // Leggi il contenuto del file
         $config = file_get_contents($filePath);
-    
+
         // Trasforma il contenuto del file in un array PHP
-        $configArray = include($filePath);
-    
+        $configArray = include $filePath;
+
         // Aggiungi o aggiorna il valore dell'array
         $configArray[$key] = $value;
-    
+
         // Converte l'array PHP in una stringa di codice PHP
-        $newConfig = '<?php declare(strict_types=1); return ' . var_export($configArray, true) . ';';
-    
+        $newConfig = '<?php declare(strict_types=1); return '.var_export($configArray, true).';';
+
         // Scrivi la nuova configurazione nel file
         file_put_contents($filePath, $newConfig);
         Artisan::call('optimize:clear');
     }
-    
 
     public function checkOrCreateConfigAppearance(): void
     {
-        if(!config('appearance')){
+        if (! config('appearance')) {
             // Creare un file di configurazione in modo programmatico
             $path = implode('/', array_reverse(explode('.', request()->getHost())));
             $filePath = base_path('config/'.$path.'/appearance.php');
-            $configContent = <<<PHP
+            $configContent = <<<'PHP'
             <?php
 
             declare(strict_types=1);
@@ -104,13 +102,6 @@ class Headernav extends Page implements HasForms
             // dddx(config('appearance'));
         }
     }
-
-    
-
-
-
-
-
 
     protected function fillForms(): void
     {
