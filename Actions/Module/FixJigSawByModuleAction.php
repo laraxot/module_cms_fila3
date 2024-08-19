@@ -28,25 +28,6 @@ final class FixJigSawByModuleAction
 
         $stubs = File::allFiles($stubs_dir);
         foreach ($stubs as $stub) {
-            /*
-            dddx([
-                'getRelativePath' => $stub->getRelativePath(), // ""
-                'getRelativePathname' => $stub->getRelativePathname(), // "config.stub"
-                'getFilenameWithoutExtension' => $stub->getFilenameWithoutExtension(), // "config"
-                // 'getContents' => $stub->getContents(),
-                'getPath' => $stub->getPath(), // "/var/www/html/_bases/base_pfed/laravel/Modules/Cms/Console/Commands/stubs/docs"
-                'getFilename' => $stub->getFilename(), // "config.stub"
-                'getExtension' => $stub->getExtension(), // "stub"
-                'getBasename' => $stub->getBasename(), // "config.stub"
-                'getPathname' => $stub->getPathname(), // "/var/www/html/_bases/base_pfed/laravel/Modules/Cms/Console/Commands/stubs/docs/config.stub"
-                'isFile' => $stub->isFile(),
-                // 'getLinkTarget' => $stub->getLinkTarget(),
-                'getRealPath' => $stub->getRealPath(), //"/var/www/html/_bases/base_pfed/laravel/Modules/Cms/Console/Commands/stubs/docs/config.stub"
-                //'getFileInfo' => $stub->getFileInfo(),
-                //'getPathInfo' => $stub->getPathInfo(),
-                //'methods' => get_class_methods($stub),
-            ]);
-            */
             if (! $stub->isFile()) {
                 continue;
             }
