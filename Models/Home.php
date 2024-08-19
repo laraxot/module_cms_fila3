@@ -18,17 +18,17 @@ use Sushi\Sushi;
 /**
  * Modules\Cms\Models\Home.
  *
- * @property int|null $id
- * @property string|null $name
- * @property string|null $icon_src
- * @property string|null $created_by
- * @property string|null $updated_by
+ * @property int|null                $id
+ * @property string|null             $name
+ * @property string|null             $icon_src
+ * @property string|null             $created_by
+ * @property string|null             $updated_by
  * @property Collection<int, Widget> $containerWidgets
- * @property int|null $container_widgets_count
+ * @property int|null                $container_widgets_count
  * @property Collection<int, Widget> $widgets
- * @property int|null $widgets_count
+ * @property int|null                $widgets_count
  *
- * @method static HomeFactory factory($count = null, $state = [])
+ * @method static HomeFactory  factory($count = null, $state = [])
  * @method static Builder|Home newModelQuery()
  * @method static Builder|Home newQuery()
  * @method static Builder|Home ofLayoutPosition($layout_position)
@@ -41,8 +41,8 @@ use Sushi\Sushi;
  *
  * @mixin IdeHelperHome
  *
- * @property-read \Modules\Fixcity\Models\Profile|null $creator
- * @property-read \Modules\Fixcity\Models\Profile|null $updater
+ * @property \Modules\Fixcity\Models\Profile|null $creator
+ * @property \Modules\Fixcity\Models\Profile|null $updater
  *
  * @mixin \Eloquent
  */
