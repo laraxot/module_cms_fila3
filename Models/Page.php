@@ -61,6 +61,7 @@ class Page extends BaseModel
     use HasTranslations;
 
     use \Orbit\Concerns\Orbital;
+    /** @var string */
     public static $driver = 'json';
 
     protected $fillable = [
@@ -81,6 +82,11 @@ class Page extends BaseModel
         'footer_blocks',
     ];
 
+    /**
+     * Summary of schema.
+     *
+     * @return void
+     */
     public static function schema(Blueprint $table)
     {
         $table->id();
