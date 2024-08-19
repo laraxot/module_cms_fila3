@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Modules\Cms\Models;
 
+use Illuminate\Database\Schema\Blueprint;
 use Spatie\Translatable\HasTranslations;
 
 /**
@@ -59,6 +60,9 @@ class Page extends BaseModel
 {
     use HasTranslations;
 
+    use \Orbit\Concerns\Orbital;
+    public static $driver = 'json';
+
     protected $fillable = [
         'content',
         'slug',
@@ -76,6 +80,21 @@ class Page extends BaseModel
         'sidebar_blocks',
         'footer_blocks',
     ];
+
+    public static function schema(Blueprint $table)
+    {
+        $table->id();
+        // $table->timestamps();
+        $table->string('slug')->unique()->index();
+        $table->string('title');
+        $table->text('content')->nullable();
+        $table->json('content_blocks')->nullable();
+        $table->json('sidebar_blocks')->nullable();
+        $table->json('footer_blocks')->nullable();
+
+        $table->string('created_by')->nullable();
+        $table->string('updated_by')->nullable();
+    }
 
     public function sluggable(): array
     {

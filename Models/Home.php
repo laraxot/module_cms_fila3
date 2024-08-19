@@ -40,6 +40,10 @@ use Sushi\Sushi;
  * @method static Builder|Home whereUpdatedBy($value)
  *
  * @mixin IdeHelperHome
+ *
+ * @property \Modules\Fixcity\Models\Profile|null $creator
+ * @property \Modules\Fixcity\Models\Profile|null $updater
+ *
  * @mixin \Eloquent
  */
 class Home extends BaseModel
