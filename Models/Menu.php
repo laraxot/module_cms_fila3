@@ -4,10 +4,10 @@ declare(strict_types=1);
 
 namespace Modules\Cms\Models;
 
-use Spatie\MediaLibrary\HasMedia;
 use Illuminate\Database\Schema\Blueprint;
-use Spatie\MediaLibrary\InteractsWithMedia;
 use Modules\Blog\Actions\ParentChilds\GetTreeOptions;
+use Spatie\MediaLibrary\HasMedia;
+use Spatie\MediaLibrary\InteractsWithMedia;
 
 /**
  * Modules\Cms\Models\Menu.
