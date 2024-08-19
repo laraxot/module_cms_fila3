@@ -4,9 +4,10 @@ declare(strict_types=1);
 
 namespace Modules\Cms\Models;
 
-use Modules\Blog\Actions\ParentChilds\GetTreeOptions;
 use Spatie\MediaLibrary\HasMedia;
+use Illuminate\Database\Schema\Blueprint;
 use Spatie\MediaLibrary\InteractsWithMedia;
+use Modules\Blog\Actions\ParentChilds\GetTreeOptions;
 
 /**
  * Modules\Cms\Models\Menu.
@@ -108,12 +109,32 @@ class Menu extends BaseModel implements HasMedia
     use InteractsWithMedia;
     use \Staudenmeir\LaravelAdjacencyList\Eloquent\HasRecursiveRelationships;
 
+    use \Orbit\Concerns\Orbital;
+    /** @var string */
+    public static $driver = 'json';
+
     /** @var array<int, string> */
     protected $fillable = [
         'title',
         'items',
         'parent_id',
     ];
+
+    /**
+     * Summary of schema.
+     *
+     * @return void
+     */
+    public static function schema(Blueprint $table)
+    {
+        $table->id();
+        // $table->timestamps();
+        $table->string('title');
+        $table->json('items')->nullable();
+        $table->unsignedBigInteger('parent_id')->nullable();
+        $table->string('created_by')->nullable();
+        $table->string('updated_by')->nullable();
+    }
 
     /** @return array<string, string> */
     protected function casts(): array
