@@ -11,7 +11,6 @@ use Modules\Cms\Filament\Resources\PageResource;
 class EditPage extends EditRecord
 {
     use EditRecord\Concerns\Translatable;
-
     use HasPagePreview;
 
     protected static string $resource = PageResource::class;
