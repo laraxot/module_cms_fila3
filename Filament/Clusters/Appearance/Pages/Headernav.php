@@ -7,7 +7,10 @@ namespace Modules\Cms\Filament\Clusters\Appearance\Pages;
 use Filament\Actions\Action;
 use Filament\Forms;
 use Filament\Forms\Components\ColorPicker;
+use Filament\Forms\Components\ColorPicker;
 use Filament\Forms\Components\FileUpload;
+use Filament\Forms\Components\FileUpload;
+use Filament\Forms\Components\TextInput;
 use Filament\Forms\Components\TextInput;
 use Filament\Forms\Concerns\InteractsWithForms;
 use Filament\Forms\Contracts\HasForms;
@@ -15,6 +18,7 @@ use Filament\Forms\Form;
 use Filament\Pages\Page;
 use Filament\Support\Exceptions\Halt;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\Artisan;
 use Illuminate\Support\Facades\Config;
 use Illuminate\Support\Facades\File;
 use Modules\Cms\Filament\Clusters\Appearance;
@@ -38,18 +42,23 @@ class Headernav extends Page implements HasForms
 
     public function mount(): void
     {
-        // dddx(request()->getHost());
+        $this->checkOrCreateConfigAppearance();
 
-        // if(config('appearance')){
-        //     dddx([
-        //         base_path('config/local'),
-        //         config('appearance.headernav.other_color'),
-        //         config('appearance')
-        //     ]);
-        // }else{
-        //     Config::set('appearance.headernav', 'Europe/Rome');
-        //     // config(['appearance.headernav' => []]);
-        // }
+        // $filePath = config_path($filePath); // Percorso del file di configurazione
+        $path = implode('/', array_reverse(explode('.', request()->getHost())));
+        $filePath = 'config/'.$path.'/appearance.php';
+        $key = 'other3';
+        // $value = 'other2';
+        $value = [
+            'key1' => 'value1',
+            'key2' => 'value2',
+            'key3' => [
+                'subkey1' => 'subvalue1',
+                'subkey2' => 'subvalue2',
+            ],
+        ];
+
+        // $this->addConfigValue(base_path('config/'.$path.'/appearance.php'), $key, $value);
 
         // Creare un file di configurazione in modo programmatico
         // $filePath = config_path('appearance.php');
@@ -75,6 +84,45 @@ class Headernav extends Page implements HasForms
         //     // Il file non esiste
         // }
         $this->fillForms();
+    }
+
+    public function addConfigValue($filePath, $key, $value)
+    {
+        // Leggi il contenuto del file
+        $config = file_get_contents($filePath);
+
+        // Trasforma il contenuto del file in un array PHP
+        $configArray = include $filePath;
+
+        // Aggiungi o aggiorna il valore dell'array
+        $configArray[$key] = $value;
+
+        // Converte l'array PHP in una stringa di codice PHP
+        $newConfig = '<?php declare(strict_types=1); return '.var_export($configArray, true).';';
+
+        // Scrivi la nuova configurazione nel file
+        file_put_contents($filePath, $newConfig);
+        Artisan::call('optimize:clear');
+    }
+
+    public function checkOrCreateConfigAppearance()
+    {
+        if (! config('appearance')) {
+            // Creare un file di configurazione in modo programmatico
+            $path = implode('/', array_reverse(explode('.', request()->getHost())));
+            $filePath = base_path('config/'.$path.'/appearance.php');
+            $configContent = <<<PHP
+            <?php
+
+            declare(strict_types=1);
+
+            return [
+
+            ];
+            PHP;
+            file_put_contents($filePath, $configContent);
+            // dddx(config('appearance'));
+        }
     }
 
     protected function fillForms(): void
