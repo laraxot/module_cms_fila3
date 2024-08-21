@@ -6,6 +6,7 @@ namespace Modules\Cms\Models;
 
 use Illuminate\Database\Schema\Blueprint;
 use Modules\Blog\Actions\ParentChilds\GetTreeOptions;
+use Modules\Tenant\Models\Traits\SushiToJsons;
 use Spatie\MediaLibrary\HasMedia;
 use Spatie\MediaLibrary\InteractsWithMedia;
 
@@ -96,8 +97,8 @@ use Spatie\MediaLibrary\InteractsWithMedia;
  * @method static \Staudenmeir\LaravelAdjacencyList\Eloquent\Collection<int, static> all($columns = ['*'])
  * @method static \Staudenmeir\LaravelAdjacencyList\Eloquent\Collection<int, static> get($columns = ['*'])
  *
- * @property \Modules\Fixcity\Models\Profile|null $creator
- * @property \Modules\Fixcity\Models\Profile|null $updater
+ * @property \Modules\Xot\Contracts\ProfileContract|null $creator
+ * @property \Modules\Xot\Contracts\ProfileContract|null $updater
  *
  * @method static \Staudenmeir\LaravelAdjacencyList\Eloquent\Collection<int, static> all($columns = ['*'])
  * @method static \Staudenmeir\LaravelAdjacencyList\Eloquent\Collection<int, static> get($columns = ['*'])
@@ -107,7 +108,8 @@ use Spatie\MediaLibrary\InteractsWithMedia;
 class Menu extends BaseModel implements HasMedia
 {
     use InteractsWithMedia;
-    use \Orbit\Concerns\Orbital;
+    //use \Orbit\Concerns\Orbital;
+    use SushiToJsons;
     use \Staudenmeir\LaravelAdjacencyList\Eloquent\HasRecursiveRelationships;
 
     /** @var string */
@@ -120,22 +122,38 @@ class Menu extends BaseModel implements HasMedia
         'parent_id',
     ];
 
-    /**
-     * Summary of schema.
-     *
-     * @return void
-     */
+    public function getRows(): array
+    {
+        return $this->getSushiRows();
+    }
+
+    protected array $schema = [
+        'id' => 'integer',
+        'title' => 'string',
+        'parent_id' => 'integer',
+
+        'created_at' => 'datetime',
+        'updated_at' => 'datetime',
+        'created_by' => 'string',
+        'updated_by' => 'string',
+
+
+    ];
+
+
+
+    /* -- orbit
     public static function schema(Blueprint $table)
     {
         $table->id();
-
+        // $table->timestamps();
         $table->string('title');
         $table->json('items')->nullable();
         $table->unsignedBigInteger('parent_id')->nullable();
-        // $table->timestamps();
         $table->string('created_by')->nullable();
         $table->string('updated_by')->nullable();
     }
+    */
 
     /** @return array<string, string> */
     protected function casts(): array
