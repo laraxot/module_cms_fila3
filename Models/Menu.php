@@ -108,7 +108,7 @@ use Spatie\MediaLibrary\InteractsWithMedia;
 class Menu extends BaseModel implements HasMedia
 {
     use InteractsWithMedia;
-    //use \Orbit\Concerns\Orbital;
+    // use \Orbit\Concerns\Orbital;
     use SushiToJsons;
     use \Staudenmeir\LaravelAdjacencyList\Eloquent\HasRecursiveRelationships;
 
@@ -136,11 +136,7 @@ class Menu extends BaseModel implements HasMedia
         'updated_at' => 'datetime',
         'created_by' => 'string',
         'updated_by' => 'string',
-
-
     ];
-
-
 
     /* -- orbit
     public static function schema(Blueprint $table)
