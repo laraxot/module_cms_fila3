@@ -32,12 +32,16 @@ use Modules\Cms\Filament\Clusters\Appearance;
 use function Safe\file_get_contents;
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 >>>>>>> a806d34 (.)
 =======
 use function Safe\file_put_contents;
 >>>>>>> 784fa4b (up)
 =======
 >>>>>>> 53cf86e (.)
+=======
+use function Safe\file_put_contents;
+>>>>>>> 3a6d4fa (.)
 
 /**
  * @property Forms\ComponentContainer $form
