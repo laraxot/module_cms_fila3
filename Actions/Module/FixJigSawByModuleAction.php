@@ -8,10 +8,11 @@ use Illuminate\Filesystem\Filesystem;
 use Illuminate\Support\Facades\File;
 use Modules\Xot\Services\FileService;
 use Nwidart\Modules\Laravel\Module;
-use Spatie\QueueableAction\QueueableAction;
-use Symfony\Component\Finder\SplFileInfo;
 
 use function Safe\realpath;
+
+use Spatie\QueueableAction\QueueableAction;
+use Symfony\Component\Finder\SplFileInfo;
 
 final class FixJigSawByModuleAction
 {
@@ -21,7 +22,7 @@ final class FixJigSawByModuleAction
     {
         $res = [];
         $stubs_dir = realpath(__DIR__.'/../../Console/Commands/stubs/docs');
-        if ($stubs_dir == false) {
+        if (false == $stubs_dir) {
             throw new \Exception('['.__LINE__.']['.__FILE__.']');
         }
 
@@ -31,7 +32,7 @@ final class FixJigSawByModuleAction
                 continue;
             }
 
-            if ($stub->getExtension() != 'stub') {
+            if ('stub' != $stub->getExtension()) {
                 continue;
             }
 
