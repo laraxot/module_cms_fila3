@@ -19,6 +19,11 @@ use Illuminate\Support\Facades\Config;
 use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Artisan;
 use Modules\Cms\Filament\Clusters\Appearance;
+<<<<<<< HEAD
+=======
+use Filament\Forms\Concerns\InteractsWithForms;
+use function Safe\file_get_contents;
+>>>>>>> a806d34 (.)
 
 /**
  * @property Forms\ComponentContainer $form
@@ -84,7 +89,7 @@ class Headernav extends Page implements HasForms
     }
 
 
-    public function addConfigValue($filePath, $key, $value)
+    public function addConfigValue(string $filePath, int $key, string $value): void
     {
         // Leggi il contenuto del file
         $config = file_get_contents($filePath);
@@ -103,10 +108,16 @@ class Headernav extends Page implements HasForms
         Artisan::call('optimize:clear');
     }
 
+<<<<<<< HEAD
 
     public function checkOrCreateConfigAppearance()
     {
         if(!config('appearance')) {
+=======
+    public function checkOrCreateConfigAppearance(): void
+    {
+        if(!config('appearance')){
+>>>>>>> a806d34 (.)
             // Creare un file di configurazione in modo programmatico
             $path = implode('/', array_reverse(explode('.', request()->getHost())));
             $filePath = base_path('config/'.$path.'/appearance.php');
