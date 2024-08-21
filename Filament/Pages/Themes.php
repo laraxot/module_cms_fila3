@@ -67,9 +67,9 @@ class Themes extends Page
         $data['pub_theme'] = $name;
         TenantService::saveConfig('xra', $data);
         Notification::make()
-        ->title('Saved successfully')
-        ->success()
-        ->send();
+            ->title('Saved successfully')
+            ->success()
+            ->send();
         // dddx(config('xra.pub_theme'));
     }
 

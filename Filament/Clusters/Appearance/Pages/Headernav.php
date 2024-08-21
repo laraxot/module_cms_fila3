@@ -18,10 +18,17 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\Config;
 use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Artisan;
+<<<<<<< HEAD
 use Modules\Cms\Filament\Clusters\Appearance;
 <<<<<<< HEAD
 =======
 use Filament\Forms\Concerns\InteractsWithForms;
+=======
+use Illuminate\Support\Facades\Config;
+use Illuminate\Support\Facades\File;
+use Modules\Cms\Filament\Clusters\Appearance;
+
+>>>>>>> ac32394 (up)
 use function Safe\file_get_contents;
 >>>>>>> a806d34 (.)
 
@@ -62,6 +69,7 @@ class Headernav extends Page implements HasForms
 
         // $this->addConfigValue(base_path('config/'.$path.'/appearance.php'), $key, $value);
 
+<<<<<<< HEAD
         // Creare un file di configurazione in modo programmatico
         // $filePath = config_path('appearance.php');
         // dddx($filePath);
@@ -85,9 +93,12 @@ class Headernav extends Page implements HasForms
         // } else {
         //     // Il file non esiste
         // }
+=======
+        // dddx(config('appearance'));
+
+>>>>>>> ac32394 (up)
         $this->fillForms();
     }
-
 
     public function addConfigValue(string $filePath, int $key, string $value): void
     {
@@ -95,13 +106,21 @@ class Headernav extends Page implements HasForms
         $config = file_get_contents($filePath);
 
         // Trasforma il contenuto del file in un array PHP
+<<<<<<< HEAD
         $configArray = include($filePath);
+=======
+        $configArray = include $filePath;
+>>>>>>> ac32394 (up)
 
         // Aggiungi o aggiorna il valore dell'array
         $configArray[$key] = $value;
 
         // Converte l'array PHP in una stringa di codice PHP
+<<<<<<< HEAD
         $newConfig = '<?php declare(strict_types=1); return ' . var_export($configArray, true) . ';';
+=======
+        $newConfig = '<?php declare(strict_types=1); return '.var_export($configArray, true).';';
+>>>>>>> ac32394 (up)
 
         // Scrivi la nuova configurazione nel file
         file_put_contents($filePath, $newConfig);
@@ -116,12 +135,16 @@ class Headernav extends Page implements HasForms
 =======
     public function checkOrCreateConfigAppearance(): void
     {
+<<<<<<< HEAD
         if(!config('appearance')){
 >>>>>>> a806d34 (.)
+=======
+        if (! config('appearance')) {
+>>>>>>> ac32394 (up)
             // Creare un file di configurazione in modo programmatico
             $path = implode('/', array_reverse(explode('.', request()->getHost())));
             $filePath = base_path('config/'.$path.'/appearance.php');
-            $configContent = <<<PHP
+            $configContent = <<<'PHP'
             <?php
 
             declare(strict_types=1);
@@ -135,6 +158,7 @@ class Headernav extends Page implements HasForms
         }
     }
 
+<<<<<<< HEAD
 
 
 
@@ -142,6 +166,8 @@ class Headernav extends Page implements HasForms
 
 
 
+=======
+>>>>>>> ac32394 (up)
     protected function fillForms(): void
     {
         // $data = $this->getUser()->attributesToArray();
