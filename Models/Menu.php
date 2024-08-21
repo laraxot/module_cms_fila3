@@ -128,10 +128,18 @@ class Menu extends BaseModel implements HasMedia
     public static function schema(Blueprint $table)
     {
         $table->id();
+<<<<<<< HEAD
         // $table->timestamps();
         $table->string('title');
         $table->json('items')->nullable();
         $table->unsignedBigInteger('parent_id')->nullable();
+=======
+
+        $table->string('title');
+        $table->json('items')->nullable();
+        $table->unsignedBigInteger('parent_id')->nullable();
+        // $table->timestamps();
+>>>>>>> origin/dev
         $table->string('created_by')->nullable();
         $table->string('updated_by')->nullable();
     }
