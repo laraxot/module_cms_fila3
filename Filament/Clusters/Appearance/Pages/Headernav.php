@@ -21,10 +21,7 @@ use Illuminate\Support\Facades\File;
 use Modules\Cms\Filament\Clusters\Appearance;
 
 use function Safe\file_get_contents;
-<<<<<<< HEAD
-=======
 use function Safe\file_put_contents;
->>>>>>> origin/dev
 
 /**
  * @property Forms\ComponentContainer $form
@@ -60,11 +57,6 @@ class Headernav extends Page implements HasForms
                 'subkey2' => 'subvalue2',
             ],
         ];
-<<<<<<< HEAD
-
-        // $this->addConfigValue(base_path('config/'.$path.'/appearance.php'), $key, $value);
-=======
->>>>>>> origin/dev
 
         // $this->addConfigValue(base_path('config/'.$path.'/appearance.php'), $key, $value);
 
@@ -92,21 +84,13 @@ class Headernav extends Page implements HasForms
         Artisan::call('optimize:clear');
     }
 
-<<<<<<< HEAD
-    public function checkOrCreateConfigAppearance()
-=======
     public function checkOrCreateConfigAppearance(): void
->>>>>>> origin/dev
     {
         if (! config('appearance')) {
             // Creare un file di configurazione in modo programmatico
             $path = implode('/', array_reverse(explode('.', request()->getHost())));
             $filePath = base_path('config/'.$path.'/appearance.php');
-<<<<<<< HEAD
-            $configContent = <<<PHP
-=======
             $configContent = <<<'PHP'
->>>>>>> origin/dev
             <?php
 
             declare(strict_types=1);
