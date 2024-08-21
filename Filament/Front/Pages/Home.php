@@ -87,7 +87,7 @@ class Home extends Page
         if (\count($containers) > \count($items)) {
             $view = 'index';
         }
-        if (0 === \count($containers)) {
+        if (\count($containers) === 0) {
             $view = 'home';
         }
 
@@ -120,7 +120,7 @@ class Home extends Page
     {
         $parameters['lang'] = app()->getLocale();
         $record = $parameters['record'];
-        if ('show' === $name) {
+        if ($name === 'show') {
             $container0 = class_basename($record);
             $container0 = Str::plural($container0);
             $container0 = Str::snake($container0);
@@ -129,7 +129,7 @@ class Home extends Page
 
             return route('test', $parameters);
         }
-        if ('index' === $name) {
+        if ($name === 'index') {
             $container0 = class_basename($record);
             $container0 = Str::plural($container0);
             $container0 = Str::snake($container0);
