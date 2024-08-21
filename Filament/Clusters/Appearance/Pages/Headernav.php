@@ -31,10 +31,13 @@ use Modules\Cms\Filament\Clusters\Appearance;
 >>>>>>> ac32394 (up)
 use function Safe\file_get_contents;
 <<<<<<< HEAD
+<<<<<<< HEAD
 >>>>>>> a806d34 (.)
 =======
 use function Safe\file_put_contents;
 >>>>>>> 784fa4b (up)
+=======
+>>>>>>> 53cf86e (.)
 
 /**
  * @property Forms\ComponentContainer $form
