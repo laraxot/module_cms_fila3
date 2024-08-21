@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace Modules\Cms\Models;
 
 use Illuminate\Database\Schema\Blueprint;
+use Modules\Tenant\Models\Traits\SushiToJsons;
 use Spatie\Translatable\HasTranslations;
 
 /**
@@ -59,12 +60,11 @@ use Spatie\Translatable\HasTranslations;
 class Page extends BaseModel
 {
     use HasTranslations;
-    use \Orbit\Concerns\Orbital;
+    //use \Orbit\Concerns\Orbital;
+    use \Sushi\Sushi;
+    use SushiToJsons;
 
     /** @var string */
-    public static $driver = 'json';
-
-    use \Orbit\Concerns\Orbital;
     public static $driver = 'json';
 
     protected $fillable = [
@@ -85,11 +85,33 @@ class Page extends BaseModel
         'footer_blocks',
     ];
 
-    /**
-     * Summary of schema.
-     *
-     * @return void
-     */
+    public function getRows(): array
+    {
+        return $this->getSushiRows();
+    }
+
+
+    protected array $schema = [
+        'id' => 'integer',
+        'title' => 'json',
+        'slug' => 'string',
+        'content' => 'string',
+
+
+        'content_blocks' => 'json',
+        'sidebar_blocks' => 'json',
+        'footer_blocks' => 'json',
+
+        'created_at' => 'datetime',
+        'updated_at' => 'datetime',
+
+        'created_by' => 'string',
+        'updated_by' => 'string',
+
+
+    ];
+
+    /* --orbital
     public static function schema(Blueprint $table)
     {
         $table->id();
@@ -104,6 +126,7 @@ class Page extends BaseModel
         $table->string('created_by')->nullable();
         $table->string('updated_by')->nullable();
     }
+    */
 
     public function sluggable(): array
     {
