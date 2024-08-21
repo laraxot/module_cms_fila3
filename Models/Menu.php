@@ -4,10 +4,15 @@ declare(strict_types=1);
 
 namespace Modules\Cms\Models;
 
+<<<<<<< HEAD
 use Illuminate\Database\Schema\Blueprint;
 use Modules\Blog\Actions\ParentChilds\GetTreeOptions;
+=======
+>>>>>>> 0404d02 (.)
 use Spatie\MediaLibrary\HasMedia;
+use Illuminate\Database\Schema\Blueprint;
 use Spatie\MediaLibrary\InteractsWithMedia;
+use Modules\Blog\Actions\ParentChilds\GetTreeOptions;
 
 /**
  * Modules\Cms\Models\Menu.
@@ -128,10 +133,17 @@ class Menu extends BaseModel implements HasMedia
     public static function schema(Blueprint $table)
     {
         $table->id();
+<<<<<<< HEAD
         $table->string('title');
         $table->text('items')->nullable();
         $table->unsignedBigInteger('parent_id')->nullable();
 
+=======
+        // $table->timestamps();
+        $table->string('title');
+        $table->json('items')->nullable();
+        $table->unsignedBigInteger('parent_id')->nullable();
+>>>>>>> 0404d02 (.)
         $table->string('created_by')->nullable();
         $table->string('updated_by')->nullable();
     }
