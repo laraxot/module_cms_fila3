@@ -15,15 +15,9 @@ use Filament\Forms\Form;
 use Filament\Pages\Page;
 use Filament\Support\Exceptions\Halt;
 use Illuminate\Database\Eloquent\Model;
-<<<<<<< HEAD
 use Illuminate\Support\Facades\Config;
 use Illuminate\Support\Facades\File;
-=======
 use Illuminate\Support\Facades\Artisan;
-use Filament\Forms\Components\TextInput;
-use Filament\Forms\Components\FileUpload;
-use Filament\Forms\Components\ColorPicker;
->>>>>>> f09da77 (wip appearance theme)
 use Modules\Cms\Filament\Clusters\Appearance;
 
 /**
@@ -60,10 +54,9 @@ class Headernav extends Page implements HasForms
                 'subkey2' => 'subvalue2',
             ],
         ];
-        
+
         // $this->addConfigValue(base_path('config/'.$path.'/appearance.php'), $key, $value);
 
-<<<<<<< HEAD
         // Creare un file di configurazione in modo programmatico
         // $filePath = config_path('appearance.php');
         // dddx($filePath);
@@ -87,11 +80,6 @@ class Headernav extends Page implements HasForms
         // } else {
         //     // Il file non esiste
         // }
-=======
-        // dddx(config('appearance'));
-        
-            
->>>>>>> f09da77 (wip appearance theme)
         $this->fillForms();
     }
 
@@ -100,24 +88,25 @@ class Headernav extends Page implements HasForms
     {
         // Leggi il contenuto del file
         $config = file_get_contents($filePath);
-    
+
         // Trasforma il contenuto del file in un array PHP
         $configArray = include($filePath);
-    
+
         // Aggiungi o aggiorna il valore dell'array
         $configArray[$key] = $value;
-    
+
         // Converte l'array PHP in una stringa di codice PHP
         $newConfig = '<?php declare(strict_types=1); return ' . var_export($configArray, true) . ';';
-    
+
         // Scrivi la nuova configurazione nel file
         file_put_contents($filePath, $newConfig);
         Artisan::call('optimize:clear');
     }
-    
 
-    public function checkOrCreateConfigAppearance(){
-        if(!config('appearance')){
+
+    public function checkOrCreateConfigAppearance()
+    {
+        if(!config('appearance')) {
             // Creare un file di configurazione in modo programmatico
             $path = implode('/', array_reverse(explode('.', request()->getHost())));
             $filePath = base_path('config/'.$path.'/appearance.php');
@@ -135,7 +124,7 @@ class Headernav extends Page implements HasForms
         }
     }
 
-    
+
 
 
 
