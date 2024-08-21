@@ -60,7 +60,7 @@ use Spatie\Translatable\HasTranslations;
 class Page extends BaseModel
 {
     use HasTranslations;
-    //use \Orbit\Concerns\Orbital;
+    // use \Orbit\Concerns\Orbital;
     use \Sushi\Sushi;
     use SushiToJsons;
 
@@ -90,13 +90,11 @@ class Page extends BaseModel
         return $this->getSushiRows();
     }
 
-
     protected array $schema = [
         'id' => 'integer',
         'title' => 'json',
         'slug' => 'string',
         'content' => 'string',
-
 
         'content_blocks' => 'json',
         'sidebar_blocks' => 'json',
@@ -107,8 +105,6 @@ class Page extends BaseModel
 
         'created_by' => 'string',
         'updated_by' => 'string',
-
-
     ];
 
     /* --orbital
