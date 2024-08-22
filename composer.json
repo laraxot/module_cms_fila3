@@ -11,7 +11,8 @@
     "extra": {
         "laravel": {
             "providers": [
-                "Modules\\Cms\\Providers\\CmsServiceProvider"
+                "Modules\\Cms\\Providers\\CmsServiceProvider",
+                "Modules\\Cms\\Providers\\Filament\\AdminPanelProvider"
             ],
             "aliases": {
 
