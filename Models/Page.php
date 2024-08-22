@@ -4,7 +4,6 @@ declare(strict_types=1);
 
 namespace Modules\Cms\Models;
 
-use Illuminate\Database\Schema\Blueprint;
 use Modules\Tenant\Models\Traits\SushiToJsons;
 use Spatie\Translatable\HasTranslations;
 
@@ -62,8 +61,6 @@ class Page extends BaseModel
     use HasTranslations;
     use SushiToJsons;
 
-
-
     protected $fillable = [
         'content',
         'slug',
@@ -103,8 +100,6 @@ class Page extends BaseModel
         'created_by' => 'string',
         'updated_by' => 'string',
     ];
-
-
 
     public function sluggable(): array
     {

@@ -4,11 +4,10 @@ declare(strict_types=1);
 
 namespace Modules\Cms\Models;
 
-use Spatie\MediaLibrary\HasMedia;
-use Illuminate\Database\Schema\Blueprint;
-use Spatie\MediaLibrary\InteractsWithMedia;
-use Modules\Tenant\Models\Traits\SushiToJsons;
 use Modules\Blog\Actions\ParentChilds\GetTreeOptions;
+use Modules\Tenant\Models\Traits\SushiToJsons;
+use Spatie\MediaLibrary\HasMedia;
+use Spatie\MediaLibrary\InteractsWithMedia;
 use Staudenmeir\LaravelAdjacencyList\Eloquent\HasRecursiveRelationships;
 
 /**
@@ -112,7 +111,6 @@ class Menu extends BaseModel implements HasMedia
     use SushiToJsons;
     use HasRecursiveRelationships;
 
-
     /** @var array<int, string> */
     protected $fillable = [
         'title',
@@ -135,8 +133,6 @@ class Menu extends BaseModel implements HasMedia
         'created_by' => 'string',
         'updated_by' => 'string',
     ];
-
-
 
     /** @return array<string, string> */
     protected function casts(): array
