@@ -23,7 +23,11 @@
             "Modules\\Cms\\": ""
         }
     },
+    "require": {
+        
+    },
     "require_comment": {
+        "ryangjchandler/orbit": "*",
         "illuminate/contracts": "^10.0|^11.0",
         "laraxot/module_lang_fila3": "*",
         "laraxot/module_user_fila3": "*",
@@ -79,8 +83,6 @@
         }
     },
     "minimum-stability": "dev",
-    "prefer-stable": true,
-    "require": {
-        "ryangjchandler/orbit": "*"
-    }
+    "prefer-stable": true
+    
 }

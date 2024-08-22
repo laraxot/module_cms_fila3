@@ -10,8 +10,7 @@ use Modules\Xot\Database\Migrations\XotBaseMigration;
 /**
  * Class CreateCmsPagesTable.
  */
-class CreateCmsPagesTable extends XotBaseMigration
-{
+return new class () extends XotBaseMigration {
     protected ?string $model_class = Page::class;
 
     /**
@@ -57,4 +56,4 @@ class CreateCmsPagesTable extends XotBaseMigration
             }
         );
     }
-}
+};

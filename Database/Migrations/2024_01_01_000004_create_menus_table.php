@@ -8,8 +8,7 @@ use Modules\Xot\Database\Migrations\XotBaseMigration;
 /**
  * Class .
  */
-class CreateMenusTable extends XotBaseMigration
-{
+return new class () extends XotBaseMigration {
     /**
      * Run the migrations.
      */
@@ -42,4 +41,4 @@ class CreateMenusTable extends XotBaseMigration
             }
         );
     }
-}
+};
