@@ -4,11 +4,12 @@ declare(strict_types=1);
 
 namespace Modules\Cms\Models;
 
-use Illuminate\Database\Schema\Blueprint;
-use Modules\Blog\Actions\ParentChilds\GetTreeOptions;
-use Modules\Tenant\Models\Traits\SushiToJsons;
 use Spatie\MediaLibrary\HasMedia;
+use Illuminate\Database\Schema\Blueprint;
 use Spatie\MediaLibrary\InteractsWithMedia;
+use Modules\Tenant\Models\Traits\SushiToJsons;
+use Modules\Blog\Actions\ParentChilds\GetTreeOptions;
+use Staudenmeir\LaravelAdjacencyList\Eloquent\HasRecursiveRelationships;
 
 /**
  * Modules\Cms\Models\Menu.
@@ -108,12 +109,9 @@ use Spatie\MediaLibrary\InteractsWithMedia;
 class Menu extends BaseModel implements HasMedia
 {
     use InteractsWithMedia;
-    // use \Orbit\Concerns\Orbital;
     use SushiToJsons;
-    use \Staudenmeir\LaravelAdjacencyList\Eloquent\HasRecursiveRelationships;
+    use HasRecursiveRelationships;
 
-    /** @var string */
-    public static $driver = 'json';
 
     /** @var array<int, string> */
     protected $fillable = [
@@ -138,18 +136,7 @@ class Menu extends BaseModel implements HasMedia
         'updated_by' => 'string',
     ];
 
-    /* -- orbit
-    public static function schema(Blueprint $table)
-    {
-        $table->id();
-        // $table->timestamps();
-        $table->string('title');
-        $table->json('items')->nullable();
-        $table->unsignedBigInteger('parent_id')->nullable();
-        $table->string('created_by')->nullable();
-        $table->string('updated_by')->nullable();
-    }
-    */
+
 
     /** @return array<string, string> */
     protected function casts(): array
