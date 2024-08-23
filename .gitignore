@@ -55,3 +55,5 @@ vendor
 .php-cs-fixer.cache
 .git-blame-ignore-revs
 build/
+vendor/
+build/
