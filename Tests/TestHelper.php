@@ -6,7 +6,6 @@ namespace Modules\Cms\Tests;
 
 use Illuminate\Foundation\Testing\TestCase as BaseTestCase;
 use Modules\Cms\Models\Module;
-
 use Modules\Xot\Actions\Filament\GetModulesNavigationItems;
 use Tests\CreatesApplication;
 
