@@ -14,19 +14,15 @@ use Sushi\Sushi;
  *
  * @property int         $id
  * @property string|null $name
- *
  * @method static ModuleFactory  factory($count = null, $state = [])
  * @method static Builder|Module newModelQuery()
  * @method static Builder|Module newQuery()
  * @method static Builder|Module query()
  * @method static Builder|Module whereId($value)
  * @method static Builder|Module whereName($value)
- *
  * @mixin IdeHelperModule
- *
  * @property \Modules\Xot\Contracts\ProfileContract|null $creator
  * @property \Modules\Xot\Contracts\ProfileContract|null $updater
- *
  * @mixin \Eloquent
  */
 class Module extends BaseModel
