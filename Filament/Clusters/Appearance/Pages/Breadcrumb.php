@@ -6,8 +6,6 @@ namespace Modules\Cms\Filament\Clusters\Appearance\Pages;
 
 use Filament\Actions\Action;
 use Filament\Forms;
-use Filament\Forms\Components\ColorPicker;
-use Filament\Forms\Components\FileUpload;
 use Filament\Forms\Components\TextInput;
 use Filament\Forms\Concerns\InteractsWithForms;
 use Filament\Forms\Contracts\HasForms;
@@ -22,7 +20,7 @@ use Modules\Tenant\Services\TenantService;
 /**
  * @property Forms\ComponentContainer $form
  */
-class Headernav extends Page implements HasForms
+class Breadcrumb extends Page implements HasForms
 {
     use InteractsWithForms;
 
@@ -32,7 +30,7 @@ class Headernav extends Page implements HasForms
 
     protected static ?string $cluster = Appearance::class;
 
-    protected static ?int $navigationSort = 1;
+    protected static ?int $navigationSort = 2;
 
     public ?array $data = [];
 
@@ -44,7 +42,7 @@ class Headernav extends Page implements HasForms
     protected function fillForms(): void
     {
         $data = TenantService::config('appearance');
-        $data = Arr::get($data, 'headernav', []);
+        $data = Arr::get($data, 'breadcrumb', []);
 
         $this->form->fill($data);
     }
@@ -53,10 +51,6 @@ class Headernav extends Page implements HasForms
     {
         return $form
             ->schema([
-                ColorPicker::make('background_color'),
-                FileUpload::make('background'),
-                ColorPicker::make('overlay_color'),
-                TextInput::make('overlay_opacity')->numeric()->minValue(0)->maxValue(100),
                 TextInput::make('class'),
                 TextInput::make('style'),
             ])->columns(2)
@@ -77,7 +71,7 @@ class Headernav extends Page implements HasForms
         try {
             $data = $this->form->getState();
             $up = [
-                'headernav' => $data,
+                'breadcrumb' => $data,
             ];
             TenantService::saveConfig('appearance', $up);
         } catch (Halt $exception) {
