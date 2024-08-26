@@ -16,6 +16,7 @@ use Filament\Support\Exceptions\Halt;
 use Illuminate\Support\Arr;
 use Modules\Cms\Filament\Clusters\Appearance;
 use Modules\Tenant\Services\TenantService;
+use Webmozart\Assert\Assert;
 
 /**
  * @property Forms\ComponentContainer $form
@@ -41,8 +42,8 @@ class Breadcrumb extends Page implements HasForms
 
     protected function fillForms(): void
     {
-        $data = TenantService::config('appearance');
-        $data = Arr::get($data, 'breadcrumb', []);
+        Assert::isArray($data = TenantService::config('appearance'));
+        Assert::isArray($data = Arr::get($data, 'breadcrumb', []));
 
         $this->form->fill($data);
     }
