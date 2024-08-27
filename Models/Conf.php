@@ -28,7 +28,7 @@ class Conf extends Model
 {
     use Sushi;
 
-    /** @var array<int, string> */
+    /** @var list<string> */
     protected $fillable = [
         'id', 'name',
     ];

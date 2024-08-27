@@ -33,7 +33,7 @@ class Module extends BaseModel
 {
     use Sushi;
 
-    /** @var array<int, string> */
+    /** @var list<string> */
     protected $fillable = [
         'id', 'name',
     ];

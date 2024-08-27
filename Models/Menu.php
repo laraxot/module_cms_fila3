@@ -115,7 +115,7 @@ class Menu extends BaseModel implements HasMedia
     use SushiToJsons;
     use HasRecursiveRelationships;
 
-    /** @var array<int, string> */
+    /** @var list<string> */
     protected $fillable = [
         'title',
         'items',
