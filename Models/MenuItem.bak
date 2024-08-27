@@ -60,7 +60,7 @@ class MenuItem extends Model
     protected string $config_name = 'menu_builder_item';
 
     // protected $table = null;
-    /** @var array<int, string> */
+    /** @var list<string> */
     protected $fillable = [
         'id',
         'label',
