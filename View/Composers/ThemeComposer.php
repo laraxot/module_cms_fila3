@@ -4,10 +4,11 @@ declare(strict_types=1);
 
 namespace Modules\Cms\View\Composers;
 
-use Illuminate\Database\Eloquent\Collection;
 use Modules\Cms\Models\Menu;
 use Modules\Cms\Models\Page;
 use Webmozart\Assert\Assert;
+use Modules\Cms\Models\PageContent;
+use Illuminate\Database\Eloquent\Collection;
 
 class ThemeComposer
 {
@@ -61,6 +62,15 @@ class ThemeComposer
         // $page = Page::firstOrCreate(['slug' => $slug], ['content_blocks' => []]);
 
         $page = new \Modules\UI\View\Components\Render\Blocks(blocks: $page->sidebar_blocks, model: $page);
+
+        return $page->render();
+    }
+
+    public function showContent(string $slug): \Illuminate\Contracts\Support\Renderable
+    {
+        Assert::isInstanceOf($page = PageContent::firstOrCreate(['slug' => $slug], ['blocks' => []]), PageContent::class, '['.__LINE__.']['.__FILE__.']');
+
+        $page = new \Modules\UI\View\Components\Render\Blocks(blocks: (array) $page->blocks, model: $page);
 
         return $page->render();
     }
