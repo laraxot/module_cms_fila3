@@ -10,11 +10,7 @@ use Spatie\Translatable\HasTranslations;
 /**
  * Modules\Cms\Models\PageContent.
  *
- * <<<<<<< HEAD
- *
  * @property array|null                      $blocks
- *                                                         =======
- * @property string                          $blocks
  * @property string|null                     $id
  * @property array|null                      $name
  * @property string|null                     $slug
