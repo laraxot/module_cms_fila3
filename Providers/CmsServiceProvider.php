@@ -11,6 +11,7 @@ use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\Config;
 use Illuminate\Support\Facades\File;
 use Laravel\Folio\Folio;
+use Livewire\Volt\Volt;
 use Mcamara\LaravelLocalization\Facades\LaravelLocalization;
 use Modules\Xot\Datas\XotData;
 use Modules\Xot\Providers\XotBaseServiceProvider;
@@ -62,18 +63,9 @@ class CmsServiceProvider extends XotBaseServiceProvider
             Config::set('livewire.view_path', $theme_path.'/livewire');
             Config::set('livewire.class_namespace', 'Themes\\'.$this->xot->pub_theme.'\Http\Livewire');
 
-            // \Laravel\Folio\Folio::path($theme_path.'/pages');
-
             // \Livewire\Volt\Volt::mount($theme_path.'/pages');
             $path = XotData::make()->getPubThemeViewPath('pages');
-            /*
-            Folio::path($path)
-                // ->uri('it')
-                ->middleware([
-                    '*' => [
-                    ],
-                ]);
-            */
+            // Volt::mount([$path]);
             Folio::path($path)
                 ->uri(LaravelLocalization::setLocale() ?? app()->getLocale())
                 ->middleware([
