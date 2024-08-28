@@ -70,7 +70,11 @@ class ThemeComposer
     {
         Assert::isInstanceOf($page = PageContent::firstOrCreate(['slug' => $slug], ['blocks' => []]), PageContent::class, '['.__LINE__.']['.__FILE__.']');
 
-        $page = new \Modules\UI\View\Components\Render\Blocks(blocks: (array) $page->blocks, model: $page);
+        if (! is_array($page->blocks)) {
+            return view('ui::empty');
+        }
+
+        $page = new \Modules\UI\View\Components\Render\Blocks(blocks: $page->blocks, model: $page);
 
         return $page->render();
     }
