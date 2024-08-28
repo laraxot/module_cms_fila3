@@ -8,10 +8,10 @@ use Modules\Tenant\Models\Traits\SushiToJsons;
 use Spatie\Translatable\HasTranslations;
 
 /**
- * Modules\Cms\Models\PageContent
- * @property string                                                                                                     $blocks
+ * Modules\Cms\Models\PageContent.
+ *
+ * @property string $blocks
  */
-
 class PageContent extends BaseModel
 {
     use HasTranslations;
