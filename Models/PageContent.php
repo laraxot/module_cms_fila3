@@ -11,8 +11,6 @@ use Spatie\Translatable\HasTranslations;
 /**
  * Modules\Cms\Models\PageContent.
  *
- * <<<<<<< HEAD
- *
  * @property string                               $blocks
  * @property string|null                          $id
  * @property array|null                           $name
