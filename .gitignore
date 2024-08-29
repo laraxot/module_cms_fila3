@@ -52,9 +52,12 @@ package-lock.json
 node_modules
 node_modules
 vendor
+<<<<<<< HEAD
 .php-cs-fixer.cache
 .git-blame-ignore-revs
 build/
 vendor/
 build/
 node_modules
+=======
+>>>>>>> e5518a7 (up)
