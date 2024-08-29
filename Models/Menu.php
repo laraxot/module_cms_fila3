@@ -16,6 +16,7 @@ use Staudenmeir\LaravelAdjacencyList\Eloquent\HasRecursiveRelationships;
 =======
 use Illuminate\Database\Schema\Blueprint;
 use Modules\Blog\Actions\ParentChilds\GetTreeOptions;
+use Modules\Tenant\Models\Traits\SushiToJsons;
 use Spatie\MediaLibrary\HasMedia;
 use Spatie\MediaLibrary\InteractsWithMedia;
 >>>>>>> 5eb580b (Check & fix styling)
@@ -123,12 +124,17 @@ class Menu extends BaseModel implements HasMedia
 {
     use InteractsWithMedia;
 <<<<<<< HEAD
+<<<<<<< HEAD
     use SushiToJsons;
     use HasRecursiveRelationships;
 
     /** @var list<string> */
 =======
     use \Orbit\Concerns\Orbital;
+=======
+    //use \Orbit\Concerns\Orbital;
+    use SushiToJsons;
+>>>>>>> 716641d (.)
     use \Staudenmeir\LaravelAdjacencyList\Eloquent\HasRecursiveRelationships;
 
     /** @var string */
@@ -143,6 +149,30 @@ class Menu extends BaseModel implements HasMedia
     ];
 
     public function getRows(): array
+<<<<<<< HEAD
+=======
+    {
+        return $this->getSushiRows();
+    }
+
+    protected array $schema = [
+        'id' => 'integer',
+        'title' => 'string',
+        'parent_id' => 'integer',
+
+        'created_at' => 'datetime',
+        'updated_at' => 'datetime',
+        'created_by' => 'string',
+        'updated_by' => 'string',
+
+
+    ];
+
+
+
+    /* -- orbit
+    public static function schema(Blueprint $table)
+>>>>>>> 716641d (.)
     {
 <<<<<<< HEAD
 <<<<<<< HEAD
@@ -155,16 +185,20 @@ class Menu extends BaseModel implements HasMedia
         $table->unsignedBigInteger('parent_id')->nullable();
 =======
         $table->id();
-
+        // $table->timestamps();
         $table->string('title');
         $table->json('items')->nullable();
         $table->unsignedBigInteger('parent_id')->nullable();
+<<<<<<< HEAD
         // $table->timestamps();
 >>>>>>> 3ab70fa (conflict)
+=======
+>>>>>>> 716641d (.)
         $table->string('created_by')->nullable();
         $table->string('updated_by')->nullable();
 >>>>>>> f6bb4c7 (🔧 (Headernav.php): Remove unnecessary code and fix conflicts in the file)
     }
+    */
 
     protected array $schema = [
         'id' => 'integer',

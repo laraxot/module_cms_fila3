@@ -4,8 +4,13 @@ declare(strict_types=1);
 
 namespace Modules\Cms\Models;
 
+<<<<<<< HEAD
 use Modules\Tenant\Models\Traits\SushiToJsons;
 use Modules\Xot\Contracts\ProfileContract;
+=======
+use Illuminate\Database\Schema\Blueprint;
+use Modules\Tenant\Models\Traits\SushiToJsons;
+>>>>>>> 716641d (.)
 use Spatie\Translatable\HasTranslations;
 
 /**
@@ -64,11 +69,17 @@ class Page extends BaseModel
 {
     use HasTranslations;
 <<<<<<< HEAD
+<<<<<<< HEAD
     use SushiToJsons;
 
 =======
 >>>>>>> 75eb551 (up)
     use \Orbit\Concerns\Orbital;
+=======
+    //use \Orbit\Concerns\Orbital;
+    use \Sushi\Sushi;
+    use SushiToJsons;
+>>>>>>> 716641d (.)
 
     /** @var string */
     public static $driver = 'json';
@@ -92,9 +103,40 @@ class Page extends BaseModel
     ];
 
     public function getRows(): array
+<<<<<<< HEAD
+=======
     {
         return $this->getSushiRows();
     }
+
+
+    protected array $schema = [
+        'id' => 'integer',
+        'title' => 'json',
+        'slug' => 'string',
+        'content' => 'string',
+
+
+        'content_blocks' => 'json',
+        'sidebar_blocks' => 'json',
+        'footer_blocks' => 'json',
+
+        'created_at' => 'datetime',
+        'updated_at' => 'datetime',
+
+        'created_by' => 'string',
+        'updated_by' => 'string',
+
+
+    ];
+
+    /* --orbital
+    public static function schema(Blueprint $table)
+>>>>>>> 716641d (.)
+    {
+        return $this->getSushiRows();
+    }
+    */
 
     protected array $schema = [
         'id' => 'integer',
