@@ -25,8 +25,13 @@ use Sushi\Sushi;
  *
  * @mixin IdeHelperModule
  *
+<<<<<<< HEAD
  * @property ProfileContract|null $creator
  * @property ProfileContract|null $updater
+=======
+ * @property \Modules\Xot\Contracts\ProfileContract|null $creator
+ * @property \Modules\Xot\Contracts\ProfileContract|null $updater
+>>>>>>> 6e790d4 (up)
  *
  * @mixin \Eloquent
  */
