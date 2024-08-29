@@ -73,6 +73,7 @@ class Page extends BaseModel
     use SushiToJsons;
 
     use \Orbit\Concerns\Orbital;
+    /** @var string */
     public static $driver = 'json';
 
     protected $fillable = [
@@ -93,6 +94,7 @@ class Page extends BaseModel
         'footer_blocks',
     ];
 
+<<<<<<< HEAD
 <<<<<<< HEAD
     public function getRows(): array
     {
@@ -117,6 +119,13 @@ class Page extends BaseModel
     ];
 
 =======
+=======
+    /**
+     * Summary of schema.
+     *
+     * @return void
+     */
+>>>>>>> b7576b0 (🔧 (Headernav.php): resolve conflict by keeping the file_put_contents function import)
     public static function schema(Blueprint $table)
     {
         $table->id();
