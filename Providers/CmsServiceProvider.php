@@ -141,7 +141,7 @@ class CmsServiceProvider extends XotBaseServiceProvider
         foreach ($files as $file) {
             $name = $file->getFilenameWithoutExtension();
             $real_path = $file->getRealPath();
-            if ($real_path === false) {
+            if (false === $real_path) {
                 throw new \Exception('['.__LINE__.']['.class_basename(self::class).']');
             }
 
