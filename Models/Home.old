@@ -41,8 +41,23 @@ use Sushi\Sushi;
  *
  * @mixin IdeHelperHome
  *
+<<<<<<< HEAD
+<<<<<<< HEAD:Models/Home.old
+<<<<<<< HEAD:Models/Home.old
  * @property \Modules\Xot\Contracts\ProfileContract|null $creator
  * @property \Modules\Xot\Contracts\ProfileContract|null $updater
+=======
+ * @property-read \Modules\Fixcity\Models\Profile|null $creator
+ * @property-read \Modules\Fixcity\Models\Profile|null $updater
+>>>>>>> c2c3521 (🐛 (FixJigSawByModuleAction.php): Fix comparison operator in if conditions for better readability):Models/Home.php
+=======
+ * @property \Modules\Fixcity\Models\Profile|null $creator
+ * @property \Modules\Fixcity\Models\Profile|null $updater
+>>>>>>> 2cd4553 (Check & fix styling):Models/Home.php
+=======
+ * @property \Modules\Xot\Contracts\ProfileContract|null $creator
+ * @property \Modules\Xot\Contracts\ProfileContract|null $updater
+>>>>>>> 6e790d4 (up)
  *
  * @mixin \Eloquent
  */
