@@ -19,11 +19,19 @@ use Filament\Support\Exceptions\Halt;
 use Illuminate\Support\Arr;
 use Illuminate\Support\Str;
 use Modules\Cms\Filament\Clusters\Appearance;
+<<<<<<< HEAD
 use Modules\Tenant\Services\TenantService;
 use Modules\UI\Filament\Forms\Components\RadioImage;
 use Modules\Xot\Actions\View\GetViewsSiblingsAndSelfAction;
 use Modules\Xot\Services\FileService;
 use Webmozart\Assert\Assert;
+=======
+<<<<<<< HEAD
+=======
+use Filament\Forms\Concerns\InteractsWithForms;
+use function Safe\file_get_contents;
+>>>>>>> a806d34 (.)
+>>>>>>> f935571 (🐛 (Headernav.php): fix method signature to match parameter types and return type for addConfigValue method)
 
 /**
  * @property Forms\ComponentContainer $form
@@ -47,6 +55,63 @@ class Headernav extends Page implements HasForms
         $this->fillForms();
     }
 
+<<<<<<< HEAD
+=======
+
+    public function addConfigValue(string $filePath, int $key, string $value): void
+    {
+        // Leggi il contenuto del file
+        $config = file_get_contents($filePath);
+
+        // Trasforma il contenuto del file in un array PHP
+        $configArray = include($filePath);
+
+        // Aggiungi o aggiorna il valore dell'array
+        $configArray[$key] = $value;
+
+        // Converte l'array PHP in una stringa di codice PHP
+        $newConfig = '<?php declare(strict_types=1); return ' . var_export($configArray, true) . ';';
+
+        // Scrivi la nuova configurazione nel file
+        file_put_contents($filePath, $newConfig);
+        Artisan::call('optimize:clear');
+    }
+
+<<<<<<< HEAD
+
+    public function checkOrCreateConfigAppearance()
+    {
+        if(!config('appearance')) {
+=======
+    public function checkOrCreateConfigAppearance(): void
+    {
+        if(!config('appearance')){
+>>>>>>> a806d34 (.)
+            // Creare un file di configurazione in modo programmatico
+            $path = implode('/', array_reverse(explode('.', request()->getHost())));
+            $filePath = base_path('config/'.$path.'/appearance.php');
+            $configContent = <<<PHP
+            <?php
+
+            declare(strict_types=1);
+
+            return [
+
+            ];
+            PHP;
+            file_put_contents($filePath, $configContent);
+            // dddx(config('appearance'));
+        }
+    }
+
+
+
+
+
+
+
+
+>>>>>>> f935571 (🐛 (Headernav.php): fix method signature to match parameter types and return type for addConfigValue method)
     protected function fillForms(): void
     {
         Assert::isArray($data = TenantService::config('appearance'));
