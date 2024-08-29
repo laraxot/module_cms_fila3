@@ -145,6 +145,7 @@ class Menu extends BaseModel implements HasMedia
     public function getRows(): array
     {
 <<<<<<< HEAD
+<<<<<<< HEAD
         return $this->getSushiRows();
 =======
         $table->id();
@@ -152,6 +153,14 @@ class Menu extends BaseModel implements HasMedia
         $table->string('title');
         $table->json('items')->nullable();
         $table->unsignedBigInteger('parent_id')->nullable();
+=======
+        $table->id();
+
+        $table->string('title');
+        $table->json('items')->nullable();
+        $table->unsignedBigInteger('parent_id')->nullable();
+        // $table->timestamps();
+>>>>>>> 3ab70fa (conflict)
         $table->string('created_by')->nullable();
         $table->string('updated_by')->nullable();
 >>>>>>> f6bb4c7 (🔧 (Headernav.php): Remove unnecessary code and fix conflicts in the file)
