@@ -19,11 +19,29 @@ use Filament\Support\Exceptions\Halt;
 use Illuminate\Support\Arr;
 use Illuminate\Support\Str;
 use Modules\Cms\Filament\Clusters\Appearance;
+<<<<<<< HEAD
 use Modules\Tenant\Services\TenantService;
 use Modules\UI\Filament\Forms\Components\RadioImage;
 use Modules\Xot\Actions\View\GetViewsSiblingsAndSelfAction;
 use Modules\Xot\Services\FileService;
 use Webmozart\Assert\Assert;
+=======
+<<<<<<< HEAD
+=======
+use Filament\Forms\Concerns\InteractsWithForms;
+=======
+use Illuminate\Support\Facades\Config;
+use Illuminate\Support\Facades\File;
+use Modules\Cms\Filament\Clusters\Appearance;
+
+>>>>>>> ac32394 (up)
+use function Safe\file_get_contents;
+<<<<<<< HEAD
+>>>>>>> a806d34 (.)
+=======
+use function Safe\file_put_contents;
+>>>>>>> 784fa4b (up)
+>>>>>>> b7576b0 (🔧 (Headernav.php): resolve conflict by keeping the file_put_contents function import)
 
 /**
  * @property Forms\ComponentContainer $form
