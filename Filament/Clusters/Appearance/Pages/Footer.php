@@ -28,7 +28,7 @@ use Webmozart\Assert\Assert;
 /**
  * @property Forms\ComponentContainer $form
  */
-class Headernav extends Page implements HasForms
+class Footer extends Page implements HasForms
 {
     use InteractsWithForms;
 
@@ -38,7 +38,7 @@ class Headernav extends Page implements HasForms
 
     protected static ?string $cluster = Appearance::class;
 
-    protected static ?int $navigationSort = 1;
+    protected static ?int $navigationSort = 2;
 
     public ?array $data = [];
 
@@ -50,14 +50,14 @@ class Headernav extends Page implements HasForms
     protected function fillForms(): void
     {
         Assert::isArray($data = TenantService::config('appearance'));
-        Assert::isArray($data = Arr::get($data, 'headernav', []));
+        Assert::isArray($data = Arr::get($data, 'footer', []));
 
         $this->form->fill($data);
     }
 
     public function form(Form $form): Form
     {
-        $view = 'cms::components.headernav.simple';
+        $view = 'cms::components.footer.simple';
         $view_p = Str::beforeLast($view, '.');
         $views = app(GetViewsSiblingsAndSelfAction::class)->execute($view);
 
@@ -74,12 +74,14 @@ class Headernav extends Page implements HasForms
         */
         return $form
             ->schema([
+                /*
                 ColorPicker::make('background_color'),
                 FileUpload::make('background'),
                 ColorPicker::make('overlay_color'),
                 TextInput::make('overlay_opacity')->numeric()->minValue(0)->maxValue(100),
                 TextInput::make('class'),
                 TextInput::make('style'),
+                */
                 /*
                 RadioImage::make('_tpl')
                 ->label('layout')
@@ -107,7 +109,7 @@ class Headernav extends Page implements HasForms
         try {
             $data = $this->form->getState();
             $up = [
-                'headernav' => $data,
+                'footer' => $data,
             ];
             TenantService::saveConfig('appearance', $up);
         } catch (Halt $exception) {
