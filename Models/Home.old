@@ -41,6 +41,7 @@ use Sushi\Sushi;
  *
  * @mixin IdeHelperHome
  *
+<<<<<<< HEAD
 <<<<<<< HEAD:Models/Home.old
 <<<<<<< HEAD:Models/Home.old
  * @property \Modules\Xot\Contracts\ProfileContract|null $creator
@@ -53,6 +54,10 @@ use Sushi\Sushi;
  * @property \Modules\Fixcity\Models\Profile|null $creator
  * @property \Modules\Fixcity\Models\Profile|null $updater
 >>>>>>> 2cd4553 (Check & fix styling):Models/Home.php
+=======
+ * @property \Modules\Xot\Contracts\ProfileContract|null $creator
+ * @property \Modules\Xot\Contracts\ProfileContract|null $updater
+>>>>>>> 6e790d4 (up)
  *
  * @mixin \Eloquent
  */
