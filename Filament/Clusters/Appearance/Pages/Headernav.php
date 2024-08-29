@@ -16,6 +16,7 @@ use Filament\Forms\Form;
 use Filament\Notifications\Notification;
 use Filament\Pages\Page;
 use Filament\Support\Exceptions\Halt;
+<<<<<<< HEAD
 use Illuminate\Support\Arr;
 use Illuminate\Support\Str;
 use Modules\Cms\Filament\Clusters\Appearance;
@@ -24,6 +25,25 @@ use Modules\UI\Filament\Forms\Components\RadioImage;
 use Modules\Xot\Actions\View\GetViewsSiblingsAndSelfAction;
 use Modules\Xot\Services\FileService;
 use Webmozart\Assert\Assert;
+=======
+use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\Config;
+use Illuminate\Support\Facades\File;
+use Illuminate\Support\Facades\Artisan;
+<<<<<<< HEAD
+use Modules\Cms\Filament\Clusters\Appearance;
+<<<<<<< HEAD
+=======
+use Filament\Forms\Concerns\InteractsWithForms;
+=======
+use Illuminate\Support\Facades\Config;
+use Illuminate\Support\Facades\File;
+use Modules\Cms\Filament\Clusters\Appearance;
+
+>>>>>>> ac32394 (up)
+use function Safe\file_get_contents;
+>>>>>>> a806d34 (.)
+>>>>>>> c2c3521 (🐛 (FixJigSawByModuleAction.php): Fix comparison operator in if conditions for better readability)
 
 /**
  * @property Forms\ComponentContainer $form
@@ -44,9 +64,129 @@ class Headernav extends Page implements HasForms
 
     public function mount(): void
     {
+<<<<<<< HEAD
         $this->fillForms();
     }
 
+=======
+        $this->checkOrCreateConfigAppearance();
+
+        // $filePath = config_path($filePath); // Percorso del file di configurazione
+        $path = implode('/', array_reverse(explode('.', request()->getHost())));
+        $filePath = 'config/'.$path.'/appearance.php';
+        $key = 'other3';
+        // $value = 'other2';
+        $value = [
+            'key1' => 'value1',
+            'key2' => 'value2',
+            'key3' => [
+                'subkey1' => 'subvalue1',
+                'subkey2' => 'subvalue2',
+            ],
+        ];
+
+        // $this->addConfigValue(base_path('config/'.$path.'/appearance.php'), $key, $value);
+
+<<<<<<< HEAD
+        // Creare un file di configurazione in modo programmatico
+        // $filePath = config_path('appearance.php');
+        // dddx($filePath);
+        // $configContent = <<<PHP
+        // <?php
+
+        // declare(strict_types=1);
+
+        // return [
+
+        // ];
+        // PHP;
+        // file_put_contents($filePath, $configContent);
+
+        // config(['appearance.headernav' => 'aaa']);
+        Config::set('appearance.headernav', 'Europe/Rome');
+        dddx(config('appearance'));
+
+        // if (File::exists('path/to/file.txt')) {
+        //     // Il file esiste
+        // } else {
+        //     // Il file non esiste
+        // }
+=======
+        // dddx(config('appearance'));
+
+>>>>>>> ac32394 (up)
+        $this->fillForms();
+    }
+
+    public function addConfigValue(string $filePath, int $key, string $value): void
+    {
+        // Leggi il contenuto del file
+        $config = file_get_contents($filePath);
+
+        // Trasforma il contenuto del file in un array PHP
+<<<<<<< HEAD
+        $configArray = include($filePath);
+=======
+        $configArray = include $filePath;
+>>>>>>> ac32394 (up)
+
+        // Aggiungi o aggiorna il valore dell'array
+        $configArray[$key] = $value;
+
+        // Converte l'array PHP in una stringa di codice PHP
+<<<<<<< HEAD
+        $newConfig = '<?php declare(strict_types=1); return ' . var_export($configArray, true) . ';';
+=======
+        $newConfig = '<?php declare(strict_types=1); return '.var_export($configArray, true).';';
+>>>>>>> ac32394 (up)
+
+        // Scrivi la nuova configurazione nel file
+        file_put_contents($filePath, $newConfig);
+        Artisan::call('optimize:clear');
+    }
+
+<<<<<<< HEAD
+
+    public function checkOrCreateConfigAppearance()
+    {
+        if(!config('appearance')) {
+=======
+    public function checkOrCreateConfigAppearance(): void
+    {
+<<<<<<< HEAD
+        if(!config('appearance')){
+>>>>>>> a806d34 (.)
+=======
+        if (! config('appearance')) {
+>>>>>>> ac32394 (up)
+            // Creare un file di configurazione in modo programmatico
+            $path = implode('/', array_reverse(explode('.', request()->getHost())));
+            $filePath = base_path('config/'.$path.'/appearance.php');
+            $configContent = <<<'PHP'
+            <?php
+
+            declare(strict_types=1);
+
+            return [
+
+            ];
+            PHP;
+            file_put_contents($filePath, $configContent);
+            // dddx(config('appearance'));
+        }
+    }
+
+<<<<<<< HEAD
+
+
+
+
+
+
+
+=======
+>>>>>>> ac32394 (up)
+>>>>>>> c2c3521 (🐛 (FixJigSawByModuleAction.php): Fix comparison operator in if conditions for better readability)
     protected function fillForms(): void
     {
         Assert::isArray($data = TenantService::config('appearance'));
