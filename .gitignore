@@ -50,7 +50,12 @@ package-lock.json
 /docs/cache
 node_modules
 vendor
+<<<<<<< HEAD
 build/
 vendor/
 build/
 
+=======
+.php-cs-fixer.cache
+.git-blame-ignore-revs
+>>>>>>> dc1c4a9 (up)
