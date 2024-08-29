@@ -38,6 +38,7 @@ use Modules\Cms\Filament\Clusters\Appearance;
 use function Safe\file_get_contents;
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 >>>>>>> a806d34 (.)
 =======
 use function Safe\file_put_contents;
@@ -47,7 +48,13 @@ use function Safe\file_put_contents;
 =======
 =======
 >>>>>>> 53cf86e (.)
+<<<<<<< HEAD
 >>>>>>> 9726675 (🔧 (Headernav.php): resolve conflicts and clean up unnecessary merge markers in the file)
+=======
+=======
+use function Safe\file_put_contents;
+>>>>>>> 3a6d4fa (.)
+>>>>>>> e59a777 (🔧 (Headernav.php): resolve merge conflicts and clean up unnecessary code leftovers)
 
 /**
  * @property Forms\ComponentContainer $form
