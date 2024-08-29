@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace Modules\Cms\Models;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 use Modules\Blog\Actions\ParentChilds\GetTreeOptions;
 use Modules\Tenant\Models\Traits\SushiToJsons;
 =======
@@ -12,6 +13,12 @@ use Modules\Tenant\Models\Traits\SushiToJsons;
 use Spatie\MediaLibrary\HasMedia;
 use Spatie\MediaLibrary\InteractsWithMedia;
 use Staudenmeir\LaravelAdjacencyList\Eloquent\HasRecursiveRelationships;
+=======
+use Illuminate\Database\Schema\Blueprint;
+use Modules\Blog\Actions\ParentChilds\GetTreeOptions;
+use Spatie\MediaLibrary\HasMedia;
+use Spatie\MediaLibrary\InteractsWithMedia;
+>>>>>>> 5eb580b (Check & fix styling)
 
 /**
  * Modules\Cms\Models\Menu.
