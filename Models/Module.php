@@ -6,6 +6,7 @@ namespace Modules\Cms\Models;
 
 use Illuminate\Database\Eloquent\Builder;
 use Modules\Cms\Database\Factories\ModuleFactory;
+use Modules\Xot\Contracts\ProfileContract;
 use Nwidart\Modules\Facades\Module as NwModule;
 use Sushi\Sushi;
 
@@ -24,13 +25,8 @@ use Sushi\Sushi;
  *
  * @mixin IdeHelperModule
  *
-<<<<<<< HEAD
- * @property \Modules\Xot\Contracts\ProfileContract|null $creator
- * @property \Modules\Xot\Contracts\ProfileContract|null $updater
-=======
- * @property \Modules\Fixcity\Models\Profile|null $creator
- * @property \Modules\Fixcity\Models\Profile|null $updater
->>>>>>> 2cd4553 (Check & fix styling)
+ * @property ProfileContract|null $creator
+ * @property ProfileContract|null $updater
  *
  * @mixin \Eloquent
  */

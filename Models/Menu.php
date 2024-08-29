@@ -4,23 +4,11 @@ declare(strict_types=1);
 
 namespace Modules\Cms\Models;
 
-<<<<<<< HEAD
-use Illuminate\Database\Schema\Blueprint;
 use Modules\Blog\Actions\ParentChilds\GetTreeOptions;
-<<<<<<< HEAD
 use Modules\Tenant\Models\Traits\SushiToJsons;
-=======
-=======
->>>>>>> 0404d02 (.)
->>>>>>> 9075152 (🔧 (Menu.php): resolve conflict by keeping the changes from both branches related to importing classes and defining schema method)
 use Spatie\MediaLibrary\HasMedia;
-use Illuminate\Database\Schema\Blueprint;
 use Spatie\MediaLibrary\InteractsWithMedia;
-<<<<<<< HEAD
 use Staudenmeir\LaravelAdjacencyList\Eloquent\HasRecursiveRelationships;
-=======
-use Modules\Blog\Actions\ParentChilds\GetTreeOptions;
->>>>>>> 9075152 (🔧 (Menu.php): resolve conflict by keeping the changes from both branches related to importing classes and defining schema method)
 
 /**
  * Modules\Cms\Models\Menu.
@@ -109,13 +97,8 @@ use Modules\Blog\Actions\ParentChilds\GetTreeOptions;
  * @method static \Staudenmeir\LaravelAdjacencyList\Eloquent\Collection<int, static> all($columns = ['*'])
  * @method static \Staudenmeir\LaravelAdjacencyList\Eloquent\Collection<int, static> get($columns = ['*'])
  *
-<<<<<<< HEAD
  * @property \Modules\Xot\Contracts\ProfileContract|null $creator
  * @property \Modules\Xot\Contracts\ProfileContract|null $updater
-=======
- * @property \Modules\Fixcity\Models\Profile|null $creator
- * @property \Modules\Fixcity\Models\Profile|null $updater
->>>>>>> 2cd4553 (Check & fix styling)
  *
  * @method static \Staudenmeir\LaravelAdjacencyList\Eloquent\Collection<int, static> all($columns = ['*'])
  * @method static \Staudenmeir\LaravelAdjacencyList\Eloquent\Collection<int, static> get($columns = ['*'])
@@ -132,22 +115,13 @@ class Menu extends BaseModel implements HasMedia
     use SushiToJsons;
     use HasRecursiveRelationships;
 
-<<<<<<< HEAD
     /** @var list<string> */
-=======
-    use \Orbit\Concerns\Orbital;
-    /** @var string */
-    public static $driver = 'json';
-
-    /** @var array<int, string> */
->>>>>>> dcee507 (.)
     protected $fillable = [
         'title',
         'items',
         'parent_id',
     ];
 
-<<<<<<< HEAD
     public function getRows(): array
     {
         return $this->getSushiRows();
@@ -164,31 +138,6 @@ class Menu extends BaseModel implements HasMedia
         'updated_by' => 'string',
     ];
 
-=======
-    /**
-     * Summary of schema.
-     *
-     * @return void
-     */
-    public static function schema(Blueprint $table)
-    {
-        $table->id();
-<<<<<<< HEAD
-        $table->string('title');
-        $table->text('items')->nullable();
-        $table->unsignedBigInteger('parent_id')->nullable();
-
-=======
-        // $table->timestamps();
-        $table->string('title');
-        $table->json('items')->nullable();
-        $table->unsignedBigInteger('parent_id')->nullable();
->>>>>>> 0404d02 (.)
-        $table->string('created_by')->nullable();
-        $table->string('updated_by')->nullable();
-    }
-
->>>>>>> dcee507 (.)
     /** @return array<string, string> */
     protected function casts(): array
     {
@@ -202,22 +151,5 @@ class Menu extends BaseModel implements HasMedia
         $instance = new self();
 
         return app(GetTreeOptions::class)->execute($instance);
-
-        // $categories = self::tree()->get()->toTree();
-        // $results = [];
-        // foreach ($categories as $cat) {
-        //     $results[$cat->id] = $cat->title;
-        //     foreach ($cat->children as $child) {
-        //         $results[$child->id] = '--------->'.$child->title;
-        //         foreach ($child->children as $cld) {
-        //             $results[$cld->id] = '----------------->'.$cld->title;
-        //             foreach ($cld->children as $c) {
-        //                 $results[$c->id] = '------------------------->'.$c->title;
-        //             }
-        //         }
-        //     }
-        // }
-
-        // return $results;
     }
 }
