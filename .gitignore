@@ -31,6 +31,7 @@ Homestead.json
 /.git-rewrite
 
 vendor/
+vendor
 *.lock
 package-lock.json
 composer.lock
@@ -47,14 +48,11 @@ package-lock.json
 .php-cs-fixer.cache
 package-lock.json
 .git-rewrite/
-.php-cs-fixer.cache
 /docs/cache
 node_modules
-node_modules
-vendor
-.php-cs-fixer.cache
-.git-blame-ignore-revs
-build/
-vendor/
-build/
-node_modules
+
+
+
+
+
+
