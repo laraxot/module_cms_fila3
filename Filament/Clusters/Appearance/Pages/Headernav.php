@@ -19,17 +19,11 @@ use Filament\Support\Exceptions\Halt;
 use Illuminate\Support\Arr;
 use Illuminate\Support\Str;
 use Modules\Cms\Filament\Clusters\Appearance;
-<<<<<<< HEAD
 use Modules\Tenant\Services\TenantService;
 use Modules\UI\Filament\Forms\Components\RadioImage;
 use Modules\Xot\Actions\View\GetViewsSiblingsAndSelfAction;
 use Modules\Xot\Services\FileService;
 use Webmozart\Assert\Assert;
-=======
-
-use function Safe\file_get_contents;
-use function Safe\file_put_contents;
->>>>>>> 3ab70fa (conflict)
 
 /**
  * @property Forms\ComponentContainer $form
@@ -50,74 +44,9 @@ class Headernav extends Page implements HasForms
 
     public function mount(): void
     {
-<<<<<<< HEAD
         $this->fillForms();
     }
 
-=======
-        $this->checkOrCreateConfigAppearance();
-
-        // $filePath = config_path($filePath); // Percorso del file di configurazione
-        $path = implode('/', array_reverse(explode('.', request()->getHost())));
-        $filePath = 'config/'.$path.'/appearance.php';
-        $key = 'other3';
-        // $value = 'other2';
-        $value = [
-            'key1' => 'value1',
-            'key2' => 'value2',
-            'key3' => [
-                'subkey1' => 'subvalue1',
-                'subkey2' => 'subvalue2',
-            ],
-        ];
-
-        // $this->addConfigValue(base_path('config/'.$path.'/appearance.php'), $key, $value);
-
-        // dddx(config('appearance'));
-
-        $this->fillForms();
-    }
-
-    public function addConfigValue(string $filePath, int $key, string $value): void
-    {
-        // Leggi il contenuto del file
-        $config = file_get_contents($filePath);
-
-        // Trasforma il contenuto del file in un array PHP
-        $configArray = include $filePath;
-
-        // Aggiungi o aggiorna il valore dell'array
-        $configArray[$key] = $value;
-
-        // Converte l'array PHP in una stringa di codice PHP
-        $newConfig = '<?php declare(strict_types=1); return '.var_export($configArray, true).';';
-
-        // Scrivi la nuova configurazione nel file
-        file_put_contents($filePath, $newConfig);
-        Artisan::call('optimize:clear');
-    }
-
-    public function checkOrCreateConfigAppearance(): void
-    {
-        if (! config('appearance')) {
-            // Creare un file di configurazione in modo programmatico
-            $path = implode('/', array_reverse(explode('.', request()->getHost())));
-            $filePath = base_path('config/'.$path.'/appearance.php');
-            $configContent = <<<'PHP'
-            <?php
-
-            declare(strict_types=1);
-
-            return [
-
-            ];
-            PHP;
-            file_put_contents($filePath, $configContent);
-            // dddx(config('appearance'));
-        }
-    }
-
->>>>>>> 3ab70fa (conflict)
     protected function fillForms(): void
     {
         Assert::isArray($data = TenantService::config('appearance'));
