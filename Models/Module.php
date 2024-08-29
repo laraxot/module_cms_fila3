@@ -24,8 +24,13 @@ use Sushi\Sushi;
  *
  * @mixin IdeHelperModule
  *
+<<<<<<< HEAD
  * @property \Modules\Xot\Contracts\ProfileContract|null $creator
  * @property \Modules\Xot\Contracts\ProfileContract|null $updater
+=======
+ * @property \Modules\Fixcity\Models\Profile|null $creator
+ * @property \Modules\Fixcity\Models\Profile|null $updater
+>>>>>>> 2cd4553 (Check & fix styling)
  *
  * @mixin \Eloquent
  */
