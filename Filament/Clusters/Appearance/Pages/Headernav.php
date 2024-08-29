@@ -7,14 +7,16 @@ namespace Modules\Cms\Filament\Clusters\Appearance\Pages;
 use Filament\Actions\Action;
 use Filament\Forms;
 use Filament\Forms\Components\ColorPicker;
-use Filament\Forms\Components\ColorPicker;
 use Filament\Forms\Components\FileUpload;
+<<<<<<< HEAD
 <<<<<<< HEAD
 use Filament\Forms\Components\Select;
 =======
 use Filament\Forms\Components\FileUpload;
 use Filament\Forms\Components\TextInput;
 >>>>>>> f59ce63 (📝 (Headernav.php): Add ColorPicker and FileUpload components to the form for appearance settings)
+=======
+>>>>>>> f48fdb3 (.)
 use Filament\Forms\Components\TextInput;
 use Filament\Forms\Concerns\InteractsWithForms;
 use Filament\Forms\Contracts\HasForms;
