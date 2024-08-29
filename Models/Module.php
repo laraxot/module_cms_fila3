@@ -12,10 +12,10 @@ use Sushi\Sushi;
 /**
  * Modules\Cms\Models\Module.
  *
- * @property int $id
+ * @property int         $id
  * @property string|null $name
  *
- * @method static ModuleFactory factory($count = null, $state = [])
+ * @method static ModuleFactory  factory($count = null, $state = [])
  * @method static Builder|Module newModelQuery()
  * @method static Builder|Module newQuery()
  * @method static Builder|Module query()
@@ -24,13 +24,8 @@ use Sushi\Sushi;
  *
  * @mixin IdeHelperModule
  *
-<<<<<<< HEAD
  * @property \Modules\Xot\Contracts\ProfileContract|null $creator
  * @property \Modules\Xot\Contracts\ProfileContract|null $updater
-=======
- * @property-read \Modules\Fixcity\Models\Profile|null $creator
- * @property-read \Modules\Fixcity\Models\Profile|null $updater
->>>>>>> c2c3521 (🐛 (FixJigSawByModuleAction.php): Fix comparison operator in if conditions for better readability)
  *
  * @mixin \Eloquent
  */
