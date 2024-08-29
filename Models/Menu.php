@@ -4,8 +4,11 @@ declare(strict_types=1);
 
 namespace Modules\Cms\Models;
 
+<<<<<<< HEAD
 use Modules\Blog\Actions\ParentChilds\GetTreeOptions;
 use Modules\Tenant\Models\Traits\SushiToJsons;
+=======
+>>>>>>> f6bb4c7 (🔧 (Headernav.php): Remove unnecessary code and fix conflicts in the file)
 use Spatie\MediaLibrary\HasMedia;
 use Spatie\MediaLibrary\InteractsWithMedia;
 use Staudenmeir\LaravelAdjacencyList\Eloquent\HasRecursiveRelationships;
@@ -124,7 +127,17 @@ class Menu extends BaseModel implements HasMedia
 
     public function getRows(): array
     {
+<<<<<<< HEAD
         return $this->getSushiRows();
+=======
+        $table->id();
+        // $table->timestamps();
+        $table->string('title');
+        $table->json('items')->nullable();
+        $table->unsignedBigInteger('parent_id')->nullable();
+        $table->string('created_by')->nullable();
+        $table->string('updated_by')->nullable();
+>>>>>>> f6bb4c7 (🔧 (Headernav.php): Remove unnecessary code and fix conflicts in the file)
     }
 
     protected array $schema = [
