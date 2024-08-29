@@ -4,12 +4,23 @@ declare(strict_types=1);
 
 namespace Modules\Cms\Models;
 
+<<<<<<< HEAD
 use Illuminate\Database\Schema\Blueprint;
 use Modules\Blog\Actions\ParentChilds\GetTreeOptions;
+<<<<<<< HEAD
 use Modules\Tenant\Models\Traits\SushiToJsons;
+=======
+=======
+>>>>>>> 0404d02 (.)
+>>>>>>> 9075152 (🔧 (Menu.php): resolve conflict by keeping the changes from both branches related to importing classes and defining schema method)
 use Spatie\MediaLibrary\HasMedia;
+use Illuminate\Database\Schema\Blueprint;
 use Spatie\MediaLibrary\InteractsWithMedia;
+<<<<<<< HEAD
 use Staudenmeir\LaravelAdjacencyList\Eloquent\HasRecursiveRelationships;
+=======
+use Modules\Blog\Actions\ParentChilds\GetTreeOptions;
+>>>>>>> 9075152 (🔧 (Menu.php): resolve conflict by keeping the changes from both branches related to importing classes and defining schema method)
 
 /**
  * Modules\Cms\Models\Menu.
@@ -162,10 +173,17 @@ class Menu extends BaseModel implements HasMedia
     public static function schema(Blueprint $table)
     {
         $table->id();
+<<<<<<< HEAD
         $table->string('title');
         $table->text('items')->nullable();
         $table->unsignedBigInteger('parent_id')->nullable();
 
+=======
+        // $table->timestamps();
+        $table->string('title');
+        $table->json('items')->nullable();
+        $table->unsignedBigInteger('parent_id')->nullable();
+>>>>>>> 0404d02 (.)
         $table->string('created_by')->nullable();
         $table->string('updated_by')->nullable();
     }
