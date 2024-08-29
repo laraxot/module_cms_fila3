@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Modules\Cms\Models;
 
+use Illuminate\Database\Schema\Blueprint;
 use Modules\Blog\Actions\ParentChilds\GetTreeOptions;
 use Modules\Tenant\Models\Traits\SushiToJsons;
 use Spatie\MediaLibrary\HasMedia;
@@ -120,13 +121,22 @@ class Menu extends BaseModel implements HasMedia
     use SushiToJsons;
     use HasRecursiveRelationships;
 
+<<<<<<< HEAD
     /** @var list<string> */
+=======
+    use \Orbit\Concerns\Orbital;
+    /** @var string */
+    public static $driver = 'json';
+
+    /** @var array<int, string> */
+>>>>>>> dcee507 (.)
     protected $fillable = [
         'title',
         'items',
         'parent_id',
     ];
 
+<<<<<<< HEAD
     public function getRows(): array
     {
         return $this->getSushiRows();
@@ -143,6 +153,24 @@ class Menu extends BaseModel implements HasMedia
         'updated_by' => 'string',
     ];
 
+=======
+    /**
+     * Summary of schema.
+     *
+     * @return void
+     */
+    public static function schema(Blueprint $table)
+    {
+        $table->id();
+        $table->string('title');
+        $table->text('items')->nullable();
+        $table->unsignedBigInteger('parent_id')->nullable();
+
+        $table->string('created_by')->nullable();
+        $table->string('updated_by')->nullable();
+    }
+
+>>>>>>> dcee507 (.)
     /** @return array<string, string> */
     protected function casts(): array
     {
