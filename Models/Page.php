@@ -4,12 +4,8 @@ declare(strict_types=1);
 
 namespace Modules\Cms\Models;
 
-<<<<<<< HEAD
 use Modules\Tenant\Models\Traits\SushiToJsons;
 use Modules\Xot\Contracts\ProfileContract;
-=======
-use Illuminate\Database\Schema\Blueprint;
->>>>>>> fa78754 (.)
 use Spatie\Translatable\HasTranslations;
 
 /**
@@ -59,12 +55,9 @@ use Spatie\Translatable\HasTranslations;
  * @method static \Illuminate\Database\Eloquent\Builder|Page whereJsonContainsLocale(string $column, string $locale, ?mixed $value)
  * @method static \Illuminate\Database\Eloquent\Builder|Page whereJsonContainsLocales(string $column, array $locales, ?mixed $value)
  *
-<<<<<<< HEAD
  * @property ProfileContract|null $creator
  * @property ProfileContract|null $updater
  *
-=======
->>>>>>> fa78754 (.)
  * @mixin \Eloquent
  */
 class Page extends BaseModel
@@ -94,8 +87,6 @@ class Page extends BaseModel
         'footer_blocks',
     ];
 
-<<<<<<< HEAD
-<<<<<<< HEAD
     public function getRows(): array
     {
         return $this->getSushiRows();
@@ -118,30 +109,6 @@ class Page extends BaseModel
         'updated_by' => 'string',
     ];
 
-=======
-=======
-    /**
-     * Summary of schema.
-     *
-     * @return void
-     */
->>>>>>> b7576b0 (🔧 (Headernav.php): resolve conflict by keeping the file_put_contents function import)
-    public static function schema(Blueprint $table)
-    {
-        $table->id();
-        // $table->timestamps();
-        $table->string('slug')->unique()->index();
-        $table->string('title');
-        $table->text('content')->nullable();
-        $table->json('content_blocks')->nullable();
-        $table->json('sidebar_blocks')->nullable();
-        $table->json('footer_blocks')->nullable();
-
-        $table->string('created_by')->nullable();
-        $table->string('updated_by')->nullable();
-    }
-
->>>>>>> fa78754 (.)
     public function sluggable(): array
     {
         return [
