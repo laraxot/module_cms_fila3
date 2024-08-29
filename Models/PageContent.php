@@ -5,11 +5,13 @@ declare(strict_types=1);
 namespace Modules\Cms\Models;
 
 use Modules\Tenant\Models\Traits\SushiToJsons;
+use Modules\Xot\Contracts\ProfileContract;
 use Spatie\Translatable\HasTranslations;
 
 /**
  * Modules\Cms\Models\PageContent.
  *
+<<<<<<< HEAD
  * @property string                               $blocks
  * @property string|null                          $id
  * @property array|null                           $name
@@ -21,6 +23,19 @@ use Spatie\Translatable\HasTranslations;
  * @property \Modules\Idoteca\Models\Profile|null $creator
  * @property mixed                                $translations
  * @property \Modules\Idoteca\Models\Profile|null $updater
+=======
+ * @property string                          $blocks
+ * @property string|null                     $id
+ * @property array|null                      $name
+ * @property string|null                     $slug
+ * @property \Illuminate\Support\Carbon|null $created_at
+ * @property \Illuminate\Support\Carbon|null $updated_at
+ * @property string|null                     $created_by
+ * @property string|null                     $updated_by
+ * @property ProfileContract|null            $creator
+ * @property mixed                           $translations
+ * @property ProfileContract|null            $updater
+>>>>>>> f67fac5 (📝 (PageContentFactory.php): Update PageContentFactory to use fully qualified class name for the model)
  *
  * @method static \Modules\Cms\Database\Factories\PageContentFactory factory($count = null, $state = [])
  * @method static \Illuminate\Database\Eloquent\Builder|PageContent  newModelQuery()

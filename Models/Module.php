@@ -13,8 +13,10 @@ use Sushi\Sushi;
 /**
  * Modules\Cms\Models\Module.
  *
- * @property int         $id
- * @property string|null $name
+ * @property int                  $id
+ * @property string|null          $name
+ * @property ProfileContract|null $creator
+ * @property ProfileContract|null $updater
  *
  * @method static ModuleFactory  factory($count = null, $state = [])
  * @method static Builder|Module newModelQuery()
@@ -24,16 +26,6 @@ use Sushi\Sushi;
  * @method static Builder|Module whereName($value)
  *
  * @mixin IdeHelperModule
- *
- * <<<<<<< HEAD
- *
- * @property ProfileContract|null $creator
- * @property ProfileContract|null $updater
- *                                         =======
- * @property ProfileContract|null $creator
- * @property ProfileContract|null $updater
- *                                         >>>>>>> 6e790d4 (up)
- *
  * @mixin \Eloquent
  */
 class Module extends BaseModel
