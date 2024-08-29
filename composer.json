@@ -84,6 +84,13 @@
         }
     },
     "minimum-stability": "dev",
+<<<<<<< HEAD
     "prefer-stable": true
     
+=======
+    "prefer-stable": true,
+    "require": {
+        "ryangjchandler/orbit": "*"
+    }
+>>>>>>> 43e6ebe (.)
 }
