@@ -6,8 +6,6 @@ namespace Modules\Cms\Models;
 
 use Modules\Blog\Actions\ParentChilds\GetTreeOptions;
 use Modules\Tenant\Models\Traits\SushiToJsons;
-use Spatie\MediaLibrary\HasMedia;
-use Spatie\MediaLibrary\InteractsWithMedia;
 use Staudenmeir\LaravelAdjacencyList\Eloquent\HasRecursiveRelationships;
 
 /**
@@ -106,12 +104,25 @@ use Staudenmeir\LaravelAdjacencyList\Eloquent\HasRecursiveRelationships;
  * @method static \Staudenmeir\LaravelAdjacencyList\Eloquent\Collection<int, static> get($columns = ['*'])
  * @method static \Staudenmeir\LaravelAdjacencyList\Eloquent\Collection<int, static> all($columns = ['*'])
  * @method static \Staudenmeir\LaravelAdjacencyList\Eloquent\Collection<int, static> get($columns = ['*'])
+ * @method static \Staudenmeir\LaravelAdjacencyList\Eloquent\Collection<int, static> all($columns = ['*'])
+ * @method static \Staudenmeir\LaravelAdjacencyList\Eloquent\Collection<int, static> get($columns = ['*'])
+ * @method static \Staudenmeir\LaravelAdjacencyList\Eloquent\Collection<int, static> all($columns = ['*'])
+ * @method static \Staudenmeir\LaravelAdjacencyList\Eloquent\Collection<int, static> get($columns = ['*'])
+ * @method static \Staudenmeir\LaravelAdjacencyList\Eloquent\Collection<int, static> all($columns = ['*'])
+ * @method static \Staudenmeir\LaravelAdjacencyList\Eloquent\Collection<int, static> get($columns = ['*'])
+ * @method static \Staudenmeir\LaravelAdjacencyList\Eloquent\Collection<int, static> all($columns = ['*'])
+ * @method static \Staudenmeir\LaravelAdjacencyList\Eloquent\Collection<int, static> get($columns = ['*'])
+ * @method static \Staudenmeir\LaravelAdjacencyList\Eloquent\Collection<int, static> all($columns = ['*'])
+ * @method static \Staudenmeir\LaravelAdjacencyList\Eloquent\Collection<int, static> get($columns = ['*'])
+ * @method static \Staudenmeir\LaravelAdjacencyList\Eloquent\Collection<int, static> all($columns = ['*'])
+ * @method static \Staudenmeir\LaravelAdjacencyList\Eloquent\Collection<int, static> get($columns = ['*'])
+ * @method static \Staudenmeir\LaravelAdjacencyList\Eloquent\Collection<int, static> all($columns = ['*'])
+ * @method static \Staudenmeir\LaravelAdjacencyList\Eloquent\Collection<int, static> get($columns = ['*'])
  *
  * @mixin \Eloquent
  */
-class Menu extends BaseModel implements HasMedia
+class Menu extends BaseModel
 {
-    use InteractsWithMedia;
     use SushiToJsons;
     use HasRecursiveRelationships;
 
@@ -151,22 +162,5 @@ class Menu extends BaseModel implements HasMedia
         $instance = new self();
 
         return app(GetTreeOptions::class)->execute($instance);
-
-        // $categories = self::tree()->get()->toTree();
-        // $results = [];
-        // foreach ($categories as $cat) {
-        //     $results[$cat->id] = $cat->title;
-        //     foreach ($cat->children as $child) {
-        //         $results[$child->id] = '--------->'.$child->title;
-        //         foreach ($child->children as $cld) {
-        //             $results[$cld->id] = '----------------->'.$cld->title;
-        //             foreach ($cld->children as $c) {
-        //                 $results[$c->id] = '------------------------->'.$c->title;
-        //             }
-        //         }
-        //     }
-        // }
-
-        // return $results;
     }
 }
