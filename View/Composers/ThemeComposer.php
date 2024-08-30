@@ -4,7 +4,10 @@ declare(strict_types=1);
 
 namespace Modules\Cms\View\Composers;
 
+use Illuminate\Contracts\Support\Renderable;
 use Illuminate\Database\Eloquent\Collection;
+use Modules\Cms\Datas\FooterData;
+use Modules\Cms\Datas\HeadernavData;
 use Modules\Cms\Models\Menu;
 use Modules\Cms\Models\Page;
 use Modules\Cms\Models\PageContent;
@@ -43,7 +46,7 @@ class ThemeComposer
         return '#';
     }
 
-    public function showPageContent(string $slug): \Illuminate\Contracts\Support\Renderable
+    public function showPageContent(string $slug): Renderable
     {
         Assert::isInstanceOf($page = Page::firstOrCreate(['slug' => $slug], ['title' => $slug, 'content_blocks' => []]), Page::class, '['.__LINE__.']['.__FILE__.']');
         // $page = Page::firstOrCreate(['slug' => $slug], ['content_blocks' => []]);
@@ -56,7 +59,7 @@ class ThemeComposer
         return $page->render();
     }
 
-    public function showPageSidebarContent(string $slug): \Illuminate\Contracts\Support\Renderable
+    public function showPageSidebarContent(string $slug): Renderable
     {
         Assert::isInstanceOf($page = Page::firstOrCreate(['slug' => $slug], ['sidebar_blocks' => []]), Page::class, '['.__LINE__.']['.__FILE__.']');
         // $page = Page::firstOrCreate(['slug' => $slug], ['content_blocks' => []]);
@@ -66,11 +69,23 @@ class ThemeComposer
         return $page->render();
     }
 
+<<<<<<< HEAD
     public function showContent(string $slug): \Illuminate\Contracts\Support\Renderable
     {
         Assert::isInstanceOf($page = PageContent::firstOrCreate(['slug' => $slug], ['blocks' => []]), PageContent::class, '['.__LINE__.']['.__FILE__.']');
 
         $page = new \Modules\UI\View\Components\Render\Blocks(blocks: (array) $page->blocks, model: $page);
+=======
+    public function showContent(string $slug): Renderable
+    {
+        Assert::isInstanceOf($page = PageContent::firstOrCreate(['slug' => $slug], ['blocks' => []]), PageContent::class, '['.__LINE__.']['.__FILE__.']');
+
+        if (! is_array($page->blocks)) {
+            return view('ui::empty');
+        }
+
+        $page = new \Modules\UI\View\Components\Render\Blocks(blocks: $page->blocks, model: $page);
+>>>>>>> 59d5a90254706a869215b533bf368ab9d8f0904c
 
         return $page->render();
     }
@@ -95,5 +110,19 @@ class ThemeComposer
         }
 
         return '#';
+    }
+
+    public function headernav(): Renderable
+    {
+        $headernav = HeadernavData::make();
+
+        return $headernav->view();
+    }
+
+    public function footer(): Renderable
+    {
+        $footer = FooterData::make();
+
+        return $footer->view();
     }
 }
