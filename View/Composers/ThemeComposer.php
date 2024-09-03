@@ -34,7 +34,7 @@ class ThemeComposer
         }
         $lang = app()->getLocale();
         if ('internal' == $menu['type']) {
-            return route('page_slug.show', ['lang' => $lang, 'page_slug' => $menu['url']]);
+            return route('page_slug.view', ['lang' => $lang, 'slug' => $menu['url']]);
         }
         if ('external' == $menu['type']) {
             return $menu['url'];
