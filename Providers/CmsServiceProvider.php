@@ -7,7 +7,6 @@ declare(strict_types=1);
 
 namespace Modules\Cms\Providers;
 
-use Exception;
 use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\Config;
 use Illuminate\Support\Facades\File;
@@ -142,8 +141,8 @@ class CmsServiceProvider extends XotBaseServiceProvider
         foreach ($files as $file) {
             $name = $file->getFilenameWithoutExtension();
             $real_path = $file->getRealPath();
-            if ($real_path === false) {
-                throw new Exception('['.__LINE__.']['.class_basename(self::class).']');
+            if (false === $real_path) {
+                throw new \Exception('['.__LINE__.']['.class_basename(self::class).']');
             }
 
             $data = File::getRequire($real_path);
