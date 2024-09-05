@@ -12,24 +12,26 @@ use Illuminate\Support\Arr;
 use Illuminate\Support\Str;
 use Webmozart\Assert\Assert;
 
+use function count;
+
 // use InteractsWithTable;
 // implements HasTable
 // use InteractsWithForms;
 
 class Home extends Page
 {
+    public string $view_type;
+
+    public array $containers = [];
+
+    public array $items = [];
+
     protected static ?string $navigationIcon = 'heroicon-o-document-text';
 
     // protected static string $view = 'cms::filament.front.pages.welcome';
     protected static string $view = 'pub_theme::home';
 
     protected static string $layout = 'pub_theme::components.layouts.app';
-
-    public string $view_type;
-
-    public array $containers = [];
-
-    public array $items = [];
 
     public function mount(): void
     {
@@ -40,7 +42,7 @@ class Home extends Page
     public function getViewData(): array
     {
         $data = [];
-        if (\count($this->containers) > 0) {
+        if ($this->containers !== []) {
             Assert::string($container_last = last($this->containers));
             $item_last = last($this->items);
 
@@ -81,13 +83,13 @@ class Home extends Page
         $containers = $this->containers;
         $items = $this->items;
         $view = '';
-        if (\count($containers) === \count($items)) {
+        if (count($containers) === count($items)) {
             $view = 'show';
         }
-        if (\count($containers) > \count($items)) {
+        if (count($containers) > count($items)) {
             $view = 'index';
         }
-        if (0 === \count($containers)) {
+        if ($containers === []) {
             $view = 'home';
         }
 
@@ -95,7 +97,7 @@ class Home extends Page
 
         $views = [];
 
-        if (\count($containers) > 0) {
+        if ($containers !== []) {
             $views[] = 'pub_theme::'.implode('.', $containers).'.'.$view;
 
             $model_root = Str::singular($containers[0]);
@@ -108,9 +110,7 @@ class Home extends Page
             $views[] = 'pub_theme::'.$view;
         }
 
-        $view_work = Arr::first($views, static function (string $view) {
-            return view()->exists($view);
-        });
+        $view_work = Arr::first($views, static fn(string $view) => view()->exists($view));
         Assert::string($view_work);
 
         self::$view = $view_work;
@@ -120,7 +120,7 @@ class Home extends Page
     {
         $parameters['lang'] = app()->getLocale();
         $record = $parameters['record'];
-        if ('show' === $name) {
+        if ($name === 'show') {
             $container0 = class_basename($record);
             $container0 = Str::plural($container0);
             $container0 = Str::snake($container0);
@@ -129,7 +129,7 @@ class Home extends Page
 
             return route('test', $parameters);
         }
-        if ('index' === $name) {
+        if ($name === 'index') {
             $container0 = class_basename($record);
             $container0 = Str::plural($container0);
             $container0 = Str::snake($container0);

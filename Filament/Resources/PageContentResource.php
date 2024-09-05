@@ -21,6 +21,7 @@ use Modules\Xot\Filament\Resources\XotBaseResource;
 class PageContentResource extends XotBaseResource
 {
     use Translatable;
+
     protected static ?string $model = PageContent::class;
 
     protected static ?string $navigationIcon = 'heroicon-o-rectangle-stack';
@@ -38,7 +39,7 @@ class PageContentResource extends XotBaseResource
                     ->columnSpan(1)
                     ->required()
                     ->lazy()
-                    ->afterStateUpdated(static function ($set, $get, $state) {
+                    ->afterStateUpdated(static function ($set, $get, $state): void {
                         if ($get('slug')) {
                             return;
                         }

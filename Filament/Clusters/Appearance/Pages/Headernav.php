@@ -32,6 +32,8 @@ class Headernav extends Page implements HasForms
 {
     use InteractsWithForms;
 
+    public ?array $data = [];
+
     protected static ?string $navigationIcon = 'heroicon-o-document-text';
 
     protected static string $view = 'cms::filament.clusters.appearance.pages.headernav';
@@ -40,19 +42,9 @@ class Headernav extends Page implements HasForms
 
     protected static ?int $navigationSort = 1;
 
-    public ?array $data = [];
-
     public function mount(): void
     {
         $this->fillForms();
-    }
-
-    protected function fillForms(): void
-    {
-        Assert::isArray($data = TenantService::config('appearance'));
-        Assert::isArray($data = Arr::get($data, 'headernav', []));
-
-        $this->form->fill($data);
     }
 
     public function form(Form $form): Form
@@ -61,7 +53,7 @@ class Headernav extends Page implements HasForms
         $view_p = Str::beforeLast($view, '.');
         $views = app(GetViewsSiblingsAndSelfAction::class)->execute($view);
 
-        $options = Arr::mapWithKeys($views, function ($item) use ($view_p) {
+        $options = Arr::mapWithKeys($views, function (string $item) use ($view_p) {
             $k = $view_p.'.'.$item;
 
             return [$k => $k];
@@ -87,19 +79,10 @@ class Headernav extends Page implements HasForms
                 ->columnSpanFull(),
                 */
                 Select::make('view')
-                        ->label('view')
-                        ->options($options),
+                    ->label('view')
+                    ->options($options),
             ])->columns(2)
             ->statePath('data');
-    }
-
-    protected function getUpdateFormActions(): array
-    {
-        return [
-            Action::make('updateAction')
-                ->label(__('filament-panels::pages/auth/edit-profile.form.actions.save.label'))
-                ->submit('editForm'),
-        ];
     }
 
     public function updateData(): void
@@ -123,7 +106,24 @@ class Headernav extends Page implements HasForms
 
         Notification::make()
             ->title('Saved successfully')
-             ->success()
+            ->success()
             ->send();
+    }
+
+    protected function fillForms(): void
+    {
+        Assert::isArray($data = TenantService::config('appearance'));
+        Assert::isArray($data = Arr::get($data, 'headernav', []));
+
+        $this->form->fill($data);
+    }
+
+    protected function getUpdateFormActions(): array
+    {
+        return [
+            Action::make('updateAction')
+                ->label(__('filament-panels::pages/auth/edit-profile.form.actions.save.label'))
+                ->submit('editForm'),
+        ];
     }
 }

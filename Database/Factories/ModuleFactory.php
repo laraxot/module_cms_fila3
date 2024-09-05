@@ -8,12 +8,15 @@ use Illuminate\Database\Eloquent\Factories\Factory;
 use Illuminate\Database\Eloquent\Model;
 use Modules\Cms\Models\Module;
 
+/**
+ * @extends \Illuminate\Database\Eloquent\Factories\Factory<\Modules\Cms\Models\Module>
+ */
 class ModuleFactory extends Factory
 {
     /**
      * The name of the factory's corresponding model.
      *
-     * @var class-string<Model>
+     * @var class-string<Module>
      */
     protected $model = Module::class;
 
@@ -24,7 +27,7 @@ class ModuleFactory extends Factory
     {
         return [
             // 'id' => $this->faker->randomNumber(5, false),
-            'name' => $this->faker->name,
+            'name' => fake()->name,
         ];
     }
 }

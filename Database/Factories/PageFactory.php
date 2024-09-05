@@ -5,17 +5,21 @@ declare(strict_types=1);
 namespace Modules\Cms\Database\Factories;
 
 use Illuminate\Database\Eloquent\Factories\Factory;
+use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Str;
 use Modules\Cms\Models\Page;
 
 use function Safe\preg_replace;
 
+/**
+ * @extends \Illuminate\Database\Eloquent\Factories\Factory<\Modules\Cms\Models\Page>
+ */
 class PageFactory extends Factory
 {
     /**
      * The name of the factory's corresponding model.
      *
-     * @var class-string<\Illuminate\Database\Eloquent\Model>
+     * @var class-string<Page>
      */
     protected $model = Page::class;
 
@@ -26,7 +30,7 @@ class PageFactory extends Factory
      */
     public function definition()
     {
-        $title = preg_replace('/\./', '', $this->faker->sentence(3));
+        $title = preg_replace('/\./', '', fake()->sentence(3));
 
         return [
             'slug' => Str::slug($title),

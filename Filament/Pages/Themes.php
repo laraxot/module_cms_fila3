@@ -17,13 +17,23 @@ use function Safe\json_decode;
 
 class Themes extends Page
 {
+    public array $data = [];
+
     protected static ?string $navigationIcon = 'heroicon-o-paint-brush';
 
     protected static string $view = 'cms::filament.pages.themes';
 
     protected static ?string $navigationGroup = 'Settings';
 
-    public array $data = [];
+    public function changePubTheme(string $name): void
+    {
+        $data['pub_theme'] = $name;
+        TenantService::saveConfig('xra', $data);
+        Notification::make()
+            ->title('Saved successfully')
+            ->success()
+            ->send();
+    }
 
     /*
     public static function getNavigationGroup(): ?string
@@ -37,13 +47,13 @@ class Themes extends Page
      */
     protected function getViewData(): array
     {
-        $themes = File::directories(base_path().(string) str('/Themes')->replace('/', \DIRECTORY_SEPARATOR));
+        $themes = File::directories(base_path().str('/Themes')->replace('/', \DIRECTORY_SEPARATOR));
         $data = [];
         if ($themes) {
             foreach ($themes as $key => $item) {
                 $filename = $item.\DIRECTORY_SEPARATOR.'theme.json';
                 if (! File::exists($filename)) {
-                    $theme_data = ThemeData::from(['name' => basename($item)]);
+                    $theme_data = ThemeData::from(['name' => basename((string) $item)]);
                     File::put($filename, $theme_data->toJson());
                 }
                 $info = json_decode(File::get($filename), true);
@@ -59,18 +69,7 @@ class Themes extends Page
         }
         $this->data = $data;
 
-        return compact('data');
-    }
-
-    public function changePubTheme(string $name): void
-    {
-        $data['pub_theme'] = $name;
-        TenantService::saveConfig('xra', $data);
-        Notification::make()
-            ->title('Saved successfully')
-            ->success()
-            ->send();
-        // dddx(config('xra.pub_theme'));
+        return ['data' => $data];
     }
 
     /*
