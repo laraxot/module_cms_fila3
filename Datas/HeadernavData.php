@@ -14,12 +14,19 @@ use Spatie\LaravelData\Data;
 class HeadernavData extends Data implements Wireable
 {
     use WireableData;
+
     public ?string $background_color = null;
+
     public ?string $background = null;
+
     public ?string $overlay_color = null;
+
     public ?int $overlay_opacity = null;
+
     public ?string $class = null;
+
     public ?string $style = null;
+
     /**
      * @var view-string
      */
@@ -29,7 +36,8 @@ class HeadernavData extends Data implements Wireable
 
     public static function make(): self
     {
-        if (! self::$instance) {
+        if (! self::$instance instanceof HeadernavData) {
+            // if (! self::$instance) {
             $data = TenantService::getConfig('appearance');
             $data = Arr::get($data, 'headernav', []);
             self::$instance = self::from($data);

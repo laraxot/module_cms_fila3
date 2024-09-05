@@ -38,7 +38,7 @@ class PageResource extends XotBaseResource
                     ->columnSpan(1)
                     ->required()
                     ->lazy()
-                    ->afterStateUpdated(static function ($set, $get, $state) {
+                    ->afterStateUpdated(static function ($set, $get, $state): void {
                         if ($get('slug')) {
                             return;
                         }
