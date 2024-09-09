@@ -103,8 +103,8 @@ class PageContent extends BaseModel
     protected function casts(): array
     {
         return [
-            'id'=>'string',
-            'uuid'=>'string',
+            'id' => 'string',
+            'uuid' => 'string',
 
             'name' => 'string',
             'slug' => 'string',

@@ -49,8 +49,8 @@ abstract class BasePivot extends Pivot
     protected function casts(): array
     {
         return [
-                'id'=>'string', // must be string else primary key of related model will be typed as int
-                'uuid'=>'string',
+            'id' => 'string', // must be string else primary key of related model will be typed as int
+            'uuid' => 'string',
             'created_at' => 'datetime',
             'updated_at' => 'datetime',
         ];
