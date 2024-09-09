@@ -40,6 +40,8 @@ abstract class BaseMorphPivot extends MorphPivot
 
     /** @var string */
     protected $primaryKey = 'id';
+/** @var string */
+    protected $keyType = 'string';
 
     /** @var list<string> */
     protected $fillable = [
@@ -53,6 +55,8 @@ abstract class BaseMorphPivot extends MorphPivot
     protected function casts(): array
     {
         return [
+                'id'=>'string',
+                'uuid'=>'string',
             'created_at' => 'datetime', 'updated_at' => 'datetime', 'deleted_at' => 'datetime',
         ];
     }
