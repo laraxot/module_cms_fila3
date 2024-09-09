@@ -139,9 +139,9 @@ class Page extends BaseModel
     protected function casts(): array
     {
         return [
+            'id'=>'string',
+            'uuid'=>'string',
             // 'images' => 'array',
-            'id' => 'string',
-            'uuid' => 'string',
             'date' => 'datetime',
             'published_at' => 'datetime',
             'active' => 'boolean',
