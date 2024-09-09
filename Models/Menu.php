@@ -168,8 +168,8 @@ class Menu extends BaseModel
     protected function casts(): array
     {
         return [
-                'id'=>'string',
-                'uuid'=>'string',
+            'id' => 'string',
+            'uuid' => 'string',
             'items' => 'array',
         ];
     }

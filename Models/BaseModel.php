@@ -47,7 +47,7 @@ abstract class BaseModel extends Model
 
     /** @var string */
     protected $primaryKey = 'id';
-/** @var string */
+    /** @var string */
     protected $keyType = 'string';
 
     /** @var list<string> */
@@ -69,8 +69,8 @@ abstract class BaseModel extends Model
     protected function casts(): array
     {
         return [
-                'id'=>'string',
-                'uuid'=>'string',
+            'id' => 'string',
+            'uuid' => 'string',
             'published_at' => 'datetime', 'created_at' => 'datetime', 'updated_at' => 'datetime',
         ];
     }
