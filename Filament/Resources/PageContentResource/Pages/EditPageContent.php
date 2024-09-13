@@ -11,6 +11,7 @@ use Modules\Cms\Filament\Resources\PageContentResource;
 class EditPageContent extends EditRecord
 {
     use EditRecord\Concerns\Translatable;
+
     protected static string $resource = PageContentResource::class;
 
     protected function getHeaderActions(): array

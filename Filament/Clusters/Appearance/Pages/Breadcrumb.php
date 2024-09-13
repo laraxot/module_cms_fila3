@@ -88,7 +88,7 @@ class Breadcrumb extends Page implements HasForms
 
         Notification::make()
             ->title('Saved successfully')
-             ->success()
+            ->success()
             ->send();
     }
 }

@@ -19,7 +19,7 @@ final class GetViewAction
     {
         if ('' == $file0) {
             $backtrace = debug_backtrace();
-            $file0 = FileService::fixpath($backtrace[0]['file'] ?? '');
+            $file0 = app(\Modules\Xot\Actions\File\FixPathAction::class)->execute($backtrace[0]['file'] ?? '');
         }
 
         $file0 = Str::after($file0, base_path());
