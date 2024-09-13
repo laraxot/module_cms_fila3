@@ -22,7 +22,6 @@ use Modules\Cms\Filament\Clusters\Appearance;
 use Modules\Tenant\Services\TenantService;
 use Modules\UI\Filament\Forms\Components\RadioImage;
 use Modules\Xot\Actions\View\GetViewsSiblingsAndSelfAction;
-use Modules\Xot\Services\FileService;
 use Webmozart\Assert\Assert;
 
 /**
@@ -69,7 +68,7 @@ class Headernav extends Page implements HasForms
 
         /*
         $options = Arr::map($views, function ($view) {
-            return FileService::asset('ui::img/headernav/screenshots/'.$view.'.png');
+            return app(\Modules\Xot\Actions\File\AssetAction::class)->execute('ui::img/headernav/screenshots/'.$view.'.png');
         });
         */
         return $form
