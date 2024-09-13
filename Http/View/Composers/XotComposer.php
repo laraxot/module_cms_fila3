@@ -9,7 +9,6 @@ use Illuminate\Contracts\Auth\Authenticatable;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use Illuminate\View\View;
-use Modules\User\Services\ProfileService;
 
 /**
  * Class XotComposer.
@@ -26,7 +25,6 @@ class XotComposer
             return;
         }
 
-        // $profile = ProfileService::make()->get($user);
         $profile = $user->profile;
         $lang = app()->getLocale();
         $params = [];

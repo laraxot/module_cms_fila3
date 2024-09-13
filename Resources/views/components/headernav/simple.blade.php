@@ -53,12 +53,12 @@
             @else
                 <div class="flex items-center w-auto">
                     <x-ui.button type="secondary" submit="true" tag="a" href="{{ route('login') }}">
-                        Login
+                        {{ __('user::auth.login-in') }}
                     </x-ui.button>
                 </div>
                 <div class="flex items-center w-auto">
                     <x-ui.button type="primary" submit="true" tag="a" href="{{ route('register') }}">
-                        Sign Up
+                        {{ __('user::auth.sign-up') }}
                     </x-ui.button>
                 </div>
             @endauth

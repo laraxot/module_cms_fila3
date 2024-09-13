@@ -7,7 +7,6 @@ namespace Modules\Cms\Actions\Module;
 use Exception;
 use Illuminate\Filesystem\Filesystem;
 use Illuminate\Support\Facades\File;
-use Modules\Xot\Services\FileService;
 use Nwidart\Modules\Laravel\Module;
 
 use function Safe\realpath;
@@ -47,7 +46,7 @@ final class FixJigSawByModuleAction
     {
         $filename = str_replace('.stub', '', $stub->getRelativePathname());
         $file_path = $module->getPath().'/docs/'.$filename;
-        $file_path = FileService::fixPath($file_path);
+        $file_path = app(\Modules\Xot\Actions\File\FixPathAction::class)->execute($file_path);
         /*
         //mkdir(): Permission denied
         if (! is_dir(dirname($file_path))) {

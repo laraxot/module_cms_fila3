@@ -19,6 +19,14 @@ use Spatie\Translatable\HasTranslations;
  * @property \Illuminate\Support\Carbon|null $updated_at
  * @property string|null                     $created_by
  * @property string|null                     $updated_by
+<<<<<<< HEAD
+=======
+ * @property ProfileContract|null            $creator
+ * @property mixed                           $translations
+ * @property ProfileContract|null            $updater
+ * @property string|null                     $created_by
+ * @property string|null                     $updated_by
+>>>>>>> 9e5c305f5b778123697e1004c1510fd5da81e66a
  * @property mixed                           $translations
  * @property string                          $blocks
  * @property string|null                     $id
@@ -31,6 +39,10 @@ use Spatie\Translatable\HasTranslations;
  * @property ProfileContract|null            $creator
  * @property mixed                           $translations
  * @property ProfileContract|null            $updater
+<<<<<<< HEAD
+=======
+ *                                                         >>>>>>> a57be61 (up)
+>>>>>>> 9e5c305f5b778123697e1004c1510fd5da81e66a
  *
  * @method static \Modules\Cms\Database\Factories\PageContentFactory factory($count = null, $state = [])
  * @method static \Illuminate\Database\Eloquent\Builder|PageContent  newModelQuery()
