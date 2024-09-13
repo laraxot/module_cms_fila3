@@ -89,8 +89,8 @@ class Footer extends Page implements HasForms
                 ->columnSpanFull(),
                 */
                 Select::make('view')
-                        ->label('view')
-                        ->options($options),
+                    ->label('view')
+                    ->options($options),
             ])->columns(2)
             ->statePath('data');
     }
@@ -125,7 +125,7 @@ class Footer extends Page implements HasForms
 
         Notification::make()
             ->title('Saved successfully')
-             ->success()
+            ->success()
             ->send();
     }
 }

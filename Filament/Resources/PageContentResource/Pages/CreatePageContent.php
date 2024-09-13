@@ -10,5 +10,6 @@ use Modules\Cms\Filament\Resources\PageContentResource;
 class CreatePageContent extends CreateRecord
 {
     use CreateRecord\Concerns\Translatable;
+
     protected static string $resource = PageContentResource::class;
 }
