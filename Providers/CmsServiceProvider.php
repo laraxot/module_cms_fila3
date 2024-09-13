@@ -15,7 +15,6 @@ use Livewire\Volt\Volt;
 use Mcamara\LaravelLocalization\Facades\LaravelLocalization;
 use Modules\Xot\Datas\XotData;
 use Modules\Xot\Providers\XotBaseServiceProvider;
-use Modules\Xot\Services\FileService;
 use Modules\Xot\Services\LivewireService;
 use Nwidart\Modules\Facades\Module;
 use Webmozart\Assert\Assert;
@@ -57,7 +56,7 @@ class CmsServiceProvider extends XotBaseServiceProvider
 
         if ($this->xot->register_pub_theme) {
             Assert::isArray($paths = config('view.paths'));
-            $theme_path = FileService::fixPath(base_path('Themes/'.$this->xot->pub_theme.'/Resources/views'));
+            $theme_path = app(\Modules\Xot\Actions\File\FixPathAction::class)->execute(base_path('Themes/'.$this->xot->pub_theme.'/Resources/views'));
             $paths = array_merge([$theme_path], $paths);
             Config::set('view.paths', $paths);
             Config::set('livewire.view_path', $theme_path.'/livewire');
@@ -118,9 +117,9 @@ class CmsServiceProvider extends XotBaseServiceProvider
         $theme = $xot->{$theme_type};
 
         $resource_path = 'Themes/'.$theme.'/Resources';
-        $lang_dir = FileService::fixPath(base_path($resource_path.'/lang'));
+        $lang_dir = app(\Modules\Xot\Actions\File\FixPathAction::class)->execute(base_path($resource_path.'/lang'));
 
-        $theme_dir = FileService::fixPath(base_path($resource_path.'/views'));
+        $theme_dir = app(\Modules\Xot\Actions\File\FixPathAction::class)->execute(base_path($resource_path.'/views'));
 
         app('view')->addNamespace($theme_type, $theme_dir);
         $this->loadTranslationsFrom($lang_dir, $theme_type);
