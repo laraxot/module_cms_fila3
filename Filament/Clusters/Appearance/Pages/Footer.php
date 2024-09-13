@@ -22,7 +22,6 @@ use Modules\Cms\Filament\Clusters\Appearance;
 use Modules\Tenant\Services\TenantService;
 use Modules\UI\Filament\Forms\Components\RadioImage;
 use Modules\Xot\Actions\View\GetViewsSiblingsAndSelfAction;
-use Modules\Xot\Services\FileService;
 use Webmozart\Assert\Assert;
 
 /**
@@ -69,7 +68,7 @@ class Footer extends Page implements HasForms
 
         /*
         $options = Arr::map($views, function ($view) {
-            return FileService::asset('ui::img/headernav/screenshots/'.$view.'.png');
+            return app(\Modules\Xot\Actions\File\AssetAction::class)->execute('ui::img/headernav/screenshots/'.$view.'.png');
         });
         */
         return $form
@@ -89,8 +88,8 @@ class Footer extends Page implements HasForms
                 ->columnSpanFull(),
                 */
                 Select::make('view')
-                        ->label('view')
-                        ->options($options),
+                    ->label('view')
+                    ->options($options),
             ])->columns(2)
             ->statePath('data');
     }
@@ -125,7 +124,7 @@ class Footer extends Page implements HasForms
 
         Notification::make()
             ->title('Saved successfully')
-             ->success()
+            ->success()
             ->send();
     }
 }

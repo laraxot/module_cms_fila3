@@ -123,8 +123,8 @@ use Staudenmeir\LaravelAdjacencyList\Eloquent\HasRecursiveRelationships;
  */
 class Menu extends BaseModel
 {
-    use SushiToJsons;
     use HasRecursiveRelationships;
+    use SushiToJsons;
 
     /** @var list<string> */
     protected $fillable = [

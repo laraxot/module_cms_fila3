@@ -21,11 +21,13 @@
     },
     "autoload": {
         "psr-4": {
-            "Modules\\Cms\\": ""
+            "Modules\\Cms\\": "",
+            "Modules\\Cms\\Database\\Factories\\": "database/factories/",
+            "Modules\\Cms\\Database\\Seeders\\": "database/seeders/"
         }
     },
     "require": {
-        
+
     },
     "require_comment": {
         "ryangjchandler/orbit": "*",
@@ -85,5 +87,5 @@
     },
     "minimum-stability": "dev",
     "prefer-stable": true
-    
+
 }

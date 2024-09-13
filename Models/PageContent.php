@@ -12,6 +12,7 @@ use Spatie\Translatable\HasTranslations;
  * Modules\Cms\Models\PageContent.
  *
 <<<<<<< HEAD
+<<<<<<< HEAD
  * @property string $blocks
 =======
  * <<<<<<< HEAD
@@ -40,6 +41,34 @@ use Spatie\Translatable\HasTranslations;
  * @property mixed                                $translations
  * @property ProfileContract|null                 $updater
  *                                                              >>>>>>> f67fac5 (📝 (PageContentFactory.php): Update PageContentFactory to use fully qualified class name for the model)
+=======
+ * @property string                          $blocks
+ * @property string|null                     $id
+ * @property array|null                      $name
+ * @property string|null                     $slug
+ * @property \Illuminate\Support\Carbon|null $created_at
+ * @property \Illuminate\Support\Carbon|null $updated_at
+ * @property string|null                     $created_by
+ * @property string|null                     $updated_by
+ * @property ProfileContract|null            $creator
+ * @property mixed                           $translations
+ * @property ProfileContract|null            $updater
+ * @property string|null                     $created_by
+ * @property string|null                     $updated_by
+ * @property mixed                           $translations
+ * @property string                          $blocks
+ * @property string|null                     $id
+ * @property array|null                      $name
+ * @property string|null                     $slug
+ * @property \Illuminate\Support\Carbon|null $created_at
+ * @property \Illuminate\Support\Carbon|null $updated_at
+ * @property string|null                     $created_by
+ * @property string|null                     $updated_by
+ * @property ProfileContract|null            $creator
+ * @property mixed                           $translations
+ * @property ProfileContract|null            $updater
+ *                                                         >>>>>>> a57be61 (up)
+>>>>>>> 9e5c305f5b778123697e1004c1510fd5da81e66a
  *
  * @method static \Modules\Cms\Database\Factories\PageContentFactory factory($count = null, $state = [])
  * @method static \Illuminate\Database\Eloquent\Builder|PageContent  newModelQuery()
@@ -59,7 +88,10 @@ use Spatie\Translatable\HasTranslations;
  * @method static \Illuminate\Database\Eloquent\Builder|PageContent  whereUpdatedBy($value)
  *
  * @mixin \Eloquent
+<<<<<<< HEAD
 >>>>>>> 59d5a90254706a869215b533bf368ab9d8f0904c
+=======
+>>>>>>> 9e5c305f5b778123697e1004c1510fd5da81e66a
  */
 class PageContent extends BaseModel
 {
