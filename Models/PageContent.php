@@ -17,13 +17,11 @@ use Spatie\Translatable\HasTranslations;
  * @property string|null                     $slug
  * @property \Illuminate\Support\Carbon|null $created_at
  * @property \Illuminate\Support\Carbon|null $updated_at
- *                                                         <<<<<<< HEAD
  * @property string|null                     $created_by
  * @property string|null                     $updated_by
  * @property ProfileContract|null            $creator
  * @property mixed                           $translations
  * @property ProfileContract|null            $updater
- *                                                         =======
  * @property string|null                     $created_by
  * @property string|null                     $updated_by
  * @property mixed                           $translations
