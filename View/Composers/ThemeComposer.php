@@ -33,13 +33,13 @@ class ThemeComposer
             return '#';
         }
         $lang = app()->getLocale();
-        if ($menu['type'] == 'internal') {
+        if ('internal' == $menu['type']) {
             return route('page_slug.view', ['lang' => $lang, 'slug' => $menu['url']]);
         }
-        if ($menu['type'] == 'external') {
+        if ('external' == $menu['type']) {
             return $menu['url'];
         }
-        if ($menu['type'] == 'route_name') {
+        if ('route_name' == $menu['type']) {
             return route($menu['url'], ['lang' => $lang]);
         }
 
@@ -97,7 +97,7 @@ class ThemeComposer
     public function getUrlPage(string $slug): string
     {
         $page = $this->getPageModel($slug);
-        if ($page !== null) {
+        if (null !== $page) {
             return '/'.app()->getLocale().'/pages/'.$slug;
         }
 
