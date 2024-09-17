@@ -21,6 +21,7 @@ use Spatie\Translatable\HasTranslations;
  * @property \Modules\Idoteca\Models\Profile|null $creator
  * @property mixed                                $translations
  * @property \Modules\Idoteca\Models\Profile|null $updater
+ *
  * @method static \Modules\Cms\Database\Factories\PageContentFactory factory($count = null, $state = [])
  * @method static \Illuminate\Database\Eloquent\Builder|PageContent  newModelQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|PageContent  newQuery()
@@ -37,6 +38,7 @@ use Spatie\Translatable\HasTranslations;
  * @method static \Illuminate\Database\Eloquent\Builder|PageContent  whereSlug($value)
  * @method static \Illuminate\Database\Eloquent\Builder|PageContent  whereUpdatedAt($value)
  * @method static \Illuminate\Database\Eloquent\Builder|PageContent  whereUpdatedBy($value)
+ *
  * @mixin \Eloquent
  */
 class PageContent extends BaseModel
