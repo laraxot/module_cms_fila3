@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace Modules\Cms\Models;
 
 use Modules\Tenant\Models\Traits\SushiToJsons;
+use Modules\Xot\Actions\Tree\GetTreeOptionsByModelClassAction;
 use Staudenmeir\LaravelAdjacencyList\Eloquent\HasRecursiveRelationships;
 
 /**
@@ -157,8 +158,6 @@ class Menu extends BaseModel
 
     public static function getTreeMenuOptions(): array
     {
-        $instance = new self();
-
-        return app(GetTreeOptions::class)->execute($instance);
+        return app(GetTreeOptionsByModelClassAction::class)->execute(Menu::class);
     }
 }
