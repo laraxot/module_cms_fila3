@@ -22,7 +22,6 @@ use Spatie\Translatable\HasTranslations;
  * @property \Illuminate\Support\Carbon|null $deleted_at
  * @property string|null                     $deleted_by
  * @property array|null                      $content_blocks
- *
  * @method static \Illuminate\Database\Eloquent\Builder|Page newModelQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|Page newQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|Page onlyTrashed()
@@ -40,23 +39,18 @@ use Spatie\Translatable\HasTranslations;
  * @method static \Illuminate\Database\Eloquent\Builder|Page whereUpdatedBy($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Page withTrashed()
  * @method static \Illuminate\Database\Eloquent\Builder|Page withoutTrashed()
- *
  * @property array|null $sidebar_blocks
  * @property array      $footer_blocks
- *
  * @method static \Illuminate\Database\Eloquent\Builder|Page whereFooterBlocks($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Page whereSidebarBlocks($value)
- *
  * @property mixed $translations
- *
  * @method static \Illuminate\Database\Eloquent\Builder|Page whereLocale(string $column, string $locale)
  * @method static \Illuminate\Database\Eloquent\Builder|Page whereLocales(string $column, array $locales)
  * @method static \Illuminate\Database\Eloquent\Builder|Page whereJsonContainsLocale(string $column, string $locale, ?mixed $value)
  * @method static \Illuminate\Database\Eloquent\Builder|Page whereJsonContainsLocales(string $column, array $locales, ?mixed $value)
- *
  * @property ProfileContract|null $creator
  * @property ProfileContract|null $updater
- *
+ * @method static \Modules\Cms\Database\Factories\PageFactory factory($count = null, $state = [])
  * @mixin \Eloquent
  */
 class Page extends BaseModel
