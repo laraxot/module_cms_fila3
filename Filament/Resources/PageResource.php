@@ -13,7 +13,6 @@ use Modules\Cms\Filament\Fields\PageContent;
 use Modules\Cms\Filament\Resources\PageResource\Pages;
 use Modules\Cms\Models\Page;
 use Modules\Xot\Filament\Resources\XotBaseResource;
-use Pboivin\FilamentPeek\Forms\Actions\InlinePreviewAction;
 
 class PageResource extends XotBaseResource
 {
