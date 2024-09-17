@@ -11,7 +11,8 @@ use Spatie\Translatable\HasTranslations;
 /**
  * Modules\Cms\Models\PageContent.
  *
-<<<<<<< HEAD
+ * <<<<<<< HEAD
+ *
  * @property string                          $blocks
  * @property string|null                     $id
  * @property array|null                      $name
@@ -38,13 +39,12 @@ use Spatie\Translatable\HasTranslations;
  * @property mixed                           $translations
  * @property ProfileContract|null            $updater
  *                                                         >>>>>>> a57be61 (up)
-=======
- * <<<<<<< HEAD
- * =======
- * <<<<<<< HEAD
+ *                                                         =======
+ *                                                         <<<<<<< HEAD
+ *                                                         =======
+ *                                                         <<<<<<< HEAD
  *
  * >>>>>>> origin/master
- *
  * @property string                               $blocks
  * @property string|null                          $id
  * @property array|null                           $name
@@ -72,7 +72,7 @@ use Spatie\Translatable\HasTranslations;
  * @property ProfileContract|null                 $updater
  *                                                              >>>>>>> f67fac5 (📝 (PageContentFactory.php): Update PageContentFactory to use fully qualified class name for the model)
  *                                                              >>>>>>> origin/master
->>>>>>> eeee6ec (Check & fix styling)
+ *                                                              >>>>>>> eeee6ec (Check & fix styling)
  *
  * @method static \Modules\Cms\Database\Factories\PageContentFactory factory($count = null, $state = [])
  * @method static \Illuminate\Database\Eloquent\Builder|PageContent  newModelQuery()
