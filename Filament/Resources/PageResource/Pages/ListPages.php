@@ -21,12 +21,9 @@ use Modules\Cms\Filament\Resources\PageResource;
 use Modules\UI\Enums\TableLayoutEnum;
 use Modules\UI\Filament\Actions\Table\TableLayoutToggleTableAction;
 use Modules\Xot\Filament\Traits\TransTrait;
-use Pboivin\FilamentPeek\Pages\Concerns\HasPreviewModal;
-use Pboivin\FilamentPeek\Tables\Actions\ListPreviewAction;
 
 class ListPages extends ListRecords
 {
-    use HasPreviewModal;
     use ListRecords\Concerns\Translatable;
     use TransTrait;
 
