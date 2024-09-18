@@ -4,8 +4,8 @@ declare(strict_types=1);
 
 namespace Modules\Cms\Models;
 
-use Modules\Blog\Actions\ParentChilds\GetTreeOptions;
 use Modules\Tenant\Models\Traits\SushiToJsons;
+use Modules\Xot\Actions\Tree\GetTreeOptionsByModelClassAction;
 use Staudenmeir\LaravelAdjacencyList\Eloquent\HasRecursiveRelationships;
 
 /**
@@ -21,22 +21,21 @@ use Staudenmeir\LaravelAdjacencyList\Eloquent\HasRecursiveRelationships;
  * @property \Illuminate\Support\Carbon|null $deleted_at
  * @property string|null                     $deleted_by
  *
- * @method static \Modules\Blog\Database\Factories\MenuFactory factory($count = null, $state = [])
- * @method static \Illuminate\Database\Eloquent\Builder|Menu   newModelQuery()
- * @method static \Illuminate\Database\Eloquent\Builder|Menu   newQuery()
- * @method static \Illuminate\Database\Eloquent\Builder|Menu   onlyTrashed()
- * @method static \Illuminate\Database\Eloquent\Builder|Menu   query()
- * @method static \Illuminate\Database\Eloquent\Builder|Menu   whereCreatedAt($value)
- * @method static \Illuminate\Database\Eloquent\Builder|Menu   whereCreatedBy($value)
- * @method static \Illuminate\Database\Eloquent\Builder|Menu   whereDeletedAt($value)
- * @method static \Illuminate\Database\Eloquent\Builder|Menu   whereDeletedBy($value)
- * @method static \Illuminate\Database\Eloquent\Builder|Menu   whereId($value)
- * @method static \Illuminate\Database\Eloquent\Builder|Menu   whereItems($value)
- * @method static \Illuminate\Database\Eloquent\Builder|Menu   whereName($value)
- * @method static \Illuminate\Database\Eloquent\Builder|Menu   whereUpdatedAt($value)
- * @method static \Illuminate\Database\Eloquent\Builder|Menu   whereUpdatedBy($value)
- * @method static \Illuminate\Database\Eloquent\Builder|Menu   withTrashed()
- * @method static \Illuminate\Database\Eloquent\Builder|Menu   withoutTrashed()
+ * @method static \Illuminate\Database\Eloquent\Builder|Menu newModelQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|Menu newQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|Menu onlyTrashed()
+ * @method static \Illuminate\Database\Eloquent\Builder|Menu query()
+ * @method static \Illuminate\Database\Eloquent\Builder|Menu whereCreatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Menu whereCreatedBy($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Menu whereDeletedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Menu whereDeletedBy($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Menu whereId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Menu whereItems($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Menu whereName($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Menu whereUpdatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Menu whereUpdatedBy($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Menu withTrashed()
+ * @method static \Illuminate\Database\Eloquent\Builder|Menu withoutTrashed()
  *
  * @property string                                                                                                     $title
  * @property int|null                                                                                                   $parent_id
@@ -154,9 +153,7 @@ class Menu extends BaseModel
 
     public static function getTreeMenuOptions(): array
     {
-        $instance = new self();
-
-        return app(GetTreeOptions::class)->execute($instance);
+        return app(GetTreeOptionsByModelClassAction::class)->execute(Menu::class);
     }
 
     public function getRows(): array
