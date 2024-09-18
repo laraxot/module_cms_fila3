@@ -23,24 +23,23 @@ use Spatie\Translatable\HasTranslations;
  * @property string|null                     $deleted_by
  * @property array|null                      $content_blocks
  *
- * @method static \Modules\Blog\Database\Factories\PageFactory factory($count = null, $state = [])
- * @method static \Illuminate\Database\Eloquent\Builder|Page   newModelQuery()
- * @method static \Illuminate\Database\Eloquent\Builder|Page   newQuery()
- * @method static \Illuminate\Database\Eloquent\Builder|Page   onlyTrashed()
- * @method static \Illuminate\Database\Eloquent\Builder|Page   query()
- * @method static \Illuminate\Database\Eloquent\Builder|Page   whereContent($value)
- * @method static \Illuminate\Database\Eloquent\Builder|Page   whereContentBlocks($value)
- * @method static \Illuminate\Database\Eloquent\Builder|Page   whereCreatedAt($value)
- * @method static \Illuminate\Database\Eloquent\Builder|Page   whereCreatedBy($value)
- * @method static \Illuminate\Database\Eloquent\Builder|Page   whereDeletedAt($value)
- * @method static \Illuminate\Database\Eloquent\Builder|Page   whereDeletedBy($value)
- * @method static \Illuminate\Database\Eloquent\Builder|Page   whereId($value)
- * @method static \Illuminate\Database\Eloquent\Builder|Page   whereSlug($value)
- * @method static \Illuminate\Database\Eloquent\Builder|Page   whereTitle($value)
- * @method static \Illuminate\Database\Eloquent\Builder|Page   whereUpdatedAt($value)
- * @method static \Illuminate\Database\Eloquent\Builder|Page   whereUpdatedBy($value)
- * @method static \Illuminate\Database\Eloquent\Builder|Page   withTrashed()
- * @method static \Illuminate\Database\Eloquent\Builder|Page   withoutTrashed()
+ * @method static \Illuminate\Database\Eloquent\Builder|Page newModelQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|Page newQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|Page onlyTrashed()
+ * @method static \Illuminate\Database\Eloquent\Builder|Page query()
+ * @method static \Illuminate\Database\Eloquent\Builder|Page whereContent($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Page whereContentBlocks($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Page whereCreatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Page whereCreatedBy($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Page whereDeletedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Page whereDeletedBy($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Page whereId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Page whereSlug($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Page whereTitle($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Page whereUpdatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Page whereUpdatedBy($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Page withTrashed()
+ * @method static \Illuminate\Database\Eloquent\Builder|Page withoutTrashed()
  *
  * @property array|null $sidebar_blocks
  * @property array      $footer_blocks
@@ -57,6 +56,8 @@ use Spatie\Translatable\HasTranslations;
  *
  * @property ProfileContract|null $creator
  * @property ProfileContract|null $updater
+ *
+ * @method static \Modules\Cms\Database\Factories\PageFactory factory($count = null, $state = [])
  *
  * @mixin \Eloquent
  */
