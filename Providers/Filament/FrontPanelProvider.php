@@ -7,6 +7,7 @@ namespace Modules\Cms\Providers\Filament;
 use Filament\Http\Middleware\Authenticate;
 use Filament\Http\Middleware\DisableBladeIconComponents;
 use Filament\Http\Middleware\DispatchServingFilamentEvent;
+use Filament\Pages\Auth\EditProfile;
 use Filament\Pages\Dashboard;
 use Filament\Panel;
 use Filament\PanelProvider;
@@ -20,6 +21,8 @@ use Illuminate\Routing\Middleware\SubstituteBindings;
 use Illuminate\Session\Middleware\AuthenticateSession;
 use Illuminate\Session\Middleware\StartSession;
 use Illuminate\View\Middleware\ShareErrorsFromSession;
+use Modules\Cms\Filament\Pages\Themes;
+use Modules\User\Filament\Pages\Auth\Login;
 
 class FrontPanelProvider extends PanelProvider
 {
@@ -27,19 +30,22 @@ class FrontPanelProvider extends PanelProvider
     {
         return $panel
             ->id('cms::front')
-            ->path('cms::front')
+            ->path('{lang}/front')
             ->colors([
                 'primary' => Color::Amber,
             ])
             ->discoverResources(in: app_path('Filament/Front/Resources'), for: 'App\\Filament\\Front\\Resources')
             ->discoverPages(in: app_path('Filament/Front/Pages'), for: 'App\\Filament\\Front\\Pages')
             ->pages([
-                Dashboard::class,
+                //  Dashboard::class,
+                // Login::class,
+                Themes::class,
+                EditProfile::class,
             ])
             ->discoverWidgets(in: app_path('Filament/Front/Widgets'), for: 'App\\Filament\\Front\\Widgets')
             ->widgets([
-                AccountWidget::class,
-                FilamentInfoWidget::class,
+                // AccountWidget::class,
+                // FilamentInfoWidget::class,
             ])
             ->middleware([
                 EncryptCookies::class,
