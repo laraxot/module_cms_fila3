@@ -12,7 +12,8 @@
         "laravel": {
             "providers": [
                 "Modules\\Cms\\Providers\\CmsServiceProvider",
-                "Modules\\Cms\\Providers\\Filament\\AdminPanelProvider"
+                "Modules\\Cms\\Providers\\Filament\\AdminPanelProvider",
+                "Modules\\Cms\\Providers\\Filament\\FrontPanelProvider"
             ],
             "aliases": {
 
