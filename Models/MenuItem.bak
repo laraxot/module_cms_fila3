@@ -81,6 +81,8 @@ class MenuItem extends Model
     protected function casts(): array
     {
         return [
+                'id'=>'string',
+                'uuid'=>'string',
             'id' => 'int',
             'label' => 'string',
             'link' => 'string',

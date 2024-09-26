@@ -5,14 +5,18 @@ declare(strict_types=1);
 namespace Modules\Cms\Database\Factories;
 
 use Illuminate\Database\Eloquent\Factories\Factory;
+use Illuminate\Database\Eloquent\Model;
 use Modules\Cms\Models\Menu;
 
+/**
+ * @extends \Illuminate\Database\Eloquent\Factories\Factory<\Modules\Cms\Models\Menu>
+ */
 class MenuFactory extends Factory
 {
     /**
      * The name of the factory's corresponding model.
      *
-     * @var class-string<\Illuminate\Database\Eloquent\Model>
+     * @var class-string<Menu>
      */
     protected $model = Menu::class;
 
@@ -24,8 +28,8 @@ class MenuFactory extends Factory
     public function definition()
     {
         return [
-            'name' => $this->faker->name,
-            'items' => $this->faker->text,
+            'name' => fake()->name,
+            'items' => fake()->text,
         ];
     }
 }

@@ -29,17 +29,17 @@ class ThemeComposer
 
     public function getMenuUrl(array $menu): string
     {
-        if (empty($menu)) {
+        if ([] === $menu) {
             return '#';
         }
         $lang = app()->getLocale();
         if ('internal' == $menu['type']) {
             return route('page_slug.view', ['lang' => $lang, 'slug' => $menu['url']]);
         }
-        if ('external' == $menu['type']) {
+        if ('external' === $menu['type']) {
             return $menu['url'];
         }
-        if ('route_name' == $menu['type']) {
+        if ('route_name' === $menu['type']) {
             return route($menu['url'], ['lang' => $lang]);
         }
 
@@ -98,9 +98,7 @@ class ThemeComposer
 
     public function getPages(): Collection
     {
-        $pages = Page::all();
-
-        return $pages;
+        return Page::all();
     }
 
     public function getPageModel(string $slug): ?Page
@@ -111,7 +109,7 @@ class ThemeComposer
     public function getUrlPage(string $slug): string
     {
         $page = $this->getPageModel($slug);
-        if (null !== $page) {
+        if ($page instanceof Page) {
             return '/'.app()->getLocale().'/pages/'.$slug;
         }
 

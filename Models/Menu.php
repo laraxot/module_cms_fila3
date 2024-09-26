@@ -4,8 +4,8 @@ declare(strict_types=1);
 
 namespace Modules\Cms\Models;
 
-use Modules\Blog\Actions\ParentChilds\GetTreeOptions;
 use Modules\Tenant\Models\Traits\SushiToJsons;
+use Modules\Xot\Actions\Tree\GetTreeOptionsByModelClassAction;
 use Staudenmeir\LaravelAdjacencyList\Eloquent\HasRecursiveRelationships;
 
 /**
@@ -21,22 +21,21 @@ use Staudenmeir\LaravelAdjacencyList\Eloquent\HasRecursiveRelationships;
  * @property \Illuminate\Support\Carbon|null $deleted_at
  * @property string|null                     $deleted_by
  *
- * @method static \Modules\Blog\Database\Factories\MenuFactory factory($count = null, $state = [])
- * @method static \Illuminate\Database\Eloquent\Builder|Menu   newModelQuery()
- * @method static \Illuminate\Database\Eloquent\Builder|Menu   newQuery()
- * @method static \Illuminate\Database\Eloquent\Builder|Menu   onlyTrashed()
- * @method static \Illuminate\Database\Eloquent\Builder|Menu   query()
- * @method static \Illuminate\Database\Eloquent\Builder|Menu   whereCreatedAt($value)
- * @method static \Illuminate\Database\Eloquent\Builder|Menu   whereCreatedBy($value)
- * @method static \Illuminate\Database\Eloquent\Builder|Menu   whereDeletedAt($value)
- * @method static \Illuminate\Database\Eloquent\Builder|Menu   whereDeletedBy($value)
- * @method static \Illuminate\Database\Eloquent\Builder|Menu   whereId($value)
- * @method static \Illuminate\Database\Eloquent\Builder|Menu   whereItems($value)
- * @method static \Illuminate\Database\Eloquent\Builder|Menu   whereName($value)
- * @method static \Illuminate\Database\Eloquent\Builder|Menu   whereUpdatedAt($value)
- * @method static \Illuminate\Database\Eloquent\Builder|Menu   whereUpdatedBy($value)
- * @method static \Illuminate\Database\Eloquent\Builder|Menu   withTrashed()
- * @method static \Illuminate\Database\Eloquent\Builder|Menu   withoutTrashed()
+ * @method static \Illuminate\Database\Eloquent\Builder|Menu newModelQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|Menu newQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|Menu onlyTrashed()
+ * @method static \Illuminate\Database\Eloquent\Builder|Menu query()
+ * @method static \Illuminate\Database\Eloquent\Builder|Menu whereCreatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Menu whereCreatedBy($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Menu whereDeletedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Menu whereDeletedBy($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Menu whereId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Menu whereItems($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Menu whereName($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Menu whereUpdatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Menu whereUpdatedBy($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Menu withTrashed()
+ * @method static \Illuminate\Database\Eloquent\Builder|Menu withoutTrashed()
  *
  * @property string                                                                                                     $title
  * @property int|null                                                                                                   $parent_id
@@ -118,6 +117,14 @@ use Staudenmeir\LaravelAdjacencyList\Eloquent\HasRecursiveRelationships;
  * @method static \Staudenmeir\LaravelAdjacencyList\Eloquent\Collection<int, static> get($columns = ['*'])
  * @method static \Staudenmeir\LaravelAdjacencyList\Eloquent\Collection<int, static> all($columns = ['*'])
  * @method static \Staudenmeir\LaravelAdjacencyList\Eloquent\Collection<int, static> get($columns = ['*'])
+ * @method static \Staudenmeir\LaravelAdjacencyList\Eloquent\Collection<int, static> all($columns = ['*'])
+ * @method static \Staudenmeir\LaravelAdjacencyList\Eloquent\Collection<int, static> get($columns = ['*'])
+ * @method static \Staudenmeir\LaravelAdjacencyList\Eloquent\Collection<int, static> all($columns = ['*'])
+ * @method static \Staudenmeir\LaravelAdjacencyList\Eloquent\Collection<int, static> get($columns = ['*'])
+ * @method static \Staudenmeir\LaravelAdjacencyList\Eloquent\Collection<int, static> all($columns = ['*'])
+ * @method static \Staudenmeir\LaravelAdjacencyList\Eloquent\Collection<int, static> get($columns = ['*'])
+ * @method static \Staudenmeir\LaravelAdjacencyList\Eloquent\Collection<int, static> all($columns = ['*'])
+ * @method static \Staudenmeir\LaravelAdjacencyList\Eloquent\Collection<int, static> get($columns = ['*'])
  *
  * @mixin \Eloquent
  */
@@ -133,11 +140,6 @@ class Menu extends BaseModel
         'parent_id',
     ];
 
-    public function getRows(): array
-    {
-        return $this->getSushiRows();
-    }
-
     protected array $schema = [
         'id' => 'integer',
         'title' => 'string',
@@ -149,18 +151,23 @@ class Menu extends BaseModel
         'updated_by' => 'string',
     ];
 
+    public static function getTreeMenuOptions(): array
+    {
+        return app(GetTreeOptionsByModelClassAction::class)->execute(Menu::class);
+    }
+
+    public function getRows(): array
+    {
+        return $this->getSushiRows();
+    }
+
     /** @return array<string, string> */
     protected function casts(): array
     {
         return [
+            'id' => 'string',
+            'uuid' => 'string',
             'items' => 'array',
         ];
-    }
-
-    public static function getTreeMenuOptions(): array
-    {
-        $instance = new self();
-
-        return app(GetTreeOptions::class)->execute($instance);
     }
 }

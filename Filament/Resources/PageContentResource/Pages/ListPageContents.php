@@ -30,21 +30,6 @@ class ListPageContents extends ListRecords
 
     protected static string $resource = PageContentResource::class;
 
-    protected function getHeaderActions(): array
-    {
-        return [
-            CreateAction::make(),
-            Actions\LocaleSwitcher::make(),
-        ];
-    }
-
-    protected function getTableHeaderActions(): array
-    {
-        return [
-            TableLayoutToggleTableAction::make(),
-        ];
-    }
-
     public function getGridTableColumns(): array
     {
         return [
@@ -108,5 +93,20 @@ class ListPageContents extends ListRecords
                 column: 'created_at',
                 direction: 'DESC',
             );
+    }
+
+    protected function getHeaderActions(): array
+    {
+        return [
+            CreateAction::make(),
+            Actions\LocaleSwitcher::make(),
+        ];
+    }
+
+    protected function getTableHeaderActions(): array
+    {
+        return [
+            TableLayoutToggleTableAction::make(),
+        ];
     }
 }

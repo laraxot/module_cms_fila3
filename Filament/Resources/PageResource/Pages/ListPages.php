@@ -21,43 +21,15 @@ use Modules\Cms\Filament\Resources\PageResource;
 use Modules\UI\Enums\TableLayoutEnum;
 use Modules\UI\Filament\Actions\Table\TableLayoutToggleTableAction;
 use Modules\Xot\Filament\Traits\TransTrait;
-use Pboivin\FilamentPeek\Pages\Concerns\HasPreviewModal;
-use Pboivin\FilamentPeek\Tables\Actions\ListPreviewAction;
 
 class ListPages extends ListRecords
 {
-    use HasPreviewModal;
     use ListRecords\Concerns\Translatable;
     use TransTrait;
 
-    protected static string $resource = PageResource::class;
-
     public TableLayoutEnum $layoutView = TableLayoutEnum::LIST;
 
-    protected function getHeaderActions(): array
-    {
-        return [
-            Actions\LocaleSwitcher::make(),
-            CreateAction::make(),
-        ];
-    }
-
-    protected function getTableHeaderActions(): array
-    {
-        return [
-            // TableLayoutToggleTableAction::make(),
-        ];
-    }
-
-    protected function getPreviewModalView(): ?string
-    {
-        return 'page.show';
-    }
-
-    protected function getPreviewModalDataRecordKey(): ?string
-    {
-        return 'page';
-    }
+    protected static string $resource = PageResource::class;
 
     /*
     public function table(Table $table): Table
@@ -145,5 +117,30 @@ class ListPages extends ListRecords
                 column: 'created_at',
                 direction: 'DESC',
             );
+    }
+
+    protected function getHeaderActions(): array
+    {
+        return [
+            Actions\LocaleSwitcher::make(),
+            CreateAction::make(),
+        ];
+    }
+
+    protected function getTableHeaderActions(): array
+    {
+        return [
+            // TableLayoutToggleTableAction::make(),
+        ];
+    }
+
+    protected function getPreviewModalView(): ?string
+    {
+        return 'page.show';
+    }
+
+    protected function getPreviewModalDataRecordKey(): ?string
+    {
+        return 'page';
     }
 }
