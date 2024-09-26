@@ -18,18 +18,18 @@ use Webmozart\Assert\Assert;
 
 class Home extends Page
 {
+    public string $view_type;
+
+    public array $containers = [];
+
+    public array $items = [];
+
     protected static ?string $navigationIcon = 'heroicon-o-document-text';
 
     // protected static string $view = 'cms::filament.front.pages.welcome';
     protected static string $view = 'pub_theme::home';
 
     protected static string $layout = 'pub_theme::components.layouts.app';
-
-    public string $view_type;
-
-    public array $containers = [];
-
-    public array $items = [];
 
     public function mount(): void
     {
@@ -40,7 +40,7 @@ class Home extends Page
     public function getViewData(): array
     {
         $data = [];
-        if (\count($this->containers) > 0) {
+        if ([] !== $this->containers) {
             Assert::string($container_last = last($this->containers));
             $item_last = last($this->items);
 
@@ -87,7 +87,7 @@ class Home extends Page
         if (\count($containers) > \count($items)) {
             $view = 'index';
         }
-        if (0 === \count($containers)) {
+        if ([] === $containers) {
             $view = 'home';
         }
 
@@ -95,7 +95,7 @@ class Home extends Page
 
         $views = [];
 
-        if (\count($containers) > 0) {
+        if ([] !== $containers) {
             $views[] = 'pub_theme::'.implode('.', $containers).'.'.$view;
 
             $model_root = Str::singular($containers[0]);
@@ -108,9 +108,7 @@ class Home extends Page
             $views[] = 'pub_theme::'.$view;
         }
 
-        $view_work = Arr::first($views, static function (string $view) {
-            return view()->exists($view);
-        });
+        $view_work = Arr::first($views, static fn (string $view) => view()->exists($view));
         Assert::string($view_work);
 
         self::$view = $view_work;

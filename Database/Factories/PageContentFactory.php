@@ -6,6 +6,9 @@ namespace Modules\Cms\Database\Factories;
 
 use Illuminate\Database\Eloquent\Factories\Factory;
 
+/**
+ * @extends \Illuminate\Database\Eloquent\Factories\Factory<\Modules\Cms\Models\PageContent>
+ */
 class PageContentFactory extends Factory
 {
     /**

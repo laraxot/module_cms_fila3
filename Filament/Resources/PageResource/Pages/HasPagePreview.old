@@ -15,6 +15,16 @@ trait HasPagePreview
     use HasBuilderPreview;
     use HasPreviewModal;
 
+    public static function getBuilderEditorSchema(string $builderName): Component|array
+    {
+        return [
+            PageContent::make(
+                name: 'content',
+                context: 'preview',
+            ),
+        ];
+    }
+
     protected function getActions(): array
     {
         return [
@@ -35,15 +45,5 @@ trait HasPagePreview
     protected function getBuilderPreviewView(string $builderName): ?string
     {
         return 'page.preview-content';
-    }
-
-    public static function getBuilderEditorSchema(string $builderName): Component|array
-    {
-        return [
-            PageContent::make(
-                name: 'content',
-                context: 'preview',
-            ),
-        ];
     }
 }

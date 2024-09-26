@@ -67,8 +67,11 @@ use Spatie\Translatable\HasTranslations;
  * @property ProfileContract|null            $creator
  * @property mixed                           $translations
  * @property ProfileContract|null            $updater
+<<<<<<< HEAD
  *                                                         >>>>>>> a57be61 (up)
 >>>>>>> 9e5c305f5b778123697e1004c1510fd5da81e66a
+=======
+>>>>>>> 4bf1b9ff204c36664c2b78462e86bef4a31f00d7
  *
  * @method static \Modules\Cms\Database\Factories\PageContentFactory factory($count = null, $state = [])
  * @method static \Illuminate\Database\Eloquent\Builder|PageContent  newModelQuery()
@@ -98,22 +101,17 @@ class PageContent extends BaseModel
     use HasTranslations;
     use SushiToJsons;
 
-    protected $fillable = [
-        'name',
-        'slug',
-        'blocks',
-    ];
-
     /** @var array<int, string> */
     public $translatable = [
         'name',
         'blocks',
     ];
 
-    public function getRows(): array
-    {
-        return $this->getSushiRows();
-    }
+    protected $fillable = [
+        'name',
+        'slug',
+        'blocks',
+    ];
 
     protected array $schema = [
         'id' => 'integer',
@@ -128,6 +126,11 @@ class PageContent extends BaseModel
         'created_by' => 'string',
         'updated_by' => 'string',
     ];
+
+    public function getRows(): array
+    {
+        return $this->getSushiRows();
+    }
 
     public function sluggable(): array
     {
@@ -146,9 +149,10 @@ class PageContent extends BaseModel
     {
         return [
             'id' => 'string',
+            'uuid' => 'string',
+
             'name' => 'string',
             'slug' => 'string',
-            'uuid' => 'string',
             'blocks' => 'array',
             'created_at' => 'datetime',
             'updated_at' => 'datetime',

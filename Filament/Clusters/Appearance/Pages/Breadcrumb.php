@@ -25,6 +25,8 @@ class Breadcrumb extends Page implements HasForms
 {
     use InteractsWithForms;
 
+    public ?array $data = [];
+
     protected static ?string $navigationIcon = 'heroicon-o-document-text';
 
     protected static string $view = 'cms::filament.clusters.appearance.pages.headernav';
@@ -33,19 +35,9 @@ class Breadcrumb extends Page implements HasForms
 
     protected static ?int $navigationSort = 2;
 
-    public ?array $data = [];
-
     public function mount(): void
     {
         $this->fillForms();
-    }
-
-    protected function fillForms(): void
-    {
-        Assert::isArray($data = TenantService::config('appearance'));
-        Assert::isArray($data = Arr::get($data, 'breadcrumb', []));
-
-        $this->form->fill($data);
     }
 
     public function form(Form $form): Form
@@ -56,15 +48,6 @@ class Breadcrumb extends Page implements HasForms
                 TextInput::make('style'),
             ])->columns(2)
             ->statePath('data');
-    }
-
-    protected function getUpdateFormActions(): array
-    {
-        return [
-            Action::make('updateAction')
-                ->label(__('filament-panels::pages/auth/edit-profile.form.actions.save.label'))
-                ->submit('editForm'),
-        ];
     }
 
     public function updateData(): void
@@ -90,5 +73,22 @@ class Breadcrumb extends Page implements HasForms
             ->title('Saved successfully')
             ->success()
             ->send();
+    }
+
+    protected function fillForms(): void
+    {
+        Assert::isArray($data = TenantService::config('appearance'));
+        Assert::isArray($data = Arr::get($data, 'breadcrumb', []));
+
+        $this->form->fill($data);
+    }
+
+    protected function getUpdateFormActions(): array
+    {
+        return [
+            Action::make('updateAction')
+                ->label(__('filament-panels::pages/auth/edit-profile.form.actions.save.label'))
+                ->submit('editForm'),
+        ];
     }
 }
