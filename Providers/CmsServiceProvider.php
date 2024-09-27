@@ -70,6 +70,9 @@ class CmsServiceProvider extends XotBaseServiceProvider
     public function registerFolio(): void
     {
         $middleware = TenantService::config('middleware');
+        if (! is_array($middleware)) {
+            $middleware = [];
+        }
         $base_middleware = Arr::get($middleware, 'base', []);
 
         // \Livewire\Volt\Volt::mount($theme_path.'/pages');
