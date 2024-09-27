@@ -47,9 +47,11 @@
                     </x-ui.button>
                 </div>
                 --}}
+                  
                 <div class="flex items-center w-auto">
                     <x-profile.dropdown></x-profile.dropdown>
                 </div>
+                
             @else
                 <div class="flex items-center w-auto">
                     <x-ui.button type="secondary" submit="true" tag="a" href="{{ route('login') }}">
