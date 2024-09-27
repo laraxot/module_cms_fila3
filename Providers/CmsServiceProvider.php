@@ -7,12 +7,14 @@ declare(strict_types=1);
 
 namespace Modules\Cms\Providers;
 
+use Illuminate\Support\Arr;
 use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\Config;
 use Illuminate\Support\Facades\File;
 use Laravel\Folio\Folio;
 use Livewire\Volt\Volt;
 use Mcamara\LaravelLocalization\Facades\LaravelLocalization;
+use Modules\Tenant\Services\TenantService;
 use Modules\Xot\Datas\XotData;
 use Modules\Xot\Providers\XotBaseServiceProvider;
 use Modules\Xot\Services\LivewireService;
@@ -67,15 +69,16 @@ class CmsServiceProvider extends XotBaseServiceProvider
 
     public function registerFolio(): void
     {
+        $middleware = TenantService::config('middleware');
+        $base_middleware = Arr::get($middleware, 'base', []);
+
         // \Livewire\Volt\Volt::mount($theme_path.'/pages');
         $path = XotData::make()->getPubThemeViewPath('pages');
         // Volt::mount([$path]);
         Folio::path($path)
             ->uri(LaravelLocalization::setLocale() ?? app()->getLocale())
             ->middleware([
-                '*' => [
-                    // 'lang:en',
-                ],
+                '*' => $base_middleware,
             ]);
 
         /**
