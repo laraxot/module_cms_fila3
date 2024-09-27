@@ -8,6 +8,9 @@ use Filament\Actions;
 use Filament\Resources\Pages\CreateRecord;
 use Modules\Cms\Filament\Resources\PageResource;
 
+/**
+ * Summary of CreatePage.
+ */
 class CreatePage extends CreateRecord
 {
     use CreateRecord\Concerns\Translatable;

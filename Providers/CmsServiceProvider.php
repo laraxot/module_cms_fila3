@@ -7,12 +7,14 @@ declare(strict_types=1);
 
 namespace Modules\Cms\Providers;
 
+use Illuminate\Support\Arr;
 use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\Config;
 use Illuminate\Support\Facades\File;
 use Laravel\Folio\Folio;
 use Livewire\Volt\Volt;
 use Mcamara\LaravelLocalization\Facades\LaravelLocalization;
+use Modules\Tenant\Services\TenantService;
 use Modules\Xot\Datas\XotData;
 use Modules\Xot\Providers\XotBaseServiceProvider;
 use Modules\Xot\Services\LivewireService;
@@ -61,35 +63,43 @@ class CmsServiceProvider extends XotBaseServiceProvider
             Config::set('view.paths', $paths);
             Config::set('livewire.view_path', $theme_path.'/livewire');
             Config::set('livewire.class_namespace', 'Themes\\'.$this->xot->pub_theme.'\Http\Livewire');
+            $this->registerFolio();
+        }
+    }
 
-            // \Livewire\Volt\Volt::mount($theme_path.'/pages');
-            $path = XotData::make()->getPubThemeViewPath('pages');
-            // Volt::mount([$path]);
+    public function registerFolio(): void
+    {
+        $middleware = TenantService::config('middleware');
+        if (! is_array($middleware)) {
+            $middleware = [];
+        }
+        $base_middleware = Arr::get($middleware, 'base', []);
+
+        // \Livewire\Volt\Volt::mount($theme_path.'/pages');
+        $path = XotData::make()->getPubThemeViewPath('pages');
+        // Volt::mount([$path]);
+        Folio::path($path)
+            ->uri(LaravelLocalization::setLocale() ?? app()->getLocale())
+            ->middleware([
+                '*' => $base_middleware,
+            ]);
+
+        /**
+         * @var Collection<Module>
+         */
+        $modules = Module::collections();
+
+        foreach ($modules as $module) {
+            $path = $module->getPath().'/Resources/views/pages';
+            if (! File::exists($path)) {
+                continue;
+            }
             Folio::path($path)
                 ->uri(LaravelLocalization::setLocale() ?? app()->getLocale())
                 ->middleware([
                     '*' => [
-                        // 'lang:en',
                     ],
                 ]);
-
-            /**
-             * @var Collection<Module>
-             */
-            $modules = Module::collections();
-
-            foreach ($modules as $module) {
-                $path = $module->getPath().'/Resources/views/pages';
-                if (! File::exists($path)) {
-                    continue;
-                }
-                Folio::path($path)
-                    ->uri(LaravelLocalization::setLocale() ?? app()->getLocale())
-                    ->middleware([
-                        '*' => [
-                        ],
-                    ]);
-            }
         }
     }
 
