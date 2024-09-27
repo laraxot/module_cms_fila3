@@ -23,4 +23,4 @@ La rotta index richiama tramite il themeComposer il metodo showPageContent con l
 ShowPageContent renderizza i content_blocks tramite il componente \Modules\UI\View\Components\Render\Blocks,
 che a sua volta renderizza la lista dei blocchi tramite il ciclo che è dentro /Modules/UI/Resources/views/components/render/blocks/v1.blade.php
 
-
+La pagina Themes/Sixteen/Resources/views/pages/pages/[slug].blade.php serve a renderizzare le altre pagine. Bisogna visitare l'url /it/pages/slug
