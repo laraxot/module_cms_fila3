@@ -61,35 +61,39 @@ class CmsServiceProvider extends XotBaseServiceProvider
             Config::set('view.paths', $paths);
             Config::set('livewire.view_path', $theme_path.'/livewire');
             Config::set('livewire.class_namespace', 'Themes\\'.$this->xot->pub_theme.'\Http\Livewire');
+            $this->registerFolio();
+        }
+    }
 
-            // \Livewire\Volt\Volt::mount($theme_path.'/pages');
-            $path = XotData::make()->getPubThemeViewPath('pages');
-            // Volt::mount([$path]);
+    public function registerFolio(): void
+    {
+        // \Livewire\Volt\Volt::mount($theme_path.'/pages');
+        $path = XotData::make()->getPubThemeViewPath('pages');
+        // Volt::mount([$path]);
+        Folio::path($path)
+            ->uri(LaravelLocalization::setLocale() ?? app()->getLocale())
+            ->middleware([
+                '*' => [
+                    // 'lang:en',
+                ],
+            ]);
+
+        /**
+         * @var Collection<Module>
+         */
+        $modules = Module::collections();
+
+        foreach ($modules as $module) {
+            $path = $module->getPath().'/Resources/views/pages';
+            if (! File::exists($path)) {
+                continue;
+            }
             Folio::path($path)
                 ->uri(LaravelLocalization::setLocale() ?? app()->getLocale())
                 ->middleware([
                     '*' => [
-                        // 'lang:en',
                     ],
                 ]);
-
-            /**
-             * @var Collection<Module>
-             */
-            $modules = Module::collections();
-
-            foreach ($modules as $module) {
-                $path = $module->getPath().'/Resources/views/pages';
-                if (! File::exists($path)) {
-                    continue;
-                }
-                Folio::path($path)
-                    ->uri(LaravelLocalization::setLocale() ?? app()->getLocale())
-                    ->middleware([
-                        '*' => [
-                        ],
-                    ]);
-            }
         }
     }
 
