@@ -24,7 +24,7 @@ class FooterData extends Data implements Wireable
 
     public static function make(): self
     {
-        if (! self::$instance instanceof FooterData) {
+        if (! self::$instance instanceof self) {
             $data = TenantService::getConfig('appearance');
             $data = Arr::get($data, 'footer', []);
             self::$instance = self::from($data);
