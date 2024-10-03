@@ -11,12 +11,7 @@ use Spatie\Translatable\HasTranslations;
 /**
  * Modules\Cms\Models\PageContent.
  *
- * <<<<<<< HEAD
- * <<<<<<< HEAD
- *
  * @property string                               $blocks
- *                                                              =======
- *                                                              <<<<<<< HEAD
  * @property string                               $blocks
  * @property string|null                          $id
  * @property array|null                           $name
@@ -28,7 +23,6 @@ use Spatie\Translatable\HasTranslations;
  * @property \Modules\Idoteca\Models\Profile|null $creator
  * @property mixed                                $translations
  * @property \Modules\Idoteca\Models\Profile|null $updater
- *                                                              =======
  * @property string                               $blocks
  * @property string|null                          $id
  * @property array|null                           $name
@@ -40,8 +34,6 @@ use Spatie\Translatable\HasTranslations;
  * @property ProfileContract|null                 $creator
  * @property mixed                                $translations
  * @property ProfileContract|null                 $updater
- *                                                              >>>>>>> f67fac5 (📝 (PageContentFactory.php): Update PageContentFactory to use fully qualified class name for the model)
- *                                                              =======
  * @property string                               $blocks
  * @property string|null                          $id
  * @property array|null                           $name
@@ -67,11 +59,6 @@ use Spatie\Translatable\HasTranslations;
  * @property ProfileContract|null                 $creator
  * @property mixed                                $translations
  * @property ProfileContract|null                 $updater
- *                                                              <<<<<<< HEAD
- *                                                              >>>>>>> a57be61 (up)
- *                                                              >>>>>>> 9e5c305f5b778123697e1004c1510fd5da81e66a
- *                                                              =======
- *                                                              >>>>>>> 4bf1b9ff204c36664c2b78462e86bef4a31f00d7
  *
  * @method static \Modules\Cms\Database\Factories\PageContentFactory factory($count = null, $state = [])
  * @method static \Illuminate\Database\Eloquent\Builder|PageContent  newModelQuery()
@@ -91,10 +78,6 @@ use Spatie\Translatable\HasTranslations;
  * @method static \Illuminate\Database\Eloquent\Builder|PageContent  whereUpdatedBy($value)
  *
  * @mixin \Eloquent
- * <<<<<<< HEAD
- * >>>>>>> 59d5a90254706a869215b533bf368ab9d8f0904c
- * =======
- * >>>>>>> 9e5c305f5b778123697e1004c1510fd5da81e66a
  */
 class PageContent extends BaseModel
 {
