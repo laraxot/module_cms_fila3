@@ -69,16 +69,6 @@ class ThemeComposer
         return $page->render();
     }
 
-<<<<<<< HEAD
-<<<<<<< HEAD
-    public function showContent(string $slug): \Illuminate\Contracts\Support\Renderable
-    {
-        Assert::isInstanceOf($page = PageContent::firstOrCreate(['slug' => $slug], ['blocks' => []]), PageContent::class, '['.__LINE__.']['.__FILE__.']');
-
-        $page = new \Modules\UI\View\Components\Render\Blocks(blocks: (array) $page->blocks, model: $page);
-=======
-=======
->>>>>>> 9e5c305f5b778123697e1004c1510fd5da81e66a
     public function showContent(string $slug): Renderable
     {
         Assert::isInstanceOf($page = PageContent::firstOrCreate(['slug' => $slug], ['blocks' => []]), PageContent::class, '['.__LINE__.']['.__FILE__.']');
@@ -88,10 +78,6 @@ class ThemeComposer
         }
 
         $page = new \Modules\UI\View\Components\Render\Blocks(blocks: $page->blocks, model: $page);
-<<<<<<< HEAD
->>>>>>> 59d5a90254706a869215b533bf368ab9d8f0904c
-=======
->>>>>>> 9e5c305f5b778123697e1004c1510fd5da81e66a
 
         return $page->render();
     }
