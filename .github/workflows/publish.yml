@@ -35,6 +35,7 @@ jobs:
     - name: gh-pages
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
       uses: JamesIves/github-pages-deploy-action@v4.6.8
 =======
       uses: JamesIves/github-pages-deploy-action@v4.6.5
@@ -42,6 +43,9 @@ jobs:
 =======
       uses: JamesIves/github-pages-deploy-action@v4.6.8
 >>>>>>> e4786c4 (Bump JamesIves/github-pages-deploy-action from 4.6.5 to 4.6.8)
+=======
+      uses: JamesIves/github-pages-deploy-action@v4.6.8
+>>>>>>> origin/dev
       with:
         branch: gh-pages
         folder: ./docs/build_production
