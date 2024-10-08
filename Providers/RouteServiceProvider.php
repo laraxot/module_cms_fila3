@@ -12,6 +12,8 @@ use Modules\Tenant\Services\TenantService;
 use Modules\Xot\Http\Middleware\SetDefaultLocaleForUrlsMiddleware;
 use Modules\Xot\Providers\XotBaseRouteServiceProvider;
 
+use function is_array;
+
 // public function boot(\Illuminate\Routing\Router $router)
 
 // --- bases -----
@@ -79,7 +81,7 @@ class RouteServiceProvider extends XotBaseRouteServiceProvider
     {
         // ---------- Lang Route Pattern
         $langs = config('laravellocalization.supportedLocales');
-        if (! \is_array($langs)) {
+        if (! is_array($langs)) {
             // throw new \Exception('[.__LINE__.]['.class_basename(__CLASS__).']');
             $langs = ['it' => 'it', 'en' => 'en'];
         }
@@ -90,7 +92,7 @@ class RouteServiceProvider extends XotBaseRouteServiceProvider
         $router->pattern('lang', $lang_pattern);
         // -------------------------------------------------------------
         $models = config('morph_map');
-        if (! \is_array($models)) {
+        if (! is_array($models)) {
             // throw new Exception('[' . print_r($models, true) . '][' . __LINE__ . '][' . class_basename(__CLASS__) . ']');
             $models = [];
         }
