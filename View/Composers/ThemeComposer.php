@@ -29,17 +29,17 @@ class ThemeComposer
 
     public function getMenuUrl(array $menu): string
     {
-        if ([] === $menu) {
+        if ($menu === []) {
             return '#';
         }
         $lang = app()->getLocale();
-        if ('internal' === $menu['type']) {
+        if ($menu['type'] === 'internal') {
             return route('page_slug.view', ['lang' => $lang, 'slug' => $menu['url']]);
         }
-        if ('external' === $menu['type']) {
+        if ($menu['type'] === 'external') {
             return $menu['url'];
         }
-        if ('route_name' === $menu['type']) {
+        if ($menu['type'] === 'route_name') {
             return route($menu['url'], ['lang' => $lang]);
         }
 
