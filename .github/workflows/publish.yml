@@ -33,19 +33,7 @@ jobs:
       run: cd docs && echo "laraxot.github.io/module_chart" > ./build_production/CNAME
 
     - name: gh-pages
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-      uses: JamesIves/github-pages-deploy-action@v4.6.8
-=======
-      uses: JamesIves/github-pages-deploy-action@v4.6.5
->>>>>>> e2d525b (Bump JamesIves/github-pages-deploy-action from 4.6.4 to 4.6.5)
-=======
-      uses: JamesIves/github-pages-deploy-action@v4.6.8
->>>>>>> e4786c4 (Bump JamesIves/github-pages-deploy-action from 4.6.5 to 4.6.8)
-=======
-      uses: JamesIves/github-pages-deploy-action@v4.6.8
->>>>>>> origin/dev
+      uses: JamesIves/github-pages-deploy-action@latest
       with:
         branch: gh-pages
         folder: ./docs/build_production
