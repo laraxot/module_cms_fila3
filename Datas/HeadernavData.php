@@ -4,7 +4,6 @@ declare(strict_types=1);
 
 namespace Modules\Cms\Datas;
 
-use Exception;
 use Illuminate\Contracts\Support\Renderable;
 use Illuminate\Support\Arr;
 use Livewire\Wireable;
@@ -37,7 +36,7 @@ class HeadernavData extends Data implements Wireable
 
     public static function make(): self
     {
-        if (! self::$instance instanceof self) {
+        if (! self::$instance instanceof HeadernavData) {
             // if (! self::$instance) {
             $data = TenantService::getConfig('appearance');
             $data = Arr::get($data, 'headernav', []);
@@ -52,7 +51,7 @@ class HeadernavData extends Data implements Wireable
         $view_params = $this->toArray();
         if (! view()->exists($this->view)) {
             $message = 'The view ['.$this->view.'] does not exist';
-            throw new Exception($message);
+            throw new \Exception($message);
         }
 
         return view($this->view, $view_params);
