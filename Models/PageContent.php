@@ -11,8 +11,6 @@ use Spatie\Translatable\HasTranslations;
 /**
  * Modules\Cms\Models\PageContent.
  *
- * <<<<<<< HEAD
- *
  * @property string                               $blocks
  * @property string                               $blocks
  * @property string|null                          $id
@@ -61,7 +59,6 @@ use Spatie\Translatable\HasTranslations;
  * @property ProfileContract|null                 $creator
  * @property mixed                                $translations
  * @property ProfileContract|null                 $updater
- *                                                              =======
  * @property string                               $blocks
  * @property string|null                          $id
  * @property array|null                           $name
@@ -87,7 +84,6 @@ use Spatie\Translatable\HasTranslations;
  * @property ProfileContract|null                 $creator
  * @property mixed                                $translations
  * @property ProfileContract|null                 $updater
- *                                                              >>>>>>> origin/v0.2.06
  *
  * @method static \Modules\Cms\Database\Factories\PageContentFactory factory($count = null, $state = [])
  * @method static \Illuminate\Database\Eloquent\Builder|PageContent  newModelQuery()
