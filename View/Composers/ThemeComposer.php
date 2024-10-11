@@ -33,7 +33,11 @@ class ThemeComposer
             return '#';
         }
         $lang = app()->getLocale();
+<<<<<<< HEAD
         if ($menu['type'] === 'internal') {
+=======
+        if ('internal' == $menu['type']) {
+>>>>>>> origin/v0.2.06
             return route('page_slug.view', ['lang' => $lang, 'slug' => $menu['url']]);
         }
         if ($menu['type'] === 'external') {

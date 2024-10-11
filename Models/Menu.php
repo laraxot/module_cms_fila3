@@ -153,7 +153,7 @@ class Menu extends BaseModel
 
     public static function getTreeMenuOptions(): array
     {
-        return app(GetTreeOptionsByModelClassAction::class)->execute(self::class);
+        return app(GetTreeOptionsByModelClassAction::class)->execute(Menu::class);
     }
 
     public function getRows(): array
