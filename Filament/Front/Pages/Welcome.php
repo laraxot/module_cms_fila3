@@ -7,6 +7,7 @@ declare(strict_types=1);
 
 namespace Modules\Cms\Filament\Front\Pages;
 
+use Exception;
 use Filament\Pages\Page;
 use Filament\Tables\Contracts\HasTable;
 use Illuminate\Database\Eloquent\Model;
@@ -14,6 +15,8 @@ use Illuminate\Support\Arr;
 use Illuminate\Support\Str;
 use Modules\Tenant\Services\TenantService;
 use Webmozart\Assert\Assert;
+
+use function count;
 
 // implements HasTable
 class Welcome extends Page
@@ -48,7 +51,7 @@ class Welcome extends Page
     public function getViewData(): array
     {
         $data = [];
-        if ([] !== $this->containers) {
+        if ($this->containers !== []) {
             Assert::string($container_last = last($this->containers));
             $item_last = last($this->items);
 
@@ -56,7 +59,7 @@ class Welcome extends Page
 
             $container_last_model = TenantService::model($container_last_singular);
             if (! method_exists($container_last_model, 'getFrontRouteKeyName')) {
-                throw new \Exception('[WIP]['.__LINE__.']['.__FILE__.']');
+                throw new Exception('[WIP]['.__LINE__.']['.__FILE__.']');
             }
             $container_last_key_name = $container_last_model->getFrontRouteKeyName();
 
@@ -64,7 +67,7 @@ class Welcome extends Page
 
             $data[$container_last_singular] = $row;
 
-            if (null === $row) {
+            if ($row === null) {
                 abort(404);
             }
         }
@@ -78,13 +81,13 @@ class Welcome extends Page
         $items = $this->items;
 
         $view = '';
-        if (\count($containers) === \count($items)) {
+        if (count($containers) === count($items)) {
             $view = 'show';
         }
-        if (\count($containers) > \count($items)) {
+        if (count($containers) > count($items)) {
             $view = 'index';
         }
-        if ([] === $containers) {
+        if ($containers === []) {
             $view = 'home';
         }
 
@@ -92,7 +95,7 @@ class Welcome extends Page
 
         $views = [];
 
-        if ([] !== $containers) {
+        if ($containers !== []) {
             $views[] = 'pub_theme::'.implode('.', $containers).'.'.$view;
             Assert::string($model_class = TenantService::modelClass($containers[0]));
             $module_name = Str::between($model_class, 'Modules\\', '\Models\\');
@@ -107,7 +110,7 @@ class Welcome extends Page
             static fn (string $view) => view()->exists($view)
         );
 
-        if (null === $view_work) {
+        if ($view_work === null) {
             dddx($views);
         }
         Assert::string($view_work);
@@ -121,7 +124,7 @@ class Welcome extends Page
         $parameters['lang'] = app()->getLocale();
         $record = $parameters['record'] ?? $this->model;
         // dddx($record);
-        if ('show' === $name) {
+        if ($name === 'show') {
             $container0 = class_basename($record);
             $container0 = Str::plural($container0);
             $container0 = Str::snake($container0);
@@ -132,7 +135,7 @@ class Welcome extends Page
             // unset($parameters['record']); // per togliere quel ?record=n dall'url, che non dovrebbe servire?
             return route('test', $parameters);
         }
-        if ('index' === $name) {
+        if ($name === 'index') {
             $container0 = class_basename($record);
             $container0 = Str::plural($container0);
             $container0 = Str::snake($container0);
