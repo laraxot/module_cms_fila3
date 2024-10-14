@@ -50,7 +50,7 @@ abstract class TestHelper extends BaseTestCase
     public function getUserNavigationItemUrlRoles($user)
     {
         return $role_names = $user->getRoleNames()->map(function ($item) {
-            if ($item !== 'super-admin') {
+            if ('super-admin' !== $item) {
                 return '/'.mb_substr($item, 0, -7).'/admin';
             }
         })->filter(fn ($value): bool => ! is_null($value));

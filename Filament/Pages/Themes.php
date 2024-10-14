@@ -7,8 +7,6 @@ declare(strict_types=1);
 
 namespace Modules\Cms\Filament\Pages;
 
-use const DIRECTORY_SEPARATOR;
-
 use Filament\Notifications\Notification;
 use Filament\Pages\Page;
 use Illuminate\Support\Facades\File;
@@ -49,11 +47,11 @@ class Themes extends Page
      */
     protected function getViewData(): array
     {
-        $themes = File::directories(base_path().str('/Themes')->replace('/', DIRECTORY_SEPARATOR));
+        $themes = File::directories(base_path().str('/Themes')->replace('/', \DIRECTORY_SEPARATOR));
         $data = [];
         if ($themes) {
             foreach ($themes as $key => $item) {
-                $filename = $item.DIRECTORY_SEPARATOR.'theme.json';
+                $filename = $item.\DIRECTORY_SEPARATOR.'theme.json';
                 if (! File::exists($filename)) {
                     $theme_data = ThemeData::from(['name' => basename((string) $item)]);
                     File::put($filename, $theme_data->toJson());
