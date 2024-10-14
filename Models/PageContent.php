@@ -120,11 +120,44 @@ use Spatie\Translatable\HasTranslations;
  * @property ProfileContract|null                 $creator
  * @property mixed                                $translations
  * @property ProfileContract|null                 $updater
+ * @property string                               $blocks
+ * @property string|null                          $id
+ * @property array|null                           $name
+ * @property string|null                          $slug
+ * @property \Illuminate\Support\Carbon|null      $created_at
+ * @property \Illuminate\Support\Carbon|null      $updated_at
+ * @property string|null                          $created_by
+ * @property string|null                          $updated_by
+ * @property ProfileContract|null                 $creator
+ * @property mixed                                $translations
+ * @property ProfileContract|null                 $updater
+ * @property string                               $blocks
+ * @property string|null                          $id
+ * @property array|null                           $name
+ * @property string|null                          $slug
+ * @property \Illuminate\Support\Carbon|null      $created_at
+ * @property \Illuminate\Support\Carbon|null      $updated_at
+ * @property string|null                          $created_by
+ * @property string|null                          $updated_by
+ * @property ProfileContract|null                 $creator
+ * @property mixed                                $translations
+ * @property ProfileContract|null                 $updater
+ * @property string|null                          $created_by
+ * @property string|null                          $updated_by
+ * @property mixed                                $translations
+ * @property string                               $blocks
+ * @property string|null                          $id
+ * @property array|null                           $name
+ * @property string|null                          $slug
+ * @property \Illuminate\Support\Carbon|null      $created_at
+ * @property \Illuminate\Support\Carbon|null      $updated_at
+ * @property string|null                          $created_by
+ * @property string|null                          $updated_by
+ * @property ProfileContract|null                 $creator
+ * @property mixed                                $translations
+ * @property ProfileContract|null                 $updater
  *                                                              >>>>>>> 0235f62 (.)
- *                                                              =======
- *                                                              >>>>>>> b0da697 (Check & fix styling)
- *                                                              =======
- *                                                              >>>>>>> 9905689 (ripristino)
+ *                                                              >>>>>>> 6088db6 (.)
  *
  * @method static \Modules\Cms\Database\Factories\PageContentFactory factory($count = null, $state = [])
  * @method static \Illuminate\Database\Eloquent\Builder|PageContent  newModelQuery()
