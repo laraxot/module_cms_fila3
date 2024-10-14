@@ -23,6 +23,7 @@ class PageContent extends BaseModel
         'blocks',
     ];
 
+    /** @var list<string> */
     protected $fillable = [
         'name',
         'slug',
