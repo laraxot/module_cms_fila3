@@ -11,17 +11,17 @@ use Spatie\Translatable\HasTranslations;
 /**
  * Modules\Cms\Models\Page.
  *
- * @property string $id
+ * @property string                          $id
  * @property \Illuminate\Support\Carbon|null $created_at
  * @property \Illuminate\Support\Carbon|null $updated_at
- * @property string $slug
- * @property string $title
- * @property string $content
- * @property string|null $updated_by
- * @property string|null $created_by
+ * @property string                          $slug
+ * @property string                          $title
+ * @property string                          $content
+ * @property string|null                     $updated_by
+ * @property string|null                     $created_by
  * @property \Illuminate\Support\Carbon|null $deleted_at
- * @property string|null $deleted_by
- * @property array|null $content_blocks
+ * @property string|null                     $deleted_by
+ * @property array|null                      $content_blocks
  *
  * @method static \Illuminate\Database\Eloquent\Builder|Page newModelQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|Page newQuery()
@@ -42,7 +42,7 @@ use Spatie\Translatable\HasTranslations;
  * @method static \Illuminate\Database\Eloquent\Builder|Page withoutTrashed()
  *
  * @property array|null $sidebar_blocks
- * @property array $footer_blocks
+ * @property array      $footer_blocks
  *
  * @method static \Illuminate\Database\Eloquent\Builder|Page whereFooterBlocks($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Page whereSidebarBlocks($value)
