@@ -72,7 +72,7 @@ class ThemeComposer
     public function showContent(string $slug): Renderable
     {
         Assert::isInstanceOf($page = PageContent::firstOrCreate(['slug' => $slug], ['blocks' => []]), PageContent::class, '['.__LINE__.']['.__FILE__.']');
-
+        dddx($page);
         if (! is_array($page->blocks)) {
             return view('ui::empty');
         }
