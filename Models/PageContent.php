@@ -10,8 +10,8 @@ use Spatie\Translatable\HasTranslations;
 /**
  * Modules\Cms\Models\PageContent.
  *
- * @property array|null                      $blocks
- * 
+ * @property array|null $blocks
+ *
  * @mixin \Eloquent
  */
 class PageContent extends BaseModel
