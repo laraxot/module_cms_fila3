@@ -44,6 +44,8 @@ abstract class BasePivot extends Pivot
      * @var string
      */
     protected $primaryKey = 'id';
+    /** @var string */
+    protected $keyType = 'string';
 
     /** @return array<string, string> */
     protected function casts(): array
