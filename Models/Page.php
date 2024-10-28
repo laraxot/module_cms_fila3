@@ -137,7 +137,7 @@ class Page extends BaseModel
      * The attributes that should be mutated to dates.
      *
      * @return array<string, string> */
-    protected function casts(): array
+    public function casts(): array
     {
         return [
             'id' => 'string',
