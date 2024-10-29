@@ -64,7 +64,7 @@ class PageContent extends BaseModel
      * The attributes that should be mutated to dates.
      *
      * @return array<string, string> */
-    public function casts(): array
+    protected function casts(): array
     {
         return [
             'id' => 'string',
