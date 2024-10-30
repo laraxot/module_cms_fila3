@@ -56,8 +56,11 @@ use Spatie\Translatable\HasTranslations;
  *
  * @property ProfileContract|null $creator
  * @property ProfileContract|null $updater
+<<<<<<< HEAD
  *
  * @method static \Modules\Cms\Database\Factories\PageFactory factory($count = null, $state = [])
+=======
+>>>>>>> d71d2f3 (up)
  *
  * @mixin \Eloquent
  */
