@@ -40,7 +40,7 @@ class Page extends ModelsPage
         'tenant_name',
     ];
 
-    protected function casts(): array
+    public function casts(): array
     {
         return [
 
