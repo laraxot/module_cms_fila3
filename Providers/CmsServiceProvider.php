@@ -75,10 +75,8 @@ class CmsServiceProvider extends XotBaseServiceProvider
         }
         $base_middleware = Arr::get($middleware, 'base', []);
 
-        // \Livewire\Volt\Volt::mount($theme_path.'/pages');
-        $path = XotData::make()->getPubThemeViewPath('pages');
-        // Volt::mount([$path]);
-        Folio::path($path)
+        $theme_path = XotData::make()->getPubThemeViewPath('pages');
+        Folio::path($theme_path)
             ->uri(LaravelLocalization::setLocale() ?? app()->getLocale())
             ->middleware([
                 '*' => $base_middleware,
@@ -88,12 +86,14 @@ class CmsServiceProvider extends XotBaseServiceProvider
          * @var Collection<Module>
          */
         $modules = Module::collections();
-
+        $paths = [];
+        $paths[] = $theme_path;
         foreach ($modules as $module) {
             $path = $module->getPath().'/Resources/views/pages';
             if (! File::exists($path)) {
                 continue;
             }
+            $paths[] = $path;
             Folio::path($path)
                 ->uri(LaravelLocalization::setLocale() ?? app()->getLocale())
                 ->middleware([
@@ -101,6 +101,7 @@ class CmsServiceProvider extends XotBaseServiceProvider
                     ],
                 ]);
         }
+        Volt::mount($paths);
     }
 
     /**
