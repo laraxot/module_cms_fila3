@@ -5,6 +5,8 @@ declare(strict_types=1);
 namespace Modules\Cms\Http\Volt\Password;
 
 use Illuminate\Auth\Events\PasswordReset;
+use Illuminate\Http\RedirectResponse;
+use Illuminate\Routing\Redirector;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Password;
@@ -36,7 +38,7 @@ class TokenComponent extends Component
         $this->token = $token;
     }
 
-    public function resetPassword()
+    public function resetPassword(): Redirector|RedirectResponse
     {
         $this->validate();
 
@@ -58,13 +60,16 @@ class TokenComponent extends Component
                 Auth::guard()->login($user);
             },
         );
-
+        Assert::string($response);
+        Assert::string($trans = trans($response));
         if (Password::PASSWORD_RESET == $response) {
-            session()->flash(trans($response));
+            session()->flash($trans);
 
             return redirect('/');
         }
 
-        $this->addError('email', trans($response));
+        $this->addError('email', $trans);
+
+        return redirect('/');
     }
 }
