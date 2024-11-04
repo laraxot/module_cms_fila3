@@ -15,8 +15,8 @@ use Sushi\Sushi;
  *
  * @property int                  $id
  * @property string|null          $name
- * @property \Modules\Xot\Contracts\ProfileContract|null $creator
- * @property \Modules\Xot\Contracts\ProfileContract|null $updater
+ * @property ProfileContract|null $creator
+ * @property ProfileContract|null $updater
  *
  * @method static ModuleFactory  factory($count = null, $state = [])
  * @method static Builder|Module newModelQuery()
