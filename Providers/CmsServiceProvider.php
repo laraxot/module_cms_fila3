@@ -15,6 +15,7 @@ use Laravel\Folio\Folio;
 use Livewire\Volt\Volt;
 use Mcamara\LaravelLocalization\Facades\LaravelLocalization;
 use Modules\Tenant\Services\TenantService;
+use Modules\Xot\Actions\Livewire\RegisterLivewireComponentsAction;
 use Modules\Xot\Datas\XotData;
 use Modules\Xot\Providers\XotBaseServiceProvider;
 use Modules\Xot\Services\LivewireService;
@@ -111,11 +112,19 @@ class CmsServiceProvider extends XotBaseServiceProvider
     {
         // $prefix=$this->module_name.'::';
         $prefix = '';
+        /*
         LivewireService::registerComponents(
             base_path('Themes/'.$this->xot->pub_theme.'/Http/Livewire'),
             'Themes\\'.$this->xot->pub_theme,
             $prefix,
         );
+        */
+        app(RegisterLivewireComponentsAction::class)
+            ->execute(
+                base_path('Themes/'.$this->xot->pub_theme.'/Http/Livewire'),
+                'Themes\\'.$this->xot->pub_theme,
+                $prefix,
+            );
     }
 
     /**
