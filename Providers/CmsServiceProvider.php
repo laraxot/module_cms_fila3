@@ -7,20 +7,20 @@ declare(strict_types=1);
 
 namespace Modules\Cms\Providers;
 
-use Livewire\Volt\Volt;
-use Laravel\Folio\Folio;
 use Illuminate\Support\Arr;
-use Webmozart\Assert\Assert;
-use Modules\Xot\Datas\XotData;
 use Illuminate\Support\Collection;
-use Nwidart\Modules\Facades\Module;
-use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Config;
-use Modules\Xot\Services\LivewireService;
-use Modules\Tenant\Services\TenantService;
-use Modules\Xot\Providers\XotBaseServiceProvider;
+use Illuminate\Support\Facades\File;
+use Laravel\Folio\Folio;
+use Livewire\Volt\Volt;
 use Mcamara\LaravelLocalization\Facades\LaravelLocalization;
+use Modules\Tenant\Services\TenantService;
 use Modules\Xot\Actions\Livewire\RegisterLivewireComponentsAction;
+use Modules\Xot\Datas\XotData;
+use Modules\Xot\Providers\XotBaseServiceProvider;
+use Modules\Xot\Services\LivewireService;
+use Nwidart\Modules\Facades\Module;
+use Webmozart\Assert\Assert;
 
 /**
  * Undocumented class.
