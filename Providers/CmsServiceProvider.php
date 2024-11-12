@@ -7,19 +7,20 @@ declare(strict_types=1);
 
 namespace Modules\Cms\Providers;
 
-use Illuminate\Support\Arr;
-use Illuminate\Support\Collection;
-use Illuminate\Support\Facades\Config;
-use Illuminate\Support\Facades\File;
-use Laravel\Folio\Folio;
 use Livewire\Volt\Volt;
-use Mcamara\LaravelLocalization\Facades\LaravelLocalization;
-use Modules\Tenant\Services\TenantService;
-use Modules\Xot\Datas\XotData;
-use Modules\Xot\Providers\XotBaseServiceProvider;
-use Modules\Xot\Services\LivewireService;
-use Nwidart\Modules\Facades\Module;
+use Laravel\Folio\Folio;
+use Illuminate\Support\Arr;
 use Webmozart\Assert\Assert;
+use Modules\Xot\Datas\XotData;
+use Illuminate\Support\Collection;
+use Nwidart\Modules\Facades\Module;
+use Illuminate\Support\Facades\File;
+use Illuminate\Support\Facades\Config;
+use Modules\Xot\Services\LivewireService;
+use Modules\Tenant\Services\TenantService;
+use Modules\Xot\Providers\XotBaseServiceProvider;
+use Mcamara\LaravelLocalization\Facades\LaravelLocalization;
+use Modules\Xot\Actions\Livewire\RegisterLivewireComponentsAction;
 
 /**
  * Undocumented class.
@@ -34,8 +35,9 @@ class CmsServiceProvider extends XotBaseServiceProvider
 
     protected string $module_ns = __NAMESPACE__;
 
-    public function bootCallback(): void
+    public function boot(): void
     {
+        parent::boot();
         $this->xot = XotData::make();
 
         if ($this->xot->register_pub_theme) {
@@ -50,8 +52,9 @@ class CmsServiceProvider extends XotBaseServiceProvider
         date_default_timezone_set($timezone);
     }
 
-    public function registerCallback(): void
+    public function register(): void
     {
+        parent::register();
         $this->xot = XotData::make();
         $configFileName = 'xra';
         $this->mergeConfigFrom(__DIR__.sprintf('/../Config/%s.php', $configFileName), $configFileName);
@@ -111,11 +114,17 @@ class CmsServiceProvider extends XotBaseServiceProvider
     {
         // $prefix=$this->module_name.'::';
         $prefix = '';
-        LivewireService::registerComponents(
-            base_path('Themes/'.$this->xot->pub_theme.'/Http/Livewire'),
-            'Themes\\'.$this->xot->pub_theme,
-            $prefix,
-        );
+        // LivewireService::registerComponents(
+        //     base_path('Themes/'.$this->xot->pub_theme.'/Http/Livewire'),
+        //     'Themes\\'.$this->xot->pub_theme,
+        //     $prefix,
+        // );
+        app(RegisterLivewireComponentsAction::class)
+            ->execute(
+                base_path('Themes/'.$this->xot->pub_theme.'/Http/Livewire'),
+                'Themes\\'.$this->xot->pub_theme,
+                $prefix
+            );
     }
 
     /**
