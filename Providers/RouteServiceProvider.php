@@ -33,8 +33,9 @@ class RouteServiceProvider extends XotBaseRouteServiceProvider
      */
     protected string $module_ns = __NAMESPACE__;
 
-    public function bootCallback(): void
+    public function boot(): void
     {
+        parent::boot();
         // 36     Cannot access offset 'router' on Illuminate\Contracts\Foundation\Application
         // $router = $this->app['router'];
         $router = app('router');
