@@ -8,8 +8,18 @@ declare(strict_types=1);
 namespace Modules\Cms\Providers;
 
 use Livewire\Volt\Volt;
+<<<<<<< HEAD
 use Laravel\Folio\Folio;
 use Illuminate\Support\Arr;
+=======
+use Mcamara\LaravelLocalization\Facades\LaravelLocalization;
+use Modules\Tenant\Services\TenantService;
+use Modules\Xot\Actions\Livewire\RegisterLivewireComponentsAction;
+use Modules\Xot\Datas\XotData;
+use Modules\Xot\Providers\XotBaseServiceProvider;
+use Modules\Xot\Services\LivewireService;
+use Nwidart\Modules\Facades\Module;
+>>>>>>> afcc5c2c314fa506d4e6fef408bca04e8fd97d33
 use Webmozart\Assert\Assert;
 use Modules\Xot\Datas\XotData;
 use Illuminate\Support\Collection;
@@ -114,16 +124,30 @@ class CmsServiceProvider extends XotBaseServiceProvider
     {
         // $prefix=$this->module_name.'::';
         $prefix = '';
+<<<<<<< HEAD
         // LivewireService::registerComponents(
         //     base_path('Themes/'.$this->xot->pub_theme.'/Http/Livewire'),
         //     'Themes\\'.$this->xot->pub_theme,
         //     $prefix,
         // );
+=======
+        /*
+        LivewireService::registerComponents(
+            base_path('Themes/'.$this->xot->pub_theme.'/Http/Livewire'),
+            'Themes\\'.$this->xot->pub_theme,
+            $prefix,
+        );
+        */
+>>>>>>> afcc5c2c314fa506d4e6fef408bca04e8fd97d33
         app(RegisterLivewireComponentsAction::class)
             ->execute(
                 base_path('Themes/'.$this->xot->pub_theme.'/Http/Livewire'),
                 'Themes\\'.$this->xot->pub_theme,
+<<<<<<< HEAD
                 $prefix
+=======
+                $prefix,
+>>>>>>> afcc5c2c314fa506d4e6fef408bca04e8fd97d33
             );
     }
 
