@@ -4,30 +4,28 @@ declare(strict_types=1);
 
 namespace Modules\Cms\Filament\Resources\PageResource\Pages;
 
-use Filament\Actions;
-use Filament\Actions\CreateAction;
-use Filament\Resources\Pages\ListRecords;
 use Filament\Tables;
-use Filament\Tables\Actions\DeleteAction;
-use Filament\Tables\Actions\DeleteBulkAction;
+use Filament\Actions;
+use Filament\Tables\Table;
+use Filament\Actions\CreateAction;
+use Modules\UI\Enums\TableLayoutEnum;
 use Filament\Tables\Actions\EditAction;
 use Filament\Tables\Actions\ViewAction;
-use Filament\Tables\Columns\Layout\Stack;
 use Filament\Tables\Columns\TextColumn;
-use Filament\Tables\Enums\ActionsPosition;
 use Filament\Tables\Enums\FiltersLayout;
-use Filament\Tables\Table;
-use Modules\Cms\Filament\Resources\PageResource;
-use Modules\UI\Enums\TableLayoutEnum;
-use Modules\UI\Filament\Actions\Table\TableLayoutToggleTableAction;
+use Filament\Resources\Pages\ListRecords;
+use Filament\Tables\Actions\DeleteAction;
+use Filament\Tables\Columns\Layout\Stack;
+use Filament\Tables\Enums\ActionsPosition;
 use Modules\Xot\Filament\Traits\TransTrait;
+use Filament\Tables\Actions\DeleteBulkAction;
+use Modules\Cms\Filament\Resources\PageResource;
+use Modules\Xot\Filament\Pages\XotBaseListRecords;
+use Modules\UI\Filament\Actions\Table\TableLayoutToggleTableAction;
 
-class ListPages extends ListRecords
+class ListPages extends XotBaseListRecords
 {
     use ListRecords\Concerns\Translatable;
-    use TransTrait;
-
-    public TableLayoutEnum $layoutView = TableLayoutEnum::LIST;
 
     protected static string $resource = PageResource::class;
 
