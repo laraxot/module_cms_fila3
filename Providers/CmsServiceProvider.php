@@ -7,6 +7,7 @@ declare(strict_types=1);
 
 namespace Modules\Cms\Providers;
 
+<<<<<<< HEAD
 use Livewire\Volt\Volt;
 <<<<<<< HEAD
 use Laravel\Folio\Folio;
@@ -22,15 +23,22 @@ use Nwidart\Modules\Facades\Module;
 >>>>>>> afcc5c2c314fa506d4e6fef408bca04e8fd97d33
 use Webmozart\Assert\Assert;
 use Modules\Xot\Datas\XotData;
+=======
+use Illuminate\Support\Arr;
+>>>>>>> c6288401e6dd94f59f89bfcfb04294280c632286
 use Illuminate\Support\Collection;
-use Nwidart\Modules\Facades\Module;
-use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Config;
-use Modules\Xot\Services\LivewireService;
-use Modules\Tenant\Services\TenantService;
-use Modules\Xot\Providers\XotBaseServiceProvider;
+use Illuminate\Support\Facades\File;
+use Laravel\Folio\Folio;
+use Livewire\Volt\Volt;
 use Mcamara\LaravelLocalization\Facades\LaravelLocalization;
+use Modules\Tenant\Services\TenantService;
 use Modules\Xot\Actions\Livewire\RegisterLivewireComponentsAction;
+use Modules\Xot\Datas\XotData;
+use Modules\Xot\Providers\XotBaseServiceProvider;
+use Modules\Xot\Services\LivewireService;
+use Nwidart\Modules\Facades\Module;
+use Webmozart\Assert\Assert;
 
 /**
  * Undocumented class.
@@ -125,12 +133,15 @@ class CmsServiceProvider extends XotBaseServiceProvider
         // $prefix=$this->module_name.'::';
         $prefix = '';
 <<<<<<< HEAD
+<<<<<<< HEAD
         // LivewireService::registerComponents(
         //     base_path('Themes/'.$this->xot->pub_theme.'/Http/Livewire'),
         //     'Themes\\'.$this->xot->pub_theme,
         //     $prefix,
         // );
 =======
+=======
+>>>>>>> c6288401e6dd94f59f89bfcfb04294280c632286
         /*
         LivewireService::registerComponents(
             base_path('Themes/'.$this->xot->pub_theme.'/Http/Livewire'),
@@ -138,16 +149,23 @@ class CmsServiceProvider extends XotBaseServiceProvider
             $prefix,
         );
         */
+<<<<<<< HEAD
 >>>>>>> afcc5c2c314fa506d4e6fef408bca04e8fd97d33
+=======
+>>>>>>> c6288401e6dd94f59f89bfcfb04294280c632286
         app(RegisterLivewireComponentsAction::class)
             ->execute(
                 base_path('Themes/'.$this->xot->pub_theme.'/Http/Livewire'),
                 'Themes\\'.$this->xot->pub_theme,
 <<<<<<< HEAD
+<<<<<<< HEAD
                 $prefix
 =======
                 $prefix,
 >>>>>>> afcc5c2c314fa506d4e6fef408bca04e8fd97d33
+=======
+                $prefix,
+>>>>>>> c6288401e6dd94f59f89bfcfb04294280c632286
             );
     }
 

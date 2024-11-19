@@ -18,16 +18,12 @@ use Filament\Tables\Enums\ActionsPosition;
 use Filament\Tables\Enums\FiltersLayout;
 use Filament\Tables\Table;
 use Modules\Cms\Filament\Resources\PageResource;
-use Modules\UI\Enums\TableLayoutEnum;
 use Modules\UI\Filament\Actions\Table\TableLayoutToggleTableAction;
-use Modules\Xot\Filament\Traits\TransTrait;
+use Modules\Xot\Filament\Pages\XotBaseListRecords;
 
-class ListPages extends ListRecords
+class ListPages extends XotBaseListRecords
 {
     use ListRecords\Concerns\Translatable;
-    use TransTrait;
-
-    public TableLayoutEnum $layoutView = TableLayoutEnum::LIST;
 
     protected static string $resource = PageResource::class;
 
