@@ -9,7 +9,7 @@ use Modules\Xot\Database\Migrations\XotBaseMigration;
 /*
  * Class CreateCmsPagesTable.
  */
-return new class extends XotBaseMigration {
+return new class() extends XotBaseMigration {
     /**
      * db up.
      */
@@ -19,7 +19,7 @@ return new class extends XotBaseMigration {
         $this->tableCreate(
             static function (Blueprint $table): void {
                 $table->id();
-                $table->timestamps();
+
                 $table->string('slug')->unique()->index();
                 $table->string('name');
                 $table->json('blocks')->nullable();
