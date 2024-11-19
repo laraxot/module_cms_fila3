@@ -100,21 +100,21 @@ class MenuResource extends Resource
         return $form->schema(static::getFormSchema());
     }
 
-    public static function table(Table $table): Table
-    {
-        return $table
-            ->columns([
-                Tables\Columns\TextColumn::make('title'),
-            ])
-            ->actions([
-                Tables\Actions\ActionGroup::make([
-                    Tables\Actions\EditAction::make(),
-                    Tables\Actions\DeleteAction::make(),
-                ]),
-            ])
-            ->filters([])
-            ->bulkActions([]);
-    }
+    // public static function table(Table $table): Table
+    // {
+    //     return $table
+    //         ->columns([
+    //             Tables\Columns\TextColumn::make('title'),
+    //         ])
+    //         ->actions([
+    //             Tables\Actions\ActionGroup::make([
+    //                 Tables\Actions\EditAction::make(),
+    //                 Tables\Actions\DeleteAction::make(),
+    //             ]),
+    //         ])
+    //         ->filters([])
+    //         ->bulkActions([]);
+    // }
 
     public static function getRelations(): array
     {
