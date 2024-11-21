@@ -24,7 +24,7 @@ class ListPageContents extends XotBaseListRecords
 {
     use ListRecords\Concerns\Translatable;
 
-    protected static string $resource = PageContentResource::class;
+    // protected static string $resource = PageContentResource::class;
 
     public function getGridTableColumns(): array
     {
