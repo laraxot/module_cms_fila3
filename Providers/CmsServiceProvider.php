@@ -38,6 +38,7 @@ class CmsServiceProvider extends XotBaseServiceProvider
     public function boot(): void
     {
         parent::boot();
+
         $this->xot = XotData::make();
 
         if ($this->xot->register_pub_theme) {
@@ -55,6 +56,7 @@ class CmsServiceProvider extends XotBaseServiceProvider
     public function register(): void
     {
         parent::register();
+
         $this->xot = XotData::make();
         $configFileName = 'xra';
         $this->mergeConfigFrom(__DIR__.sprintf('/../Config/%s.php', $configFileName), $configFileName);
@@ -104,6 +106,7 @@ class CmsServiceProvider extends XotBaseServiceProvider
                     ],
                 ]);
         }
+
         Volt::mount($paths);
     }
 
