@@ -4,21 +4,11 @@ declare(strict_types=1);
 
 return [
     'navigation' => [
-        'name' => 'Contenuto Pagina',
-        'plural' => 'Contenuti Pagina',
+        'name' => 'Header nav',
+        'plural' => 'Header nav',
         'group' => [
             'name' => 'Site',
         ],
-    ],
-    'fields' => [
-        'name' => ['label' => 'Nome'],
-        'slug' => ['label' => 'Slug'],
-        'guard_name' => 'Guard',
-        'permissions' => 'Permessi',
-        'roles' => 'Ruoli',
-        'updated_at' => 'Aggiornato il',
-        'first_name' => 'Nome',
-        'last_name' => 'Cognome',
     ],
 
     'rating' => [
@@ -34,6 +24,21 @@ return [
     'your_amount' => 'Previsione',
     'if_win' => 'Se vinci',
 
+    'fields' => [
+        'background_color' => ['label' => 'background_color'],
+        'background' => ['label' => 'background'],
+        'overlay_color' => ['label' => 'overlay_color'],
+        'overlay_opacity' => ['label' => 'overlay_opacity'],
+        'class' => ['label' => 'class'],
+        'style' => ['label' => 'style'],
+        'name' => 'Nome',
+        'guard_name' => 'Guard',
+        'permissions' => 'Permessi',
+        'roles' => 'Ruoli',
+        'updated_at' => 'Aggiornato il',
+        'first_name' => 'Nome',
+        'last_name' => 'Cognome',
+    ],
     'actions' => [
         'import' => [
             'fields' => [

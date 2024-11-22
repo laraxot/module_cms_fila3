@@ -17,18 +17,14 @@ use Filament\Tables\Enums\ActionsPosition;
 use Filament\Tables\Enums\FiltersLayout;
 use Filament\Tables\Table;
 use Modules\Cms\Filament\Resources\PageContentResource;
-use Modules\UI\Enums\TableLayoutEnum;
 use Modules\UI\Filament\Actions\Table\TableLayoutToggleTableAction;
-use Modules\Xot\Filament\Traits\TransTrait;
+use Modules\Xot\Filament\Pages\XotBaseListRecords;
 
-class ListPageContents extends ListRecords
+class ListPageContents extends XotBaseListRecords
 {
     use ListRecords\Concerns\Translatable;
-    use TransTrait;
 
-    public TableLayoutEnum $layoutView = TableLayoutEnum::LIST;
-
-    protected static string $resource = PageContentResource::class;
+    // protected static string $resource = PageContentResource::class;
 
     public function getGridTableColumns(): array
     {

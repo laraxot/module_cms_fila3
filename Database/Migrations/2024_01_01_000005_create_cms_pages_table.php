@@ -10,7 +10,7 @@ use Modules\Xot\Database\Migrations\XotBaseMigration;
 /*
  * Class CreateCmsPagesTable.
  */
-return new class extends XotBaseMigration {
+return new class() extends XotBaseMigration {
     protected ?string $model_class = Page::class;
 
     /**
@@ -22,7 +22,7 @@ return new class extends XotBaseMigration {
         $this->tableCreate(
             static function (Blueprint $table): void {
                 $table->id();
-                $table->timestamps();
+
                 $table->string('slug')->unique()->index();
                 $table->string('title');
                 $table->text('content')->nullable();

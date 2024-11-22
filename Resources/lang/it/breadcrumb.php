@@ -4,15 +4,20 @@ declare(strict_types=1);
 
 return [
     'navigation' => [
-        'name' => 'Contenuto Pagina',
-        'plural' => 'Contenuti Pagina',
+        'name' => 'breadcrumb',
+        'plural' => 'breadcrumbs',
         'group' => [
             'name' => 'Site',
         ],
     ],
     'fields' => [
-        'name' => ['label' => 'Nome'],
-        'slug' => ['label' => 'Slug'],
+        'background_color' => ['label' => 'background_color'],
+        'background' => ['label' => 'background'],
+        'overlay_color' => ['label' => 'overlay_color'],
+        'overlay_opacity' => ['label' => 'overlay_opacity'],
+        'class' => ['label' => 'class'],
+        'style' => ['label' => 'style'],
+        'name' => 'Nome',
         'guard_name' => 'Guard',
         'permissions' => 'Permessi',
         'roles' => 'Ruoli',
