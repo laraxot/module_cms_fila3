@@ -56,6 +56,7 @@ class LoginComponent extends Component
         $remember = $this->remember;
         event(new Login($guard, $user, $remember));
 
+        // ---
         return redirect()->intended('/');
     }
 }
