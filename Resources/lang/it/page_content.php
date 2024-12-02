@@ -60,5 +60,9 @@
         'parent_name' => 'Nome area livello superiore',
       ),
     ),
+    'activeLocale' => 
+    array (
+      'label' => 'activeLocale',
+    ),
   ),
 );

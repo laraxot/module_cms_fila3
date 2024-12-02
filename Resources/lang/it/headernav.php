@@ -77,5 +77,9 @@
         'parent_name' => 'Nome area livello superiore',
       ),
     ),
+    'updateAction' => 
+    array (
+      'label' => 'updateAction',
+    ),
   ),
 );
