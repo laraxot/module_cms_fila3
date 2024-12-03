@@ -1,11 +1,17 @@
-<?php
-
-declare(strict_types=1);
-
-return [
-    'fields' => [
-        'title' => [
-            'label' => 'Titolo',
-        ],
-    ],
-];
+<?php return array (
+  'fields' => 
+  array (
+    'title' => 
+    array (
+      'label' => 'Titolo',
+    ),
+    'icon' => 
+    array (
+      'label' => 'icon',
+    ),
+    'image' => 
+    array (
+      'label' => 'image',
+    ),
+  ),
+);
