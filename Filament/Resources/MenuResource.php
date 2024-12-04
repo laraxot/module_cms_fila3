@@ -76,7 +76,7 @@ class MenuResource extends Resource
                     // ->preserveFilenames()
                     ,
                     // Forms\Components\Select::make('parent_id')
-                    //     
+                    //
                     //     ->options(
                     //         Menu::getTreeMenuOptions()
                     //     )

@@ -75,12 +75,12 @@ class Footer extends Page implements HasForms
                 */
                 /*
                 RadioImage::make('_tpl')
-                
+
                 ->options($options)
                 ->columnSpanFull(),
                 */
                 Select::make('view')
-                    
+
                     ->options($options),
             ])->columns(2)
             ->statePath('data');
