@@ -73,12 +73,12 @@ class Headernav extends Page implements HasForms
                 TextInput::make('style'),
                 /*
                 RadioImage::make('_tpl')
-                
+
                 ->options($options)
                 ->columnSpanFull(),
                 */
                 Select::make('view')
-                    
+
                     ->options($options),
             ])->columns(2)
             ->statePath('data');
