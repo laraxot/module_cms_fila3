@@ -32,45 +32,50 @@ class PageResource extends XotBaseResource
     public static function form(Form $form): Form
     {
         return $form->schema([
-            Forms\Components\Grid::make()->columns(2)->schema([
-                Forms\Components\TextInput::make('title')
-                    ->columnSpan(1)
-                    ->required()
-                    ->lazy()
-                    ->afterStateUpdated(static function ($set, $get, $state): void {
-                        if ($get('slug')) {
-                            return;
-                        }
-                        $set('slug', Str::slug($state));
-                    }),
+            Forms\Components\Grid::make()
+                ->columns(2)
+                ->schema([
+                    Forms\Components\TextInput::make('title')
+                        ->columnSpan(1)
+                        ->required()
+                        ->lazy()
+                        ->afterStateUpdated(static function ($set, $get, $state): void {
+                            if ($get('slug')) {
+                                return;
+                            }
+                            $set('slug', Str::slug($state));
+                        }),
 
-                Forms\Components\TextInput::make('slug')
-                    ->required()
-                    ->columnSpan(1)
-                    ->afterStateUpdated(static fn ($set, $state) => $set('slug', Str::slug($state))),
-            ]),
+                    Forms\Components\TextInput::make('slug')
+                        ->required()
+                        ->columnSpan(1)
+                        ->afterStateUpdated(static fn ($set, $state) => $set('slug', Str::slug($state))),
+                ]
+                ),
             /*
-            Forms\Components\Actions::make([
-                InlinePreviewAction::make()
-                    ->label('Open Content Editor')
-                    ->builderName('content'),
-            ])
-                ->columnSpanFull()
-                ->alignEnd(),
-            */
-            Forms\Components\Section::make('Page Content')->schema([
-                PageContent::make('content_blocks')
-                    ->label('Blocchi Contenuto')
-                    ->required()
-                    ->columnSpanFull(),
-            ]),
+                Forms\Components\Actions::make([
+                    InlinePreviewAction::make()
+                        ->label('Open Content Editor')
+                        ->builderName('content'),
+                ])
+                    ->columnSpanFull()
+                    ->alignEnd(),
+                */
+            Forms\Components\Section::make('Page Content')
+                ->schema([
+                    PageContent::make('content_blocks')
+                        ->label('Blocchi Contenuto')
+                        ->required()
+                        ->columnSpanFull(),
+                ]),
 
-            Forms\Components\Section::make('Sidebar Content')->schema([
-                LeftSidebarContent::make('sidebar_blocks')
-                    ->label('Blocchi Sidebar')
-                    // ->required()
-                    ->columnSpanFull(),
-            ]),
+            Forms\Components\Section::make('Sidebar Content')
+                ->schema([
+                    LeftSidebarContent::make('sidebar_blocks')
+                        ->label('Blocchi Sidebar')
+                        // ->required()
+                        ->columnSpanFull(),
+                ]),
         ]);
     }
 
