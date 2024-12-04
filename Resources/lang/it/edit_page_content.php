@@ -1,17 +1,17 @@
-<?php return array (
-  'actions' => 
-  array (
-    'view' => 
-    array (
-      'label' => 'view',
-    ),
-    'delete' => 
-    array (
-      'label' => 'delete',
-    ),
-    'activeLocale' => 
-    array (
-      'label' => 'activeLocale',
-    ),
-  ),
-);
+<?php
+
+declare(strict_types=1);
+
+return [
+    'actions' => [
+        'view' => [
+            'label' => 'view',
+        ],
+        'delete' => [
+            'label' => 'delete',
+        ],
+        'activeLocale' => [
+            'label' => 'activeLocale',
+        ],
+    ],
+];
