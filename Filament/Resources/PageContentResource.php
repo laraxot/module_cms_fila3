@@ -54,7 +54,7 @@ class PageContentResource extends XotBaseResource
 
             Forms\Components\Section::make('Content')->schema([
                 PageContentBuilder::make('blocks')
-                    ->label('Blocchi')
+                    
                     // ->required()
                     ->columnSpanFull(),
             ]),
