@@ -1,9 +1,11 @@
-<?php return array (
-  'actions' => 
-  array (
-    'activeLocale' => 
-    array (
-      'label' => 'activeLocale',
-    ),
-  ),
-);
+<?php
+
+declare(strict_types=1);
+
+return [
+    'actions' => [
+        'activeLocale' => [
+            'label' => 'activeLocale',
+        ],
+    ],
+];
