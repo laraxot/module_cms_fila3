@@ -22,7 +22,7 @@ use Z3d0X\FilamentFabricator\Forms\Components\PageBuilder;
 use Z3d0X\FilamentFabricator\Models\Contracts\Page as PageContract;
 use Z3d0X\FilamentFabricator\Resources\PageResource as ResourcesPageResource;
 
-class PageResource extends ResourcesPageResource
+class PageResource extends \Modules\Xot\Filament\Resources\XotBaseResourcesPageResource
 {
     public static function form(Form $form): Form
     {
