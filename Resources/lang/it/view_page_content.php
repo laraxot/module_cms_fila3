@@ -1,14 +1,14 @@
 <?php
-
-declare(strict_types=1);
-
-return [
-    'actions' => [
-        'edit' => [
+return array(
+    'actions' =>
+    array(
+        'edit' =>
+        array(
             'label' => 'edit',
-        ],
-        'activeLocale' => [
+        ),
+        'activeLocale' =>
+        array(
             'label' => 'activeLocale',
-        ],
-    ],
-];
+        ),
+    ),
+);

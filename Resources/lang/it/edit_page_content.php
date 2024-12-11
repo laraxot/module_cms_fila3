@@ -1,17 +1,18 @@
 <?php
-
-declare(strict_types=1);
-
-return [
-    'actions' => [
-        'view' => [
+return array(
+    'actions' =>
+    array(
+        'view' =>
+        array(
             'label' => 'view',
-        ],
-        'delete' => [
+        ),
+        'delete' =>
+        array(
             'label' => 'delete',
-        ],
-        'activeLocale' => [
+        ),
+        'activeLocale' =>
+        array(
             'label' => 'activeLocale',
-        ],
-    ],
-];
+        ),
+    ),
+);
