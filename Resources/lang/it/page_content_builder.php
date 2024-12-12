@@ -1,10 +1,11 @@
 <?php
-return array(
-    'fields' =>
-    array(
-        'blocks' =>
-        array(
+
+declare(strict_types=1);
+
+return [
+    'fields' => [
+        'blocks' => [
             'label' => 'blocks',
-        ),
-    ),
-);
+        ],
+    ],
+];
