@@ -7,5 +7,11 @@ return [
         'title' => [
             'label' => 'Titolo',
         ],
+        'icon' => [
+            'label' => 'icon',
+        ],
+        'image' => [
+            'label' => 'image',
+        ],
     ],
 ];

@@ -39,29 +39,29 @@ use Staudenmeir\LaravelAdjacencyList\Eloquent\HasRecursiveRelationships;
  *
  * @property string                                                                                                     $title
  * @property int|null                                                                                                   $parent_id
- * @property \Staudenmeir\LaravelAdjacencyList\Eloquent\Collection|\Modules\Cms\Models\Menu[]                           $children
+ * @property \Staudenmeir\LaravelAdjacencyList\Eloquent\Collection|Menu[]                                               $children
  * @property int|null                                                                                                   $children_count
  * @property \Spatie\MediaLibrary\MediaCollections\Models\Collections\MediaCollection<int, \Modules\Media\Models\Media> $media
  * @property int|null                                                                                                   $media_count
  * @property Menu|null                                                                                                  $parent
- * @property \Staudenmeir\LaravelAdjacencyList\Eloquent\Collection|\Modules\Cms\Models\Menu[]                           $ancestors                  The model's recursive parents.
+ * @property \Staudenmeir\LaravelAdjacencyList\Eloquent\Collection|Menu[]                                               $ancestors                  The model's recursive parents.
  * @property int|null                                                                                                   $ancestors_count
- * @property \Staudenmeir\LaravelAdjacencyList\Eloquent\Collection|\Modules\Cms\Models\Menu[]                           $ancestorsAndSelf           The model's recursive parents and itself.
+ * @property \Staudenmeir\LaravelAdjacencyList\Eloquent\Collection|Menu[]                                               $ancestorsAndSelf           The model's recursive parents and itself.
  * @property int|null                                                                                                   $ancestors_and_self_count
- * @property \Staudenmeir\LaravelAdjacencyList\Eloquent\Collection|\Modules\Cms\Models\Menu[]                           $bloodline                  The model's ancestors, descendants and itself.
+ * @property \Staudenmeir\LaravelAdjacencyList\Eloquent\Collection|Menu[]                                               $bloodline                  The model's ancestors, descendants and itself.
  * @property int|null                                                                                                   $bloodline_count
- * @property \Staudenmeir\LaravelAdjacencyList\Eloquent\Collection|\Modules\Cms\Models\Menu[]                           $childrenAndSelf            The model's direct children and itself.
+ * @property \Staudenmeir\LaravelAdjacencyList\Eloquent\Collection|Menu[]                                               $childrenAndSelf            The model's direct children and itself.
  * @property int|null                                                                                                   $children_and_self_count
- * @property \Staudenmeir\LaravelAdjacencyList\Eloquent\Collection|\Modules\Cms\Models\Menu[]                           $descendants                The model's recursive children.
+ * @property \Staudenmeir\LaravelAdjacencyList\Eloquent\Collection|Menu[]                                               $descendants                The model's recursive children.
  * @property int|null                                                                                                   $descendants_count
- * @property \Staudenmeir\LaravelAdjacencyList\Eloquent\Collection|\Modules\Cms\Models\Menu[]                           $descendantsAndSelf         The model's recursive children and itself.
+ * @property \Staudenmeir\LaravelAdjacencyList\Eloquent\Collection|Menu[]                                               $descendantsAndSelf         The model's recursive children and itself.
  * @property int|null                                                                                                   $descendants_and_self_count
- * @property \Staudenmeir\LaravelAdjacencyList\Eloquent\Collection|\Modules\Cms\Models\Menu[]                           $parentAndSelf              The model's direct parent and itself.
+ * @property \Staudenmeir\LaravelAdjacencyList\Eloquent\Collection|Menu[]                                               $parentAndSelf              The model's direct parent and itself.
  * @property int|null                                                                                                   $parent_and_self_count
  * @property Menu|null                                                                                                  $rootAncestor               The model's topmost parent.
- * @property \Staudenmeir\LaravelAdjacencyList\Eloquent\Collection|\Modules\Cms\Models\Menu[]                           $siblings                   The parent's other children.
+ * @property \Staudenmeir\LaravelAdjacencyList\Eloquent\Collection|Menu[]                                               $siblings                   The parent's other children.
  * @property int|null                                                                                                   $siblings_count
- * @property \Staudenmeir\LaravelAdjacencyList\Eloquent\Collection|\Modules\Cms\Models\Menu[]                           $siblingsAndSelf            All the parent's children.
+ * @property \Staudenmeir\LaravelAdjacencyList\Eloquent\Collection|Menu[]                                               $siblingsAndSelf            All the parent's children.
  * @property int|null                                                                                                   $siblings_and_self_count
  *
  * @method static \Staudenmeir\LaravelAdjacencyList\Eloquent\Collection<int, static> all($columns = ['*'])
@@ -125,6 +125,7 @@ use Staudenmeir\LaravelAdjacencyList\Eloquent\HasRecursiveRelationships;
  * @method static \Staudenmeir\LaravelAdjacencyList\Eloquent\Collection<int, static> get($columns = ['*'])
  * @method static \Staudenmeir\LaravelAdjacencyList\Eloquent\Collection<int, static> all($columns = ['*'])
  * @method static \Staudenmeir\LaravelAdjacencyList\Eloquent\Collection<int, static> get($columns = ['*'])
+ * @method static \Modules\Cms\Database\Factories\MenuFactory                        factory($count = null, $state = [])
  *
  * @mixin \Eloquent
  */

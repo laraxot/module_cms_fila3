@@ -11,14 +11,28 @@ return [
         ],
     ],
     'fields' => [
-        'title' => ['label' => 'Titolo'],
-        'name' => ['label' => 'Nome'],
-        'slug' => ['label' => 'Slug'],
+        'title' => [
+            'label' => 'Titolo',
+        ],
+        'name' => [
+            'label' => 'Nome',
+        ],
+        'slug' => [
+            'label' => 'Slug',
+        ],
         'guard_name' => 'Guard',
         'permissions' => 'Permessi',
         'roles' => 'Ruoli',
         'updated_at' => 'Aggiornato il',
         'first_name' => 'Nome',
         'last_name' => 'Cognome',
+    ],
+    'actions' => [
+        'create' => [
+            'label' => 'create',
+        ],
+        'activeLocale' => [
+            'label' => 'activeLocale',
+        ],
     ],
 ];

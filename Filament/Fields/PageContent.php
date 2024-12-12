@@ -27,7 +27,7 @@ class PageContent
         );
 
         /**
-         * @var array<\Filament\Forms\Components\Builder\Block>
+         * @var array<Builder\Block>
          */
         $blocks_array = $blocks->items();
 
