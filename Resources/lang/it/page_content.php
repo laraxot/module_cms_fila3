@@ -11,16 +11,22 @@ return [
         ],
     ],
     'fields' => [
-        'name' => ['label' => 'Nome'],
-        'slug' => ['label' => 'Slug'],
+        'name' => [
+            'label' => 'Nome',
+        ],
+        'slug' => [
+            'label' => 'Slug',
+        ],
         'guard_name' => 'Guard',
         'permissions' => 'Permessi',
         'roles' => 'Ruoli',
         'updated_at' => 'Aggiornato il',
         'first_name' => 'Nome',
         'last_name' => 'Cognome',
+        'content_blocks' => [
+            'label' => 'content_blocks',
+        ],
     ],
-
     'rating' => [
         'no_import' => 'Nessuna cifra inserita',
         'import_zero' => 'Nessuna cifra inserita',
@@ -33,7 +39,6 @@ return [
     'your_bet' => 'La tua previsione',
     'your_amount' => 'Previsione',
     'if_win' => 'Se vinci',
-
     'actions' => [
         'import' => [
             'fields' => [
@@ -46,6 +51,12 @@ return [
                 'name' => 'Nome area',
                 'parent_name' => 'Nome area livello superiore',
             ],
+        ],
+        'activeLocale' => [
+            'label' => 'activeLocale',
+        ],
+        'create' => [
+            'label' => 'create',
         ],
     ],
 ];

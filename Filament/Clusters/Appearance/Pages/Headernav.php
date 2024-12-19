@@ -4,25 +4,26 @@ declare(strict_types=1);
 
 namespace Modules\Cms\Filament\Clusters\Appearance\Pages;
 
-use Filament\Actions\Action;
 use Filament\Forms;
-use Filament\Forms\Components\ColorPicker;
-use Filament\Forms\Components\FileUpload;
-use Filament\Forms\Components\Select;
-use Filament\Forms\Components\TextInput;
-use Filament\Forms\Concerns\InteractsWithForms;
-use Filament\Forms\Contracts\HasForms;
 use Filament\Forms\Form;
-use Filament\Notifications\Notification;
 use Filament\Pages\Page;
-use Filament\Support\Exceptions\Halt;
 use Illuminate\Support\Arr;
 use Illuminate\Support\Str;
-use Modules\Cms\Filament\Clusters\Appearance;
+use Filament\Actions\Action;
+use Webmozart\Assert\Assert;
+use Filament\Forms\Components\Select;
+use Filament\Support\Exceptions\Halt;
+use Filament\Forms\Contracts\HasForms;
+use Filament\Forms\Components\TextInput;
+use Filament\Notifications\Notification;
+use Filament\Forms\Components\FileUpload;
+use Filament\Forms\Components\ColorPicker;
 use Modules\Tenant\Services\TenantService;
+use Modules\Cms\Filament\Clusters\Appearance;
+use Filament\Forms\Concerns\InteractsWithForms;
 use Modules\UI\Filament\Forms\Components\RadioImage;
 use Modules\Xot\Actions\View\GetViewsSiblingsAndSelfAction;
-use Webmozart\Assert\Assert;
+use Modules\Xot\Actions\Filament\Block\GetViewBlocksOptionsByTypeAction;
 
 /**
  * @property Forms\ComponentContainer $form
@@ -48,21 +49,9 @@ class Headernav extends Page implements HasForms
 
     public function form(Form $form): Form
     {
-        $view = 'cms::components.headernav.simple';
-        $view_p = Str::beforeLast($view, '.');
-        $views = app(GetViewsSiblingsAndSelfAction::class)->execute($view);
+        $options = app(GetViewBlocksOptionsByTypeAction::class)
+            ->execute('headernav', false);
 
-        $options = Arr::mapWithKeys($views, function (string $item) use ($view_p) {
-            $k = $view_p.'.'.$item;
-
-            return [$k => $k];
-        });
-
-        /*
-        $options = Arr::map($views, function ($view) {
-            return app(\Modules\Xot\Actions\File\AssetAction::class)->execute('ui::img/headernav/screenshots/'.$view.'.png');
-        });
-        */
         return $form
             ->schema([
                 ColorPicker::make('background_color'),
@@ -73,12 +62,12 @@ class Headernav extends Page implements HasForms
                 TextInput::make('style'),
                 /*
                 RadioImage::make('_tpl')
-                ->label('layout')
+
                 ->options($options)
                 ->columnSpanFull(),
                 */
                 Select::make('view')
-                    ->label('view')
+
                     ->options($options),
             ])->columns(2)
             ->statePath('data');

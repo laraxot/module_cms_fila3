@@ -1,4 +1,5 @@
 <?php
+
 /**
  * @see https://github.com/laravel/framework/discussions/49574
  */
