@@ -1,46 +1,38 @@
-<?php 
-return array (
-  'fields' => 
-  array (
-    'title' => 
-    array (
-      'label' => 'Titolo',
-    ),
-    'icon' => 
-    array (
-      'label' => 'icon',
-    ),
-    'image' => 
-    array (
-      'label' => 'image',
-    ),
-    'items' => 
-    array (
-      'label' => 'items',
-    ),
-    'url' => 
-    array (
-      'label' => 'url',
-    ),
-    'type' => 
-    array (
-      'label' => 'type',
-    ),
-  ),
-  'navigation' => 
-  array(
-    'group' => 
-    array(
-      'name' => 'Site'
-    ),
-    'plural' => 'Menu',
-    'name' => 'Menu'
-  ),
-  'actions' => 
-  array(
-    'create' => 
-    array(
-      'tooltip' => 'Crea'
-    )
-  ),
-);
+<?php
+
+declare(strict_types=1);
+
+return [
+    'fields' => [
+        'title' => [
+            'label' => 'Titolo',
+        ],
+        'icon' => [
+            'label' => 'icon',
+        ],
+        'image' => [
+            'label' => 'image',
+        ],
+        'items' => [
+            'label' => 'items',
+        ],
+        'url' => [
+            'label' => 'url',
+        ],
+        'type' => [
+            'label' => 'type',
+        ],
+    ],
+    'navigation' => [
+        'group' => [
+            'name' => 'Site',
+        ],
+        'plural' => 'Menu',
+        'name' => 'Menu',
+    ],
+    'actions' => [
+        'create' => [
+            'tooltip' => 'Crea',
+        ],
+    ],
+];
