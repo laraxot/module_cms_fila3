@@ -7,7 +7,6 @@ namespace Modules\Cms\Filament\Resources;
 use Filament\Forms;
 use Filament\Forms\Components\SpatieMediaLibraryFileUpload;
 use Filament\Forms\Form;
-use Filament\Resources\Resource;
 use Filament\Tables;
 use Filament\Tables\Table;
 use Illuminate\Support\HtmlString;
@@ -15,7 +14,7 @@ use Modules\Cms\Filament\Resources\MenuResource\Pages;
 use Modules\Cms\Models\Menu;
 use Modules\UI\Filament\Forms\Components\IconPicker;
 
-class MenuResource extends Resource
+class MenuResource extends \Modules\Xot\Filament\Resources\XotBaseResource
 {
     protected static ?string $model = Menu::class;
 
@@ -53,8 +52,8 @@ class MenuResource extends Resource
                             'external' => 'external',
                             'route_name' => 'route name',
                         ])
-                        ->helperText(new HtmlString('- "page slug" inserire nel campo Url lo slug del titolo di una pagina creata, 
-                                                    <br> - "external" inserire nel campo Url il l\'intero link di un sito esterno, 
+                        ->helperText(new HtmlString('- "page slug" inserire nel campo Url lo slug del titolo di una pagina creata,
+                                                    <br> - "external" inserire nel campo Url il l\'intero link di un sito esterno,
                                                     <br> - "route name" inserire nel campo Url il nome della route'))
                         ->default('internal')
                         ->required()
@@ -76,7 +75,7 @@ class MenuResource extends Resource
                     // ->preserveFilenames()
                     ,
                     // Forms\Components\Select::make('parent_id')
-                    //     ->label('link/menu Padre')
+                    //
                     //     ->options(
                     //         Menu::getTreeMenuOptions()
                     //     )

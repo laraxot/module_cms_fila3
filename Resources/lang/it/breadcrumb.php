@@ -11,12 +11,24 @@ return [
         ],
     ],
     'fields' => [
-        'background_color' => ['label' => 'background_color'],
-        'background' => ['label' => 'background'],
-        'overlay_color' => ['label' => 'overlay_color'],
-        'overlay_opacity' => ['label' => 'overlay_opacity'],
-        'class' => ['label' => 'class'],
-        'style' => ['label' => 'style'],
+        'background_color' => [
+            'label' => 'background_color',
+        ],
+        'background' => [
+            'label' => 'background',
+        ],
+        'overlay_color' => [
+            'label' => 'overlay_color',
+        ],
+        'overlay_opacity' => [
+            'label' => 'overlay_opacity',
+        ],
+        'class' => [
+            'label' => 'class',
+        ],
+        'style' => [
+            'label' => 'style',
+        ],
         'name' => 'Nome',
         'guard_name' => 'Guard',
         'permissions' => 'Permessi',
@@ -25,7 +37,6 @@ return [
         'first_name' => 'Nome',
         'last_name' => 'Cognome',
     ],
-
     'rating' => [
         'no_import' => 'Nessuna cifra inserita',
         'import_zero' => 'Nessuna cifra inserita',
@@ -38,7 +49,6 @@ return [
     'your_bet' => 'La tua previsione',
     'your_amount' => 'Previsione',
     'if_win' => 'Se vinci',
-
     'actions' => [
         'import' => [
             'fields' => [
@@ -51,6 +61,9 @@ return [
                 'name' => 'Nome area',
                 'parent_name' => 'Nome area livello superiore',
             ],
+        ],
+        'updateAction' => [
+            'label' => 'updateAction',
         ],
     ],
 ];
