@@ -15,6 +15,8 @@ use Modules\Tenant\Services\TenantService;
 
 use function Safe\json_decode;
 
+use Webmozart\Assert\Assert;
+
 class Themes extends Page
 {
     public array $data = [];
@@ -27,6 +29,7 @@ class Themes extends Page
 
     public function changePubTheme(string $name): void
     {
+        $data = [];
         $data['pub_theme'] = $name;
         TenantService::saveConfig('xra', $data);
         Notification::make()
@@ -51,7 +54,8 @@ class Themes extends Page
         $data = [];
         if ($themes) {
             foreach ($themes as $key => $item) {
-                $filename = $item.\DIRECTORY_SEPARATOR.'theme.json';
+                Assert::string($item);
+                $filename = $item.DIRECTORY_SEPARATOR.'theme.json';
                 if (! File::exists($filename)) {
                     $theme_data = ThemeData::from(['name' => basename((string) $item)]);
                     File::put($filename, $theme_data->toJson());

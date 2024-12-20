@@ -16,15 +16,23 @@ use Filament\Support\Exceptions\Halt;
 use Illuminate\Support\Arr;
 use Modules\Cms\Filament\Clusters\Appearance;
 use Modules\Tenant\Services\TenantService;
+use Spatie\Data\Data;
 use Webmozart\Assert\Assert;
 
 /**
+ * Class Breadcrumb.
+ *
  * @property Forms\ComponentContainer $form
  */
 class Breadcrumb extends Page implements HasForms
 {
     use InteractsWithForms;
 
+    /**
+     * Data for the form state.
+     *
+     * @var array<string, mixed>|null
+     */
     public ?array $data = [];
 
     protected static ?string $navigationIcon = 'heroicon-o-document-text';
@@ -35,60 +43,86 @@ class Breadcrumb extends Page implements HasForms
 
     protected static ?int $navigationSort = 2;
 
+    /**
+     * Mount the page and initialize the form state.
+     */
     public function mount(): void
     {
         $this->fillForms();
     }
 
+    /**
+     * Define the form schema.
+     */
     public function form(Form $form): Form
     {
         return $form
             ->schema([
-                TextInput::make('class'),
-                TextInput::make('style'),
-            ])->columns(2)
+                TextInput::make('class')
+                    ->label(__('Class'))
+                    ->placeholder(__('Enter breadcrumb class')),
+                TextInput::make('style')
+                    ->label(__('Style'))
+                    ->placeholder(__('Enter breadcrumb style')),
+            ])
+            ->columns(2)
             ->statePath('data');
     }
 
+    /**
+     * Update the breadcrumb data.
+     */
     public function updateData(): void
     {
         try {
             $data = $this->form->getState();
+
+            // Save the data using TenantService
             $up = [
                 'breadcrumb' => $data,
             ];
             TenantService::saveConfig('appearance', $up);
+
+            Notification::make()
+                ->title(__('Saved successfully'))
+                ->success()
+                ->send();
         } catch (Halt $exception) {
             Notification::make()
-                ->title('Error!')
+                ->title(__('Error!'))
                 ->danger()
                 ->body($exception->getMessage())
                 ->persistent()
                 ->send();
-
-            return;
         }
-
-        Notification::make()
-            ->title('Saved successfully')
-            ->success()
-            ->send();
     }
 
+    /**
+     * Fill the form with initial data.
+     */
     protected function fillForms(): void
     {
-        Assert::isArray($data = TenantService::config('appearance'));
-        Assert::isArray($data = Arr::get($data, 'breadcrumb', []));
+        $appearanceConfig = TenantService::config('appearance');
+        Assert::isArray($appearanceConfig);
 
-        $this->form->fill($data);
+        /** @var array<string, mixed> */
+        $breadcrumbData = Arr::get($appearanceConfig, 'breadcrumb', []);
+        Assert::isArray($breadcrumbData);
+
+        $this->form->fill($breadcrumbData);
     }
 
+    /**
+     * Get the actions for updating the form.
+     *
+     * @return array<Action>
+     */
     protected function getUpdateFormActions(): array
     {
         return [
             Action::make('updateAction')
-                ->label(__('filament-panels::pages/auth/edit-profile.form.actions.save.label'))
-                ->submit('editForm'),
+                ->label(__('Save Changes'))
+                ->submit('updateData'),
         ];
     }
 }

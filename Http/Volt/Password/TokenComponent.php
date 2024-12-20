@@ -13,6 +13,7 @@ use Illuminate\Support\Facades\Password;
 use Illuminate\Support\Str;
 use Livewire\Attributes\Validate;
 use Livewire\Volt\Component;
+use Modules\Xot\Contracts\UserContract;
 use Webmozart\Assert\Assert;
 
 /**
@@ -48,7 +49,7 @@ class TokenComponent extends Component
                 'email' => $this->email,
                 'password' => $this->password,
             ],
-            function ($user, $password) {
+            function (UserContract $user, string $password) {
                 $user->password = Hash::make($password);
 
                 $user->setRememberToken(Str::random(60));

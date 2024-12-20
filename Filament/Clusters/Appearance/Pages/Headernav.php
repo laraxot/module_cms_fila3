@@ -15,22 +15,27 @@ use Filament\Forms\Contracts\HasForms;
 use Filament\Forms\Form;
 use Filament\Notifications\Notification;
 use Filament\Pages\Page;
-use Filament\Support\Exceptions\Halt;
 use Illuminate\Support\Arr;
+use Modules\Cms\Actions\SaveHeadernavConfigAction;
+use Modules\Cms\Datas\HeadernavData;
 use Modules\Cms\Filament\Clusters\Appearance;
 use Modules\Tenant\Services\TenantService;
-use Modules\UI\Filament\Forms\Components\RadioImage;
 use Modules\Xot\Actions\Filament\Block\GetViewBlocksOptionsByTypeAction;
 use Webmozart\Assert\Assert;
 
 /**
+ * Page class for managing header navigation appearance settings.
+ *
  * @property Forms\ComponentContainer $form
  */
 class Headernav extends Page implements HasForms
 {
     use InteractsWithForms;
 
-    public ?array $data = [];
+    /**
+     * @var HeadernavData|null the form data
+     */
+    public ?HeadernavData $data = null;
 
     protected static ?string $navigationIcon = 'heroicon-o-document-text';
 
@@ -40,76 +45,98 @@ class Headernav extends Page implements HasForms
 
     protected static ?int $navigationSort = 1;
 
+    /**
+     * Initialize the page and fill the form state.
+     */
     public function mount(): void
     {
         $this->fillForms();
     }
 
+    /**
+     * Define the form schema.
+     */
     public function form(Form $form): Form
     {
-        $options = app(GetViewBlocksOptionsByTypeAction::class)
-            ->execute('headernav', false);
+        $options = app(GetViewBlocksOptionsByTypeAction::class)->execute('headernav', false);
 
         return $form
             ->schema([
-                ColorPicker::make('background_color'),
-                FileUpload::make('background'),
-                ColorPicker::make('overlay_color'),
-                TextInput::make('overlay_opacity')->numeric()->minValue(0)->maxValue(100),
-                TextInput::make('class'),
-                TextInput::make('style'),
-                /*
-                RadioImage::make('_tpl')
-
-                ->options($options)
-                ->columnSpanFull(),
-                */
+                ColorPicker::make('background_color')
+                    ->label(__('Background Color')),
+                FileUpload::make('background')
+                    ->label(__('Background Image')),
+                ColorPicker::make('overlay_color')
+                    ->label(__('Overlay Color')),
+                TextInput::make('overlay_opacity')
+                    ->numeric()
+                    ->minValue(0)
+                    ->maxValue(100)
+                    ->label(__('Overlay Opacity')),
+                TextInput::make('class')
+                    ->label(__('CSS Class')),
+                TextInput::make('style')
+                    ->label(__('Inline Style')),
                 Select::make('view')
-
-                    ->options($options),
-            ])->columns(2)
+                    ->options($options)
+                    ->label(__('View Template')),
+            ])
+            ->columns(2)
             ->statePath('data');
     }
 
+    /**
+     * Update header navigation data and save it to the configuration.
+     */
     public function updateData(): void
     {
         try {
-            $data = $this->form->getState();
-            $up = [
-                'headernav' => $data,
-            ];
-            TenantService::saveConfig('appearance', $up);
-        } catch (Halt $exception) {
+            $data = HeadernavData::from($this->form->getState());
+
+            app(SaveHeadernavConfigAction::class)->execute($data);
+
             Notification::make()
-                ->title('Error!')
+                ->title(__('Saved successfully'))
+                ->success()
+                ->send();
+        } catch (\Exception $exception) {
+            Notification::make()
+                ->title(__('Error!'))
                 ->danger()
                 ->body($exception->getMessage())
                 ->persistent()
                 ->send();
-
-            return;
         }
-
-        Notification::make()
-            ->title('Saved successfully')
-            ->success()
-            ->send();
     }
 
+    /**
+     * Fill the form with initial data.
+     */
     protected function fillForms(): void
     {
-        Assert::isArray($data = TenantService::config('appearance'));
-        Assert::isArray($data = Arr::get($data, 'headernav', []));
+        $appearanceConfig = TenantService::config('appearance');
+        Assert::isArray($appearanceConfig);
 
-        $this->form->fill($data);
+        $headernavConfig = Arr::get($appearanceConfig, 'headernav', []);
+        Assert::isArray($headernavConfig);
+
+        $this->data = HeadernavData::from($headernavConfig);
+        /** @var array<string, mixed> $form_fill */
+        $form_fill = $this->data->toArray();
+        $this->form->fill($form_fill);
     }
 
+    /**
+     * Get form actions for updating the header navigation settings.
+     *
+     * @return array<Action>
+     */
     protected function getUpdateFormActions(): array
     {
         return [
             Action::make('updateAction')
-                ->label(__('filament-panels::pages/auth/edit-profile.form.actions.save.label'))
-                ->submit('editForm'),
+                ->label(__('Save Changes'))
+                ->submit('updateData'),
         ];
     }
 }

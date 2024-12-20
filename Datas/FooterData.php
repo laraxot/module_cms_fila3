@@ -15,10 +15,12 @@ class FooterData extends Data implements Wireable
 {
     use WireableData;
 
-    /**
-     * @var view-string
-     */
+    public ?string $background_color;
+    public ?string $background;
+    public ?string $overlay_color;
+    /** @var view-string */
     public string $view;
+    public ?string $_tpl;
 
     private static ?self $instance = null;
 
@@ -35,12 +37,24 @@ class FooterData extends Data implements Wireable
 
     public function view(): Renderable
     {
-        $view_params = $this->toArray();
         if (! view()->exists($this->view)) {
             $message = 'The view ['.$this->view.'] does not exist';
             throw new \Exception($message);
         }
+        /** @var array<string, mixed> */
+        $view_params = $this->toArray();
 
         return view($this->view, $view_params);
+    }
+
+    public static function rules(): array
+    {
+        return [
+            'background_color' => ['nullable', 'string'],
+            'background' => ['nullable', 'string'],
+            'overlay_color' => ['nullable', 'string'],
+            'view' => ['nullable', 'string'],
+            '_tpl' => ['nullable', 'string'],
+        ];
     }
 }
