@@ -39,7 +39,7 @@ class PageResource extends XotBaseResource
                         ->columnSpan(1)
                         ->required()
                         ->lazy()
-                        ->afterStateUpdated(static function ($set, $get, $state): void {
+                        ->afterStateUpdated(static function (Forms\Set $set, Forms\Get $get, string $state): void {
                             if ($get('slug')) {
                                 return;
                             }
@@ -49,7 +49,7 @@ class PageResource extends XotBaseResource
                     Forms\Components\TextInput::make('slug')
                         ->required()
                         ->columnSpan(1)
-                        ->afterStateUpdated(static fn ($set, $state) => $set('slug', Str::slug($state))),
+                        ->afterStateUpdated(static fn (Forms\Set $set, string $state) => $set('slug', Str::slug($state))),
                 ]
                 ),
             /*

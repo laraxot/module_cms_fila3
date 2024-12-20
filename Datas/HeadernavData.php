@@ -16,17 +16,11 @@ class HeadernavData extends Data implements Wireable
     use WireableData;
 
     public ?string $background_color = null;
-
     public ?string $background = null;
-
     public ?string $overlay_color = null;
-
     public ?int $overlay_opacity = null;
-
     public ?string $class = null;
-
     public ?string $style = null;
-
     /**
      * @var view-string
      */
@@ -48,12 +42,26 @@ class HeadernavData extends Data implements Wireable
 
     public function view(): Renderable
     {
-        $view_params = $this->toArray();
         if (! view()->exists($this->view)) {
             $message = 'The view ['.$this->view.'] does not exist';
             throw new \Exception($message);
         }
+        /** @var array<string, mixed> $view_params */
+        $view_params = $this->toArray();
 
         return view($this->view, $view_params);
+    }
+
+    public static function rules(): array
+    {
+        return [
+            'background_color' => ['nullable', 'string'],
+            'background' => ['nullable', 'string'],
+            'overlay_color' => ['nullable', 'string'],
+            'overlay_opacity' => ['nullable', 'numeric', 'min:0', 'max:100'],
+            'class' => ['nullable', 'string'],
+            'style' => ['nullable', 'string'],
+            'view' => ['nullable', 'string'],
+        ];
     }
 }

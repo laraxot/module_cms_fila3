@@ -24,6 +24,9 @@ class MenuResource extends \Modules\Xot\Filament\Resources\XotBaseResource
 
     protected static ?string $navigationLabel = 'Navigation';
 
+    /**
+     * @return array<\Filament\Forms\Components\Component>
+     */
     public static function getFormSchema(): array
     {
         return [

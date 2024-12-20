@@ -65,7 +65,12 @@ class Dashboard extends Page
      */
     public function getWidgets(): array
     {
-        return Filament::getWidgets();
+        /**
+         * @var array<class-string<\Filament\Widgets\Widget>|\Filament\Widgets\WidgetConfiguration>
+         */
+        $widgets = Filament::getWidgets();
+
+        return $widgets;
     }
 
     /**
