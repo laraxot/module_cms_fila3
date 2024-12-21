@@ -37,10 +37,14 @@ class ThemeComposer
             return route('page_slug.view', ['lang' => $lang, 'slug' => $menu['url']]);
         }
         if ('external' === $menu['type']) {
-            return $menu['url'];
+            Assert::string($url = $menu['url']);
+
+            return $url;
         }
         if ('route_name' === $menu['type']) {
-            return route($menu['url'], ['lang' => $lang]);
+            Assert::string($url = $menu['url']);
+
+            return route($url, ['lang' => $lang]);
         }
 
         return '#';

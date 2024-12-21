@@ -14,6 +14,12 @@ class GuestLayout extends Component
      */
     public function render(): View
     {
-        return view('layouts.guest');
+        $view = 'pub_theme::layouts.guest';
+        $view_params = [];
+        if (! view()->exists($view)) {
+            throw new \Exception('view not found: '.$view);
+        }
+
+        return view($view, $view_params);
     }
 }
