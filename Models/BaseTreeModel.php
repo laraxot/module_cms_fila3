@@ -4,11 +4,11 @@ declare(strict_types=1);
 
 namespace Modules\Cms\Models;
 
-use Modules\Tenant\Models\Traits\SushiToJsons;
-use Modules\Xot\Actions\Tree\GetTreeOptionsByModelClassAction;
+use Modules\Xot\Contracts\HasRecursiveRelationshipsContract;
+use Staudenmeir\LaravelAdjacencyList\Eloquent\HasRecursiveRelationships;
 
 /**
- * Modules\Cms\Models\Menu.
+ * Modules\Cms\Models\BaseTreeModel.
  *
  * @property int                             $id
  * @property string                          $name
@@ -128,9 +128,9 @@ use Modules\Xot\Actions\Tree\GetTreeOptionsByModelClassAction;
  *
  * @mixin \Eloquent
  */
-class Menu extends BaseTreeModel
+abstract class BaseTreeModel extends BaseModel implements HasRecursiveRelationshipsContract
 {
-    use SushiToJsons;
+    use HasRecursiveRelationships;
 
     /** @var list<string> */
     protected $fillable = [
@@ -149,16 +149,6 @@ class Menu extends BaseTreeModel
         'created_by' => 'string',
         'updated_by' => 'string',
     ];
-
-    public static function getTreeMenuOptions(): array
-    {
-        return app(GetTreeOptionsByModelClassAction::class)->execute(Menu::class);
-    }
-
-    public function getRows(): array
-    {
-        return $this->getSushiRows();
-    }
 
     /** @return array<string, string> */
     protected function casts(): array

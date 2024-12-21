@@ -7,7 +7,9 @@ namespace Modules\Cms\Models;
 use Modules\Cms\Database\Factories\ModuleFactory;
 use Modules\Xot\Contracts\ProfileContract;
 use Nwidart\Modules\Facades\Module as NwModule;
+use Nwidart\Modules\Laravel\Module as LaravelModule;
 use Sushi\Sushi;
+use Webmozart\Assert\Assert;
 
 /**
  * Modules\Cms\Models\Module.
@@ -42,6 +44,7 @@ class Module extends BaseModel
         $rows = [];
         $i = 1;
         foreach ($modules as $module) {
+            Assert::isInstanceOf($module, LaravelModule::class);
             $tmp = [
                 'id' => $i++,
                 'name' => $module->getName(),

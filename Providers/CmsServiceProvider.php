@@ -140,7 +140,7 @@ class CmsServiceProvider extends XotBaseServiceProvider
     {
         $xot = $this->xot;
 
-        $theme = $xot->{$theme_type};
+        Assert::string($theme = $xot->{$theme_type});
 
         $resource_path = 'Themes/'.$theme.'/Resources';
         $lang_dir = app(\Modules\Xot\Actions\File\FixPathAction::class)->execute(base_path($resource_path.'/lang'));
@@ -155,7 +155,7 @@ class CmsServiceProvider extends XotBaseServiceProvider
     {
         $xot = $this->xot;
 
-        $theme = $xot->{$theme_type};
+        Assert::string($theme = $xot->{$theme_type});
 
         $config_path = base_path('Themes/'.$theme.'/Config');
         if (! File::exists($config_path)) {
