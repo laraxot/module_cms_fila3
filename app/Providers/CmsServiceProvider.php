@@ -28,7 +28,7 @@ use Webmozart\Assert\Assert;
  */
 class CmsServiceProvider extends XotBaseServiceProvider
 {
-    public string $module_name = 'Cms';
+    public string $name = 'Cms';
 
     public XotData $xot;
 
