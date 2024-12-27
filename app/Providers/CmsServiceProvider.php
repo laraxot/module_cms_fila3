@@ -28,7 +28,7 @@ use Webmozart\Assert\Assert;
  */
 class CmsServiceProvider extends XotBaseServiceProvider
 {
-    public string $module_name = 'cms';
+    public string $module_name = 'Cms';
 
     public XotData $xot;
 
@@ -60,7 +60,7 @@ class CmsServiceProvider extends XotBaseServiceProvider
 
         $this->xot = XotData::make();
         $configFileName = 'xra';
-        $this->mergeConfigFrom(__DIR__.sprintf('/../Config/%s.php', $configFileName), $configFileName);
+        $this->mergeConfigFrom(__DIR__.sprintf('/../../config/%s.php', $configFileName), $configFileName);
 
         if ($this->xot->register_pub_theme) {
             Assert::isArray($paths = config('view.paths'));
