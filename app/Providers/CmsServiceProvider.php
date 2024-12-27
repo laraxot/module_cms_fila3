@@ -64,7 +64,7 @@ class CmsServiceProvider extends XotBaseServiceProvider
 
         if ($this->xot->register_pub_theme) {
             Assert::isArray($paths = config('view.paths'));
-            $theme_path = app(\Modules\Xot\Actions\File\FixPathAction::class)->execute(base_path('Themes/'.$this->xot->pub_theme.'/Resources/views'));
+            $theme_path = app(\Modules\Xot\Actions\File\FixPathAction::class)->execute(base_path('Themes/'.$this->xot->pub_theme.'/resources/views'));
             $paths = array_merge([$theme_path], $paths);
             Config::set('view.paths', $paths);
             Config::set('livewire.view_path', $theme_path.'/livewire');
@@ -95,7 +95,7 @@ class CmsServiceProvider extends XotBaseServiceProvider
         $paths = [];
         $paths[] = $theme_path;
         foreach ($modules as $module) {
-            $path = $module->getPath().'/Resources/views/pages';
+            $path = $module->getPath().'/resources/views/pages';
             if (! File::exists($path)) {
                 continue;
             }

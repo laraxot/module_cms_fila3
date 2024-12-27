@@ -21,6 +21,6 @@ Poi c'è la parte del rendering dei blocchi, che parte dalla rotta "index" del t
 La rotta index richiama tramite il themeComposer il metodo showPageContent con lo slug, che nel caso di index è home.
 
 ShowPageContent renderizza i content_blocks tramite il componente \Modules\UI\View\Components\Render\Blocks,
-che a sua volta renderizza la lista dei blocchi tramite il ciclo che è dentro /Modules/UI/Resources/views/components/render/blocks/v1.blade.php
+che a sua volta renderizza la lista dei blocchi tramite il ciclo che è dentro /Modules/UI/resources/views/components/render/blocks/v1.blade.php
 
-La pagina Themes/Sixteen/Resources/views/pages/pages/[slug].blade.php serve a renderizzare le altre pagine. Bisogna visitare l'url /it/pages/slug
+La pagina Themes/Sixteen/resources/views/pages/pages/[slug].blade.php serve a renderizzare le altre pagine. Bisogna visitare l'url /it/pages/slug
