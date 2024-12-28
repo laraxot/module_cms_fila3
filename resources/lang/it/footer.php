@@ -1,16 +1,20 @@
-<?php
-
-declare(strict_types=1);
-
-return [
-    'fields' => [
-        'view' => [
-            'label' => 'view',
-        ],
-    ],
-    'actions' => [
-        'updateAction' => [
-            'label' => 'updateAction',
-        ],
-    ],
-];
+<?php return array (
+  'fields' => 
+  array (
+    'view' => 
+    array (
+      'label' => 'view',
+    ),
+    '_tpl' => 
+    array (
+      'label' => '_tpl',
+    ),
+  ),
+  'actions' => 
+  array (
+    'updateAction' => 
+    array (
+      'label' => 'updateAction',
+    ),
+  ),
+);

@@ -36,7 +36,9 @@ class Footer extends Page implements HasForms
     /**
      * @var FooterData|null the form data
      */
-    public ?FooterData $data = null;
+    public ?FooterData $footerData = null;
+
+    public ?array $data = [];
 
     protected static ?string $navigationIcon = 'heroicon-o-document-text';
 
@@ -72,10 +74,12 @@ class Footer extends Page implements HasForms
                 Select::make('view')
                     ->options($options)
                     ->label(__('View Template')),
+                /*
                 RadioImage::make('_tpl')
                     ->options($options)
                     ->columnSpanFull()
                     ->label(__('Template Selection')),
+                    */
             ])
             ->columns(2)
             ->statePath('data');
@@ -116,9 +120,9 @@ class Footer extends Page implements HasForms
         $footerConfig = Arr::get($appearanceConfig, 'footer', []);
         Assert::isArray($footerConfig);
 
-        $this->data = FooterData::from($footerConfig);
+        $this->footerData = FooterData::from($footerConfig);
         /** @var array<string, mixed> */
-        $form_fill = $this->data->toArray();
+        $form_fill = $this->footerData->toArray();
         $this->form->fill($form_fill);
     }
 

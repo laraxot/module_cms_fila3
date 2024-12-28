@@ -35,7 +35,9 @@ class Headernav extends Page implements HasForms
     /**
      * @var HeadernavData|null the form data
      */
-    public ?HeadernavData $data = null;
+    public ?HeadernavData $headernavData = null;
+
+    public ?array $data = [];
 
     protected static ?string $navigationIcon = 'heroicon-o-document-text';
 
@@ -120,9 +122,10 @@ class Headernav extends Page implements HasForms
         $headernavConfig = Arr::get($appearanceConfig, 'headernav', []);
         Assert::isArray($headernavConfig);
 
-        $this->data = HeadernavData::from($headernavConfig);
+        $this->headernavData = HeadernavData::from($headernavConfig);
         /** @var array<string, mixed> $form_fill */
-        $form_fill = $this->data->toArray();
+        $form_fill = $this->headernavData->toArray();
+
         $this->form->fill($form_fill);
     }
 
