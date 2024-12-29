@@ -59,8 +59,8 @@ class CmsServiceProvider extends XotBaseServiceProvider
         parent::register();
 
         $this->xot = XotData::make();
-        //$configFileName = 'xra';
-        //$this->mergeConfigFrom(__DIR__.sprintf('/../config/%s.php', $configFileName), $configFileName);
+        // $configFileName = 'xra';
+        // $this->mergeConfigFrom(__DIR__.sprintf('/../config/%s.php', $configFileName), $configFileName);
 
         if ($this->xot->register_pub_theme) {
             Assert::isArray($paths = config('view.paths'));
@@ -142,7 +142,7 @@ class CmsServiceProvider extends XotBaseServiceProvider
 
         Assert::string($theme = $xot->{$theme_type});
 
-        $resource_path = 'Themes/'.$theme.'/Resources';
+        $resource_path = 'Themes/'.$theme.'/resources';
         $lang_dir = app(\Modules\Xot\Actions\File\FixPathAction::class)->execute(base_path($resource_path.'/lang'));
 
         $theme_dir = app(\Modules\Xot\Actions\File\FixPathAction::class)->execute(base_path($resource_path.'/views'));
