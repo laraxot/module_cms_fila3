@@ -9,6 +9,18 @@
     array (
       'label' => '_tpl',
     ),
+    'background_color' => 
+    array (
+      'label' => 'background_color',
+    ),
+    'background' => 
+    array (
+      'label' => 'background',
+    ),
+    'overlay_color' => 
+    array (
+      'label' => 'overlay_color',
+    ),
   ),
   'actions' => 
   array (
