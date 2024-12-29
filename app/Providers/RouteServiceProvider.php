@@ -14,8 +14,6 @@ use Modules\Xot\Providers\XotBaseRouteServiceProvider;
 
 // public function boot(\Illuminate\Routing\Router $router)
 
-
-
 class RouteServiceProvider extends XotBaseRouteServiceProvider
 {
     /**
