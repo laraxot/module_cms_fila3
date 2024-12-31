@@ -1,4 +1,5 @@
-<?php return array (
+<?php 
+return array (
   'navigation' => 
   array (
     'name' => 'Contenuto Pagina',
@@ -26,7 +27,7 @@
     'last_name' => 'Cognome',
     'content_blocks' => 
     array (
-      'label' => 'content_blocks',
+      'label' => 'blocco componente',
     ),
   ),
   'rating' => 
@@ -69,4 +70,4 @@
       'label' => 'create',
     ),
   ),
-);
+);
