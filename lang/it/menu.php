@@ -43,4 +43,15 @@
       'tooltip' => 'Crea',
     ),
   ),
+  'plural' => 
+  array (
+    'model' => 
+    array (
+      'label' => 'menu.plural.model',
+    ),
+  ),
+  'model' => 
+  array (
+    'label' => 'menu.model',
+  ),
 );

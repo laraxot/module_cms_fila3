@@ -53,4 +53,15 @@
       'label' => 'activeLocale',
     ),
   ),
+  'plural' => 
+  array (
+    'model' => 
+    array (
+      'label' => 'page.plural.model',
+    ),
+  ),
+  'model' => 
+  array (
+    'label' => 'page.model',
+  ),
 );
