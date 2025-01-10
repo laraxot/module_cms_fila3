@@ -29,6 +29,14 @@
     array (
       'label' => 'blocco componente',
     ),
+    'delete' => 
+    array (
+      'label' => 'delete',
+    ),
+    'edit' => 
+    array (
+      'label' => 'edit',
+    ),
   ),
   'rating' => 
   array (
@@ -76,5 +84,9 @@
     array (
       'label' => 'page content.plural.model',
     ),
+  ),
+  'model' => 
+  array (
+    'label' => 'page content.model',
   ),
 );
