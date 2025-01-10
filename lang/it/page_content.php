@@ -1,5 +1,4 @@
-<?php 
-return array (
+<?php return array (
   'navigation' => 
   array (
     'name' => 'Contenuto Pagina',
@@ -8,6 +7,7 @@ return array (
     array (
       'name' => 'Site',
     ),
+    'label' => 'page content.navigation',
   ),
   'fields' => 
   array (
@@ -70,4 +70,11 @@ return array (
       'label' => 'create',
     ),
   ),
-);
+  'plural' => 
+  array (
+    'model' => 
+    array (
+      'label' => 'page content.plural.model',
+    ),
+  ),
+);
