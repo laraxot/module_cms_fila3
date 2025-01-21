@@ -57,15 +57,22 @@ class ListPages extends XotBaseListRecords
         ];
     }
 
+    /**
+     * @return array<string, \Filament\Tables\Columns\Column>
+     */
     public function getListTableColumns(): array
     {
         return [
-            TextColumn::make('title')
+            'id' => Tables\Columns\TextColumn::make('id'),
+            'title' => Tables\Columns\TextColumn::make('title')
+                ->searchable()
+                ->sortable(),
+            'lang' => Tables\Columns\TextColumn::make('lang')
+                ->searchable()
+                ->sortable(),
+            'updated_at' => Tables\Columns\TextColumn::make('updated_at')
                 ->sortable()
-                ->searchable(),
-            TextColumn::make('slug')
-                ->sortable()
-                ->searchable(),
+                ->dateTime(),
         ];
     }
 
