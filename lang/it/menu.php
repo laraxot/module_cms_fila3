@@ -35,6 +35,8 @@
     'plural' => 'Menu',
     'name' => 'Menu',
     'label' => 'menu.navigation',
+    'sort' => 32,
+    'icon' => 'menu.navigation',
   ),
   'actions' => 
   array (

@@ -8,6 +8,8 @@
       'name' => 'Site',
     ),
     'label' => 'page content.navigation',
+    'sort' => 87,
+    'icon' => 'page content.navigation',
   ),
   'fields' => 
   array (
@@ -36,6 +38,30 @@
     'edit' => 
     array (
       'label' => 'edit',
+    ),
+    'view' => 
+    array (
+      'label' => 'view',
+    ),
+    'openFilters' => 
+    array (
+      'label' => 'openFilters',
+    ),
+    'applyFilters' => 
+    array (
+      'label' => 'applyFilters',
+    ),
+    'resetFilters' => 
+    array (
+      'label' => 'resetFilters',
+    ),
+    'reorderRecords' => 
+    array (
+      'label' => 'reorderRecords',
+    ),
+    'toggleColumns' => 
+    array (
+      'label' => 'toggleColumns',
     ),
   ),
   'rating' => 

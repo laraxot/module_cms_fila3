@@ -8,6 +8,8 @@
       'name' => 'Site',
     ),
     'label' => 'page.navigation',
+    'sort' => 55,
+    'icon' => 'page.navigation',
   ),
   'fields' => 
   array (
