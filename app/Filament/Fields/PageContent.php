@@ -22,7 +22,7 @@ class PageContent
                 Assert::isInstanceOf($block, ComponentFileData::class, '['.__LINE__.']['.__FILE__.']');
                 $class = $block->class;
 
-                return $class::make(context: $context);
+                return $class::make($context);
             }
         );
 
