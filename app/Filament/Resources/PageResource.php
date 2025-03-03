@@ -5,7 +5,6 @@ declare(strict_types=1);
 namespace Modules\Cms\Filament\Resources;
 
 use Filament\Forms;
-use Filament\Forms\Form;
 use Filament\Resources\Concerns\Translatable;
 use Illuminate\Support\Str;
 use Modules\Cms\Filament\Fields\LeftSidebarContent;

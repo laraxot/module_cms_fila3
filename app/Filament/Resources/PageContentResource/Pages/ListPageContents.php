@@ -5,21 +5,20 @@ declare(strict_types=1);
 namespace Modules\Cms\Filament\Resources\PageContentResource\Pages;
 
 use Filament\Actions;
-use Filament\Tables\Table;
 use Filament\Actions\CreateAction;
-use Filament\Tables\Actions\EditAction;
-use Filament\Tables\Actions\ViewAction;
-use Filament\Tables\Columns\TextColumn;
-use Filament\Tables\Enums\FiltersLayout;
 use Filament\Resources\Pages\ListRecords;
 use Filament\Tables\Actions\DeleteAction;
-use Filament\Tables\Columns\Layout\Stack;
-use Filament\Tables\Enums\ActionsPosition;
 use Filament\Tables\Actions\DeleteBulkAction;
+use Filament\Tables\Actions\EditAction;
+use Filament\Tables\Actions\ViewAction;
+use Filament\Tables\Columns\Layout\Stack;
+use Filament\Tables\Columns\TextColumn;
+use Filament\Tables\Enums\ActionsPosition;
+use Filament\Tables\Enums\FiltersLayout;
+use Filament\Tables\Table;
 use Modules\Cms\Filament\Resources\PageContentResource;
-
-use Modules\Xot\Filament\Resources\Pages\XotBaseListRecords;
 use Modules\UI\Filament\Actions\Table\TableLayoutToggleTableAction;
+use Modules\Xot\Filament\Resources\Pages\XotBaseListRecords;
 
 class ListPageContents extends XotBaseListRecords
 {
