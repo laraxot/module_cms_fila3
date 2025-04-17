@@ -1,0 +1,92 @@
+{
+    "name": "laraxot/module_cms_fila3",
+    "description": "",
+    "homepage": "https://laraxot.github.io/module_cms",
+    "license": "MIT",
+    "authors": [{
+        "name": "Marco Sottana",
+        "email": "marco.sottana@gmail.com",
+        "role": "Developer"
+    }],
+    "extra": {
+        "laravel": {
+            "providers": [
+                "Modules\\Cms\\Providers\\CmsServiceProvider",
+                "Modules\\Cms\\Providers\\Filament\\AdminPanelProvider",
+                "Modules\\Cms\\Providers\\Filament\\FrontPanelProvider"
+            ],
+            "aliases": {
+
+            }
+        }
+    },
+    "autoload": {
+        "psr-4": {
+            "Modules\\Cms\\": "app/",
+            "Modules\\Cms\\Database\\Factories\\": "database/factories/",
+            "Modules\\Cms\\Database\\Seeders\\": "database/seeders/"
+        }
+    },
+    "require": {
+
+    },
+    "require_comment": {
+        "ryangjchandler/orbit": "*",
+        "illuminate/contracts": "^10.0|^11.0",
+        "laraxot/module_lang_fila3": "*",
+        "laraxot/module_user_fila3": "*",
+        "laraxot/module_tenant_fila3": "*",
+        "laraxot/module_ui": "*",
+        "laraxot/module_xot_fila3": "*",
+        "spatie/laravel-package-tools": "^1.11.3"
+    },
+    "require-dev_comment": {
+        "laravel/pint": "^1.0",
+        "nunomaduro/collision": "^7.9",
+        "larastan/larastan": "^2.0.1",
+        "orchestra/testbench": "^8.0",
+        "pestphp/pest": "^2.0",
+        "pestphp/pest-plugin-arch": "^2.0",
+        "pestphp/pest-plugin-laravel": "^2.0",
+        "phpstan/extension-installer": "^1.1",
+        "phpstan/phpstan-deprecation-rules": "^1.0",
+        "phpstan/phpstan-phpunit": "^1.0",
+        "spatie/laravel-ray": "^1.26"
+    },
+    "repositories": [
+        {
+            "type": "path",
+            "url": "../Xot"
+        },
+        {
+            "type": "path",
+            "url": "../Tenant"
+        },
+        {
+            "type": "path",
+            "url": "../UI"
+        }
+    ],
+    "scripts": {
+        "post-autoload-dump": [
+            "@php vendor/bin/testbench package:discover --ansi"
+        ],
+        "post-update-cmd": [
+            "Illuminate\\Foundation\\ComposerScripts::postUpdate"
+        ],
+        "analyse": "vendor/bin/phpstan analyse",
+        "test": "./vendor/bin/pest --no-coverage",
+        "test-coverage": "vendor/bin/pest --coverage-html coverage",
+        "format": "vendor/bin/php-cs-fixer fix --allow-risky=yes"
+    },
+    "config": {
+        "sort-packages": true,
+        "allow-plugins": {
+            "pestphp/pest-plugin": true,
+            "phpstan/extension-installer": true
+        }
+    },
+    "minimum-stability": "dev",
+    "prefer-stable": true
+
+}
